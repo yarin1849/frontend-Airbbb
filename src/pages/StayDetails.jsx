@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { loadStay, addStayMsg } from '../store/actions/stay.actions'
+import { StayGallery } from '../cmps/StayGallery'
+import { StayDescription } from '../cmps/StayDescription'
 
 
 export function StayDetails() {
@@ -28,12 +30,11 @@ export function StayDetails() {
 
   return (
     <section className="stay-details">
-      <Link to="/stay">Back to list</Link>
-      <h1>Stay Details</h1>
+      {/* <Link to="/stay">Back to list</Link> */}
+      <h1>Sunset Luxury 6 Bedroom Villa with Swimming pool</h1>
       {stay && <div>
-        <h3>{stay.type}</h3>
-        <h4>${stay.price}</h4>
-        <pre> {JSON.stringify(stay, null, 2)} </pre>
+        <StayGallery />
+        <StayDescription />
       </div>
       }
       <button onClick={() => { onAddStayMsg(stay._id) }}>Add stay msg</button>
