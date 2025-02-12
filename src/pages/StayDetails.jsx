@@ -7,6 +7,8 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { loadStay, addStayMsg } from '../store/actions/stay.actions'
 import { StayGallery } from '../cmps/StayGallery'
 import { StayDescription } from '../cmps/StayDescription'
+import { StayAmenities } from '../cmps/StayAmenities'
+import { ReserveModal } from '../cmps/ReserveModal'
 
 
 export function StayDetails() {
@@ -35,9 +37,11 @@ export function StayDetails() {
       {stay && <div>
         <StayGallery />
         <StayDescription />
+        <StayAmenities />
+        <ReserveModal />
       </div>
       }
-      <button onClick={() => { onAddStayMsg(stay._id) }}>Add stay msg</button>
+      {/* <button onClick={() => { onAddStayMsg(stay._id) }}>Add stay msg</button> */}
 
     </section>
   )
