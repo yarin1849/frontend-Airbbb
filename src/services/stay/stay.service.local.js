@@ -2,6 +2,9 @@
 import { storageService } from '../async-storage.service'
 import { makeId, saveToStorage, loadFromStorage } from '../util.service'
 import { userService } from '../user'
+import airbnbImage from '../../assets/img/airbnb-image.jpg'
+import image from '../../assets/img/image.avif'
+import profile from '../../assets/img/profile.avif'
 
 const STORAGE_KEY = 'stay'
 _createStays()
@@ -94,7 +97,7 @@ function _createStays() {
                 _id: 's101',
                 name: 'Ribeira Charming Duplex',
                 type: 'House',
-                imgUrls: ['https://e26e9b.jpg', 'otherImg.jpg'],
+                imgUrls: [image,image, image,image, image],
                 price: 80.0,
                 summary: 'Fantastic duplex apartment...',
                 capacity: 8,
@@ -103,7 +106,7 @@ function _createStays() {
                 host: {
                     _id: 'u101',
                     fullname: 'Davit Pok',
-                    imgUrl: 'https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+                    imgUrl: profile,
                 },
                 loc: {
                     country: 'Portugal',
@@ -121,7 +124,7 @@ function _createStays() {
                         by: {
                             _id: 'u102',
                             fullname: 'user2',
-                            imgUrl: '/img/img2.jpg',
+                            imgUrl: profile,
                         },
                     },
                 ],
@@ -131,7 +134,7 @@ function _createStays() {
                 _id: 's102',
                 name: 'Ocean View Villa',
                 type: 'Villa',
-                imgUrls: ['https://img2.jpg', 'https://img3.jpg'],
+                imgUrls: [image,image, image,image, image],
                 price: 150.0,
                 summary: 'Luxury villa with breathtaking ocean views...',
                 capacity: 6,
@@ -140,7 +143,7 @@ function _createStays() {
                 host: {
                     _id: 'u103',
                     fullname: 'Maria Lopez',
-                    imgUrl: 'https://hostimg2.jpg',
+                    imgUrl: profile,
                 },
                 loc: {
                     country: 'Spain',
@@ -158,7 +161,7 @@ function _createStays() {
                         by: {
                             _id: 'u104',
                             fullname: 'user3',
-                            imgUrl: '/img/img3.jpg',
+                            imgUrl: profile,
                         },
                     },
                 ],
@@ -168,7 +171,7 @@ function _createStays() {
                 _id: 's103',
                 name: 'Cozy Mountain Cabin',
                 type: 'Cabin',
-                imgUrls: ['https://img4.jpg', 'https://img5.jpg'],
+                imgUrls: [image,image, image,image, image],
                 price: 95.0,
                 summary: 'A warm and cozy cabin in the mountains...',
                 capacity: 4,
@@ -177,7 +180,7 @@ function _createStays() {
                 host: {
                     _id: 'u105',
                     fullname: 'John Smith',
-                    imgUrl: 'https://hostimg3.jpg',
+                    imgUrl: profile,
                 },
                 loc: {
                     country: 'Canada',
@@ -195,7 +198,7 @@ function _createStays() {
                         by: {
                             _id: 'u106',
                             fullname: 'user5',
-                            imgUrl: '/img/img5.jpg',
+                            imgUrl: profile,
                         },
                     },
                 ],
@@ -205,7 +208,7 @@ function _createStays() {
                 _id: 's104',
                 name: 'Urban Loft',
                 type: 'Apartment',
-                imgUrls: ['https://img6.jpg', 'https://img7.jpg'],
+                imgUrls: [image,image, image,image, image],
                 price: 110.0,
                 summary: 'Modern loft in the heart of the city...',
                 capacity: 2,
@@ -214,7 +217,7 @@ function _createStays() {
                 host: {
                     _id: 'u107',
                     fullname: 'Emily Brown',
-                    imgUrl: 'https://hostimg4.jpg',
+                    imgUrl: profile,
                 },
                 loc: {
                     country: 'USA',
@@ -232,7 +235,7 @@ function _createStays() {
                         by: {
                             _id: 'u108',
                             fullname: 'user7',
-                            imgUrl: '/img/img7.jpg',
+                            imgUrl: profile,
                         },
                     },
                 ],
