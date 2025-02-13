@@ -9,10 +9,14 @@
         justify-items: space-between;
     }
 
+    h1{
+        font-size: rem(26px);
+    }
+
     .action-btn {
-        background-color: aqua;
         display: flex;
-        // background: none;
+        background: none;
+        background-color: aqua;
         border: none;
         color: #222222;
         padding: 0;
@@ -20,6 +24,11 @@
         cursor: pointer;
         font-size: 16px;
         font-weight: bold;
+    }
+
+    img{
+        display: inline-block;
+        width: 16px;
     }
 
     .details-header{
