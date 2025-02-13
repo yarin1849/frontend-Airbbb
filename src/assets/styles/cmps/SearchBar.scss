@@ -1,17 +1,35 @@
 .search-bar {
     margin: auto;
-    margin-top: 100px;
+    margin-top: 60px;
+    max-height: rem(66px);
+    margin-bottom: 0;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
     padding-inline-start: 1.9rem;
-    padding-inline-end: 10px;
+    padding-inline-end: 6px;
     border-radius: 3rem;
+
+    label {
+        display: flex;
+        flex-direction: column;
+        font-size: rem(12px);
+
+        div {
+            padding-top: 10px;
+        }
+
+        &>* {
+            line-height: 0;
+
+        }
+    }
 
     input {
         border-width: 0;
+        margin-top: .8rem;
 
-        &:focus-visible{
-            outline:none;
+        &:focus-visible {
+            outline: none;
         }
 
     }
@@ -20,12 +38,15 @@
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        &:hover{
+
+        &:hover {
             background-color: $clrd1;
         }
-        .search-icon{
-            width:1.2em;
+
+        .search-icon {
+            width: 1.2em;
             place-self: center;
         }
     }
+
 }
