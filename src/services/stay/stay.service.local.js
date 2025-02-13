@@ -2,7 +2,7 @@
 import { storageService } from '../async-storage.service'
 import { makeId, saveToStorage, loadFromStorage } from '../util.service'
 import { userService } from '../user'
-import airbnbImage from '../../assets/img/airbnb-image.jpg'
+// import airbnbImage from '../../assets/img/airbnb-image.jpg'
 import image from '../../assets/img/image.avif'
 import profile from '../../assets/img/profile.avif'
 
@@ -106,7 +106,7 @@ function _createStays() {
                 host: {
                     _id: 'u101',
                     fullname: 'Davit Pok',
-                    imgUrl: profile,
+                    imgUrl: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739434710/airbnb-image_muycbi.jpg',
                 },
                 loc: {
                     country: 'Portugal',

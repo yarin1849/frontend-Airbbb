@@ -1,117 +1,112 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from "react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import debounce from 'lodash/debounce'
+import { categories } from '../services/util.service'
 
-export function StayFilter({ filterBy, setFilterBy }) {
-    const [filterToEdit, setFilterToEdit] = useState(structuredClone(filterBy))
+export function StayFilter() {
+    const scrollRef = useRef(null)
+    const rightBtn = useRef(null)
+    const leftBtn = useRef(null)
+    const [currentPage, setCurrentPage] = useState(0)
+    const [itemsPerPage, setItemsPerPage] = useState(25)
+    const [scrollAmount, setScrollAmount] = useState(992)
+    // const scrollAmount = 992 
+    const totalPages = Math.ceil(categories.length / itemsPerPage)
 
-    useEffect(() => {
-        setFilterBy(filterToEdit)
-    }, [filterToEdit])
 
-    function handleChange(ev) {
-        const type = ev.target.type
-        const field = ev.target.name
-        let value
+    const updateItemsPerPage = () => {
+        const screenWidth = window.innerWidth
 
-        switch (type) {
-            case 'text':
-            case 'radio':
-                value = field === 'sortDir' ? +ev.target.value : ev.target.value
-                if (!filterToEdit.sortDir) filterToEdit.sortDir = 1
-                break
-            case 'number':
-                value = +ev.target.value || ''
-                break
+        if (screenWidth < 600) {
+            setItemsPerPage(5)
+            setScrollAmount(440)
+        } else if (screenWidth < 900) {
+            setItemsPerPage(10)
+            setScrollAmount(740)
+        } else if (screenWidth < 1500) {
+            setItemsPerPage(20)
+            setScrollAmount(1340)
+        } else {
+            setItemsPerPage(28)
+            setScrollAmount(1400)
         }
-        setFilterToEdit({ ...filterToEdit, [field]: value })
     }
 
-    function clearFilter() {
-        setFilterToEdit({ ...filterToEdit, txt: '', minPrice: '', maxPrice: '' })
+    
+    useEffect(() => {
+        const handleResize = debounce(() => {
+          updateItemsPerPage()
+        }, 200)
+      
+        window.addEventListener("resize", handleResize)
+      
+        return () => {
+          window.removeEventListener("resize", handleResize)
+        }
+      }, [])
+
+    const scroll = (direction) => {
+
+        const filterBar = scrollRef.current
+        if (filterBar) {
+
+            if (direction === "right" && currentPage < totalPages - 1) {
+
+                // Slide the page out to the left and then slide the next one in
+                filterBar.style.transition = "transform 0.8s ease-in-out"
+                filterBar.style.transform = `translateX(-${scrollAmount}px)`
+
+
+                // After the animation completes, change the page
+                setTimeout(() => {
+                    setCurrentPage(currentPage + 1)
+                    filterBar.style.transition = "none"
+                    filterBar.style.transform = `translateX(0)`
+                }, 500)
+            }
+
+            if (direction === "left" && currentPage > 0) {
+                // Slide the page out to the right and then slide the previous one in
+                filterBar.style.transition = "transform 0.8s ease-in-out"
+                filterBar.style.transform = `translateX(${scrollAmount}px)`
+
+                // After the animation completes, change the page
+                setTimeout(() => {
+                    setCurrentPage(currentPage - 1)
+                    filterBar.style.transition = "none"
+                    filterBar.style.transform = `translateX(0)`
+                }, 500)
+            }
+        }
     }
 
-    function clearSort() {
-        setFilterToEdit({ ...filterToEdit, sortField: '', sortDir: '' })
-    }
+    const visibleFilters = categories.slice(
+        currentPage * itemsPerPage,
+        (currentPage + 1) * itemsPerPage
+    )
+    return (
+        <div className="stay-filter">
+            {/* Left Arrow Button */}
+            {currentPage > 0 && (
+                <button className="left-arrow button" ref={leftBtn} onClick={() => scroll("left")}>
+                <ChevronLeft size={15} style={{transform: "translate(-36.5%, -16%)"}}/>
+            </button>)}
+            <div ref={scrollRef} className="filter-bar" style={{ display: 'flex', overflowX: 'hidden' }}>
 
-    return <section className="stay-filter">
-        <h3>Filter:</h3>
-        <input
-            type="text"
-            name="txt"
-            value={filterToEdit.txt}
-            placeholder="Free text"
-            onChange={handleChange}
-            required
-        />
-        <input
-            type="number"
-            min="0"
-            name="minPrice"
-            value={filterToEdit.minPrice}
-            placeholder="min. price"
-            onChange={handleChange}
-            required
-        />
-        <button
-            className="btn-clear"
-            onClick={clearFilter}>Clear</button>
-        <h3>Sort:</h3>
-        <div className="sort-field">
-            <label>
-                <span>Price</span>
-                <input
-                    type="radio"
-                    name="sortField"
-                    value="price"
-                    checked={filterToEdit.sortField === 'price'}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                <span>Type</span>
-                <input
-                    type="radio"
-                    name="sortField"
-                    value="type"
-                    checked={filterToEdit.sortField === 'type'}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                <span>Host</span>
-                <input
-                    type="radio"
-                    name="sortField"
-                    value="host"
-                    checked={filterToEdit.sortField === 'host'}
-                    onChange={handleChange}
-                />
-            </label>
+                {/* Render visible filters */}
+                {visibleFilters.map((filter, index) => (
+                    <button key={index} className="filter-icon">
+                        <img src={filter.src} alt={filter.name} className="w-6 h-6" />
+                        <span>{filter.name}</span>
+                    </button>
+                ))}
+
+            </div>
+            {/* Right Arrow Button */}
+            {currentPage < totalPages - 1 && 
+            (<button className="right-arrow button" ref={rightBtn} onClick={() => scroll("right")}>
+                <ChevronRight size={15} style={{transform: "translate(-36.5%, -16%)"}}/>
+            </button>)}
         </div>
-        <div className="sort-dir">
-            <label>
-                <span>Asce</span>
-                <input
-                    type="radio"
-                    name="sortDir"
-                    value="1"
-                    checked={filterToEdit.sortDir === 1}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                <span>Desc</span>
-                <input
-                    type="radio"
-                    name="sortDir"
-                    value="-1"
-                    onChange={handleChange}
-                    checked={filterToEdit.sortDir === -1}
-                />
-            </label>
-        </div>
-        <button
-            className="btn-clear"
-            onClick={clearSort}>Clear</button>
-    </section>
+    )
 }
