@@ -1,61 +1,80 @@
 .app-header {
     display: flex;
-    min-height: 3.5rem;
-
-    background-color: $clr4;
+    width:100%;
+    justify-content: space-between;
+    min-height: 5rem;
     padding: rem(10px) 1rem;
-    
-    nav {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        gap: 1em;
-        
-        font-size: .8em;
 
-        .active {
-            color: $clr1;
-        }
 
-        .logo {
-            font-size: 1.4em;
-            font-weight: bold;
-            margin-inline-end: 2em;
-        }
 
-        .login-link {
-            margin-inline-start: auto;
-        }
 
-        button {
-            margin-inline-end: 0;
-        }
+    .logo {
+        width: 10rem;
+        align-self: center;
     }
 
-    .user-info {
-        display: flex;
+    .menu {
+        width: 6.27rem;
+        height: 3rem;
+        gap: 15px;
+        background-color: white;
+        border: 1px solid #DDDDDD;
+        padding: 0.4rem 0.6rem 0.6rem 1rem;
         align-items: center;
-        margin-inline-start: auto;
+        align-self: center;
+        border-radius: 2.9em;
 
-        color: $clr1;
-
-        .score {
-            padding: 8px;
-            background-color: $clr2;
-            border-radius: 50%;
-            margin: 10px;
-
-            color: $clr6;
+        .avatar {
+            width: 1.5rem;
         }
 
-        img {
-            width: 32px;
-            aspect-ratio: 1;
-            border-radius: 50%;
+        .burger {
+            width: 1rem;
         }
-        
-        .btn-link {
-            color: $clr2;
+
+        .avatar {
+            width: 1.9rem;
         }
+
     }
+
+    // nav {
+    //     display: flex;
+    //     width: 100%;
+    //     align-items: center;
+    //     gap: 1em;
+
+    //     font-size: .8em;
+
+    //     .active {
+    //         color: $clr1;
+    //     }
+
+
+    //     .login-link {
+    //         margin-inline-start: auto;
+    //     }
+
+
+    // }
+
+    // .user-info {
+    //     display: flex;
+    //     align-items: center;
+    //     margin-inline-start: auto;
+
+    //     color: $clr1;
+
+
+
+    //     img {
+    //         width: 32px;
+    //         aspect-ratio: 1;
+    //         border-radius: 50%;
+    //     }
+
+    //     .btn-link {
+    //         color: $clr2;
+    //     }
+    // }
 }
