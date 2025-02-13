@@ -1,0 +1,31 @@
+.search-bar {
+    margin: auto;
+    margin-top: 100px;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    padding-inline-start: 1.9rem;
+    padding-inline-end: 10px;
+    border-radius: 3rem;
+
+    input {
+        border-width: 0;
+
+        &:focus-visible{
+            outline:none;
+        }
+
+    }
+
+    button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        &:hover{
+            background-color: $clrd1;
+        }
+        .search-icon{
+            width:1.2em;
+            place-self: center;
+        }
+    }
+}

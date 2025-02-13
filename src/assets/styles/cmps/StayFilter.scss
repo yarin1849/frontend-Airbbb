@@ -73,6 +73,7 @@
     background-color: white;
     overflow: hidden;
 
+<<<<<<< HEAD
     /* Scrollable Filter Bar */
     .filter-bar {
         display: grid;
@@ -124,6 +125,10 @@
                 }
             }
         }
+=======
+    background-color: $gray2;
+    padding: .5em;
+>>>>>>> main
 
     }
     /* Left & Right Scroll Arrows */
@@ -145,6 +150,7 @@
             background-color: #f0f0f0;
         }
 
+<<<<<<< HEAD
     }
 
     /* Positioning Buttons Correctly */
@@ -191,6 +197,11 @@
         .right-arrow {
             right: 5px;
             transform: translate(0, -50%);
+=======
+        &:has(:checked) span  {
+            background-color: $gray3;
+            color: $gray1;
+>>>>>>> main
         }
     }
 }

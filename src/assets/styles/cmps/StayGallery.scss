@@ -1,0 +1,29 @@
+.stay-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    border-radius: 12px;
+    overflow: hidden;
+    // color: #222222;
+    width:100%;
+    padding: 24px, 0px, 0px;
+    height: 505px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+    }
+
+    img:first-child {
+        grid-row: span 2;
+        grid-column: span 2;
+    }
+
+    
+}
