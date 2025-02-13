@@ -1,14 +1,22 @@
+.full {
+    grid-column: 1 / -1;
+}
 .stay-details{
     max-width: 1024px;
     margin: 0 auto;
 
+
     .action-btns{
-        background-color: brown;
         display: flex;
         align-items: center;
-        justify-items: space-between;
-    }
+        // justify-content: space-between;
+        gap: 16px;
+        padding: 8px;
+        margin: 0 -8px;
 
+        
+    }
+    
     h1{
         font-size: rem(26px);
     }
@@ -16,16 +24,24 @@
     .action-btn {
         display: flex;
         background: none;
-        background-color: aqua;
         border: none;
         color: #222222;
-        padding: 0;
+        padding: 8;
         margin: 0;
         cursor: pointer;
-        font-size: 16px;
+        font-size: rem(16px);
         font-weight: bold;
+        text-decoration: underline;
+
+
+        &:hover {
+            background-color: $gray3;
+        }
+        
+    
     }
 
+    
     img{
         display: inline-block;
         width: 16px;
@@ -37,3 +53,13 @@
     }
 }
 
+// .stay-booking{
+//     background-color: aqua;
+// }
+
+// .stay-info{
+//     background-color: aquamarine;
+//     justify-content: space-between;
+//     // justify-items: space-between;
+
+// }

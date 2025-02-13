@@ -1,23 +1,76 @@
 import { useState } from "react";
 import { makeLorem } from "../services/util.service";
 
+const images = [
+    {
+        name: "asset_5",
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739454694/asset_5_vzip4n.png"
+    },
+    {
+        name: "asset_6",
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739453962/asset_6_d8prrd.png"
+    },
+    {
+        name: "star",
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739453965/asset_23_rlrre4.svg"
+    }
+]
 
 export function StayDescription() {
     const [isExpanded, setIsExpanded] = useState(false)
     const fullText = makeLorem(200)
     const maxLength = 560
-
+    const reviews = 123
     const displayedText = isExpanded ? fullText : fullText.slice(0, maxLength) + (fullText.length > maxLength ? " ..." : "");
-
     return (
         <div className="stay-description">
-            <p>{displayedText}</p>
-            {fullText.length > maxLength && (
-                <button className="btn-description" onClick={() => setIsExpanded(!isExpanded)}>
-                    {isExpanded ? "Show less" : "Show more"}
-                </button>
-            )
-            }
+            <div className="stay-description-title">
+                <h2>{makeLorem(5)}</h2>
+                <p>6 guests · 3 bedrooms · 3 beds · 3 baths</p>
+            </div>
+            <div className="review-container">
+                <div className="guest-favorite">
+                    <img src={images[0].src} alt="Guest Favorite" className="guest-icon" />
+                    <div className="guest-text">
+                        <span>Guest</span>
+                        <span>favorite</span>
+                    </div>
+                    <img src={images[1].src} alt="Guest Favorite" className="guest-icon" />
+                </div>
+                <div className="divider"></div>
+                {/* <p className="description-text">One of the most loved homes on Airbnb, according to guests</p> */}
+                <div className="rank-details">
+                    <span className="review-score">4.97</span>
+                    <div className="review-stars">{[1, 2, 3, 4, 5].map(() => (
+                        <img
+                            src="https://res.cloudinary.com/du312ufuo/image/upload/v1739453965/asset_23_rlrre4.svg"
+                            alt="star"
+                        />
+                    ))}</div>
+                </div>
+                <div className="divider"></div>
+                <div className="review-details">
+                    <div className="review-count">{reviews}</div>
+                    <div className="review-text">Reviews</div>
+                </div>
+            </div>
+            <div className="home-highlights">
+                <div className="host-info">
+                    {/* <img src="https://via.placeholder.com/40" alt="Host" className="host-avatar" /> */}
+                    <div>
+                        <h3>Hosted by Yarin</h3>
+                        <p className="host-subtitle">Superhost · 8 years hosting</p>
+                    </div>
+                </div>
+            </div>
+            <div className="text-description">
+                <p>{displayedText}</p>
+                {fullText.length > maxLength && (
+                    <button className="btn-description" onClick={() => setIsExpanded(!isExpanded)}>
+                        {isExpanded ? "Show less" : "Show more"}
+                    </button>
+                )}
+            </div>
         </div>
     )
 }

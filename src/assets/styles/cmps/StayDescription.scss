@@ -1,21 +1,119 @@
 .stay-description{
-    padding: 32px 0px 48px;
-}
-
-.btn-description {
-    display: flex;
-    background: none;
-    border: none;
-    color: #222222;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-.btn-description:hover {
-    color: black;
+    // padding: 32px 0px 48px;
     
+    
+    .stay-description-title{
+        padding: 32px 0px;
+        h2 {
+            font-size: rem(26px);
+        }
+    }
+
+    .host-info {
+        margin: 24px 0;
+        line-height: 1;
+        h3{
+            font-size: rem(16px);
+        }
+        /////////back to this
+    }
+
+    .text-description{
+        padding: 32px 0px 48px;
+    }
+
+    .review-container{
+        color: #222222;
+        max-width: 653.33px;
+        max-height: 89.2px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin: 0 0 12px;
+        border: 1px solid #ddd;
+        // padding: 12px;
+        padding: 20px 0;
+        border-radius: 12px;
+
+        .divider {
+            width: 1px;
+            height: 32px; /* Make it visible */
+            background-color: #DDDDDD; /* Adjust color */
+        }
+
+        .guest-favorite{
+            display: flex;
+            // margin: 0 0 12px;
+            // padding: 20px 0px;
+            align-items: center;
+            font-weight: bold;
+            gap: 8px;
+            font-size: 16px;
+            padding: 0 4px 4px;
+
+            .guest-text{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-size: rem(16px);
+                line-height: 1;
+            }
+        }
+
+        .rank-details{
+            justify-items: center;
+            line-height: 1;
+            padding: 0 0 5px;
+            .review-score{
+                font-size: rem(18px);
+            }
+            .review-stars{
+                img{
+                    width: 9px;
+                    gap:2px;
+                    margin: 0 0 0px 2px;
+                }
+            }
+        }
+
+        .review-details{
+            justify-items: center;
+            // line-height: 1;
+
+            .review-count{
+                margin: 0 0 -4px;
+                padding: 0 0 2px;
+                font-size: 18px;
+
+            }
+
+            .review-text{
+                font-size: 12px;
+                text-decoration: underline;
+            }
+        }
+    }
+
+
+    
+
+    .btn-description {
+        display: flex;
+        background: none;
+        border: none;
+        color: #222222;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    
+    .btn-description:hover {
+        color: black;
+    }
+
+
 }
+

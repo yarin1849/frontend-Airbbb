@@ -38,15 +38,19 @@ export function StayDetails() {
       <div className='details-header'>
         <h1>Sunset Luxury 6 Bedroom Villa with Swimming pool</h1>
         <div className='action-btns'>
-          <button className='action-btn' ><img src={share} alt="Main" className='action-img' /> Share</button>
-          <button className='action-btn'><img src={save} alt="Main" className='action-img' /> Save</button>
+          <button className='action-btn' ><img src={share} alt="Main" className='action-img' />Share</button>
+          <button className='action-btn'><img src={save} alt="Main" className='action-img' />Save</button>
         </div>
       </div>
       {stay && <div>
         <StayGallery />
-        <StayDescription />
-        <StayAmenities />
-        <ReserveModal />
+        <div className='stay-info flex'>
+          <div className=' stay-booking flex column'>
+            <StayDescription />
+            <StayAmenities />
+          </div>
+          <ReserveModal />
+        </div>
       </div>
       }
       {/* <button onClick={() => { onAddStayMsg(stay._id) }}>Add stay msg</button> */}
