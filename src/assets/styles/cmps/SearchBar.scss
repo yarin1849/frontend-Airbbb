@@ -20,7 +20,7 @@
 
         &:hover {
 
-            background-color: $gray2;
+            background-color: $gray3;
 
             &::after {
                 display: none;
@@ -59,7 +59,7 @@
 
 
     .input-container:last-child {
-        width: 231px;
+        width: 284px;
         padding-inline-end: 3px;
         justify-content: space-between;
     }
