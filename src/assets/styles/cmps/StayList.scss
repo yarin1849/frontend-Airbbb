@@ -1,15 +1,23 @@
 .stay-list {
     display: grid;
+    grid-auto-flow: row;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: .5em;
+    // gap: .5em;
+    gap: 24px;
+    // height: fit-content;
+    // aspect-ratio: 0.78 / 1; 
+    // width: 100%; // Allow width to be flexible
+    // height: auto;
 
     li {
         display: grid;
-        grid-template-columns: max-content auto;
-        padding: .5em;
-        background-color: $clr2;
+        width: 100%;
+        gap: 40px;
 
-        color: $clr6;
+        aspect-ratio: 0.78 / 1;
+        width: 100%; // Makes sure items fit in the available grid space
+        height: auto;
+        cursor: pointer;
 
         .actions {
             justify-self: end;
@@ -19,4 +27,9 @@
             }
         }
     }
+
+
 }
+
+
+

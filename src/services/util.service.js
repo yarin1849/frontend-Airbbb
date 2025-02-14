@@ -54,12 +54,16 @@ export function loadFromStorage(key) {
 
 export const categories = [
     {
-        name: 'Amazing pools',
-        src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435591/3fb523a0-b622-4368-8142-b5e03df7549b_hzkvgu.png'
+        name: 'Islands',
+        src: 'https://a0.muscache.com/pictures/8e507f16-4943-4be9-b707-59bd38d56309.jpg'
     },
     {
         name: 'Icons',
         src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435597/3e5243c8-4d15-4c6b-97e3-7ba2bb7bb880_rjbyxy.webp'
+    },
+    {
+        name: 'Amazing pools',
+        src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435591/3fb523a0-b622-4368-8142-b5e03df7549b_hzkvgu.png'
     },
     {
         name: 'Countryside',

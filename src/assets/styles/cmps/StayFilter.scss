@@ -9,7 +9,7 @@
     .filter-bar {
         display: grid;
         grid-auto-flow: column;
-        gap: rem(43.2px);
+        gap: 2.4rem;
         // overflow-x: auto;
         scroll-behavior: smooth;
         white-space: nowrap;
@@ -34,16 +34,15 @@
             gap: 7px;
             background: none;
             border: none;
-            color: #717171;
-            font-size: 10px;
+            color: black;
+            font-size: 9px;
             cursor: pointer;
             transition: color 0.3s ease-in-out;
             width: fit-content;
 
             img {
-                aspect-ratio: auto 21 /21;
-                width: 21px;
-                height: 21px;
+                width: 16.9px;
+                height: 16.9px;
                 filter: grayscale(100%);
                 transition: filter 0.3s ease-in-out;
             }
@@ -51,21 +50,20 @@
             &:hover,
             &.active {
                 color: black;
-
                 img {
                     filter: grayscale(0%);
                 }
             }
+    
         }
 
-    // background-color: $gray2;
     padding: .5em;
 
     }
     /* Left & Right Scroll Arrows */
     .button {
-        width: 25.9px;
-        height: 25.9px;
+        width: rem(22px);
+        height: rem(22px);
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -85,16 +83,14 @@
     /* Positioning Buttons Correctly */
     .left-arrow {
         left: 0;
-        transform: translateY(-50%) translateX(10%);
+        transform: translateY(-60%) translateX(10%);
         z-index: 1
-        /* Move it more to the left */
     }
 
     .right-arrow {
         right: 0;
-        transform: translateY(-50%) translateX(-10%);
+        transform: translateY(-60%) translateX(-10%);
         z-index: 1;
-        /* Move it more to the right */
     }
 
     /* Responsive Design */

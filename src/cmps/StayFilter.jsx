@@ -10,7 +10,6 @@ export function StayFilter() {
     const [currentPage, setCurrentPage] = useState(0)
     const [itemsPerPage, setItemsPerPage] = useState(25)
     const [scrollAmount, setScrollAmount] = useState(992)
-    // const scrollAmount = 992 
     const totalPages = Math.ceil(categories.length / itemsPerPage)
 
 
@@ -32,7 +31,6 @@ export function StayFilter() {
         }
     }
 
-    
     useEffect(() => {
         const handleResize = debounce(() => {
           updateItemsPerPage()
