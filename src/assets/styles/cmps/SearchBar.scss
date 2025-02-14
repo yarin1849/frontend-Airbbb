@@ -13,8 +13,8 @@
 
     .input-container {
         display: flex;
-        height: rem(66px);
-        width: rem(140.5px);
+        height: 66px;
+        width: 140.5px;
         border-radius: 2rem;
         align-items: center;
 
@@ -22,7 +22,7 @@
 
             background-color: $gray2;
 
-            .seperator {
+            &::after {
                 display: none;
             }
         }
@@ -43,8 +43,9 @@
             }
         }
 
-        .seperator {
-            width: 1px;
+        &:not(:last-child)::after {
+            content: '';
+            min-width: 1px;
             height: 2rem;
             background-color: $gray2;
         }
@@ -58,7 +59,7 @@
 
 
     .input-container:last-child {
-        width: rem(231px);
+        width: 231px;
         padding-inline-end: 3px;
         justify-content: space-between;
     }
