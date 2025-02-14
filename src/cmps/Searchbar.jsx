@@ -3,32 +3,36 @@ import searchicon from '../assets/img/searchicon.svg'
 export function SearchBar() {
 
     return (
-        <section>
+        <section >
             <form action="" className="flex search-bar">
-                <div>
+               
+                <div className='input-container flex'>
+                
                     <label htmlFor="Where">
                         <div>Where</div>
                         <input type="text" id="Where" placeholder="Search destination" />
                     </label>
+                
                 </div>
-                <div>
+                <div className='input-container flex'>
                     <label htmlFor="">
                         <div>Check in</div>
                         <input type="text" id="" placeholder="Add dates" />
                     </label>
+                
                 </div>
-                <div>
+                <div className='input-container flex'>
                     <label htmlFor="">
                         <div>Check out</div>
                         <input type="text" id="Where" placeholder="Add dates" />
                     </label>
+                
                 </div>
-                <div>
+                <div  className='input-container flex'>
                     <label htmlFor="">
-                        <div>who</div>
-                        <input type="text" id="Where" placeholder="Add gusts" />
+                        <div>Who</div>
+                        <input type="text" id="Where" placeholder="Add guests" />
                     </label>
-                </div>
                 <div className="btn-container">
                     <button>
                         <div className='search-icon'>
@@ -36,6 +40,8 @@ export function SearchBar() {
                         </div>
                     </button>
                 </div>
+                </div>
+
             </form>
         </section>
     )

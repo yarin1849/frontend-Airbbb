@@ -1,31 +1,107 @@
 .search-bar {
     margin: auto;
     margin-top: 100px;
+    max-height: rem(66px);
+    width: rem(850px);
+    margin-bottom: 0;
     align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-    padding-inline-start: 1.9rem;
-    padding-inline-end: 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 1px 6px 16px;
+    // justify-content: space-between;
+
+    border: 1px solid $gray3;
     border-radius: 3rem;
 
+    .input-container {
+        display: flex;
+        height: 66px;
+        width: 140.5px;
+        border-radius: 2rem;
+        align-items: center;
+
+        &:hover {
+
+            background-color: $gray3;
+
+            &::after {
+                display: none;
+            }
+        }
+
+        button {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            margin-left: 80px;
+
+            &:hover {
+                background-color: $clrd1;
+            }
+
+            .search-icon {
+                width: 1.2em;
+                place-self: center;
+            }
+        }
+
+        &:not(:last-child)::after {
+            content: '';
+            min-width: 1px;
+            height: 2rem;
+            background-color: $gray2;
+        }
+    }
+
+    .input-container:first-child {
+        width: 284px;
+        justify-content: space-between;
+
+    }
+
+
+    .input-container:last-child {
+        width: 284px;
+        padding-inline-end: 3px;
+        justify-content: space-between;
+    }
+
+
+    label {
+        display: flex;
+        flex-direction: column;
+        font-size: rem(12px);
+        color: $gray4;
+        padding-inline-start: 1.8rem;
+
+
+        div {
+            padding-top: 10px;
+        }
+
+        &>* {
+            line-height: 0;
+
+        }
+    }
+
     input {
+
         border-width: 0;
+        margin-top: .8rem;
+        background-color: rgba(0, 0, 0, 0);
+        font-size: rem(14px);
+        color: $clrd1;
+        max-width: rem(120px);
 
-        &:focus-visible{
-            outline:none;
+        .input-container input {
+            max-width: rem(100px);
+
+
         }
 
-    }
-
-    button {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        &:hover{
-            background-color: $clrd1;
-        }
-        .search-icon{
-            width:1.2em;
-            place-self: center;
+        &:focus-visible {
+            outline: none;
         }
     }
+
+
 }
