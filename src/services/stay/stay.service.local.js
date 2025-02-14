@@ -2,7 +2,7 @@
 import { storageService } from '../async-storage.service'
 import { makeId, saveToStorage, loadFromStorage } from '../util.service'
 import { userService } from '../user'
-import airbnbImage from '../../assets/img/airbnb-image.jpg'
+// import airbnbImage from '../../assets/img/airbnb-image.jpg'
 import image from '../../assets/img/image.avif'
 import profile from '../../assets/img/profile.avif'
 
@@ -38,7 +38,7 @@ async function query(filterBy = { txt: '', price: 0 }) {
             (stay1[sortField] - stay2[sortField]) * +sortDir)
     }
 
-    stays = stays.map(({ _id, type, price, host }) => ({ _id, type, price, host }))
+    stays = stays.map(({ _id, type, price, host, imgUrls }) => ({ _id, type, price, host, imgUrls }))
     return stays
 }
 
@@ -106,7 +106,7 @@ function _createStays() {
                 host: {
                     _id: 'u101',
                     fullname: 'Davit Pok',
-                    imgUrl: profile,
+                    imgUrl: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739434710/airbnb-image_muycbi.jpg',
                 },
                 loc: {
                     country: 'Portugal',
@@ -241,6 +241,22 @@ function _createStays() {
                 ],
                 likedByUsers: ['user3', 'user8'],
             },
+            ...Array(14).fill().map((_, i) => ({
+                _id: `s10${i + 5}`,
+                name: `Stay ${i + 5}`,
+                type: ['House', 'Villa', 'Cabin', 'Apartment'][i % 4],
+                imgUrls: [image, image, image, image, image],
+                price: (i + 5) * 10,
+                summary: `Description of Stay ${i + 5}`,
+                capacity: (i % 6) + 2,
+                amenities: ['TV', 'Wifi', 'Kitchen', 'Air Conditioning'],
+                labels: ['Luxury', 'Cozy', 'Urban', 'Nature'][i % 4],
+                host: { _id: `u10${i + 5}`, fullname: `Host ${i + 5}`, imgUrl: profile },
+                loc: { country: ['Portugal', 'Spain', 'Canada', 'USA'][i % 4], countryCode: ['PT', 'ES', 'CA', 'US'][i % 4], city: `City ${i + 5}`, address: `${i + 5} Main St`, lat: 40 + i, lng: -75 + i },
+                reviews: [{ id: `r10${i + 5}`, txt: `Review for Stay ${i + 5}`, rate: (i % 5) + 1, by: { _id: `u10${i + 5}`, fullname: `Reviewer ${i + 5}`, imgUrl: profile } }],
+                likedByUsers: [`user${i + 5}`],
+            })),
+        
         ]
         saveToStorage(STORAGE_KEY, stays)
     }

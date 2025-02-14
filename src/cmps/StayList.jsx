@@ -1,7 +1,12 @@
+import { useNavigate } from 'react-router'
 import { userService } from '../services/user'
 import { StayPreview } from './StayPreview'
 
+
+
+
 export function StayList({ stays, onRemoveStay, onUpdateStay }) {
+    const navigate = useNavigate()
 
     function shouldShowActionBtns(stay) {
         const user = userService.getLoggedinUser()
@@ -11,10 +16,14 @@ export function StayList({ stays, onRemoveStay, onUpdateStay }) {
         return stay.host?._id === user._id
     }
 
+    function onHandleClick(stayId) {
+        navigate(`/${stayId}`)
+    }
+
     return <section>
-        <ul className="list">
+        <ul className="stay-list">
             {stays.map(stay =>
-                <li key={stay._id}>
+                <li key={stay._id} onClick={() => onHandleClick(stay._id)}>
                     <StayPreview stay={stay} />
                     {shouldShowActionBtns(stay) && <div className="actions">
                         <button onClick={() => onUpdateStay(stay)}>Edit</button>

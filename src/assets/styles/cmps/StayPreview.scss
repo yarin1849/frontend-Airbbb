@@ -1,10 +1,134 @@
-.stay-preview {
-    a {
-        color: $clr4;
-        padding: 0;
-    }    
-	p {
-		margin-block: 0 0.2rem;
-        font-size: .85em;
-	}
+.preview {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    // font-family: montserrat;
+    font-size: rem(10px);
+
+    &>* {
+        width: 100%;
+    }
+
+    img {
+        width: 100%;
+        height: 72%;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 5PX;
+    }
+
+    &:hover {
+        .mySwiper .swiper-button-next {
+            display: flex;
+            justify-content: center;
+        }
+
+        .mySwiper .swiper-button-prev {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .mySwiper {
+        width: 100%;
+        max-width: 100%;
+        height: 72%;
+        overflow: hidden;
+
+        /* Hide navigation buttons when they are disabled */
+        .swiper-button-disabled {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            width: 22px;
+            height: 22px;
+            top: 55%;
+            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 4px, rgba(0, 0, 0, 0.18) 0px 2px 4px 0px;
+            background-color: white;
+            color: var(--clr2);
+            border: 1px solid var(--clr2);
+            border-radius: 50%;
+            cursor: pointer;
+            // display: none;
+            opacity: 90%;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+                opacity: 100%;
+            }
+        }
+
+        .swiper-button-next {
+            position: absolute;
+            right: rem(11px);
+        }
+
+        .swiper-button-prev {
+            position: absolute;
+            left: rem(11px);
+        }
+
+        // Customize arrow icons inside the buttons
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 8px;
+        }
+    }
+
+
+
+    .swiper-wrapper {
+        width: 100% !important;
+        display: flex;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        flex: 0 0 100%;
+        width: 100% !important;
+        max-width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+    }
+
+    .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+
+    .preview-text {
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-between;
+        min-height: 28%;
+        max-height: 28%;
+
+    }
+
+    p {
+        margin-bottom: 0;
+        font-size: clamp(10px, 1.2vw, 14px)
+    }
+
+    .rating {
+        display: flex;
+        position: absolute;
+        bottom: 22&;
+        right: 5%;
+
+        img {
+            width: 8px;
+            height: 8px;
+        }
+    }
 }
