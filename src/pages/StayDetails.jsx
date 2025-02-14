@@ -44,12 +44,14 @@ export function StayDetails() {
       </div>
       {stay && <div>
         <StayGallery />
-        <div className='stay-info flex'>
-          <div className=' stay-booking flex column'>
+        <div className='stay-main-content flex'>
+          <div className='stay-info-content flex column'>
             <StayDescription />
             <StayAmenities />
           </div>
-          <ReserveModal />
+          <div className='stay-booking-content'>
+            <ReserveModal />
+          </div>
         </div>
       </div>
       }

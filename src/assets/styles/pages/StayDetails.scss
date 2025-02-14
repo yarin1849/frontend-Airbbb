@@ -1,8 +1,8 @@
-.full {
-    grid-column: 1 / -1;
-}
+// .full {
+//     grid-column: 1 / -1;
+// }
 .stay-details{
-    max-width: 1024px;
+    max-width: 1120px;
     margin: 0 auto;
 
 
@@ -51,15 +51,18 @@
         display: flex;
         justify-content: space-between;
     }
+    .stay-main-content{
+        // height: 113.99px;
+        max-width: 1280px;
+    }
+    
+    .stay-info-content{
+        // width: 579px;
+        width: 653px;
+        // max-width: 1044px;
+    }
+
+    .stay-booking-content{
+        width: 465px;
+    }
 }
-
-// .stay-booking{
-//     background-color: aqua;
-// }
-
-// .stay-info{
-//     background-color: aquamarine;
-//     justify-content: space-between;
-//     // justify-items: space-between;
-
-// }
