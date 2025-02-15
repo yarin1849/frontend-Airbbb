@@ -6,8 +6,11 @@
     width: 372.34px;
     height: 459.22px;
     position: sticky;
+    top:130px;
     justify-self: end;
     color: $clr2;
+
+    align-self: flex-start;
 
     
     margin-top: 29px;
@@ -21,7 +24,7 @@
         display: flex; 
         align-items: center; 
         gap: 4px;
-        
+        // margin: 0 0 24px;
         span:first-child {
             font-weight: bold;
             font-size: 22px;
@@ -35,79 +38,112 @@
     }
 
     .modal-info-selector {
-        border: 1px solid #ccc;
+        // border: 1px solid #ccc;
+        // border-radius: 8px;
+        // line-height: 20px;
+        // overflow: hidden;
+        // background: white;
+
+        border: 1px solid #b0b0b0;
         border-radius: 8px;
-        line-height: 20px;
-        overflow: hidden;
-        background: white;
-    }
+        margin-bottom: 15px;
+        position: relative;
     
-    .date-selector {
-        display: flex;
-        width: 100%;
-        border-bottom: 1px solid #ccc;
-    
-        div {
-            flex: 1;
-            padding: 12px;
+
+        .date-selector {
+            // display: flex;
+            // width: 100%;
+            border-bottom: 1px solid #ccc;
+
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        
+            div {
+                flex: 1;
+                padding: 12px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                position: relative;
+                // background-color: #FF385C;
+            }
+        
+            div:not(:last-child) {
+                border-right: 1px solid #ccc;
+                // background-color: #FF385C;
+
+                display: flex;
+                    flex-direction: column;
+                    font-size: .625em;
+                    gap: 0;
+                    padding: 7px 12px;
+                    width: 50%;
+            }
+        
+            label {
+                font-size: 10px;
+                font-weight: bold;
+                color: #666;
+                text-transform: uppercase;
+                margin-bottom: 4px;
+            }
+        
+            input {
+                border: none;
+                font-size: 14px;
+                width: 100%;
+                cursor: pointer;
+                padding: 2px;
+            }
+        
+            input:focus {
+                outline: none;
+            }
+        }
+        
+        .guest-selector {
+            // padding: 12px;
+            // width: 100%;
+            // font-size: 14px;
+            // display: flex;
+            // flex-direction: column;
+            // cursor: pointer;
+            // background-color: aqua;
+
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            align-items: left;
+            gap: 5px;
+            padding: 7px 12px;
             position: relative;
-        }
-    
-        div:not(:last-child) {
-            border-right: 1px solid #ccc;
-        }
-    
-        label {
-            font-size: 10px;
-            font-weight: bold;
-            color: #666;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-    
-        input {
-            border: none;
-            font-size: 14px;
             width: 100%;
-            cursor: pointer;
-            padding: 2px;
-        }
-    
-        input:focus {
-            outline: none;
-        }
+
+            
+            label {
+                font-size: 10px;
+                font-weight: bold;
+                color: #666;
+                text-transform: uppercase;
+                margin-bottom: 4px;
+            }
+        
+            select {
+                width: 100%;
+                border: none;
+                text-align: left;
+                border: none;
+                background: transparent;
+                font-size: 14px;
+                cursor: pointer;
+            }
+        
+            select:focus {
+                outline: none;
+            }
     }
     
-    .guest-selector {
-        padding: 12px;
-        width: 100%;
-        font-size: 14px;
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
     
-        label {
-            font-size: 10px;
-            font-weight: bold;
-            color: #666;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-    
-        select {
-            width: 100%;
-            border: none;
-            background: transparent;
-            font-size: 14px;
-            cursor: pointer;
-        }
-    
-        select:focus {
-            outline: none;
-        }
     }
 
     .reserve-button {
@@ -143,9 +179,15 @@
             display: flex;
             justify-content: space-between;
             padding: 5px;
-        }
 
-        .total {
+            .nightly-rate-calc{
+                text-decoration: underline;
+            }
+        }
+        
+        .total{
+            display: flex;
+            justify-content: space-between;
             font-weight: bold;
             font-size: 18px;
         }

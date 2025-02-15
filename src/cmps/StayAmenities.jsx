@@ -13,7 +13,7 @@ export function StayAmenities() {
                 <div className="amenity"><img src={kitchen} alt="Main" className='amenities-img' /> Kitchen</div>
                 <div className="amenity"><img src={airConditioner} alt="Main" className='amenities-img' /> Air conditioning</div>
             </div>
-            <button>Show all 67 amenities</button>
+            <button className='show-amenities-btn'>Show all 67 amenities</button>
         </section>
     );
 }

@@ -3,11 +3,32 @@
         display: inline-block;
         width: 16px;
     }
+
+    .show-amenities-btn{
+        display: flex;
+        background-color: white;
+        color: #222222;
+        border: 1px solid #222222;
+        border-radius: 8px;
+        padding: 13px 23px;
+        font-size: rem(16px);
+        font-weight: bold;
+        line-height: 20px;
+        text-align: center;
+        margin: 40px 0 0 0;
+        justify-content: start;
+
+
+        &:hover{
+            background-color: #f7f7f7;
+        }
+    }
 }
 
 .amenities-container{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
+
 
 

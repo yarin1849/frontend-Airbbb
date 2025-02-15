@@ -41,8 +41,9 @@ export function StayDescription() {
                 {/* <p className="description-text">One of the most loved homes on Airbnb, according to guests</p> */}
                 <div className="rank-details">
                     <span className="review-score">4.97</span>
-                    <div className="review-stars">{[1, 2, 3, 4, 5].map(() => (
+                    <div className="review-stars">{[1, 2, 3, 4, 5].map((index) => (
                         <img
+                            key={index}
                             src="https://res.cloudinary.com/du312ufuo/image/upload/v1739453965/asset_23_rlrre4.svg"
                             alt="star"
                         />

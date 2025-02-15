@@ -33,15 +33,15 @@ export function StayFilter() {
 
     useEffect(() => {
         const handleResize = debounce(() => {
-          updateItemsPerPage()
+            updateItemsPerPage()
         }, 200)
-      
+
         window.addEventListener("resize", handleResize)
-      
+
         return () => {
-          window.removeEventListener("resize", handleResize)
+            window.removeEventListener("resize", handleResize)
         }
-      }, [])
+    }, [])
 
     const scroll = (direction) => {
 
@@ -87,8 +87,8 @@ export function StayFilter() {
             {/* Left Arrow Button */}
             {currentPage > 0 && (
                 <button className="left-arrow button" ref={leftBtn} onClick={() => scroll("left")}>
-                <ChevronLeft size={15} style={{transform: "translate(-36.5%, -16%)"}}/>
-            </button>)}
+                    <ChevronLeft size={15} style={{ transform: "translate(-36.5%, -16%)" }} />
+                </button>)}
             <div ref={scrollRef} className="filter-bar" style={{ display: 'flex', overflowX: 'hidden' }}>
 
                 {/* Render visible filters */}
@@ -101,10 +101,10 @@ export function StayFilter() {
 
             </div>
             {/* Right Arrow Button */}
-            {currentPage < totalPages - 1 && 
-            (<button className="right-arrow button" ref={rightBtn} onClick={() => scroll("right")}>
-                <ChevronRight size={15} style={{transform: "translate(-36.5%, -16%)"}}/>
-            </button>)}
+            {currentPage < totalPages - 1 &&
+                (<button className="right-arrow button" ref={rightBtn} onClick={() => scroll("right")}>
+                    <ChevronRight size={15} style={{ transform: "translate(-36.5%, -16%)" }} />
+                </button>)}
         </div>
     )
 }

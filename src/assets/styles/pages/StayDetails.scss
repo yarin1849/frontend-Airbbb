@@ -4,8 +4,7 @@
 .stay-details{
     max-width: 1120px;
     margin: 0 auto;
-
-
+    
     .action-btns{
         display: flex;
         align-items: center;
@@ -52,17 +51,27 @@
         justify-content: space-between;
     }
     .stay-main-content{
+        display: flex;
         // height: 113.99px;
         max-width: 1280px;
-    }
-    
-    .stay-info-content{
-        // width: 579px;
-        width: 653px;
-        // max-width: 1044px;
-    }
+        align-items: flex-start;
+        min-height: 200vh; //for checking the sticky
 
-    .stay-booking-content{
-        width: 465px;
+        .stay-info-content{
+            display: flex;
+            // width: 579px;
+            flex-direction: column;
+            width: 653px;
+            // max-width: 1044px;
+        }
+    
+        .stay-booking-content{
+            width: 465px;
+            position: sticky;
+            top: 0px;
+            // align-items: end;
+            // min-height: 120px;
+        }
     }
 }
+

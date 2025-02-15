@@ -44,8 +44,8 @@ export function StayDetails() {
       </div>
       {stay && <div>
         <StayGallery />
-        <div className='stay-main-content flex'>
-          <div className='stay-info-content flex column'>
+        <div className='stay-main-content'>
+          <div className='stay-info-content'>
             <StayDescription />
             <StayAmenities />
           </div>
