@@ -62,11 +62,12 @@ export function StayBooking() {
                 </div>
                 <hr></hr>
             </div>
-            <div className="booking-user-details-not-connected">
+            
+            {/* <div className="booking-user-details-not-connected">
                 <h3>Welcome back, Yarin</h3>
                 <img src={images[1]?.src} />
                 <span>ab*********98@gmail.com</span>
-            </div>
+            </div> */}
         </div>
     )
 }

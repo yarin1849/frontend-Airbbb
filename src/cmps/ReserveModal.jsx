@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useNavigate, useParams } from 'react-router-dom';
-
+import { DatePickerModal } from "./DatePickerModal";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/style.css";
 
 export function ReserveModal() {
     const [checkIn, setCheckIn] = useState("2025-02-19")
@@ -74,6 +76,9 @@ export function ReserveModal() {
                 <hr />
                 <div className="total"><span>Total</span>
                     <span>${totalPrice}</span></div>
+            </div>
+            <div className="date-picker-modal">
+                <DayPicker captionLayout="label" dir="ltr" min={1} mode="range" showOutsideDays timeZone="Asia/Jerusalem" />
             </div>
         </div>
     )
