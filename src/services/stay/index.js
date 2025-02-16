@@ -35,10 +35,10 @@ function getEmptyStay() {
 
 function getDefaultFilter() {
     return {
-        // txt: '',
-        // minPrice: '',
-        // sortField: '',
-        // sortDir: '',
+        where: '',
+        checkIn: '',
+        checkOut: '',
+        guests: 0,
         label: ''
     }
 }

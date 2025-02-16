@@ -17,27 +17,35 @@ export const stayService = {
 }
 window.cs = stayService
 
-
-async function query(filterBy = {label: ''}) {
+// ,
+//         
+//         ,
+//         ,
+async function query(filterBy = {where: '', checkIn: '', checkOut: '', guests: 0, label: ''}) {
+    console.log(filterBy)
     var stays = await storageService.query(STORAGE_KEY)
-    const { txt, minPrice, maxPrice, sortField, sortDir, label } = filterBy
+    const { where, guests, label } = filterBy
     console.log('query filterBy label',label)
 
-    if (txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
-        stays = stays.filter(stay => regex.test(stay.type) || regex.test(stay.description))
+    if (where) {
+        const regex = new RegExp(filterBy.where, 'i')
+        stays = stays.filter(stay => regex.test(stay.loc.country))
     }
-    if (minPrice) {
-        stays = stays.filter(stay => stay.price >= minPrice)
+
+    if (guests) {
+        stays = stays.filter(stay => stay.capacity >= guests)
     }
-    if (sortField === 'type' || sortField === 'host') {
-        stays.sort((stay1, stay2) =>
-            stay1[sortField].localeCompare(stay2[sortField]) * +sortDir)
-    }
-    if (sortField === 'price' || sortField === 'price') {
-        stays.sort((stay1, stay2) =>
-            (stay1[sortField] - stay2[sortField]) * +sortDir)
-    }
+    // if (minPrice) {
+    //     stays = stays.filter(stay => stay.price >= minPrice)
+    // }
+    // if (sortField === 'type' || sortField === 'host') {
+    //     stays.sort((stay1, stay2) =>
+    //         stay1[sortField].localeCompare(stay2[sortField]) * +sortDir)
+    // }
+    // if (sortField === 'price' || sortField === 'price') {
+    //     stays.sort((stay1, stay2) =>
+    //         (stay1[sortField] - stay2[sortField]) * +sortDir)
+    // }
     if (label && label !== 'No filter') {
         stays = stays.filter(stay => stay.labels.includes(label))
     }
