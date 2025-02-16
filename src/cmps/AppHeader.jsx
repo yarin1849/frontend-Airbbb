@@ -9,14 +9,34 @@ import avtar from '../assets/img/avtar.svg'
 import { SearchBar } from './Searchbar'
 import { SmallSearch } from './SmallSearch'
 import { stayService } from '../services/stay'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { loadStays } from '../store/actions/stay.actions'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
 	const [filter, setFilter] = useState(stayService.getDefaultFilter()) 
 	const navigate = useNavigate()
+	const [isScrolled, setIsScrolled] = useState(false);
 
+	useEffect(() => {
+	  const handleScroll = () => {
+		if (window.scrollY > 70) { 
+		  setIsScrolled(true);
+		  document.querySelector('.app-header').classList.add('fixed')
+		} else {
+		  setIsScrolled(false);
+		  document.querySelector('.app-header').classList.remove('fixed')
+		}
+	  };
+  
+	  window.addEventListener('scroll', handleScroll);
+  
+	
+	  return () => {
+		window.removeEventListener('scroll', handleScroll);
+	  };
+	}, []);
+  
 	async function onLogout() {
 		try {
 			await logout()
@@ -42,12 +62,12 @@ export function AppHeader() {
 					</div>
 				</NavLink>
 			</section>
-			<section className='small-container'>
+			{isScrolled ?<section className='small-container'>
 			<SmallSearch/>
-			</section>
-			{/* <section>
+			</section>:
+			 <section>
 			<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter}/> 
-			 </section> */}
+			 </section> }
 			<button className='flex menu'>
 				<div className='burger'>	
 				<img src={burger} alt="" />
