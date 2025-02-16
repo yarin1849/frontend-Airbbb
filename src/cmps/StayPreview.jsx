@@ -8,10 +8,10 @@ import "swiper/css/pagination"
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules"
 
 export function StayPreview({ stay }) {
-    const swiperRef = useRef(null) // Create a reference for Swiper
+    const swiperRef = useRef(null) 
 
     function stopPropagation(event) {
-        event.stopPropagation() // Prevents click event from bubbling up
+        event.stopPropagation() 
     }
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export function StayPreview({ stay }) {
             while (swiperRef.current?.swiper?.navigation?.nextEl === null) {
                 await new Promise(resolve => setTimeout(resolve, 100)) // Wait 100ms before checking again
             }
-
+            
             const swiperInstance = swiperRef.current.swiper
             const buttons = [swiperInstance.navigation.nextEl, swiperInstance.navigation.prevEl]
 
@@ -69,9 +69,10 @@ export function StayPreview({ stay }) {
             </Swiper>
 
             <section className="preview-text">
-                <div>
-                    {stay?.host && (
-                        <p>
+                <img src="https://res.cloudinary.com/dswenk4wc/image/upload/v1739610424/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgYXJpYS1oaWRkZW49InRydWUiIHJvbGU9InByZXNlbnRhdGlvbiIgZm9jdXNhYmxlPSJmYWxzZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyBmaWxsOiB_1_p4bb2a.svg" alt="" className="heart-img"/>
+                <div className="preview-text-par">
+                    {/* {stay?.host && (
+                        <p className="pewview-text-header">
                             Hosted by: <span>{stay.host.fullname}</span>
                         </p>
                     )}
@@ -79,11 +80,15 @@ export function StayPreview({ stay }) {
                     <p>Lorem ipsum dolor sit.</p>
                     <p>
                         Price: <span>${stay?.price || "N/A"}</span>
-                    </p>
+                    </p> */}
+                    <p className="preview-text-bold preview-text-first">Zrnovo,Croatia</p>
+                    <p>Hosted by a busniess</p>
+                    <p className="preview-date">1-6 May</p>
+                    <p className="preview-text-last"><span className="preview-text-bold">$139</span> night</p>
                 </div>
                 <div className="rating">
                     <img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739453965/asset_23_rlrre4.svg" alt="" />
-                    5
+                    <span className="rating-text">5.0</span>
                 </div>
             </section>
         </article>
