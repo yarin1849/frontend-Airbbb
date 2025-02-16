@@ -82,8 +82,8 @@ export function StayPreview({ stay }) {
                         Price: <span>${stay?.price || "N/A"}</span>
                     </p> */}
                     <p className="preview-text-bold preview-text-first">Zrnovo,Croatia</p>
-                    <p>Hosted by a busniess</p>
-                    <p className="preview-date">1-6 May</p>
+                    <p className="gray">Hosted by a busniess</p>
+                    <p className="preview-date gray">1-6 May</p>
                     <p className="preview-text-last"><span className="preview-text-bold">$139</span> night</p>
                 </div>
                 <div className="rating">

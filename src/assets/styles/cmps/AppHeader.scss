@@ -1,113 +1,64 @@
 .app-header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    min-height: minmax(2rem, 5rem);
-    padding: rem(10px);
+    position: sticky;
+    top: 0px;
+    background-color: white;
+    z-index: 100;
+    min-height: 80px;
+    border-bottom: 1px solid $gray3;
+
+    .header-content {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        min-height: minmax(2rem, 5rem);
 
 
-    .logo {
-        position: sticky;
-        top: 20px;
-        left: 10px;
-        width: 10rem;
-        align-self: start;
 
-        img {
-            max-width: unset;
+        .logo {
+            position: sticky;
+            top: 20px;
+            left: 0;
+            width: 10rem;
+            align-self: start;
+
+            img {
+                max-width: unset;
+            }
+        }
+
+        .menu {
+            position: sticky;
+            margin: 0;
+            right: 0;
+            top: 20px;
+            width: 86px;
+            height: 3rem;
+            gap: 15px;
+            background-color: white;
+            border: 1px solid #DDDDDD;
+            padding: 0.6rem 0.6rem 0.6rem 1rem;
+            align-items: center;
+            justify-content: space-between;
+
+            border-radius: 2.9em;
+
+            .avatar {
+                width: 1.5rem;
+            }
+
+            .burger {
+                width: 1rem;
+            }
+
+            .avatar {
+                width: 1.9rem;
+            }
+
+        }
+
+        small-container {
+            position: sticky;
+            top: 20px;
         }
     }
-
-    .menu {
-        position: sticky;
-        top: 20px;
-        left: 10px;
-        width: 86px;
-        height: 3rem;
-        gap: 15px;
-        background-color: white;
-        border: 1px solid #DDDDDD;
-        padding: 0.6rem 0.6rem 0.6rem 1rem;
-        align-items: center;
-     justify-content: space-between;
-
-        border-radius: 2.9em;
-
-        .avatar {
-            width: 1.5rem;
-        }
-
-        .burger {
-            width: 1rem;
-        }
-
-        .avatar {
-            width: 1.9rem;
-        }
-
-    }
-
-    small-container {
-        position: sticky;
-        top: 20px;
-    }
-
-    @keyframes shrink {
-        from {
-            width: rem(850px);
-            clip-path: inset(100% 100% 0 0);
-        }
-
-        to {
-            width: rem(351.56px);
-            opacity: 0;
-            clip-path: inset(0 0 0 0);
-        }
-    }
-
-    .search-bar {
-        animation: shrink linear;
-        animation-timeline: view();
-        animation-range: entry 50% cover 20%;
-    }
-
-    // nav {
-    //     display: flex;
-    //     width: 100%;
-    //     align-items: center;
-    //     gap: 1em;
-
-    //     font-size: .8em;
-
-    //     .active {
-    //         color: $clr1;
-    //     }
-
-
-    //     .login-link {
-    //         margin-inline-start: auto;
-    //     }
-
-
-    // }
-
-    // .user-info {
-    //     display: flex;
-    //     align-items: center;
-    //     margin-inline-start: auto;
-
-    //     color: $clr1;
-
-
-
-    //     img {
-    //         width: 32px;
-    //         aspect-ratio: 1;
-    //         border-radius: 50%;
-    //     }
-
-    //     .btn-link {
-    //         color: $clr2;
-    //     }
-    // }
 }

@@ -12,12 +12,12 @@ import { StayFilter } from '../cmps/StayFilter'
 
 export function StayIndex() {
 
-    const [filterBy, setFilterBy] = useState(stayService.getDefaultFilter())
+    // const [filterBy, setFilterBy] = useState(stayService.getDefaultFilter())
     const stays = useSelector(storeState => storeState.stayModule.stays)
 
-    useEffect(() => {
-        loadStays(filterBy)
-    }, [filterBy])
+    // useEffect(() => {
+    //     loadStays(filterBy)
+    // }, [filterBy])
 
     async function onRemoveStay(stayId) {
         try {
@@ -58,7 +58,7 @@ export function StayIndex() {
             <header>
                 {userService.getLoggedinUser() && <button onClick={onAddStay}>Add a Stay</button>}
             </header>
-            <StayFilter filterBy={filterBy} setFilterBy={setFilterBy} />
+            {/* <StayFilter filterBy={filterBy} setFilterBy={setFilterBy} /> */}
             <StayList
                 stays={stays}
                 onRemoveStay={onRemoveStay}
