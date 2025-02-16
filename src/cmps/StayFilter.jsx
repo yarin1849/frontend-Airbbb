@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import debounce from 'lodash/debounce'
 import { categories } from '../services/util.service'
+import { stayService } from "../services/stay"
 
-export function StayFilter() {
+export function StayFilter({filterBy, setFilterBy}) {
+    const [filterToEdit, SetFilterToEdit] = useState(stayService.getDefaultFilter())
     const scrollRef = useRef(null)
     const rightBtn = useRef(null)
     const leftBtn = useRef(null)
@@ -82,6 +84,15 @@ export function StayFilter() {
         currentPage * itemsPerPage,
         (currentPage + 1) * itemsPerPage
     )
+    console.log(filterToEdit)
+    useEffect(() => {
+        setFilterBy(filterToEdit)
+    }, [filterToEdit])
+
+    function onSetFilter(filterName) {
+        SetFilterToEdit({...filterToEdit, label: filterName})
+    }
+
     return (
         <div className="stay-filter">
             {/* Left Arrow Button */}
@@ -93,7 +104,7 @@ export function StayFilter() {
 
                 {/* Render visible filters */}
                 {visibleFilters.map((filter, index) => (
-                    <button key={index} className="filter-icon">
+                    <button key={index} className="filter-icon" onClick={() => onSetFilter(filter.name)}>
                         <img src={filter.src} alt={filter.name} className="w-6 h-6" />
                         <span>{filter.name}</span>
                     </button>

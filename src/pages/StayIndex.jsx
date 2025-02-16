@@ -52,6 +52,7 @@ export function StayIndex() {
         }
     }
 
+    
     return (
         <main className="stay-index">
             <header>

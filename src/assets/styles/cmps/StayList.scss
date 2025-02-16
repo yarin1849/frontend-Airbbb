@@ -1,22 +1,17 @@
 .stay-list {
     display: grid;
     grid-auto-flow: row;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    // gap: .5em;
+    grid-template-columns: repeat(auto-fit, 270px);
     gap: 24px;
-    // height: fit-content;
     // aspect-ratio: 0.78 / 1; 
-    // width: 100%; // Allow width to be flexible
-    // height: auto;
-
+    
+    
     li {
         display: grid;
         width: 100%;
+        aspect-ratio: 0.75/ 1 ;
         gap: 40px;
 
-        aspect-ratio: 0.78 / 1;
-        width: 100%; // Makes sure items fit in the available grid space
-        height: auto;
         cursor: pointer;
 
         .actions {

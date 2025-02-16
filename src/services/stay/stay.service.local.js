@@ -18,9 +18,10 @@ export const stayService = {
 window.cs = stayService
 
 
-async function query(filterBy = { txt: '', price: 0 }) {
+async function query(filterBy = {label: ''}) {
     var stays = await storageService.query(STORAGE_KEY)
-    const { txt, minPrice, maxPrice, sortField, sortDir } = filterBy
+    const { txt, minPrice, maxPrice, sortField, sortDir, label } = filterBy
+    console.log('query filterBy label',label)
 
     if (txt) {
         const regex = new RegExp(filterBy.txt, 'i')
@@ -36,6 +37,9 @@ async function query(filterBy = { txt: '', price: 0 }) {
     if (sortField === 'price' || sortField === 'price') {
         stays.sort((stay1, stay2) =>
             (stay1[sortField] - stay2[sortField]) * +sortDir)
+    }
+    if (label && label !== 'No filter') {
+        stays = stays.filter(stay => stay.labels.includes(label))
     }
 
     stays = stays.map(({ _id, type, price, host, imgUrls }) => ({ _id, type, price, host, imgUrls }))

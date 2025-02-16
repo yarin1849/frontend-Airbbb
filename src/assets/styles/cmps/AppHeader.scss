@@ -2,9 +2,8 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
-    min-height: 5rem;
+    min-height: minmax(2rem, 5rem);
     padding: rem(10px);
-
 
 
     .logo {
@@ -23,15 +22,15 @@
         position: sticky;
         top: 20px;
         left: 10px;
-        width: 6.27rem;
+        width: 86px;
         height: 3rem;
         gap: 15px;
         background-color: white;
         border: 1px solid #DDDDDD;
-        padding: 0.4rem 0.6rem 0.6rem 1rem;
+        padding: 0.6rem 0.6rem 0.6rem 1rem;
         align-items: center;
-        align-self: start;
-        
+     justify-content: space-between;
+
         border-radius: 2.9em;
 
         .avatar {
@@ -46,6 +45,30 @@
             width: 1.9rem;
         }
 
+    }
+
+    small-container {
+        position: sticky;
+        top: 20px;
+    }
+
+    @keyframes shrink {
+        from {
+            width: rem(850px);
+            clip-path: inset(100% 100% 0 0);
+        }
+
+        to {
+            width: rem(351.56px);
+            opacity: 0;
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    .search-bar {
+        animation: shrink linear;
+        animation-timeline: view();
+        animation-range: entry 50% cover 20%;
     }
 
     // nav {
