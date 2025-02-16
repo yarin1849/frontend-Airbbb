@@ -54,6 +54,10 @@ export function loadFromStorage(key) {
 
 export const categories = [
     {
+        name: 'No filter',
+        src: 'https://a0.muscache.com/pictures/8e507f16-4943-4be9-b707-59bd38d56309.jpg'
+    },
+    {
         name: 'Islands',
         src: 'https://a0.muscache.com/pictures/8e507f16-4943-4be9-b707-59bd38d56309.jpg'
     },
@@ -74,7 +78,7 @@ export const categories = [
         src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435550/677a041d-7264-4c45-bb72-52bff21eb6e8_qswiv8.png'
     },
     {
-        name: 'Cabins',
+        name: 'Cabin',
         src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435613/732edad8-3ae0-49a8-a451-29a8010dcc0c_t8qlze.png'
     },
     

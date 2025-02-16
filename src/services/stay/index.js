@@ -7,18 +7,39 @@ import { stayService as remote } from './stay.service.remote'
 
 function getEmptyStay() {
     return {
-        type: makeId(),
-        price: getRandomIntInclusive(80, 240),
+        _id: makeId(),
+        price: 0,
+        imgUrls: [],
+        name: '',
+        type: '',
+        summary: '',
+        capacity: 1,
+        amenities: [],
+        labels: [],
+        host: {
+            _id: '',
+            fullname: '',
+            imgUrl: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739434710/airbnb-image_muycbi.jpg',
+        },
+        loc: {
+            country: 'Portugal',
+            countryCode: 'PT',
+            city: 'Lisbon',
+            address: '17 Kombo st',
+            lat: -8.61308,
+            lng: 41.1413,
+        },
         msgs: [],
     }
 }
 
 function getDefaultFilter() {
     return {
-        txt: '',
-        minPrice: '',
-        sortField: '',
-        sortDir: '',
+        // txt: '',
+        // minPrice: '',
+        // sortField: '',
+        // sortDir: '',
+        label: ''
     }
 }
 
