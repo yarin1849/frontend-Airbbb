@@ -6,6 +6,70 @@ import { userService } from '../user'
 import image from '../../assets/img/image.avif'
 import profile from '../../assets/img/profile.avif'
 
+const images = [
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_0_rshk8v.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_1_b8rr7y.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_2_ejbbq2.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_4_ka2q4p.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_3_z15unn.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446050/asset_3_qw2boi.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446051/asset_4_ulq3uz.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446051/asset_0_an9qtt.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446051/asset_1_ksuqll.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446052/asset_2_iih52p.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446368/asset_0_uwzhlb.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446369/asset_1_lnu3rs.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446369/asset_2_tpopbv.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446370/asset_3_tmvabw.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446372/asset_4_vvaheh.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446433/asset_0_lxilbu.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446434/asset_1_mml4ma.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446434/asset_2_kof2lw.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446435/asset_3_k4lly6.avif"
+    },
+    {
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446484/asset_4_bpiw6m.avif"
+    }
+]
+
+
 const STORAGE_KEY = 'stay'
 _createStays()
 export const stayService = {
@@ -21,11 +85,11 @@ window.cs = stayService
 //         
 //         ,
 //         ,
-async function query(filterBy = {where: '', checkIn: '', checkOut: '', guests: 0, label: ''}) {
+async function query(filterBy = { where: '', checkIn: '', checkOut: '', guests: 0, label: '' }) {
     console.log(filterBy)
     var stays = await storageService.query(STORAGE_KEY)
     const { where, guests, label } = filterBy
-    console.log('query filterBy label',label)
+    console.log('query filterBy label', label)
 
     if (where) {
         const regex = new RegExp(filterBy.where, 'i')
@@ -109,7 +173,7 @@ function _createStays() {
                 _id: 's101',
                 name: 'Ribeira Charming Duplex',
                 type: 'House',
-                imgUrls: [image, image, image, image, image],
+                imgUrls: [images[0]?.src, images[1]?.src, images[2]?.src, images[3]?.src, images[4]?.src],
                 price: 80.0,
                 summary: 'Fantastic duplex apartment...',
                 capacity: 8,
@@ -146,12 +210,12 @@ function _createStays() {
                 _id: 's102',
                 name: 'Ocean View Villa',
                 type: 'Villa',
-                imgUrls: [image, image, image, image, image],
+                imgUrls: [images[5]?.src, images[6]?.src, images[7]?.src, images[8]?.src, images[9]?.src],
                 price: 150.0,
                 summary: 'Luxury villa with breathtaking ocean views...',
                 capacity: 6,
                 amenities: ['Pool', 'Air Conditioning', 'Kitchen', 'Wifi'],
-                labels: ['Luxury', 'Seaside', 'Romantic', 'Exclusive'],
+                labels: ['Luxury', 'Seaside', 'Romantic', 'Exclusive', 'Play'],
                 host: {
                     _id: 'u103',
                     fullname: 'Maria Lopez',
@@ -183,12 +247,12 @@ function _createStays() {
                 _id: 's103',
                 name: 'Cozy Mountain Cabin',
                 type: 'Cabin',
-                imgUrls: [image, image, image, image, image],
+                imgUrls: [images[10]?.src, images[11]?.src, images[12]?.src, images[13]?.src, images[14]?.src],
                 price: 95.0,
                 summary: 'A warm and cozy cabin in the mountains...',
                 capacity: 4,
                 amenities: ['Fireplace', 'Kitchen', 'Hot Tub', 'Wifi'],
-                labels: ['Nature', 'Relaxing', 'Adventure', 'Cozy'],
+                labels: ['Nature', 'Relaxing', 'Adventure', 'Cozy', 'Play'],
                 host: {
                     _id: 'u105',
                     fullname: 'John Smith',
@@ -220,12 +284,12 @@ function _createStays() {
                 _id: 's104',
                 name: 'Urban Loft',
                 type: 'Apartment',
-                imgUrls: [image, image, image, image, image],
+                imgUrls: [images[15]?.src, images[16]?.src, images[17]?.src, images[18]?.src, images[19]?.src],
                 price: 110.0,
                 summary: 'Modern loft in the heart of the city...',
                 capacity: 2,
                 amenities: ['TV', 'Kitchen', 'Wifi', 'Air Conditioning'],
-                labels: ['Urban', 'Trendy', 'Business', 'City Center'],
+                labels: ['Urban', 'Trendy', 'Business', 'City Center', 'Play'],
                 host: {
                     _id: 'u107',
                     fullname: 'Emily Brown',
@@ -268,7 +332,7 @@ function _createStays() {
                 reviews: [{ id: `r10${i + 5}`, txt: `Review for Stay ${i + 5}`, rate: (i % 5) + 1, by: { _id: `u10${i + 5}`, fullname: `Reviewer ${i + 5}`, imgUrl: profile } }],
                 likedByUsers: [`user${i + 5}`],
             })),
-        
+
         ]
         saveToStorage(STORAGE_KEY, stays)
     }
