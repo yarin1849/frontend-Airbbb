@@ -10,7 +10,7 @@ export function StayFilter({filterBy, setFilterBy}) {
     const rightBtn = useRef(null)
     const leftBtn = useRef(null)
     const [currentPage, setCurrentPage] = useState(0)
-    const [itemsPerPage, setItemsPerPage] = useState(25)
+    const [itemsPerPage, setItemsPerPage] = useState(22)
     const [scrollAmount, setScrollAmount] = useState(992)
     const totalPages = Math.ceil(categories.length / itemsPerPage)
 
@@ -98,7 +98,7 @@ export function StayFilter({filterBy, setFilterBy}) {
             {/* Left Arrow Button */}
             {currentPage > 0 && (
                 <button className="left-arrow button" ref={leftBtn} onClick={() => scroll("left")}>
-                    <ChevronLeft size={15} style={{ transform: "translate(-36.5%, -16%)" }} />
+                    <ChevronLeft size={18} style={{ transform: "translate(-20.6%, 1.5%)"}} />
                 </button>)}
             <div ref={scrollRef} className="filter-bar" style={{ display: 'flex', overflowX: 'hidden' }}>
 
@@ -106,7 +106,7 @@ export function StayFilter({filterBy, setFilterBy}) {
                 {visibleFilters.map((filter, index) => (
                     <button key={index} className="filter-icon" onClick={() => onSetFilter(filter.name)}>
                         <img src={filter.src} alt={filter.name} className="w-6 h-6" />
-                        <span>{filter.name}</span>
+                        <span className="icon-name">{filter.name}</span>
                     </button>
                 ))}
 
@@ -114,7 +114,7 @@ export function StayFilter({filterBy, setFilterBy}) {
             {/* Right Arrow Button */}
             {currentPage < totalPages - 1 &&
                 (<button className="right-arrow button" ref={rightBtn} onClick={() => scroll("right")}>
-                    <ChevronRight size={15} style={{ transform: "translate(-36.5%, -16%)" }} />
+                    <ChevronRight size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
                 </button>)}
         </div>
     )
