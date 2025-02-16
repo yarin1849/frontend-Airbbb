@@ -1,10 +1,22 @@
 .date-picker-modal{
-   
     .rdp-root {
         --rdp-accent-color: #222222; /* Change the accent color to indigo. */
-        --rdp-accent-background-color: #ddd; /* Change the accent background color. */
+        --rdp-accent-background-color: #f7f7f7; /* Change the accent background color. */
         --rdp-disabled-opacity: 0.9;
         --rdp-outside-opacity: 0;
+
+    background: rgb(255, 255, 255) !important;
+    border-radius: 16px !important;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px !important;
+    display: inline-block !important;
+    padding: 24px 32px 16px !important;
+    position: absolute !important;
+    top: -24px !important;
+    right: -32px !important;
+    width: 661px !important;
+    z-index: 1 !important;
+    min-height: 460px !important;
     }
+
 }
 

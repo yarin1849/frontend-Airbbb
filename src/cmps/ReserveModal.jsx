@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate, useParams } from 'react-router-dom';
-import { DatePickerModal } from "./DatePickerModal";
+import { DatePickerModal } from "./DayPickerModal";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 
@@ -78,7 +78,7 @@ export function ReserveModal() {
                     <span>${totalPrice}</span></div>
             </div>
             <div className="date-picker-modal">
-                <DayPicker captionLayout="label" dir="ltr" min={1} mode="range" showOutsideDays timeZone="Asia/Jerusalem" />
+                {/* <DayPicker captionLayout="label" dir="ltr" min={1} mode="range" showOutsideDays timeZone="Asia/Jerusalem" /> */}
             </div>
         </div>
     )

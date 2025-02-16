@@ -94,9 +94,6 @@
         }
     }
 
-
-    
-
     .btn-description {
         display: flex;
         background: none;
@@ -108,6 +105,11 @@
         font-size: 16px;
         font-weight: bold;
         text-decoration: underline;
+        font-weight:500;
+        img{
+            width: 12px;
+            margin-left: 4px;
+        }
     }
     
     .btn-description:hover {
