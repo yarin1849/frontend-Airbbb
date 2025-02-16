@@ -1,6 +1,7 @@
 .main-container {
     display: grid;
-    grid-template-columns: 1rem 1fr 1rem;
+    grid-template-columns: 72px 1fr 72px;
+    // justify-content: center;
 
     > * {
         grid-column: 2;

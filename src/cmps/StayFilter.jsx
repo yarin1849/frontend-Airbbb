@@ -84,7 +84,7 @@ export function StayFilter({filterBy, setFilterBy}) {
         currentPage * itemsPerPage,
         (currentPage + 1) * itemsPerPage
     )
-    console.log(filterToEdit)
+    // console.log(filterToEdit)
     useEffect(() => {
         setFilterBy(filterToEdit)
     }, [filterToEdit])
