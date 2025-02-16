@@ -36,7 +36,9 @@ export function AppHeader() {
 			<section className='small-container'>
 			<SmallSearch/>
 			</section>
-			{/* <SearchBar/> */}
+			{/* <section>
+			<SearchBar className="search-container"/> 
+			 </section> */}
 			<button className='flex menu '>
 				<div className='burger'>	
 				<img src={burger} alt="" />
