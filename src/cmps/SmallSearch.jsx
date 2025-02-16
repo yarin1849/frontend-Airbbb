@@ -1,4 +1,4 @@
-
+import searchicon from '../assets/img/searchicon.svg'
 
 export function SmallSearch() {
 
@@ -27,7 +27,7 @@ export function SmallSearch() {
                     <div className="btn-container">
                         <button>
                             <div className='search-icon'>
-                                <img src='https://res.cloudinary.com/dswenk4wc/image/upload/v1739694003/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgYXJpYS1oaWRkZW49InRydWUiIHJvbGU9InByZXNlbnRhdGlvbiIgZm9jdXNhYmxlPSJmYWxzZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyBmaWxsOiBub25_gw4jon.svg' alt="" />
+                                 <img src={searchicon} alt="" />
                             </div>
                         </button>
                     </div>
