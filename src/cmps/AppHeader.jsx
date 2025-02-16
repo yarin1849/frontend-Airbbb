@@ -7,6 +7,7 @@ import airbnblogo from '../assets/img/airbnblogo.svg'
 import burger from '../assets/img/burger.svg'
 import avtar from '../assets/img/avtar.svg'
 import { SearchBar } from './Searchbar'
+import { SmallSearch } from './SmallSearch'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
@@ -23,7 +24,7 @@ export function AppHeader() {
 	}
 
 	return (
-		<header className="app-header full">
+		<header className="app-header full main-container">
 			<section className='logo'>
 				<NavLink to="/" className="">
 					<div className='flex'>
@@ -31,9 +32,11 @@ export function AppHeader() {
 						<img src={airbnblogo} alt="" />
 					</div>
 				</NavLink>
-
 			</section>
-			<SearchBar/>
+			<section className='small-container'>
+			<SmallSearch/>
+			</section>
+			{/* <SearchBar/> */}
 			<button className='flex menu '>
 				<div className='burger'>	
 				<img src={burger} alt="" />
