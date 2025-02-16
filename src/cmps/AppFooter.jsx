@@ -1,16 +1,44 @@
-import { useSelector } from 'react-redux'
+
+const images = [
+	{
+		name: "down-arrow",
+		src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_1_gn72pr.svg"
+	},
+	{
+		name: "i18n",
+		src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg"
+	}
+]
+
 
 export function AppFooter() {
-	const count = useSelector(storeState => storeState.userModule.count)
-
 	return (
 		<footer className="app-footer full">
-			<p>&copy; 2025 Airbnb, Inc.</p>
-			<p>Count: {count}</p>
+			{/* <hr className="footer-divider" /> */}
+			<div className="footer-content">
+				<div className="footer-left">
+					<span>&copy; 2025 Airbnb, Inc.</span>
+					<span>• <a href="#">Terms</a></span>
+					<span>• <a href="#">Sitemap</a></span>
+					<span>• <a href="#">Privacy</a></span>
+					<span>• <a href="#">Your Privacy Choices</a></span>
+				</div>
 
-			{import.meta.env.VITE_LOCAL ?
-				<span className="local-services">Local Services</span> :
-				<span className="remote-services">Remote Services</span>}
+				<div className="footer-right">
+					<span className="language-selector">
+						English (US)
+					</span>
+					<span className="currency-selector">
+						$ USD
+					</span>
+					<div className="support-dropdown-container">
+						<span className="support-dropdown">
+							Support & Resources
+						</span>
+						<span><img src={images[0]?.src} alt="Dropdown" /></span>
+					</div>
+				</div>
+			</div>
 		</footer>
 	)
 }

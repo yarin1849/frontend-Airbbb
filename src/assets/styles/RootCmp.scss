@@ -1,6 +1,6 @@
 .main-container main {
     min-height: calc(100vh - 7rem);
     // overflow: hidden; // Quick fix for JSONs in <pre>
-    // overflow-x: hidden;
+    overflow-x: hidden;
     //// for sticky on details page!!
 }
