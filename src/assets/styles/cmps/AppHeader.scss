@@ -1,15 +1,15 @@
-.app-header {
+.header-content {
     display: flex;
     width: 100%;
     justify-content: space-between;
     min-height: minmax(2rem, 5rem);
-    padding: rem(10px);
+
 
 
     .logo {
         position: sticky;
         top: 20px;
-        left: 10px;
+        left: 0;
         width: 10rem;
         align-self: start;
 
@@ -20,8 +20,9 @@
 
     .menu {
         position: sticky;
+        margin: 0;
+        right: 0;
         top: 20px;
-        left: 10px;
         width: 86px;
         height: 3rem;
         gap: 15px;
@@ -29,7 +30,7 @@
         border: 1px solid #DDDDDD;
         padding: 0.6rem 0.6rem 0.6rem 1rem;
         align-items: center;
-     justify-content: space-between;
+        justify-content: space-between;
 
         border-radius: 2.9em;
 
@@ -50,25 +51,6 @@
     small-container {
         position: sticky;
         top: 20px;
-    }
-
-    @keyframes shrink {
-        from {
-            width: rem(850px);
-            clip-path: inset(100% 100% 0 0);
-        }
-
-        to {
-            width: rem(351.56px);
-            opacity: 0;
-            clip-path: inset(0 0 0 0);
-        }
-    }
-
-    .search-bar {
-        animation: shrink linear;
-        animation-timeline: view();
-        animation-range: entry 50% cover 20%;
     }
 
     // nav {

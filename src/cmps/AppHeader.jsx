@@ -33,6 +33,7 @@ export function AppHeader() {
 	}
 	return (
 		<header className="app-header full main-container">
+			<section className='header-content flex'>
 			<section className='logo'>
 				<NavLink to="/" className="">
 					<div className='flex'>
@@ -41,13 +42,13 @@ export function AppHeader() {
 					</div>
 				</NavLink>
 			</section>
-			{/* <section className='small-container'>
+			<section className='small-container'>
 			<SmallSearch/>
-			</section> */}
-			<section>
+			</section>
+			{/* <section>
 			<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter}/> 
-			 </section>
-			<button className='flex menu '>
+			 </section> */}
+			<button className='flex menu'>
 				<div className='burger'>	
 				<img src={burger} alt="" />
 				</div>
@@ -55,6 +56,7 @@ export function AppHeader() {
 				<img src={avtar} alt="" />
 				</div>
 			</button>
+			</section>
 		</header>
 	)
 }

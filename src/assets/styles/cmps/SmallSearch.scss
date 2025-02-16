@@ -55,25 +55,24 @@
         justify-content: space-between;
        
     }
-
     .label-container:last-child {
         width: rem(146.85px);
         justify-content: space-between;
         margin-inline-end: 0px;
+        color: $gray5;
     }
-
 
     label {
         display: flex;
-         margin-inline-start: 20px;
+        margin-inline-start: 20px;
         flex-wrap: wrap;
         justify-content: space-between;
         color: $gray4;
         &:hover{
             cursor:pointer;
         }
- 
-
+        
+        
         
 
         &>* {
