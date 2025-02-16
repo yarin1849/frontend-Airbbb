@@ -70,7 +70,7 @@ export function ReserveModal() {
             <p className="disclaimer">You won’t be charged yet</p>
             <div className="pricing-calculate">
                 <div><span className="nightly-rate-calc">${nightlyRate} x {nights} nights</span><span> ${nightlyRate * nights}</span></div>
-                <div><span>Cleaning fee</span><span> ${fee}</span></div>
+                <div><span className="nightly-service-fee">Airbnb service fee</span><span> ${fee}</span></div>
                 <hr />
                 <div className="total"><span>Total</span>
                     <span>${totalPrice}</span></div>

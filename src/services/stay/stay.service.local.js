@@ -11,13 +11,13 @@ const images = [
         src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_0_rshk8v.avif"
     },
     {
-        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_1_b8rr7y.avif"
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_4_ka2q4p.avif"
     },
     {
         src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_2_ejbbq2.avif"
     },
     {
-        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_4_ka2q4p.avif"
+        src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_1_b8rr7y.avif"
     },
     {
         src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739446282/asset_3_z15unn.avif"
