@@ -18,7 +18,7 @@
             position: sticky;
             top: 20px;
             left: 0;
-            width: 10rem;
+
             align-self: start;
 
             img {
@@ -26,34 +26,61 @@
             }
         }
 
-        .menu {
-            position: sticky;
-            margin: 0;
-            right: 0;
-            top: 20px;
-            width: 86px;
-            height: 3rem;
-            gap: 15px;
-            background-color: white;
-            border: 1px solid #DDDDDD;
-            padding: 0.6rem 0.6rem 0.6rem 1rem;
+        .btns-panel {
+            display: flex;
+            max-height: 70px;
             align-items: center;
-            justify-content: space-between;
 
-            border-radius: 2.9em;
+            .menu {
+                position: sticky;
+                margin: 0;
+                right: 0;
+                top: 20px;
+                width: 86px;
+                height: 3rem;
+                gap: 15px;
+                background-color: white;
+                border: 1px solid #DDDDDD;
+                padding: 0.6rem 0.6rem 0.6rem 1rem;
+                align-items: center;
+                justify-content: space-between;
 
-            .avatar {
-                width: 1.5rem;
+                border-radius: 2.9em;
+
+                .avatar {
+                    width: 1.5rem;
+                }
+
+                .burger {
+                    width: 1rem;
+                }
+
+                .avatar {
+                    width: 1.9rem;
+                }
+
             }
 
-            .burger {
-                width: 1rem;
-            }
+            .globe {
+                position: stickey;
+                // margin: 0;
+                right: 0;
+                top: 20px;
+                min-width: 40px;
+                height: 42px;
+                margin-top: 30px;
+                justify-items: center;
+            
 
-            .avatar {
-                width: 1.9rem;
-            }
+                &:hover {
+                    background-color: $gray3;
+                }
 
+                img {
+                    width: 1rem;
+
+                }
+            }
         }
 
         small-container {

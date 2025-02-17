@@ -71,7 +71,11 @@ export function AppHeader() {
 						<section>
 							<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter} />
 						</section>}
-					<button className='flex menu'>
+					 <article className='btns-panel'>
+			 <div className='globe'>	
+				<img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg" alt="" />
+				</div>
+			<button className='flex menu'>
 						<div className='burger'>
 							<img src={burger} alt="" />
 						</div>
@@ -79,7 +83,8 @@ export function AppHeader() {
 							<img src={avtar} alt="" />
 						</div>
 					</button>
-				</section>
+				 </article>
+			</section>
 			</header>
 			<StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />
 		</>

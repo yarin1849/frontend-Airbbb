@@ -6,8 +6,8 @@
     margin-bottom: 0;
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.12) 1px 6px 16px;
-    margin-right: 80px;
-margin-bottom: 18px;
+  
+    margin-bottom: 18px;
     border: 1px solid $gray3;
     border-radius: 3rem;
 
@@ -102,6 +102,25 @@ margin-bottom: 18px;
             outline: none;
         }
     }
+}
 
+.date-modal {
+    position: fixed;
+    top: 155px;
+    background-color: white;
+    margin-left: 240px;
+    border-radius: 10px;
 
+}
+
+.rdp-root {
+    --rdp-accent-color: #222222;
+    --rdp-accent-background-color: #f7f7f7;
+    --rdp-disabled-opacity: 0.9;
+    --rdp-outside-opacity: 0;
+    background: rgb(255, 255, 255) !important;
+    border-radius: 16px !important;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px !important;
+    display: inline-block !important;
+    padding: 24px 32px 16px !important;
 }
