@@ -29,6 +29,10 @@
             pointer-events: none;
         }
 
+        .swiper-pagination-bullet-active-custom {
+            background-color: #ffffff;
+            opacity: 100%;
+        }
 
         .swiper-button-next,
         .swiper-button-prev {
@@ -38,8 +42,9 @@
             top: 53.2%;
             box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 4px, rgba(0, 0, 0, 0.18) 0px 2px 4px 0px;
             background-color: white;
-            color: var(--clr2);
-            border: 1px solid var(--clr2);
+            color: black;
+            font-weight: 1000;
+            border: 1px solid $gray2;
             border-radius: 50%;
             cursor: pointer;
             opacity: 0%;

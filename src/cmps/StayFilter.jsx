@@ -18,7 +18,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
     const updateItemsPerScroll = () => {
         const screenWidth = window.innerWidth
 
-        // Example screen width adjustments
+        // // Example screen width adjustments
         // if (screenWidth < 600) {
         //     setItemsPerScroll(5)
         //     setScrollAmount(440)
@@ -75,43 +75,43 @@ export function StayFilter({ filterBy, setFilterBy }) {
 
     function onSetFilter(filterName) {
         SetFilterToEdit({ ...filterToEdit, label: filterName })
-        setSelectedFilter(filterName) // Update selected filter
+        setSelectedFilter(filterName)
     }
 
     return (
-        <section style={{ display: "flex", justifyContent: "space-between" }} className="stay-filter">
-            <div className="icon-filter">
-                {/* Left Arrow Button */}
-                {currentScroll > 0 && (
-                    <button className="left-arrow btn" ref={leftBtn} onClick={() => scroll("left")}>
-                        <ChevronLeft size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
-                    </button>)}
+            <section style={{ display: "flex", justifyContent: "space-between" }} className="stay-filter">
+                <div className="icon-filter">
+                    {/* Left Arrow Button */}
+                    {currentScroll > 0 && (
+                        <button className="left-arrow btn" ref={leftBtn} onClick={() => scroll("left")}>
+                            <ChevronLeft size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
+                        </button>)}
 
-                <div ref={scrollRef} className="filter-bar">
-                    {/* Render visible filters */}
-                    {visibleFilters.map((filter, index) => (
-                        <button
-                            key={index}
-                            className={`filter-icon ${selectedFilter === filter.name ? "selected" : ""}`}
-                            onClick={() => onSetFilter(filter.name)}
-                        >
-                            <img src={filter.src} alt={filter.name} className="w-6 h-6" />
-                            <span className="icon-name">{filter.name}</span>
-                        </button>
-                    ))}
+                    <div ref={scrollRef} className="filter-bar">
+                        {/* Render visible filters */}
+                        {visibleFilters.map((filter, index) => (
+                            <button
+                                key={index}
+                                className={`filter-icon ${selectedFilter === filter.name ? "selected" : ""}`}
+                                onClick={() => onSetFilter(filter.name)}
+                            >
+                                <img src={filter.src} alt={filter.name} className="w-6 h-6" />
+                                <span className="icon-name">{filter.name}</span>
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Right Arrow Button */}
+                    {currentScroll < totalScrolls - 1 &&
+                        (<button className="right-arrow btn" ref={rightBtn} onClick={() => scroll("right")}>
+                            <ChevronRight size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
+                        </button>)}
                 </div>
 
-                {/* Right Arrow Button */}
-                {currentScroll < totalScrolls - 1 &&
-                    (<button className="right-arrow btn" ref={rightBtn} onClick={() => scroll("right")}>
-                        <ChevronRight size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
-                    </button>)}
-            </div>
-
-            <button className="filter-btn">
-                <img src="https://res.cloudinary.com/dswenk4wc/image/upload/v1739776625/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgc3R5bGU9ImRpc3BsYXk6YmxvY2s7ZmlsbDpub25lO2hlaWdodDoxNnB4O3dpZHRoOjE2cHg7c3Ryb2tlOmN1cnJlbnRDb2xvcjtzdHJva2Utd2lkdGg6Mzt_adziw5.svg" alt="" />
-                Filters
-            </button>
-        </section>
+                <button className="filter-btn">
+                    <img src="https://res.cloudinary.com/dswenk4wc/image/upload/v1739776625/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgc3R5bGU9ImRpc3BsYXk6YmxvY2s7ZmlsbDpub25lO2hlaWdodDoxNnB4O3dpZHRoOjE2cHg7c3Ryb2tlOmN1cnJlbnRDb2xvcjtzdHJva2Utd2lkdGg6Mzt_adziw5.svg" alt="" />
+                    Filters
+                </button>
+            </section>
     )
 }

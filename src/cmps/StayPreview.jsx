@@ -54,7 +54,10 @@ export function StayPreview({ stay }) {
                 ref={swiperRef} 
                 cssMode={true}
                 navigation={{hideOnClick: false}}
-                pagination={true}
+                pagination={{
+                    clickable: true,
+                    bulletActiveClass: "swiper-pagination-bullet-active-custom"
+                }}
                 mousewheel={true}
                 keyboard={true}
                 slidesPerView={1}

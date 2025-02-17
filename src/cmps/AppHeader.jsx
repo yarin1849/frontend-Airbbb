@@ -26,9 +26,11 @@ export function AppHeader() {
 			if (window.scrollY > 70) {
 				setIsScrolled(true);
 				document.querySelector('.app-header').classList.add('fixed')
+				document.querySelector('.stay-filter').classList.add('fixed')
 			} else {
 				setIsScrolled(false);
 				document.querySelector('.app-header').classList.remove('fixed')
+				document.querySelector('.stay-filter').classList.remove('fixed')
 			}
 		};
 
