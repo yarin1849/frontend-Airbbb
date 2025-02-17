@@ -49,6 +49,9 @@
             height: 2rem;
             background-color: $gray2;
         }
+        &:has(+.input-container:hover)::after{
+            display: none;
+        }
     }
 
     .input-container:first-child {

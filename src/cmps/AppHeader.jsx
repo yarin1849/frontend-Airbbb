@@ -67,7 +67,7 @@ export function AppHeader() {
 							</div>
 						</NavLink>
 					</section>
-					{isScrolled ? <section className='small-container'>
+					{location.pathname.length > 1 || isScrolled ? <section className='small-container'>
 						<SmallSearch />
 					</section> :
 						<section>
