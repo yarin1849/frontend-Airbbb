@@ -1,7 +1,7 @@
-import * as React from 'react';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import * as React from 'react'
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
 import wifi from '../assets/amenities-icons/wifi.svg'
 import kitchen from '../assets/amenities-icons/kitchen.svg'
 import sharedBeachAccess from '../assets/amenities-icons/shared-beach-access.svg'

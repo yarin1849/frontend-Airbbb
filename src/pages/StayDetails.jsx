@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import share from '../assets/details-action-icons/share.svg'
 import save from '../assets/details-action-icons/save.svg'
@@ -18,6 +18,8 @@ export function StayDetails() {
 
   const { stayId } = useParams()
   const stay = useSelector(storeState => storeState.stayModule.stay)
+  const location = useLocation()
+
 
   useEffect(() => {
     loadStay(stayId)
@@ -34,7 +36,7 @@ export function StayDetails() {
   }
 
   return (
-    <section className="stay-details full">
+    <section className='stay-details full'>
       <div className='details-header'>
         <h1>Sunset Luxury 6 Bedroom Villa with Swimming pool</h1>
         <div className='action-btns'>
