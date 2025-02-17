@@ -8,7 +8,7 @@ import "swiper/css/pagination"
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules"
 
 export function StayPreview({ stay }) {
-    // console.log(stay)
+
     const swiperRef = useRef(null) 
 
     function stopPropagation(event) {
@@ -96,10 +96,10 @@ export function StayPreview({ stay }) {
                     <p>
                         Price: <span>${stay?.price || "N/A"}</span>
                     </p> */}
-                    <p className="preview-text-bold preview-text-first">Zrnovo,Croatia</p>
-                    <p className="gray">Hosted by a busniess</p>
+                    <p className="preview-text-bold preview-text-first">{stay.loc.country}</p>
+                    <p className="gray">{stay.host.fullname}</p>
                     <p className="preview-date gray">1-6 May</p>
-                    <p className="preview-text-last"><span className="preview-text-bold">$139</span> night</p>
+                    <p className="preview-text-last"><span className="preview-text-bold">{stay.price}</span> night</p>
                 </div>
                 <div className="rating">
                     <img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739453965/asset_23_rlrre4.svg" alt="" />
