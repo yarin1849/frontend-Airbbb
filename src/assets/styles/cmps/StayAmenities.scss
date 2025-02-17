@@ -1,7 +1,16 @@
 .stay-amenities{
     img{
         display: inline-block;
-        width: 16px;
+        width: 24px;
+        font-weight: 500;
+        margin-right: 10px;
+    }
+
+    h2{
+        position: relative;
+        font-size: 22px;
+        margin-top: -15px;
+        bottom: 3px;
     }
 
     .show-amenities-btn{
@@ -10,25 +19,44 @@
         color: #222222;
         border: 1px solid #222222;
         border-radius: 8px;
-        padding: 13px 23px;
+        padding: 13px 19px;
         font-size: rem(16px);
         font-weight: bold;
         line-height: 20px;
-        text-align: center;
-        margin: 40px 0 0 0;
-        justify-content: start;
-
-
+        margin: 40px 0 460px 0;
+  
         &:hover{
             background-color: #f7f7f7;
         }
+
+    }
+
+    
+    .amenities-container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 18px;
+    }
+    
+    .amenity {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+    
+    .amenity > img {
+        align-self: flex-end; 
+    }
+    
+    
+    
+
+    hr{
+        // border: #ddd 1px solid;
     }
 }
 
-.amenities-container{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
 
 
 
