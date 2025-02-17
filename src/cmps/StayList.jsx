@@ -23,7 +23,7 @@ export function StayList({ stays, onRemoveStay, onUpdateStay }) {
     }
 
     function onHandleClick(stayId) {
-        navigate(`/${stayId}`)
+        navigate(`/details/${stayId}`)
     }
 
     return <section>

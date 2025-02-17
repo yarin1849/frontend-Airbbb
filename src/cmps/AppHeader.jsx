@@ -9,16 +9,18 @@ import avtar from '../assets/img/avtar.svg'
 import { SearchBar } from './Searchbar'
 import { SmallSearch } from './SmallSearch'
 import { stayService } from '../services/stay'
-import { useState, useEffect } from 'react'
+import { useState, useEffect  } from 'react'
 import { loadStays } from '../store/actions/stay.actions'
 import { StayFilter } from './StayFilter'
+import {useLocation} from 'react-router-dom'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
 	const [filter, setFilter] = useState(stayService.getDefaultFilter())
 	const navigate = useNavigate()
 	const [isScrolled, setIsScrolled] = useState(false);
-
+	const location = useLocation()
+	console.log(location.pathname)
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 70) {
@@ -86,7 +88,7 @@ export function AppHeader() {
 				 </article>
 			</section>
 			</header>
-			<StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />
+			{location.pathname.length === 1  && <StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />}
 		</>
 	)
 }
