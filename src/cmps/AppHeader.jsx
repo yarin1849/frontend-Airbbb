@@ -58,7 +58,7 @@ export function AppHeader() {
 	return (
 		<>
 			<header className="app-header full main-container">
-				<section className='header-content flex'>
+				<section className='header-content flex' style = {(location.pathname.length > 1) ? {maxWidth: "1120px", justifySelf: "center"} : {maxWidth:"none"}}>
 					<section className='logo'>
 						<NavLink to="/" className="">
 							<div className='flex'>
