@@ -11,32 +11,33 @@ import { SmallSearch } from './SmallSearch'
 import { stayService } from '../services/stay'
 import { useState, useEffect } from 'react'
 import { loadStays } from '../store/actions/stay.actions'
+import { StayFilter } from './StayFilter'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
-	const [filter, setFilter] = useState(stayService.getDefaultFilter()) 
+	const [filter, setFilter] = useState(stayService.getDefaultFilter())
 	const navigate = useNavigate()
 	const [isScrolled, setIsScrolled] = useState(false);
 
 	useEffect(() => {
-	  const handleScroll = () => {
-		if (window.scrollY > 70) { 
-		  setIsScrolled(true);
-		  document.querySelector('.app-header').classList.add('fixed')
-		} else {
-		  setIsScrolled(false);
-		  document.querySelector('.app-header').classList.remove('fixed')
-		}
-	  };
-  
-	  window.addEventListener('scroll', handleScroll);
-  
-	
-	  return () => {
-		window.removeEventListener('scroll', handleScroll);
-	  };
+		const handleScroll = () => {
+			if (window.scrollY > 70) {
+				setIsScrolled(true);
+				document.querySelector('.app-header').classList.add('fixed')
+			} else {
+				setIsScrolled(false);
+				document.querySelector('.app-header').classList.remove('fixed')
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
 	}, []);
-  
+
 	async function onLogout() {
 		try {
 			await logout()
@@ -51,32 +52,36 @@ export function AppHeader() {
 		setFilter(filter)
 		loadStays(filter)
 	}
-	return (
-		<header className="app-header full main-container">
-			<section className='header-content flex'>
-			<section className='logo'>
-				<NavLink to="/" className="">
-					<div className='flex'>
 
-						<img src={airbnblogo} alt="" />
-					</div>
-				</NavLink>
-			</section>
-			{isScrolled ?<section className='small-container'>
-			<SmallSearch/>
-			</section>:
-			 <section>
-			<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter}/> 
-			 </section> }
-			<button className='flex menu'>
-				<div className='burger'>	
-				<img src={burger} alt="" />
-				</div>
-				<div className='avatar'>
-				<img src={avtar} alt="" />
-				</div>
-			</button>
-			</section>
-		</header>
+	return (
+		<>
+			<header className="app-header full main-container">
+				<section className='header-content flex'>
+					<section className='logo'>
+						<NavLink to="/" className="">
+							<div className='flex'>
+
+								<img src={airbnblogo} alt="" />
+							</div>
+						</NavLink>
+					</section>
+					{isScrolled ? <section className='small-container'>
+						<SmallSearch />
+					</section> :
+						<section>
+							<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter} />
+						</section>}
+					<button className='flex menu'>
+						<div className='burger'>
+							<img src={burger} alt="" />
+						</div>
+						<div className='avatar'>
+							<img src={avtar} alt="" />
+						</div>
+					</button>
+				</section>
+			</header>
+			<StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />
+		</>
 	)
 }

@@ -55,7 +55,7 @@ export function loadFromStorage(key) {
 export const categories = [
     {
         name: 'No filter',
-        src: 'https://a0.muscache.com/pictures/8e507f16-4943-4be9-b707-59bd38d56309.jpg'
+        src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739784967/no_entry_fgvfcv.png'
     },
     {
         name: 'Islands',

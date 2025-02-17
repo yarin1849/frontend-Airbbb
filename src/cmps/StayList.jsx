@@ -7,12 +7,12 @@ import { loadStays } from '../store/actions/stay.actions'
 
 
 export function StayList({ stays, onRemoveStay, onUpdateStay }) {
-    const [filterBy, setFilterBy] = useState(stayService.getDefaultFilter())
+    // const [filterBy, setFilterBy] = useState(stayService.getDefaultFilter())
     const navigate = useNavigate()
 
-    useEffect(() => {
-        loadStays(filterBy)
-    }, [filterBy])
+    // useEffect(() => {
+    //     loadStays(filterBy)
+    // }, [filterBy])
 
     function shouldShowActionBtns(stay) {
         const user = userService.getLoggedinUser()
@@ -27,7 +27,7 @@ export function StayList({ stays, onRemoveStay, onUpdateStay }) {
     }
 
     return <section>
-        <StayFilter filterBy={filterBy} setFilterBy={setFilterBy} />
+        {/* <StayFilter filterBy={filterBy} setFilterBy={setFilterBy} /> */}
         <ul className="stay-list">
             {stays.map(stay =>
                 <li key={stay._id} onClick={() => onHandleClick(stay._id)}>

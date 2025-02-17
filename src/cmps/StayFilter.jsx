@@ -4,38 +4,39 @@ import debounce from 'lodash/debounce'
 import { categories } from '../services/util.service'
 import { stayService } from "../services/stay"
 
-export function StayFilter({filterBy, setFilterBy}) {
+export function StayFilter({ filterBy, setFilterBy }) {
     const [filterToEdit, SetFilterToEdit] = useState(stayService.getDefaultFilter())
+    const [selectedFilter, setSelectedFilter] = useState(null) // Track selected filter
     const scrollRef = useRef(null)
     const rightBtn = useRef(null)
     const leftBtn = useRef(null)
-    const [currentPage, setCurrentPage] = useState(0)
-    const [itemsPerPage, setItemsPerPage] = useState(22)
+    const [currentScroll, setCurrentScroll] = useState(0)
+    const [itemsPerScroll, setItemsPerScroll] = useState(17)
     const [scrollAmount, setScrollAmount] = useState(992)
-    const totalPages = Math.ceil(categories.length / itemsPerPage)
+    const totalScrolls = Math.ceil(categories.length / itemsPerScroll)
 
-
-    const updateItemsPerPage = () => {
+    const updateItemsPerScroll = () => {
         const screenWidth = window.innerWidth
 
-        if (screenWidth < 600) {
-            setItemsPerPage(5)
-            setScrollAmount(440)
-        } else if (screenWidth < 900) {
-            setItemsPerPage(10)
-            setScrollAmount(740)
-        } else if (screenWidth < 1500) {
-            setItemsPerPage(20)
-            setScrollAmount(1340)
-        } else {
-            setItemsPerPage(28)
-            setScrollAmount(1400)
-        }
+        // Example screen width adjustments
+        // if (screenWidth < 600) {
+        //     setItemsPerScroll(5)
+        //     setScrollAmount(440)
+        // } else if (screenWidth < 900) {
+        //     setItemsPerScroll(10)
+        //     setScrollAmount(740)
+        // } else if (screenWidth < 1500) {
+        //     setItemsPerScroll(20)
+        //     setScrollAmount(1340)
+        // } else {
+        //     setItemsPerScroll(28)
+        //     setScrollAmount(1400)
+        // }
     }
 
     useEffect(() => {
         const handleResize = debounce(() => {
-            updateItemsPerPage()
+            updateItemsPerScroll()
         }, 200)
 
         window.addEventListener("resize", handleResize)
@@ -46,33 +47,25 @@ export function StayFilter({filterBy, setFilterBy}) {
     }, [])
 
     const scroll = (direction) => {
-
         const filterBar = scrollRef.current
         if (filterBar) {
-
-            if (direction === "right" && currentPage < totalPages - 1) {
-
-                // Slide the page out to the left and then slide the next one in
+            if (direction === "right" && currentScroll < totalScrolls - 1) {
                 filterBar.style.transition = "transform 0.8s ease-in-out"
                 filterBar.style.transform = `translateX(-${scrollAmount}px)`
 
-
-                // After the animation completes, change the page
                 setTimeout(() => {
-                    setCurrentPage(currentPage + 1)
+                    setCurrentScroll(currentScroll + 1)
                     filterBar.style.transition = "none"
                     filterBar.style.transform = `translateX(0)`
                 }, 500)
             }
 
-            if (direction === "left" && currentPage > 0) {
-                // Slide the page out to the right and then slide the previous one in
+            if (direction === "left" && currentScroll > 0) {
                 filterBar.style.transition = "transform 0.8s ease-in-out"
                 filterBar.style.transform = `translateX(${scrollAmount}px)`
 
-                // After the animation completes, change the page
                 setTimeout(() => {
-                    setCurrentPage(currentPage - 1)
+                    setCurrentScroll(currentScroll - 1)
                     filterBar.style.transition = "none"
                     filterBar.style.transform = `translateX(0)`
                 }, 500)
@@ -81,41 +74,53 @@ export function StayFilter({filterBy, setFilterBy}) {
     }
 
     const visibleFilters = categories.slice(
-        currentPage * itemsPerPage,
-        (currentPage + 1) * itemsPerPage
+        currentScroll * itemsPerScroll,
+        (currentScroll + 1) * itemsPerScroll
     )
-    // console.log(filterToEdit)
+
     useEffect(() => {
         setFilterBy(filterToEdit)
     }, [filterToEdit])
 
     function onSetFilter(filterName) {
-        SetFilterToEdit({...filterToEdit, label: filterName})
+        SetFilterToEdit({ ...filterToEdit, label: filterName })
+        setSelectedFilter(filterName) // Update selected filter
     }
 
     return (
-        <div className="stay-filter">
-            {/* Left Arrow Button */}
-            {currentPage > 0 && (
-                <button className="left-arrow button" ref={leftBtn} onClick={() => scroll("left")}>
-                    <ChevronLeft size={18} style={{ transform: "translate(-20.6%, 1.5%)"}} />
-                </button>)}
-            <div ref={scrollRef} className="filter-bar" style={{ display: 'flex', overflowX: 'hidden' }}>
+        <section style={{ display: "flex", justifyContent: "space-between" }} className="filter">
+            <div className="stay-filter">
+                {/* Left Arrow Button */}
+                {currentScroll > 0 && (
+                    <button className="left-arrow button" ref={leftBtn} onClick={() => scroll("left")}>
+                        <ChevronLeft size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
+                    </button>)}
+                
+                <div ref={scrollRef} className="filter-bar">
+                    {/* Render visible filters */}
+                    {visibleFilters.map((filter, index) => (
+                        <button
+                            key={index}
+                            className={`filter-icon ${selectedFilter === filter.name ? "selected" : ""}`}
+                            onClick={() => onSetFilter(filter.name)}
+                        >
+                            <img src={filter.src} alt={filter.name} className="w-6 h-6" />
+                            <span className="icon-name">{filter.name}</span>
+                        </button>
+                    ))}
+                </div>
 
-                {/* Render visible filters */}
-                {visibleFilters.map((filter, index) => (
-                    <button key={index} className="filter-icon" onClick={() => onSetFilter(filter.name)}>
-                        <img src={filter.src} alt={filter.name} className="w-6 h-6" />
-                        <span className="icon-name">{filter.name}</span>
-                    </button>
-                ))}
-
+                {/* Right Arrow Button */}
+                {currentScroll < totalScrolls - 1 &&
+                    (<button className="right-arrow button" ref={rightBtn} onClick={() => scroll("right")}>
+                        <ChevronRight size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
+                    </button>)}
             </div>
-            {/* Right Arrow Button */}
-            {currentPage < totalPages - 1 &&
-                (<button className="right-arrow button" ref={rightBtn} onClick={() => scroll("right")}>
-                    <ChevronRight size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
-                </button>)}
-        </div>
+
+            <button className="filter-btn">
+                <img src="https://res.cloudinary.com/dswenk4wc/image/upload/v1739776625/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgc3R5bGU9ImRpc3BsYXk6YmxvY2s7ZmlsbDpub25lO2hlaWdodDoxNnB4O3dpZHRoOjE2cHg7c3Ryb2tlOmN1cnJlbnRDb2xvcjtzdHJva2Utd2lkdGg6Mzt_adziw5.svg" alt="" />
+                Filters
+            </button>
+        </section>
     )
 }

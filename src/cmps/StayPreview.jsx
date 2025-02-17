@@ -8,6 +8,7 @@ import "swiper/css/pagination"
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules"
 
 export function StayPreview({ stay }) {
+    // console.log(stay)
     const swiperRef = useRef(null) 
 
     function stopPropagation(event) {
@@ -18,7 +19,7 @@ export function StayPreview({ stay }) {
         const waitForSwiper = async () => {
             // Wait until Swiper initializes and buttons are available
             while (swiperRef.current?.swiper?.navigation?.nextEl === null) {
-                await new Promise(resolve => setTimeout(resolve, 100)) // Wait 100ms before checking again
+                await new Promise(resolve => setTimeout(resolve, 100)) 
             }
             
             const swiperInstance = swiperRef.current.swiper
@@ -63,9 +64,20 @@ export function StayPreview({ stay }) {
                 allowSlidePrev={true}
                 className="mySwiper"
             >
-                <SwiperSlide><img src={image} alt="Stay 1" /></SwiperSlide>
+                {/* <SwiperSlide><img src={image} alt="Stay 1" /></SwiperSlide>
                 <SwiperSlide><img src={image} alt="Stay 2" /></SwiperSlide>
-                <SwiperSlide><img src={image} alt="Stay 3" /></SwiperSlide>
+                <SwiperSlide><img src={image} alt="Stay 3" /></SwiperSlide> */}
+                 {stay.imgUrls && stay.imgUrls.length > 0 ? (
+                    stay.imgUrls.map((imgSrc, index) => (
+                        <SwiperSlide key={index}>
+                            <img src={imgSrc} alt={`Stay ${index + 1}`} />
+                        </SwiperSlide>
+                    ))
+                ) : (
+                    <SwiperSlide>
+                        <img src={image} alt="Placeholder Image" />
+                    </SwiperSlide>
+                )}
             </Swiper>
 
             <section className="preview-text">

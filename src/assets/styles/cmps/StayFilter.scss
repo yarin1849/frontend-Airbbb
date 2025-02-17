@@ -1,11 +1,21 @@
+.filter {
+    // display: "flex";
+    // justify-content: "space-between";
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+    overflow-x: hidden;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
 .stay-filter {
+    grid-column: 2;
     display: flex;
-    margin-top: minmax(2rem, 5rem);
     position: relative;
-    width: 100%;
-    // height: 100%;
+    width: 95%;
     background-color: white;
-    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
 
     /* Scrollable Filter Bar */
     .filter-bar {
@@ -16,8 +26,6 @@
         white-space: nowrap;
         width: fit-content;
         scrollbar-width: none;
-        padding: 4px 0px;
-        margin: 12px 0px 10px;
         background-color: #fff;
 
         ::-webkit-scrollbar {
@@ -40,7 +48,7 @@
             transition: color 0.3s ease-in-out;
             width: fit-content;
             height: 100%;
-            
+
             img {
                 width: 21.12px;
                 height: 21.12px;
@@ -56,17 +64,29 @@
             &:hover,
             &.active {
                 border-bottom: 2px solid $gray3;
+                margin-bottom: -2px;
                 color: #222222;
+
                 img {
                     filter: grayscale(0%);
                 }
             }
-    
+
+            &.selected {
+                border-bottom: 2px solid black;
+                color: #222222;
+            }
+
         }
 
-    padding: .5em;
+        padding-top: 30px;
 
     }
+
+    .stay-filter.scrolled {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
     /* Left & Right Scroll Arrows */
     .button {
         width: rem(32.4px);
@@ -78,26 +98,32 @@
         border: 1px solid $gray2;
         border-radius: 50%;
         cursor: pointer;
-        box-shadow:  0px 0px 12px 10px rgba(255, 255, 255, 0.9);
+        box-shadow: 0px 0px 12px 10px rgba(255, 255, 255, 0.9);
         transition: background-color 0.3s ease-in-out;
+        transition: box-shadow 0.3s ease-in-out;
 
         &:hover {
-            background-color: #f0f0f0;
+            // background-color: #a20c0c;
+            box-shadow: 0px 0px 12px 0px rgba(202, 201, 201, 0.9);
+            width: rem(34px);
+            height: rem(34px);
         }
     }
 
     /* Positioning Buttons Correctly */
     .left-arrow {
         left: 0;
-        transform: translateY(-60%) translateX(10%);
+        transform: translateY(-25%) translateX(10%);
         z-index: 1
     }
 
     .right-arrow {
-        right: 0;
-        transform: translateY(-60%) translateX(-10%);
+        right: 20px;
+        transform: translateY(-25%) translateX(-10%);
         z-index: 1;
     }
+
+
 
     /* Responsive Design */
     @media (max-width: 768px) {
@@ -128,10 +154,39 @@
         .right-arrow {
             right: 5px;
             transform: translate(0, -50%);
-        &:has(:checked) span  {
-            background-color: $gray3;
-            color: $gray1;
+
+            &:has(:checked) span {
+                background-color: $gray3;
+                color: $gray1;
+            }
         }
     }
 }
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    width: 93px;
+    gap: 9.5px;
+    background-color: #fff;
+    color: #222222;
+    border: 1px solid $gray3;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 12px;
+    align-self: center;
+    position: relative;
+    top: 5%;
+    right: 0.7%;
+
+
+    img {
+        width: 16px;
+        height: 16px;
+    }
+
+    &:hover {
+        border: 1px solid #222222;
+        background-color: rgb(244, 244, 244);
+    }
 }

@@ -20,7 +20,7 @@
         width: 100%;
         height: 72%;
         object-fit: cover;
-        
+
         overflow: hidden;
 
         /* Hide navigation buttons when they are disabled */
@@ -92,28 +92,28 @@
         top: 75%;
         line-height: 1.41;
     }
-    
+
     .preview-text-bold {
         font-weight: bold;
     }
-    
+
     .preview-text-first {
         margin-top: 10px;
     }
-    
+
     .preview-text-last {
         margin-top: 4px;
         line-height: 1.9;
     }
-    
+
     .preview-date {
         line-height: 1.1;
     }
-    
+
     .gray {
         color: $gray5;
     }
-    
+
     .preview-text-par {
         display: flex;
         flex-direction: column;
@@ -130,6 +130,7 @@
         top: 5%;
         right: 6.7%;
         z-index: 1;
+        filter: drop-shadow(-0.5px -0.5px 0 rgba(255,255,255,0.7)) drop-shadow(1px -1px 0 rgba(255,255,255,0.7)) drop-shadow(-1px 1px 0 rgba(255,255,255,0.7)) drop-shadow(1px 1px 0 rgba(255,255,255,0.7));
     }
 
     .rating {
