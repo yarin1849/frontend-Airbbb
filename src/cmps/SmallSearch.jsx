@@ -3,7 +3,7 @@ import searchicon from '../assets/img/searchicon.svg'
 export function SmallSearch() {
 
     return (
-        <section >
+        <section className='small-search-section' >
             <form action="" className="small-search flex">
 
                 <div className='label-container flex'>
