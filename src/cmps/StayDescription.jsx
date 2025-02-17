@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { makeLorem } from "../services/util.service";
+import { useState } from "react"
+import { makeLorem } from "../services/util.service"
 
 const images = [
     {
@@ -21,7 +21,7 @@ export function StayDescription() {
     const fullText = makeLorem(200)
     const maxLength = 560
     const reviews = 123
-    const displayedText = isExpanded ? fullText : fullText.slice(0, maxLength) + (fullText.length > maxLength ? " ..." : "");
+    const displayedText = isExpanded ? fullText : fullText.slice(0, maxLength) + (fullText.length > maxLength ? " ..." : "")
     return (
         <div className="stay-description">
             <div className="stay-description-title">
@@ -37,7 +37,10 @@ export function StayDescription() {
                     </div>
                     <img src={images[1].src} alt="Guest Favorite" className="guest-icon" />
                 </div>
-                <div className="divider"></div>
+                <div className="review-container-description">
+                    One of the most loved homes on Airbnb, according to guests
+                </div>
+                {/* <div className="divider"></div> */}
                 {/* <p className="description-text">One of the most loved homes on Airbnb, according to guests</p> */}
                 <div className="rank-details">
                     <span className="review-score">4.97</span>

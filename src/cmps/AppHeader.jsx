@@ -9,10 +9,10 @@ import avtar from '../assets/img/avtar.svg'
 import { SearchBar } from './Searchbar'
 import { SmallSearch } from './SmallSearch'
 import { stayService } from '../services/stay'
-import { useState, useEffect  } from 'react'
+import { useState, useEffect } from 'react'
 import { loadStays } from '../store/actions/stay.actions'
 import { StayFilter } from './StayFilter'
-import {useLocation} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
@@ -73,22 +73,22 @@ export function AppHeader() {
 						<section>
 							<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter} />
 						</section>}
-					 <article className='btns-panel'>
-			 <div className='globe'>	
-				<img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg" alt="" />
-				</div>
-			<button className='flex menu'>
-						<div className='burger'>
-							<img src={burger} alt="" />
+					<article className='btns-panel'>
+						<div className='globe'>
+							<img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg" alt="" />
 						</div>
-						<div className='avatar'>
-							<img src={avtar} alt="" />
-						</div>
-					</button>
-				 </article>
-			</section>
+						<button className='flex menu'>
+							<div className='burger'>
+								<img src={burger} alt="" />
+							</div>
+							<div className='avatar'>
+								<img src={avtar} alt="" />
+							</div>
+						</button>
+					</article>
+				</section>
 			</header>
-			{location.pathname.length === 1  && <StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />}
+			{location.pathname.length === 1 && <StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />}
 		</>
 	)
 }

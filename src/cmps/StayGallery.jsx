@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { stayService } from '../services/stay/stay.service.local';
+import { useEffect, useState } from 'react'
+import { stayService } from '../services/stay/stay.service.local'
 
 export function StayGallery() {
-    const [imgUrls, setImgUrls] = useState([]);
+    const [imgUrls, setImgUrls] = useState([])
 
     useEffect(() => {
         async function loadStayImages() {
@@ -10,7 +10,7 @@ export function StayGallery() {
             if (stays.length > 0) setImgUrls(stays[0].imgUrls)
         }
         loadStayImages()
-    }, []);
+    }, [])
 
     return (
         <div className="stay-gallery">

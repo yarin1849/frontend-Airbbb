@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { useNavigate, useParams } from 'react-router-dom';
-import { DatePickerModal } from "./DayPickerModal";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/style.css";
+import { useNavigate, useParams } from 'react-router-dom'
+import { DatePickerModal } from "./DayPickerModal"
+import { DayPicker } from "react-day-picker"
+import "react-day-picker/style.css"
 
 export function ReserveModal() {
     const [checkIn, setCheckIn] = useState("2025-02-19")
