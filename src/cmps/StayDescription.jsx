@@ -72,6 +72,7 @@ export function StayDescription() {
                         <img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1739735073/right-arrow_ydaxfw.svg"} />
                     </button>
                 )}
+                <hr></hr>
             </div>
         </div>
     )
