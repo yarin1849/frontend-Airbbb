@@ -1,7 +1,7 @@
 .stay-list {
     display: grid;
     grid-auto-flow: row;
-    grid-template-columns: repeat(auto-fit, 270px);
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 24px;
     margin-top: 0px;
     

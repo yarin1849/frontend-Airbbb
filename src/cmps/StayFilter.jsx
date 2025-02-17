@@ -48,29 +48,20 @@ export function StayFilter({ filterBy, setFilterBy }) {
 
     const scroll = (direction) => {
         const filterBar = scrollRef.current
-        if (filterBar) {
-            if (direction === "right" && currentScroll < totalScrolls - 1) {
-                filterBar.style.transition = "transform 0.8s ease-in-out"
-                filterBar.style.transform = `translateX(-${scrollAmount}px)`
+        if (!filterBar) return
 
-                setTimeout(() => {
-                    setCurrentScroll(currentScroll + 1)
-                    filterBar.style.transition = "none"
-                    filterBar.style.transform = `translateX(0)`
-                }, 500)
-            }
+        const isRight = direction === "right"
+        if ((isRight && currentScroll >= totalScrolls - 1) || (!isRight && currentScroll <= 0)) return
 
-            if (direction === "left" && currentScroll > 0) {
-                filterBar.style.transition = "transform 0.8s ease-in-out"
-                filterBar.style.transform = `translateX(${scrollAmount}px)`
+        const offset = isRight ? -scrollAmount : scrollAmount
+        filterBar.style.transition = "transform 0.8s ease-in-out"
+        filterBar.style.transform = `translateX(${offset}px)`
 
-                setTimeout(() => {
-                    setCurrentScroll(currentScroll - 1)
-                    filterBar.style.transition = "none"
-                    filterBar.style.transform = `translateX(0)`
-                }, 500)
-            }
-        }
+        setTimeout(() => {
+            setCurrentScroll(prev => prev + (isRight ? 1 : -1))
+            filterBar.style.transition = "none"
+            filterBar.style.transform = "translateX(0)"
+        }, 500)
     }
 
     const visibleFilters = categories.slice(
@@ -88,14 +79,14 @@ export function StayFilter({ filterBy, setFilterBy }) {
     }
 
     return (
-        <section style={{ display: "flex", justifyContent: "space-between" }} className="filter">
-            <div className="stay-filter">
+        <section style={{ display: "flex", justifyContent: "space-between" }} className="stay-filter">
+            <div className="icon-filter">
                 {/* Left Arrow Button */}
                 {currentScroll > 0 && (
-                    <button className="left-arrow button" ref={leftBtn} onClick={() => scroll("left")}>
+                    <button className="left-arrow btn" ref={leftBtn} onClick={() => scroll("left")}>
                         <ChevronLeft size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
                     </button>)}
-                
+
                 <div ref={scrollRef} className="filter-bar">
                     {/* Render visible filters */}
                     {visibleFilters.map((filter, index) => (
@@ -112,7 +103,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
 
                 {/* Right Arrow Button */}
                 {currentScroll < totalScrolls - 1 &&
-                    (<button className="right-arrow button" ref={rightBtn} onClick={() => scroll("right")}>
+                    (<button className="right-arrow btn" ref={rightBtn} onClick={() => scroll("right")}>
                         <ChevronRight size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
                     </button>)}
             </div>

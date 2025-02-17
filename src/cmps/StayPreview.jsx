@@ -62,7 +62,7 @@ export function StayPreview({ stay }) {
                 watchOverflow={true}
                 allowSlideNext={true} 
                 allowSlidePrev={true}
-                className="mySwiper"
+                className="my-swiper"
             >
                 {/* <SwiperSlide><img src={image} alt="Stay 1" /></SwiperSlide>
                 <SwiperSlide><img src={image} alt="Stay 2" /></SwiperSlide>
