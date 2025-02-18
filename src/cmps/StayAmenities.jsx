@@ -20,5 +20,5 @@ export function StayAmenities() {
             <button className='show-amenities-btn'>Show all 67 amenities</button>
             <hr></hr>
         </section>
-    );
+    )
 }

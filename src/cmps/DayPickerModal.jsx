@@ -1,6 +1,6 @@
 
 import { DayPicker } from "react-day-picker"
-import {useState} from 'react'
+import { useState } from "react"
 export function DatePickerModal() {
     const [selected, setSelected] = useState(Date.now())
     console.log(selected)

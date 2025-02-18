@@ -3,8 +3,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { DatePickerModal } from "./DayPickerModal";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
+import { getRandomIntInclusive } from "../services/util.service";
 
-export function ReserveModal() {
+export function ReserveModal({ stay }) {
     const [checkIn, setCheckIn] = useState("2025-02-19")
     const [checkOut, setCheckOut] = useState("2025-02-26")
     const [guests, setGuests] = useState(1)
@@ -13,9 +14,9 @@ export function ReserveModal() {
     const navigate = useNavigate()
     const { stayId } = useParams()
 
-    const nightlyRate = 110
+    const nightlyRate = stay.price
     const nights = 7
-    const fee = 78
+    const fee = stay.price * 0.1
     const totalPrice = nightlyRate * nights + fee
 
     const handleMouseMove = (ev) => {

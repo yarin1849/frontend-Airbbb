@@ -4,15 +4,16 @@ import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 import airbnblogo from '../assets/img/airbnblogo.svg'
+import airbbblogo from '../assets/img/airbbb.png'
 import burger from '../assets/img/burger.svg'
 import avtar from '../assets/img/avtar.svg'
 import { SearchBar } from './Searchbar'
 import { SmallSearch } from './SmallSearch'
 import { stayService } from '../services/stay'
-import { useState, useEffect  } from 'react'
+import { useState, useEffect } from 'react'
 import { loadStays } from '../store/actions/stay.actions'
 import { StayFilter } from './StayFilter'
-import {useLocation} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
@@ -25,9 +26,11 @@ export function AppHeader() {
 			if (window.scrollY > 70) {
 				setIsScrolled(true);
 				document.querySelector('.app-header').classList.add('fixed')
+				document.querySelector('.stay-filter').classList.add('fixed')
 			} else {
 				setIsScrolled(false);
 				document.querySelector('.app-header').classList.remove('fixed')
+				document.querySelector('.stay-filter').classList.remove('fixed')
 			}
 		};
 
@@ -57,12 +60,12 @@ export function AppHeader() {
 	return (
 		<>
 			<header className="app-header full main-container">
-				<section className='header-content flex' style={(location.pathname.length > 1) ? { maxWidth: "1120px", justifySelf: "center" } : {}}>
+				<section className='header-content flex' style = {(location.pathname.length > 1) ? {maxWidth: "1120px", justifySelf: "center"} : {}}>
 					<section className='logo'>
 						<NavLink to="/" className="">
 							<div className='flex'>
 
-								<img src={airbnblogo} alt="" />
+								<img src={airbbblogo} alt="" />
 							</div>
 						</NavLink>
 					</section>
@@ -74,9 +77,7 @@ export function AppHeader() {
 						</section>}
 					<article className='btns-panel'>
 						<div className='globe'>
-
 							<img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg" alt="" />
-
 						</div>
 						<button className='flex menu'>
 							<div className='burger'>
@@ -89,7 +90,7 @@ export function AppHeader() {
 					</article>
 				</section>
 			</header>
-			{location.pathname.length === 1  && <StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />}
+			{location.pathname.length === 1 && <StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />}
 		</>
 	)
 }

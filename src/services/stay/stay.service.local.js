@@ -2,6 +2,7 @@
 import { storageService } from '../async-storage.service'
 import { makeId, saveToStorage, loadFromStorage } from '../util.service'
 import { userService } from '../user'
+import data from '../../assets/data/stay.json'
 // import airbnbImage from '../../assets/img/airbnb-image.jpg'
 import image from '../../assets/img/image.avif'
 import profile from '../../assets/img/profile.avif'
@@ -50,7 +51,7 @@ async function query(filterBy = { where: '', checkIn: '', checkOut: '', guests: 
         stays = stays.filter(stay => stay.labels.includes(label))
     }
 
-    stays = stays.map(({ _id, type, price, host, imgUrls }) => ({ _id, type, price, host, imgUrls }))
+    // stays = stays.map(({ _id, type, price, host, imgUrls }) => ({ _id, type, price, host, imgUrls }))
     return stays
 }
 
@@ -104,172 +105,172 @@ async function addStayMsg(stayId, txt) {
 function _createStays() {
     let stays = loadFromStorage(STORAGE_KEY)
     if (!stays || !stays.length) {
-        stays = [
-            {
-                _id: 's101',
-                name: 'Ribeira Charming Duplex',
-                type: 'House',
-                imgUrls: [images[0]?.src, images[1]?.src, images[2]?.src, images[3]?.src, images[4]?.src],
-                price: 80.0,
-                summary: 'Fantastic duplex apartment...',
-                capacity: 8,
-                amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-                labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
-                host: {
-                    _id: 'u101',
-                    fullname: 'Davit Pok',
-                    imgUrl: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739434710/airbnb-image_muycbi.jpg',
-                },
-                loc: {
-                    country: 'Portugal',
-                    countryCode: 'PT',
-                    city: 'Lisbon',
-                    address: '17 Kombo st',
-                    lat: -8.61308,
-                    lng: 41.1413,
-                },
-                reviews: [
-                    {
-                        id: 'r101',
-                        txt: 'Very helpful hosts. Cooked traditional...',
-                        rate: 4,
-                        by: {
-                            _id: 'u102',
-                            fullname: 'user2',
-                            imgUrl: profile,
-                        },
-                    },
-                ],
-                likedByUsers: ['mini-user'],
-            },
-            {
-                _id: 's102',
-                name: 'Ocean View Villa',
-                type: 'Villa',
-                imgUrls: [images[5]?.src, images[6]?.src, images[7]?.src, images[8]?.src, images[9]?.src],
-                price: 150.0,
-                summary: 'Luxury villa with breathtaking ocean views...',
-                capacity: 6,
-                amenities: ['Pool', 'Air Conditioning', 'Kitchen', 'Wifi'],
-                labels: ['Luxury', 'Seaside', 'Romantic', 'Exclusive', 'Play'],
-                host: {
-                    _id: 'u103',
-                    fullname: 'Maria Lopez',
-                    imgUrl: profile,
-                },
-                loc: {
-                    country: 'Spain',
-                    countryCode: 'ES',
-                    city: 'Barcelona',
-                    address: '12 Beachside Ave',
-                    lat: 41.3879,
-                    lng: 2.16992,
-                },
-                reviews: [
-                    {
-                        id: 'r102',
-                        txt: 'Amazing place, beautiful sunsets!',
-                        rate: 5,
-                        by: {
-                            _id: 'u104',
-                            fullname: 'user3',
-                            imgUrl: profile,
-                        },
-                    },
-                ],
-                likedByUsers: ['user1', 'user4'],
-            },
-            {
-                _id: 's103',
-                name: 'Cozy Mountain Cabin',
-                type: 'Cabin',
-                imgUrls: [images[10]?.src, images[11]?.src, images[12]?.src, images[13]?.src, images[14]?.src],
-                price: 95.0,
-                summary: 'A warm and cozy cabin in the mountains...',
-                capacity: 4,
-                amenities: ['Fireplace', 'Kitchen', 'Hot Tub', 'Wifi'],
-                labels: ['Nature', 'Relaxing', 'Adventure', 'Cozy', 'Play'],
-                host: {
-                    _id: 'u105',
-                    fullname: 'John Smith',
-                    imgUrl: profile,
-                },
-                loc: {
-                    country: 'Canada',
-                    countryCode: 'CA',
-                    city: 'Banff',
-                    address: '21 Mountain Trail',
-                    lat: 51.1784,
-                    lng: -115.5708,
-                },
-                reviews: [
-                    {
-                        id: 'r103',
-                        txt: 'Perfect place for a weekend getaway!',
-                        rate: 5,
-                        by: {
-                            _id: 'u106',
-                            fullname: 'user5',
-                            imgUrl: profile,
-                        },
-                    },
-                ],
-                likedByUsers: ['user2', 'user6'],
-            },
-            {
-                _id: 's104',
-                name: 'Urban Loft',
-                type: 'Apartment',
-                imgUrls: [images[15]?.src, images[16]?.src, images[17]?.src, images[18]?.src, images[19]?.src],
-                price: 110.0,
-                summary: 'Modern loft in the heart of the city...',
-                capacity: 2,
-                amenities: ['TV', 'Kitchen', 'Wifi', 'Air Conditioning'],
-                labels: ['Urban', 'Trendy', 'Business', 'City Center', 'Play'],
-                host: {
-                    _id: 'u107',
-                    fullname: 'Emily Brown',
-                    imgUrl: profile,
-                },
-                loc: {
-                    country: 'USA',
-                    countryCode: 'US',
-                    city: 'New York',
-                    address: '45 Downtown St',
-                    lat: 40.7128,
-                    lng: -74.0060,
-                },
-                reviews: [
-                    {
-                        id: 'r104',
-                        txt: 'Great location, perfect for work trips!',
-                        rate: 4,
-                        by: {
-                            _id: 'u108',
-                            fullname: 'user7',
-                            imgUrl: profile,
-                        },
-                    },
-                ],
-                likedByUsers: ['user3', 'user8'],
-            },
-            ...Array(14).fill().map((_, i) => ({
-                _id: `s10${i + 5}`,
-                name: `Stay ${i + 5}`,
-                type: ['House', 'Villa', 'Cabin', 'Apartment'][i % 4],
-                imgUrls: [image, image, image, image, image],
-                price: (i + 5) * 10,
-                summary: `Description of Stay ${i + 5}`,
-                capacity: (i % 6) + 2,
-                amenities: ['TV', 'Wifi', 'Kitchen', 'Air Conditioning'],
-                labels: ['Luxury', 'Cozy', 'Urban', 'Nature'][i % 4],
-                host: { _id: `u10${i + 5}`, fullname: `Host ${i + 5}`, imgUrl: profile },
-                loc: { country: ['Portugal', 'Spain', 'Canada', 'USA'][i % 4], countryCode: ['PT', 'ES', 'CA', 'US'][i % 4], city: `City ${i + 5}`, address: `${i + 5} Main St`, lat: 40 + i, lng: -75 + i },
-                reviews: [{ id: `r10${i + 5}`, txt: `Review for Stay ${i + 5}`, rate: (i % 5) + 1, by: { _id: `u10${i + 5}`, fullname: `Reviewer ${i + 5}`, imgUrl: profile } }],
-                likedByUsers: [`user${i + 5}`],
-            })),
+        stays =  data
+        //     {
+        //         _id: 's101',
+        //         name: 'Ribeira Charming Duplex',
+        //         type: 'House',
+        //         imgUrls: [images[0]?.src, images[1]?.src, images[2]?.src, images[3]?.src, images[4]?.src],
+        //         price: 80.0,
+        //         summary: 'Fantastic duplex apartment...',
+        //         capacity: 8,
+        //         amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
+        //         labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+        //         host: {
+        //             _id: 'u101',
+        //             fullname: 'Davit Pok',
+        //             imgUrl: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739434710/airbnb-image_muycbi.jpg',
+        //         },
+        //         loc: {
+        //             country: 'Portugal',
+        //             countryCode: 'PT',
+        //             city: 'Lisbon',
+        //             address: '17 Kombo st',
+        //             lat: -8.61308,
+        //             lng: 41.1413,
+        //         },
+        //         reviews: [
+        //             {
+        //                 id: 'r101',
+        //                 txt: 'Very helpful hosts. Cooked traditional...',
+        //                 rate: 4,
+        //                 by: {
+        //                     _id: 'u102',
+        //                     fullname: 'user2',
+        //                     imgUrl: profile,
+        //                 },
+        //             },
+        //         ],
+        //         likedByUsers: ['mini-user'],
+        //     },
+        //     {
+        //         _id: 's102',
+        //         name: 'Ocean View Villa',
+        //         type: 'Villa',
+        //         imgUrls: [images[5]?.src, images[6]?.src, images[7]?.src, images[8]?.src, images[9]?.src],
+        //         price: 150.0,
+        //         summary: 'Luxury villa with breathtaking ocean views...',
+        //         capacity: 6,
+        //         amenities: ['Pool', 'Air Conditioning', 'Kitchen', 'Wifi'],
+        //         labels: ['Luxury', 'Seaside', 'Romantic', 'Exclusive', 'Play'],
+        //         host: {
+        //             _id: 'u103',
+        //             fullname: 'Maria Lopez',
+        //             imgUrl: profile,
+        //         },
+        //         loc: {
+        //             country: 'Spain',
+        //             countryCode: 'ES',
+        //             city: 'Barcelona',
+        //             address: '12 Beachside Ave',
+        //             lat: 41.3879,
+        //             lng: 2.16992,
+        //         },
+        //         reviews: [
+        //             {
+        //                 id: 'r102',
+        //                 txt: 'Amazing place, beautiful sunsets!',
+        //                 rate: 5,
+        //                 by: {
+        //                     _id: 'u104',
+        //                     fullname: 'user3',
+        //                     imgUrl: profile,
+        //                 },
+        //             },
+        //         ],
+        //         likedByUsers: ['user1', 'user4'],
+        //     },
+        //     {
+        //         _id: 's103',
+        //         name: 'Cozy Mountain Cabin',
+        //         type: 'Cabin',
+        //         imgUrls: [images[10]?.src, images[11]?.src, images[12]?.src, images[13]?.src, images[14]?.src],
+        //         price: 95.0,
+        //         summary: 'A warm and cozy cabin in the mountains...',
+        //         capacity: 4,
+        //         amenities: ['Fireplace', 'Kitchen', 'Hot Tub', 'Wifi'],
+        //         labels: ['Nature', 'Relaxing', 'Adventure', 'Cozy', 'Play'],
+        //         host: {
+        //             _id: 'u105',
+        //             fullname: 'John Smith',
+        //             imgUrl: profile,
+        //         },
+        //         loc: {
+        //             country: 'Canada',
+        //             countryCode: 'CA',
+        //             city: 'Banff',
+        //             address: '21 Mountain Trail',
+        //             lat: 51.1784,
+        //             lng: -115.5708,
+        //         },
+        //         reviews: [
+        //             {
+        //                 id: 'r103',
+        //                 txt: 'Perfect place for a weekend getaway!',
+        //                 rate: 5,
+        //                 by: {
+        //                     _id: 'u106',
+        //                     fullname: 'user5',
+        //                     imgUrl: profile,
+        //                 },
+        //             },
+        //         ],
+        //         likedByUsers: ['user2', 'user6'],
+        //     },
+        //     {
+        //         _id: 's104',
+        //         name: 'Urban Loft',
+        //         type: 'Apartment',
+        //         imgUrls: [images[15]?.src, images[16]?.src, images[17]?.src, images[18]?.src, images[19]?.src],
+        //         price: 110.0,
+        //         summary: 'Modern loft in the heart of the city...',
+        //         capacity: 2,
+        //         amenities: ['TV', 'Kitchen', 'Wifi', 'Air Conditioning'],
+        //         labels: ['Urban', 'Trendy', 'Business', 'City Center', 'Play'],
+        //         host: {
+        //             _id: 'u107',
+        //             fullname: 'Emily Brown',
+        //             imgUrl: profile,
+        //         },
+        //         loc: {
+        //             country: 'USA',
+        //             countryCode: 'US',
+        //             city: 'New York',
+        //             address: '45 Downtown St',
+        //             lat: 40.7128,
+        //             lng: -74.0060,
+        //         },
+        //         reviews: [
+        //             {
+        //                 id: 'r104',
+        //                 txt: 'Great location, perfect for work trips!',
+        //                 rate: 4,
+        //                 by: {
+        //                     _id: 'u108',
+        //                     fullname: 'user7',
+        //                     imgUrl: profile,
+        //                 },
+        //             },
+        //         ],
+        //         likedByUsers: ['user3', 'user8'],
+        //     },
+        //     ...Array(14).fill().map((_, i) => ({
+        //         _id: `s10${i + 5}`,
+        //         name: `Stay ${i + 5}`,
+        //         type: ['House', 'Villa', 'Cabin', 'Apartment'][i % 4],
+        //         imgUrls: [image, image, image, image, image],
+        //         price: (i + 5) * 10,
+        //         summary: `Description of Stay ${i + 5}`,
+        //         capacity: (i % 6) + 2,
+        //         amenities: ['TV', 'Wifi', 'Kitchen', 'Air Conditioning'],
+        //         labels: ['Luxury', 'Cozy', 'Urban', 'Nature'][i % 4],
+        //         host: { _id: `u10${i + 5}`, fullname: `Host ${i + 5}`, imgUrl: profile },
+        //         loc: { country: ['Portugal', 'Spain', 'Canada', 'USA'][i % 4], countryCode: ['PT', 'ES', 'CA', 'US'][i % 4], city: `City ${i + 5}`, address: `${i + 5} Main St`, lat: 40 + i, lng: -75 + i },
+        //         reviews: [{ id: `r10${i + 5}`, txt: `Review for Stay ${i + 5}`, rate: (i % 5) + 1, by: { _id: `u10${i + 5}`, fullname: `Reviewer ${i + 5}`, imgUrl: profile } }],
+        //         likedByUsers: [`user${i + 5}`],
+        //     })),
 
-        ]
+        
         saveToStorage(STORAGE_KEY, stays)
     }
 }
