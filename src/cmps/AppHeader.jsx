@@ -20,7 +20,6 @@ export function AppHeader() {
 	const navigate = useNavigate()
 	const [isScrolled, setIsScrolled] = useState(false);
 	const location = useLocation()
-	console.log(location.pathname)
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 70) {
@@ -58,7 +57,7 @@ export function AppHeader() {
 	return (
 		<>
 			<header className="app-header full main-container">
-				<section className='header-content flex'>
+				<section className='header-content flex' style={(location.pathname.length > 1) ? { maxWidth: "1120px", justifySelf: "center" } : {}}>
 					<section className='logo'>
 						<NavLink to="/" className="">
 							<div className='flex'>
@@ -67,26 +66,28 @@ export function AppHeader() {
 							</div>
 						</NavLink>
 					</section>
-					{location.pathname.length > 1 || isScrolled ? <section className='small-container'>
+					{location.pathname.includes('/det' || '/boo') || isScrolled ? <section className='small-container'>
 						<SmallSearch />
 					</section> :
 						<section>
 							<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter} />
 						</section>}
-					 <article className='btns-panel'>
-			 <div className='globe'>	
-				<img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg" alt="" />
-				</div>
-			<button className='flex menu'>
-						<div className='burger'>
-							<img src={burger} alt="" />
+					<article className='btns-panel'>
+						<div className='globe'>
+
+							<img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg" alt="" />
+
 						</div>
-						<div className='avatar'>
-							<img src={avtar} alt="" />
-						</div>
-					</button>
-				 </article>
-			</section>
+						<button className='flex menu'>
+							<div className='burger'>
+								<img src={burger} alt="" />
+							</div>
+							<div className='avatar'>
+								<img src={avtar} alt="" />
+							</div>
+						</button>
+					</article>
+				</section>
 			</header>
 			{location.pathname.length === 1  && <StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />}
 		</>

@@ -14,29 +14,34 @@ export function SearchBar({ setFilter, filter }) {
     }
     function onSubmit(ev) {
         ev.preventDefault()
+        onCloseModal() 
         setFilter(filterByToEdit)
     }
 
     function onOpenModal() {
-        setIsOpen(prevIsOpen => !prevIsOpen)
+     
+        setIsOpen(true)
+    }
+    function onCloseModal() {
+        setIsOpen(false)
     }
 
     return (
-        <section >
+        <section>
             <form action="" className="flex search-bar" onSubmit={onSubmit}>
 
                 <div className='input-container flex'>
 
                     <label htmlFor="where">
                         <div>Where</div>
-                        <input type="text" id="where" placeholder="Search destination" name='where' value={filterByToEdit.where} onChange={onHandleChange} />
+                        <input type="text" id="where" placeholder="Search destination" name='where' value={filterByToEdit.where} onChange={onHandleChange} onFocus={onCloseModal} />
                     </label>
 
                 </div>
                 <div className='input-container flex'>
                     <label htmlFor="checkIn" >
                         <div>Check in</div>
-                        <input type="text" id="checkIn" placeholder="Add dates" name='checkIn' value={filterByToEdit.checkIn} onChange={onHandleChange} onClick={onOpenModal} />
+                        <input type="text" id="checkIn" placeholder="Add dates" name='checkIn' value={filterByToEdit.checkIn} onChange={onHandleChange} onFocus={onOpenModal} />
 
                     </label>
 
@@ -44,7 +49,7 @@ export function SearchBar({ setFilter, filter }) {
                 <div className='input-container flex'>
                     <label htmlFor="checkOut">
                         <div>Check out</div>
-                        <input type="text" id="checkOut" placeholder="Add dates" name='checkOut' value={filterByToEdit.checkOut} onChange={onHandleChange} onClick={onOpenModal} />
+                        <input type="text" id="checkOut" placeholder="Add dates" name='checkOut' value={filterByToEdit.checkOut} onChange={onHandleChange} onFocus={onOpenModal} />
                     </label>
 
                 </div>
@@ -52,13 +57,15 @@ export function SearchBar({ setFilter, filter }) {
                     <label htmlFor="guests">
                         <div>Who</div>
                         {/* <input type="text" id="who" placeholder="Add guests" name='who' value={filterByToEdit.guests} onChange={onHandleChange}/> */}
-                        <input type="number" id="guests" placeholder="Add guests" name='guests' value={filterByToEdit.guests} onChange={onHandleChange} />
-
+                        <input type="number" id="guests" placeholder="" name='guests' value={filterByToEdit.guests} onChange={onHandleChange} onFocus={onCloseModal} />
                     </label>
                     <div className="btn-container">
                         <button>
-                            <div className='search-icon'>
+                            <div className='search-icon flex'>
                                 <img src={searchicon} alt="" />
+                               <span>
+                               Search
+                                </span> 
                             </div>
                         </button>
                     </div>
