@@ -1,12 +1,31 @@
 .stay-filter {
     display: "flex";
     justify-content: "space-between";
-    position: sticky;
-    top: 80px;
-    z-index: 100;
     overflow-x: hidden;
     background-color: #fff;
-    margin-bottom: 10px;
+
+    &.fixed {
+        position: sticky;
+        top: 80px;
+        z-index: 100;
+        // background-color: white;
+        // /* Ensure it's visible */
+    }
+
+    /* Full-width shadow effect */
+    &.fixed::after {
+        content: "";
+        position: fixed;
+        /* Ensures full-width effect */
+        top: 173.27px;
+        /* Align with the sticky element */
+        left: 0;
+        width: 100vw;
+        /* Extend across the entire viewport */
+        height: 8px;
+        /* Red shadow effect */
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 0px;
+    }
 
     .icon-filter {
         grid-column: 2;
@@ -26,6 +45,7 @@
             width: fit-content;
             scrollbar-width: none;
             background-color: #fff;
+            padding: 22px 0px;
 
             ::-webkit-scrollbar {
                 display: none;
@@ -72,13 +92,8 @@
 
                 &.selected {
                     border-bottom: 2px solid black;
-                    color: #222222;
                 }
-
             }
-
-            padding-top: 30px;
-
         }
 
         .stay-filter.scrolled {
@@ -111,13 +126,13 @@
         /* Positioning Buttons Correctly */
         .left-arrow {
             left: 0;
-            transform: translateY(-25%) translateX(10%);
+            transform: translateY(-50%) translateX(10%);
             z-index: 1
         }
 
         .right-arrow {
             right: 20px;
-            transform: translateY(-25%) translateX(-10%);
+            transform: translateY(-50%) translateX(-10%);
             z-index: 1;
         }
 
@@ -175,7 +190,7 @@
     font-size: 12px;
     align-self: center;
     position: relative;
-    top: 5%;
+    top: -5%;
     right: 0.7%;
 
 
