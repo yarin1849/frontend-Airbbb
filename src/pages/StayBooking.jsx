@@ -4,7 +4,7 @@ import { StayBookingModal } from "../cmps/StayBookingModal"
 import { useNavigate, useParams } from 'react-router-dom';
 import { loadStay } from "../store/actions/stay.actions";
 import { useSelector } from "react-redux";
-
+import { saveToStorage, loadFromStorage } from "../services/util.service"
 
 const images = [
     {
