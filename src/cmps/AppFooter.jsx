@@ -21,7 +21,7 @@ export function AppFooter() {
 			{/* <hr className="footer-divider" /> */}
 			<div className="footer-content">
 				<div className="footer-left">
-					<span>&copy; 2025 Airbnb, Inc.</span>
+					<span>&copy; 2025 Airbbb, Inc.</span>
 					<span>• <a href="#">Terms</a></span>
 					<span>• <a href="#">Sitemap</a></span>
 					<span>• <a href="#">Privacy</a></span>

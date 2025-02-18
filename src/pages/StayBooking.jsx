@@ -45,7 +45,7 @@ export function StayBooking() {
                         <h2>This is a rare find.</h2>
                         <span>Bros Lee's place is usually booked.</span>
                     </div>
-                    <div>
+                    <div className="diamond-tag">
                         <img src={images[4]?.src} />
                     </div>
                 </div>
@@ -58,11 +58,12 @@ export function StayBooking() {
                 </div>
                 <div className="booking-guests">
                     <h3>Guests</h3>
-                    <span>2</span>
+                    <span>2 guest</span>
                 </div>
                 <hr></hr>
+                <div className=""></div>
             </div>
-            
+
             {/* <div className="booking-user-details-not-connected">
                 <h3>Welcome back, Yarin</h3>
                 <img src={images[1]?.src} />
