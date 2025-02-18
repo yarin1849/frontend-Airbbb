@@ -23,7 +23,6 @@ window.cs = stayService
 //         ,
 //         ,
 async function query(filterBy = { where: '', checkIn: '', checkOut: '', guests: 0, label: '' }) {
-    console.log(filterBy)
     var stays = await storageService.query(STORAGE_KEY)
     const { where, guests, label } = filterBy
     console.log('query filterBy label', label)
@@ -48,7 +47,7 @@ async function query(filterBy = { where: '', checkIn: '', checkOut: '', guests: 
     //         (stay1[sortField] - stay2[sortField]) * +sortDir)
     // }
     if (label && label !== 'No filter') {
-        stays = stays.filter(stay => stay.labels.includes(label))
+        stays = stays.filter(stay => stay.type.includes(label))
     }
 
     // stays = stays.map(({ _id, type, price, host, imgUrls }) => ({ _id, type, price, host, imgUrls }))

@@ -25,6 +25,7 @@
 @import "pages/StayDetails";
 @import "pages/StayBooking";
 @import "pages/ReserveStatus";
+@import "pages/Dashboard";
 
 // Components
 @import "cmps/list";
@@ -51,3 +52,4 @@
 @import "cmps/StayList";
 @import "cmps/StayPreview";
 @import "cmps/DayPicker";
+@import "cmps/ReservationStatus";

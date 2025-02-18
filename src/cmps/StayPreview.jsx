@@ -47,6 +47,7 @@ export function StayPreview({ stay }) {
             }
         }
     }, [])
+    const address = (stay?.loc?.address?.length > 20) ? stay.loc.address.slice(0, 25) + '...' : stay?.loc?.address
 
     return (
         <article className="preview">
@@ -67,9 +68,6 @@ export function StayPreview({ stay }) {
                 allowSlidePrev={true}
                 className="my-swiper"
             >
-                {/* <SwiperSlide><img src={image} alt="Stay 1" /></SwiperSlide>
-                <SwiperSlide><img src={image} alt="Stay 2" /></SwiperSlide>
-                <SwiperSlide><img src={image} alt="Stay 3" /></SwiperSlide> */}
                  {stay.imgUrls && stay.imgUrls.length > 0 ? (
                     stay.imgUrls.map((imgSrc, index) => (
                         <SwiperSlide key={index}>
@@ -86,24 +84,14 @@ export function StayPreview({ stay }) {
             <section className="preview-text">
                 <img src="https://res.cloudinary.com/dswenk4wc/image/upload/v1739610424/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgYXJpYS1oaWRkZW49InRydWUiIHJvbGU9InByZXNlbnRhdGlvbiIgZm9jdXNhYmxlPSJmYWxzZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyBmaWxsOiB_1_p4bb2a.svg" alt="" className="heart-img"/>
                 <div className="preview-text-par">
-                    {/* {stay?.host && (
-                        <p className="pewview-text-header">
-                            Hosted by: <span>{stay.host.fullname}</span>
-                        </p>
-                    )}
-                    <p>Lorem ipsum dolor sit.</p>
-                    <p>Lorem ipsum dolor sit.</p>
-                    <p>
-                        Price: <span>${stay?.price || "N/A"}</span>
-                    </p> */}
-                    <p className="preview-text-bold preview-text-first">{stay.loc.country}</p>
+                    <p className="preview-text-bold preview-text-first">{address}</p>
                     <p className="gray">{stay.host.fullname}</p>
                     <p className="preview-date gray">1-6 May</p>
-                    <p className="preview-text-last"><span className="preview-text-bold">{stay.price}</span> night</p>
+                    <p className="preview-text-last"><span className="preview-text-bold">${stay.price}</span> night</p>
                 </div>
                 <div className="rating">
                     <img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739453965/asset_23_rlrre4.svg" alt="" />
-                    <span className="rating-text">5.0</span>
+                    <span className="rating-text">{(Math.random()*2 +2.5).toFixed(2)}</span>
                 </div>
             </section>
         </article>
