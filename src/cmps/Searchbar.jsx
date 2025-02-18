@@ -75,7 +75,7 @@ export function SearchBar({ setFilter, filter }) {
             {isOpen && <article className="date-modal">
                 <DatePickerModal />
             </article>}
-                <WhereModal/>
+                {/* <WhereModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit}/> */}
         </section>
     )
 }
