@@ -1,0 +1,107 @@
+    .stay-booking-modal {
+        display: flex;
+        flex-direction: column;
+        width: 465.66px;
+        // height: auto;
+        justify-self: end;
+        color: $clr2;
+        position: sticky;
+        top: 270px; //change after the header changing
+    
+        margin: 0 0 88px;
+        padding: 24px;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+        
+        .stay-details-container{
+            display: flex;
+            padding-bottom: 18px;
+            .stay-img{
+                width: 25%;
+                img{
+                    // object-fit: cover;
+                    border-radius: 12px;
+                    // width: 50%;
+                    height: 10vh;
+                }
+            }
+
+            
+            .stay-details{
+
+                // .stay-details-text{
+                //     line-height: 1;
+                // }
+
+                .stay-details-name{
+                    font-weight: 500;
+                }
+            }
+
+
+            .stay-details{
+                // background-color: aqua;
+                align-items: center;
+                margin-right: 0;
+                // margin-bottom: 10px;
+                // line-height: 1;
+                // justify-items: start;
+
+                .stay-details-reviews{
+                    span img{
+                        width: 12px;
+                    }
+
+                    span{
+                        font-size: 14px;
+                        padding: 2px;
+
+                    }
+                    .reviews-score{
+                        font-weight: 500;
+
+                    }
+
+                    .reviews-number{
+                    }
+                    
+                }
+
+                // .reserve-details-container{
+                //     background-color: antiquewhite;
+                //     h2{
+                //         color: blue;
+                //     }
+
+                // }
+            }
+        }
+
+
+        .pricing-calculate {
+            margin-top: -2px;
+            font-size: 16px;
+    
+            div {
+                display: flex;
+                justify-content: space-between;
+                padding: 5px;
+                
+                .nightly-rate-calc {
+                    text-decoration: underline;
+    
+                }
+    
+                .nightly-service-fee {
+                    text-decoration: underline;
+                    margin-bottom: 10px;
+                }
+            }
+            
+            .total{
+                margin-top: 14px;
+                font-weight :500;
+            }
+        }
+    }

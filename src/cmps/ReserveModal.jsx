@@ -16,7 +16,7 @@ export function ReserveModal({ stay }) {
 
     const nightlyRate = stay.price
     const nights = 7
-    const fee = stay.price * 0.1
+    const fee = parseInt(stay.price * 0.12)
     const totalPrice = nightlyRate * nights + fee
 
     const handleMouseMove = (ev) => {
