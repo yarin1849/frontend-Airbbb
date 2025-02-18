@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { logout } from '../store/actions/user.actions'
 import airbnblogo from '../assets/img/airbnblogo.svg'
+import airbbblogo from '../assets/img/airbbb.png'
 import burger from '../assets/img/burger.svg'
 import avtar from '../assets/img/avtar.svg'
 import { SearchBar } from './Searchbar'
@@ -65,7 +66,7 @@ export function AppHeader() {
 						<NavLink to="/" className="">
 							<div className='flex'>
 
-								<img src={airbnblogo} alt="" />
+								<img src={airbbblogo} alt="" />
 							</div>
 						</NavLink>
 					</section>

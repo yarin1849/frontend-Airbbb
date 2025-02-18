@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { makeLorem } from "../services/util.service";
 
 const images = [
     {
@@ -16,16 +15,17 @@ const images = [
     }
 ]
 
-export function StayDescription() {
+
+export function StayDescription({stay}) {
     const [isExpanded, setIsExpanded] = useState(false)
-    const fullText = makeLorem(200)
+    const fullText = stay.summary
     const maxLength = 560
     const reviews = 123
-    const displayedText = isExpanded ? fullText : fullText.slice(0, maxLength) + (fullText.length > maxLength ? " ..." : "");
+    // const displayedText = isExpanded ? fullText : fullText.slice(0, maxLength) + (fullText.length > maxLength ? " ..." : "");
     return (
         <div className="stay-description">
             <div className="stay-description-title">
-                <h2>{makeLorem(5)}</h2>
+                <h2>{stay.type}</h2>
                 <p>6 guests · 3 bedrooms · 3 beds · 3 baths</p>
             </div>
             <div className="review-container">
@@ -59,13 +59,14 @@ export function StayDescription() {
                 <div className="host-info">
                     {/* <img src="https://via.placeholder.com/40" alt="Host" className="host-avatar" /> */}
                     <div>
-                        <h3>Hosted by Yarin</h3>
-                        <p className="host-subtitle">Superhost · 8 years hosting</p>
+                        <h3>Hosted by {stay.host.fullname}</h3>
+                        {/* is super host???????? */}
+                        <p className="host-subtitle">About host: {stay.host.about}</p>
                     </div>
                 </div>
             </div>
             <div className="text-description">
-                <p>{displayedText}</p>
+                <p>{fullText}</p>
                 {fullText.length > maxLength && (
                     <button className="btn-description" onClick={() => setIsExpanded(!isExpanded)}>
                         {isExpanded ? "Show less" : "Show more"}

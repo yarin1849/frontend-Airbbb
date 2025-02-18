@@ -25,7 +25,7 @@ export function StayList({ stays, onRemoveStay, onUpdateStay }) {
     function onHandleClick(stayId) {
         navigate(`/details/${stayId}`)
     }
-
+console.log(stays)
     return <section>
         {/* <StayFilter filterBy={filterBy} setFilterBy={setFilterBy} /> */}
         <ul className="stay-list">
