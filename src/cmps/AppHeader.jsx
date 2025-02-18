@@ -21,7 +21,6 @@ export function AppHeader() {
 	const navigate = useNavigate()
 	const [isScrolled, setIsScrolled] = useState(false);
 	const location = useLocation()
-	console.log(location.pathname)
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 70) {
@@ -70,7 +69,7 @@ export function AppHeader() {
 							</div>
 						</NavLink>
 					</section>
-					{location.pathname.length > 1 || isScrolled ? <section className='small-container'>
+					{location.pathname.includes('/det' || '/boo') || isScrolled ? <section className='small-container'>
 						<SmallSearch />
 					</section> :
 						<section>

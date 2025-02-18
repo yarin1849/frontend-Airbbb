@@ -1,15 +1,17 @@
 .search-bar {
     margin: auto;
-    margin-top: 80px;
+    margin-top: 72px;
     max-height: rem(66px);
     width: rem(850px);
-    margin-bottom: 0;
+    margin-bottom: 8px;
     align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.12) 1px 6px 16px;
-  
+    box-shadow: rgba(0, 0, 0, 0.12) 1px 2px 16px;
+
     margin-bottom: 18px;
     border: 1px solid $gray3;
     border-radius: 3rem;
+
+
 
     .input-container {
         display: flex;
@@ -32,6 +34,12 @@
             height: 46px;
             border-radius: 50%;
             margin-left: 80px;
+            font-size: 1rem;
+            overflow: hidden;
+
+            & span {
+                margin-left: 13px;
+            }
 
             &:hover {
                 background-color: $clrd1;
@@ -39,7 +47,8 @@
 
             .search-icon {
                 width: 1.2em;
-                place-self: center;
+                margin-left: 3px;
+                // place-self: center;
             }
         }
 
@@ -49,7 +58,8 @@
             height: 2rem;
             background-color: $gray2;
         }
-        &:has(+.input-container:hover)::after{
+
+        &:has(+.input-container:hover)::after {
             display: none;
         }
     }
@@ -105,6 +115,19 @@
             outline: none;
         }
     }
+
+    &:focus-within {
+        .input-container .btn-container button {
+            width: 111.66px;
+            margin-left: 0;
+            border-radius: 40px;
+        }
+
+        .input-container>input:not(:focus-visible) .input-container {
+            background-color: $gray3;
+        }
+    }
+
 }
 
 .date-modal {
@@ -113,7 +136,7 @@
     background-color: white;
     margin-left: 240px;
     border-radius: 10px;
-
+    box-shadow: rgba(0, 0, 0, 0.12) 1px 2px 16px;
 }
 
 .rdp-root {
@@ -126,4 +149,32 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px !important;
     display: inline-block !important;
     padding: 24px 32px 16px !important;
+}
+
+.where-modal {
+    position: fixed;
+    top: 155px;
+    background-color: white;
+    border-radius: 20px;
+    width: 450px;
+    max-height: 428px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.12) 1px 2px 16px;
+
+    article {
+        padding: 14px 22px 10px !important;
+        border-radius: 15px;
+        margin: 15px;
+        font-size: 1em;
+       
+
+        span {
+            color: $gray5;
+            font-size: 0.8rem;
+        }
+
+        &:hover {
+            background-color: $gray3;
+        }
+    }
 }
