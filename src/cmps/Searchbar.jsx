@@ -1,12 +1,13 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { DatePickerModal } from './DayPickerModal'
+import { WhereModal } from './WhereModal'
 import searchicon from '../assets/img/searchicon.svg'
 export function SearchBar({ setFilter, filter }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filter)
     const [isOpen, setIsOpen] = useState(false)
 
-   
+
     function onHandleChange({ target }) {
         const field = target.name
         const value = target.value
@@ -14,12 +15,11 @@ export function SearchBar({ setFilter, filter }) {
     }
     function onSubmit(ev) {
         ev.preventDefault()
-        onCloseModal() 
+        onCloseModal()
         setFilter(filterByToEdit)
     }
 
     function onOpenModal() {
-     
         setIsOpen(true)
     }
     function onCloseModal() {
@@ -34,7 +34,8 @@ export function SearchBar({ setFilter, filter }) {
 
                     <label htmlFor="where">
                         <div>Where</div>
-                        <input type="text" id="where" placeholder="Search destination" name='where' value={filterByToEdit.where} onChange={onHandleChange} onFocus={onCloseModal} />
+                        <input type="search" id="where" placeholder="Search destination" name='where' value={filterByToEdit.where} onChange={onHandleChange} onFocus={onCloseModal} />
+                        
                     </label>
 
                 </div>
@@ -42,7 +43,6 @@ export function SearchBar({ setFilter, filter }) {
                     <label htmlFor="checkIn" >
                         <div>Check in</div>
                         <input type="text" id="checkIn" placeholder="Add dates" name='checkIn' value={filterByToEdit.checkIn} onChange={onHandleChange} onFocus={onOpenModal} />
-
                     </label>
 
                 </div>
@@ -63,9 +63,9 @@ export function SearchBar({ setFilter, filter }) {
                         <button>
                             <div className='search-icon flex'>
                                 <img src={searchicon} alt="" />
-                               <span>
-                               Search
-                                </span> 
+                                <span>
+                                    Search
+                                </span>
                             </div>
                         </button>
                     </div>
@@ -75,6 +75,7 @@ export function SearchBar({ setFilter, filter }) {
             {isOpen && <article className="date-modal">
                 <DatePickerModal />
             </article>}
+                <WhereModal/>
         </section>
     )
 }

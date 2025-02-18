@@ -36,9 +36,11 @@
             margin-left: 80px;
             font-size: 1rem;
             overflow: hidden;
-            & span{
+
+            & span {
                 margin-left: 13px;
             }
+
             &:hover {
                 background-color: $clrd1;
             }
@@ -134,7 +136,7 @@
     background-color: white;
     margin-left: 240px;
     border-radius: 10px;
-    
+    box-shadow: rgba(0, 0, 0, 0.12) 1px 2px 16px;
 }
 
 .rdp-root {
@@ -147,4 +149,32 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px !important;
     display: inline-block !important;
     padding: 24px 32px 16px !important;
+}
+
+.where-modal {
+    position: fixed;
+    top: 155px;
+    background-color: white;
+    border-radius: 20px;
+    width: 450px;
+    max-height: 428px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.12) 1px 2px 16px;
+
+    article {
+        padding: 14px 22px 10px !important;
+        border-radius: 15px;
+        margin: 15px;
+        font-size: 1em;
+       
+
+        span {
+            color: $gray5;
+            font-size: 0.8rem;
+        }
+
+        &:hover {
+            background-color: $gray3;
+        }
+    }
 }
