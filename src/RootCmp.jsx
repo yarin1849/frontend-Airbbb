@@ -19,6 +19,7 @@ import { LoginSignup } from './pages/LoginSignup.jsx'
 import { Login } from './pages/Login.jsx'
 import { Signup } from './pages/Signup.jsx'
 import { AddStay } from './pages/AddStay.jsx'
+import { ReserveStatus } from './pages/ReserveStatus.jsx'
 
 export function RootCmp() {
     return (
@@ -30,6 +31,7 @@ export function RootCmp() {
                 <Routes>
                     <Route path="" element={<StayIndex />} />
                     <Route path="/details/:stayId" element={<StayDetails />} />
+                    <Route path="/reserve-status" element={<ReserveStatus />} />
                     <Route path="/addStay" element={<AddStay />} />
                     <Route path="/:stayId/booking" element={<StayBooking />} />
                     {/* <Route path="user/:id" element={<UserDetails />} /> */}

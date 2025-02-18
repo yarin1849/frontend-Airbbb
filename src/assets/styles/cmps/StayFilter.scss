@@ -13,7 +13,7 @@
     }
 
     /* Full-width shadow effect */
-    &.fixed::before {
+    &.fixed::after {
         content: "";
         position: fixed;
         /* Ensures full-width effect */
@@ -24,7 +24,7 @@
         /* Extend across the entire viewport */
         height: 8px;
         /* Red shadow effect */
-        box-shadow: rgba(0, 0, 0, 0.15) 1px 1px 0px;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 0px;
     }
 
     .icon-filter {
