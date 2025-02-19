@@ -68,21 +68,21 @@ console.log(filterByToEdit)
 
                         <label htmlFor="where">
                             <div>Where</div>
-                            <input type="search" id="where" placeholder="Search destination" name='where' autocomplete="off" value={filterByToEdit.where} onChange={onHandleChange} onFocus={() => { onCloseModal('where'); onOpenModal('where') }} />
+                            <input type="search" id="where" placeholder="Search destination" name='where' autoComplete="off" value={filterByToEdit.where} onChange={onHandleChange} onFocus={() => { onCloseModal('where'); onOpenModal('where') }} />
                         </label>
 
                     </div>
                     <div className='input-container flex'>
                         <label htmlFor="checkIn" >
                             <div>Check in</div>
-                            <input type="text" id="checkIn" placeholder="Add dates" name='checkIn' autocomplete="off" value={filterByToEdit.checkIn} onChange={onHandleChange} onFocus={() => { onOpenModal('date'); onCloseModal('date') }} />
+                            <input type="text" id="checkIn" placeholder="Add dates" name='checkIn' autoComplete="off" value={filterByToEdit.checkIn} onChange={onHandleChange} onFocus={() => { onOpenModal('date'); onCloseModal('date') }} />
                         </label>
 
                     </div>
                     <div className='input-container flex'>
                         <label htmlFor="checkOut">
                             <div>Check out</div>
-                            <input type="text" id="checkOut" placeholder="Add dates" name='checkOut' autocomplete="off" value={filterByToEdit.checkOut} onChange={onHandleChange} onFocus={() => { { onOpenModal('date'); onCloseModal('date') } }} />
+                            <input type="text" id="checkOut" placeholder="Add dates" name='checkOut' autoComplete="off" value={filterByToEdit.checkOut} onChange={onHandleChange} onFocus={() => { { onOpenModal('date'); onCloseModal('date') } }} />
                         </label>
 
                     </div>
@@ -90,7 +90,7 @@ console.log(filterByToEdit)
                         <label htmlFor="guests">
                             <div>Who</div>
                             {/* <input type="text" id="who" placeholder="Add guests" name='who' value={filterByToEdit.guests} onChange={onHandleChange}/> */}
-                            <input type="number" id="guests" placeholder="" name='guests' autocomplete="off" value={filterByToEdit.guests.sum} onChange={onHandleChange} onFocus={() => { { onOpenModal('guests'); onCloseModal('guests') } }} />
+                            <input type="number" id="guests" placeholder="" name='guests' autoComplete="off" value={filterByToEdit.guests.sum} onChange={onHandleChange} onFocus={() => { { onOpenModal('guests'); onCloseModal('guests') } }} />
                         </label>
                         <div className="btn-container">
                             <button>
