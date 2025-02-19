@@ -61,7 +61,14 @@ export function ReserveModal({ stay }) {
             </div>
 
             <button
-                onClick={() => navigate(`/${stayId}/booking`)}
+                onClick={() => {
+                    const params = new URLSearchParams()
+                    params.set('checkin', checkIn)
+                    params.set('checkout', checkOut)
+                    params.set('guests', guests)
+
+                    navigate(`/${stayId}/booking?${params.toString()}`)
+                }}
                 className="reserve-button"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
@@ -69,6 +76,7 @@ export function ReserveModal({ stay }) {
             >
                 Reserve
             </button>
+
 
             <p className="disclaimer">You won’t be charged yet</p>
             <div className="pricing-calculate">

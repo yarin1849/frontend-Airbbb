@@ -1,0 +1,24 @@
+[
+    {
+      "_id": "r101",
+      "stayId": "s101",
+      "host": {
+        "_id": "h101",
+        "name": "John Doe"
+      },
+      "user": {
+        "_id": "u202",
+        "name": "Jane Smith"
+      },
+      "price": 250,
+      "status": "pending",
+      "location": {
+        "country": "Portugal",
+        "city": "Lisbon",
+        "address": "17 Kombo st",
+        "lat": -8.61308,
+        "lng": 41.1413
+      }
+    }
+  ]
+  

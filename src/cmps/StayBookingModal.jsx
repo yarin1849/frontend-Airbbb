@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 
 export function StayBookingModal({ stay }) {
-    console.log('stay', stay)
+    // console.log('stay', stay)
 
     // const { stayId } = useParams()
     // const stay = useSelector(storeState => storeState.stayModule.stay)

@@ -49,6 +49,7 @@ export function saveToStorage(key, value) {
 
 export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
+    // console.log('data', data)
     return (data) ? JSON.parse(data) : undefined
 }
 
@@ -81,7 +82,7 @@ export const categories = [
         name: 'Cabin',
         src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435613/732edad8-3ae0-49a8-a451-29a8010dcc0c_t8qlze.png'
     },
-    
+
     {
         name: 'Surfing',
         src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435540/957f8022-dfd7-426c-99fd-77ed792f6d7a_wlbwvq.png'
