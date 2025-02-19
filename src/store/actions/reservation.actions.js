@@ -1,6 +1,16 @@
 import { reservationService } from '../../services/reservation'
 import { store } from '../store'
-import { ADD_RESERVATION, REMOVE_RESERVATION, SET_RESERVATION, UPDATE_RESERVATION } from '../reducers/reservation.reducer'
+import { ADD_RESERVATION, REMOVE_RESERVATION, SET_RESERVATION, SET_RESERVATIONS, UPDATE_RESERVATION } from '../reducers/reservation.reducer'
+
+export async function loadReservations() {
+    try {
+        const reservations = await reservationService.query()
+        store.dispatch(getCmdSetReservations(reservations))
+    } catch (err) {
+        console.log('Cannot load reservation', err)
+        throw err
+    }
+}
 
 export async function loadReservation(reservationId) {
     try {
@@ -76,6 +86,13 @@ export async function updateReservation(reservation) {
 }
 
 // Command Creators:
+function getCmdSetReservations(reservations) {
+    return {
+        type: SET_RESERVATIONS,
+        reservations
+    }
+}
+
 function getCmdSetReservation(reservation) {
     return {
         type: SET_RESERVATION,

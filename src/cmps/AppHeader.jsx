@@ -26,11 +26,11 @@ export function AppHeader() {
 			if (window.scrollY > 70) {
 				setIsScrolled(true);
 				document.querySelector('.app-header').classList.add('fixed')
-				document.querySelector('.stay-filter').classList.add('fixed')
+				if(location.pathname.length === 1) document.querySelector('.stay-filter').classList.add('fixed')
 			} else {
 				setIsScrolled(false);
 				document.querySelector('.app-header').classList.remove('fixed')
-				document.querySelector('.stay-filter').classList.remove('fixed')
+				if(location.pathname.length === 1) document.querySelector('.stay-filter').classList.remove('fixed')
 			}
 		};
 
@@ -60,7 +60,7 @@ export function AppHeader() {
 	return (
 		<>
 			<header className="app-header full main-container">
-				<section className='header-content flex' style = {(location.pathname.length > 1) ? {maxWidth: "1120px", justifySelf: "center"} : {}}>
+				<section className='header-content flex' style = {(location.pathname.includes('/det' || '/boo')) ? {maxWidth: "1120px", justifySelf: "center"} : {}}>
 					<section className='logo'>
 						<NavLink to="/" className="">
 							<div className='flex'>

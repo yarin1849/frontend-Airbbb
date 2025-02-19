@@ -60,7 +60,7 @@ export function SearchBar({ setFilter, filter }) {
             }
         }
 
-console.log(filterByToEdit)
+// console.log(filterByToEdit)
         return (
             <section>
                 <form action="" className="flex search-bar" onSubmit={onSubmit}>

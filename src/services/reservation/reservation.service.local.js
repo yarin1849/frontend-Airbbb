@@ -72,16 +72,11 @@ async function addReservationMsg(reservationId, txt) {
 
 async function save(data) {
     var savedReservation
-    console.log('data', data)
 
     if (data._id) {
-        const reservationToSave = {
-            _id: data._id,
-        }
-        savedReservation = await storageService.put(STORAGE_KEY, reservationToSave)
+        savedReservation = await storageService.put(STORAGE_KEY, data)
     } else {
-
-        console.log('bobo');
+        console.log('data', data)
         const reservationToSave = {
             _id: makeId(), // after that need to connect the real stay.id
             host: {
@@ -114,7 +109,6 @@ async function save(data) {
 
 function _createReservations() {
     let reservations = loadFromStorage(STORAGE_KEY)
-    console.log('reservations', reservations)
     if (!reservations || !reservations.length) {
 
         reservations = [
