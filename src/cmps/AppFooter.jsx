@@ -1,24 +1,14 @@
-
-const images = [
-	{
-		name: "down-arrow",
-		src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_1_gn72pr.svg"
-	},
-	{
-		name: "i18n",
-		src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg"
-	},
-	{
-		name: "verify-icon",
-		src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_3_wx7hnd.svg"
-	}
-]
-
+import { useLocation } from "react-router"
 
 export function AppFooter() {
+
+	const location = useLocation()
+
+	const isNotFixed = ["/details", "/booking"].some(path => location.pathname.includes(path));
+
 	return (
-		<footer className="app-footer full">
-			{/* <hr className="footer-divider" /> */}
+		<footer className={`app-footer ${isNotFixed ? "non-fixed" : "fixed"}`}>
+			{/* <footer className="app-footer full"> */}
 			<div className="footer-content">
 				<div className="footer-left">
 					<span>&copy; 2025 Airbbb, Inc.</span>
@@ -52,3 +42,19 @@ export function AppFooter() {
 		</footer>
 	)
 }
+
+
+const images = [
+	{
+		name: "down-arrow",
+		src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_1_gn72pr.svg"
+	},
+	{
+		name: "i18n",
+		src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg"
+	},
+	{
+		name: "verify-icon",
+		src: "https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_3_wx7hnd.svg"
+	}
+]

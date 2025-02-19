@@ -53,6 +53,21 @@ export function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
+export function calculateGradient(event, isHovering, setGradient) {
+    if (!isHovering) setIsHovering(true);
+
+    const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
+    const xPos = ((event.clientX - left) / width) * 100;
+    const yPos = ((event.clientY - top) / height) * 100;
+
+    setGradient(`radial-gradient(circle at ${xPos}% ${yPos}%, rgb(255, 51, 102), #E61E6E)`);
+}
+
+export function resetGradient(setGradient) {
+    setGradient("linear-gradient(90deg, #FF3366, #E61E6E)");
+}
+
+
 export const categories = [
     {
         name: 'No filter',

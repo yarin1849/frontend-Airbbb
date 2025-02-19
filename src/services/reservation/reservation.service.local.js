@@ -72,6 +72,7 @@ async function addReservationMsg(reservationId, txt) {
 
 async function save(data) {
     var savedReservation
+    console.log('data', data)
 
     if (data._id) {
         const reservationToSave = {
@@ -79,15 +80,16 @@ async function save(data) {
         }
         savedReservation = await storageService.put(STORAGE_KEY, reservationToSave)
     } else {
+
+        console.log('bobo');
         const reservationToSave = {
-            _id: makeId(),
-            stayId: data.stayId,
+            _id: makeId(), // after that need to connect the real stay.id
             host: {
                 _id: "h101",
                 name: "John Doe"
             },
             user: {
-                _id: data.userId,
+                // _id: data.userId,
                 name: "Jane Smith"
             },
             price: 250,
@@ -99,11 +101,12 @@ async function save(data) {
                 lat: -8.61308,
                 lng: 41.1413
             },
-            checkin: "5/1/2025",
+            checkin: "5/5/2025",
             checkout: "5/6/2025"
         }
-
+        console.log('reservationToSave', reservationToSave)
         savedReservation = await storageService.post(STORAGE_KEY, reservationToSave)
+        console.log('savedReservation', savedReservation)
     }
     return savedReservation
 }
@@ -113,31 +116,32 @@ function _createReservations() {
     let reservations = loadFromStorage(STORAGE_KEY)
     console.log('reservations', reservations)
     if (!reservations || !reservations.length) {
-        // reservations = data
 
-        reservations = {
-            _id: makeId(),
-            stayId: "s101",
-            host: {
-                _id: "h101",
-                name: "John Doe"
-            },
-            user: {
-                _id: "u202",
-                name: "Jane Smith"
-            },
-            price: 250,
-            status: "pending", // 'pending', 'approved', 'rejected'
-            location: {
-                country: "Portugal",
-                city: "Lisbon",
-                address: "17 Kombo st",
-                lat: -8.61308,
-                lng: 41.1413
-            },
-            checkin: "5/1/2025",
-            checkout: "5/6/2025"
-        }
+        reservations = [
+            {
+                _id: makeId(),
+                stayId: "s101",
+                host: {
+                    _id: "h101",
+                    name: "John Doe"
+                },
+                user: {
+                    _id: "u202",
+                    name: "Jane Smith"
+                },
+                price: 250,
+                status: "pending", // 'pending', 'approved', 'rejected'
+                location: {
+                    country: "Portugal",
+                    city: "Lisbon",
+                    address: "17 Kombo st",
+                    lat: -8.61308,
+                    lng: 41.1413
+                },
+                checkin: "5/1/2025",
+                checkout: "5/6/2025"
+            }
+        ]
 
         saveToStorage(STORAGE_KEY, reservations)
     }

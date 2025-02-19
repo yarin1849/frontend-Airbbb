@@ -99,7 +99,7 @@ async function addStayMsg(stayId, txt) {
 function _createStays() {
     let stays = loadFromStorage(STORAGE_KEY)
     if (!stays || !stays.length) {
-        stays =  data
+        stays = data
         //     {
         //         _id: 's101',
         //         name: 'Ribeira Charming Duplex',
@@ -264,7 +264,7 @@ function _createStays() {
         //         likedByUsers: [`user${i + 5}`],
         //     })),
 
-        
+
         saveToStorage(STORAGE_KEY, stays)
     }
 }

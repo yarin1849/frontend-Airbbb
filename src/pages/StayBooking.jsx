@@ -16,7 +16,7 @@ export function StayBooking() {
     const checkin = searchParams.get("checkin") || "2025-02-19"
     const checkout = searchParams.get("checkout") || "2025-02-26"
     const guests = searchParams.get("guests") || "1"
-
+    const [isHovering, setIsHovering] = useState(false)
 
     const stay = useSelector((storeState) => storeState.stayModule.stay)
     const user = useSelector((storeState) => storeState.userModule.user) || { fullName: "Guest", email: "No email" }
@@ -26,17 +26,51 @@ export function StayBooking() {
         // console.log('loadStay(stayId)', loadStay(stayId))
     }, [stayId])
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const handleConfirmBooking = async () => {
         if (!stay) return
         // if (!stay || !user) return
 
         try {
-            const savedReservation = await dispatch(addReservation({ stayId: stay._id }))
+            const savedReservation = await dispatch(addReservation({}))
+            console.log('savedReservation', savedReservation)
+            alert(`Order Confirmed! 🎉\nReservation ID: ${savedReservation._id}`)
             // const savedReservation = await dispatch(addReservation({ stayId: stay._id, userId: user._id }))
-            navigate(`/order-confirmation/${savedReservation._id}`)
+            // navigate(`/order-confirmation/${savedReservation._id}`)
         } catch (err) {
             console.error("Failed to save reservation:", err)
+            alert("Something went wrong. Please try again.")
         }
+    }
+
+    // const handleConfirmBooking = async () => {
+    //     if (!stay) return
+    //     try {
+    //         const savedReservation = await addReservation({ stayId: stay._id, checkin, checkout, guests })
+    //         console.log('savedReservation', savedReservation)
+    //         alert(`Order Confirmed! 🎉\nReservation ID: ${savedReservation._id}`)
+    //     } catch (err) {
+    //         console.error("Failed to save reservation:", err)
+    //         alert("Something went wrong. Please try again.")
+    //     }
+    // }
+
+    const handleMouseMove = (ev) => {
+        if (!isHovering) setIsHovering(true)
+
+        const { left, top, width, height } = ev.currentTarget.getBoundingClientRect()
+        const xPos = ((ev.clientX - left) / width) * 100
+        const yPos = ((ev.clientY - top) / height) * 100
+
+        setGradient(`radial-gradient(circle at ${xPos}% ${yPos}%, rgb(255, 51, 102), #E61E6E)`)
+    }
+
+    const handleMouseLeave = () => {
+        setIsHovering(false)
+        setGradient("linear-gradient(90deg, #FF3366, #E61E6E)")
     }
 
     const formatDate = (dateString) => {
@@ -59,17 +93,24 @@ export function StayBooking() {
         }
     }
 
-
-
     return (
         <div className="stay-booking">
             <div className="booking-confirm-details">
                 <div className="booking-header">
-                    <button className="back-to-details-btn">
+                    <button className="back-to-details-btn" onClick={() => { navigate(`/details/${stayId}`) }}>
                         <ChevronLeft size={16} style={{ transform: "translate(-36.5%, -16%)" }} />
                     </button>
                     <div className="booking-main-title">
                         <h1>Confirm and Pay</h1>
+                    </div>
+                </div>
+                <div className="recommendation-container">
+                    <div className="recommendation-description">
+                        <span>This is a rare find.</span>
+                        <p>Bros Lee's place is usually booked.</p>
+                    </div>
+                    <div className="recommendation-tag">
+                        <img src={images[4]?.src} />
                     </div>
                 </div>
 
@@ -85,12 +126,13 @@ export function StayBooking() {
                         <span> {guests} {guests === "1" ? "guest" : "guests"}</span>
                     </div>
                     <hr />
-
                     <div className="confirm-container">
                         <button
                             onClick={handleConfirmBooking}
                             className="confirm-button"
-                            style={{ background: gradient }}>
+                            style={{ background: gradient }}
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={handleMouseLeave}>
                             Confirm and pay
                         </button>
                     </div>
@@ -100,7 +142,7 @@ export function StayBooking() {
             <div className="booking-stay-details">
                 <StayBookingModal stay={stay} />
             </div>
-        </div>
+        </div >
     )
 }
 

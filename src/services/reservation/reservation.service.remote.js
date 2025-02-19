@@ -19,6 +19,8 @@ async function remove(reservationId) {
     return httpService.delete(`reservation/${reservationId}`)
 }
 async function save(reservation) {
+    console.log('bobobo');
+
     var savedReservation
     if (reservation._id) {
         savedReservation = await httpService.put(`reservation/${reservation._id}`, reservation)

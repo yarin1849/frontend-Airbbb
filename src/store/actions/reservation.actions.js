@@ -24,7 +24,9 @@ export async function removeReservation(reservationId) {
 }
 
 // export async function addReservation(data) {
+
 //     try {
+//         console.log('bla');
 //         const savedReservation = await reservationService.save(data)
 //         console.log('savedReservation', savedReservation)
 //         store.dispatch(getCmdAddReservation(savedReservation))
@@ -35,18 +37,31 @@ export async function removeReservation(reservationId) {
 //     }
 // }
 
-export function addReservation(data) {
-    return async (dispatch) => {
-        try {
-            const savedReservation = await reservationService.save(data)
-            dispatch(getCmdAddReservation(savedReservation)) // Now dispatching a plain object
-            return savedReservation
-        } catch (err) {
-            console.error("Cannot add reservation", err)
-            throw err
-        }
+export async function addReservation(data) {
+
+    try {
+        const savedReservation = await reservationService.save(data)
+        store.dispatch(getCmdAddReservation(savedReservation)) // Now dispatching a plain object
+        return savedReservation
+    } catch (err) {
+        console.error("Cannot add reservation", err)
+        throw err
     }
 }
+
+// export const addReservation = (reservationData) => {
+//     return async (dispatch) => {
+//         try {
+//             const savedReservation = await reservationService.save(reservationData)
+//             dispatch({ type: "ADD_RESERVATION", reservation: savedReservation }) // ✅ Dispatching a plain object now
+//             return savedReservation
+//         } catch (err) {
+//             console.error("Cannot add reservation", err)
+//             throw err
+//         }
+//     }
+// }
+
 
 
 export async function updateReservation(reservation) {

@@ -72,8 +72,7 @@ export function ReserveModal({ stay }) {
                 className="reserve-button"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                style={{ background: gradient }}
-            >
+                style={{ background: gradient }}>
                 Reserve
             </button>
 
