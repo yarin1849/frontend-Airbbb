@@ -2,6 +2,7 @@ import wifi from '../assets/amenities-icons/wifi.svg'
 import kitchen from '../assets/amenities-icons/kitchen.svg'
 import sharedBeachAccess from '../assets/amenities-icons/shared-beach-access.svg'
 import airConditioner from '../assets/amenities-icons/air-conditioner.svg'
+import { DayPicker } from 'react-day-picker'
 
 export function StayAmenities() {
     return (

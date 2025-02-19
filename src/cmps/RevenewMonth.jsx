@@ -27,6 +27,7 @@ export const options = {
 
 
 export function RevenewMonth({reserves}) {
+    // console.log(reserves)
     const getLast12Months = () => {
         const months = []
         const currentDate = new Date()
@@ -56,7 +57,7 @@ export function RevenewMonth({reserves}) {
         const monthName = checkoutDate.toLocaleString('default', { month: 'long' })
 
         if (revenueByMonth[monthName] !== undefined) {
-            const price = parseFloat(reservation.totalPrice.replace(/[^0-9.]/g, ''))
+            const price = reservation.price
             revenueByMonth[monthName] += isNaN(price) ? 0 : price
         }
     })

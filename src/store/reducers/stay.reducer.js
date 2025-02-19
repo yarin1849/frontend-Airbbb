@@ -13,6 +13,7 @@ const initialState = {
 export function stayReducer(state = initialState, action) {
     var newState = state
     var stays
+
     switch (action.type) {
         case SET_STAYS:
             newState = { ...state, stays: action.stays }
@@ -27,6 +28,7 @@ export function stayReducer(state = initialState, action) {
             break
         case ADD_STAY:
             newState = { ...state, stays: [...state.stays, action.stay] }
+            // console.log('...state', ...state)
             break
         case UPDATE_STAY:
             stays = state.stays.map(stay => (stay._id === action.stay._id) ? action.stay : stay)
@@ -36,6 +38,7 @@ export function stayReducer(state = initialState, action) {
             newState = { ...state, stay: { ...state.stay, msgs: [...state.stay.msgs || [], action.msg] } }
             break
         default:
+            return state
     }
     return newState
 }

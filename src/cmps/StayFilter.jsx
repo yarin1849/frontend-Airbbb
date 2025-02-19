@@ -4,6 +4,7 @@ import debounce from 'lodash/debounce'
 import { categories } from '../services/util.service'
 import { stayService } from "../services/stay"
 
+import { useSearchParams } from 'react-router-dom'
 export function StayFilter({ filterBy, setFilterBy }) {
     const [filterToEdit, SetFilterToEdit] = useState(stayService.getDefaultFilter())
     const [selectedFilter, setSelectedFilter] = useState(null) // Track selected filter
@@ -14,6 +15,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
     const [itemsPerScroll, setItemsPerScroll] = useState(17)
     const [scrollAmount, setScrollAmount] = useState(992)
     const totalScrolls = Math.ceil(categories.length / itemsPerScroll)
+    const [searchParams, setSearchParams] = useSearchParams()
 
     const updateItemsPerScroll = () => {
         const screenWidth = window.innerWidth
@@ -74,7 +76,12 @@ export function StayFilter({ filterBy, setFilterBy }) {
     }, [filterToEdit])
 
     function onSetFilter(filterName) {
-        SetFilterToEdit({ ...filterToEdit, label: filterName })
+        setSearchParams(prevParams => {
+            const newParams = new URLSearchParams(prevParams)
+            newParams.set('type', filterName) // Correctly set the value
+            return newParams
+        })
+        SetFilterToEdit({ ...filterToEdit, type: filterName })
         setSelectedFilter(filterName)
     }
 

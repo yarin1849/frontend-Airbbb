@@ -2,17 +2,16 @@ import * as React from 'react'
 import { PieChart } from '@mui/x-charts/PieChart'
 
 export function ResevationListing({ reserves }) {
-    console.log(reserves)
     // ✅ Function to count listings
     const getListingCounts = (reserves) => {
         const listingCount = {}
 
         // Count occurrences of each listing
         reserves.forEach((reservation) => {
-            if (listingCount[reservation.listing]) {
-                listingCount[reservation.listing]++
+            if (listingCount[reservation.location.address]) {
+                listingCount[reservation.location.address]++
             } else {
-                listingCount[reservation.listing] = 1
+                listingCount[reservation.location.address] = 1
             }
         })
 

@@ -18,14 +18,9 @@ export const stayService = {
 }
 window.cs = stayService
 
-// ,
-//         
-//         ,
-//         ,
-async function query(filterBy = { where: '', checkIn: '', checkOut: '', guests: 0, label: '' }) {
+async function query(filterBy = { where: '', checkIn: '', checkOut: '', guests: {}, type: '' }) {
     var stays = await storageService.query(STORAGE_KEY)
-    const { where, guests, label } = filterBy
-    console.log('query filterBy label', label)
+    const { where, guests, type } = filterBy
 
     if (where) {
         const regex = new RegExp(filterBy.where, 'i')
@@ -46,8 +41,8 @@ async function query(filterBy = { where: '', checkIn: '', checkOut: '', guests: 
     //     stays.sort((stay1, stay2) =>
     //         (stay1[sortField] - stay2[sortField]) * +sortDir)
     // }
-    if (label && label !== 'No filter') {
-        stays = stays.filter(stay => stay.type.includes(label))
+    if (type && type !== 'No filter') {
+        stays = stays.filter(stay => stay.type.includes(type))
     }
 
     // stays = stays.map(({ _id, type, price, host, imgUrls }) => ({ _id, type, price, host, imgUrls }))
@@ -104,7 +99,7 @@ async function addStayMsg(stayId, txt) {
 function _createStays() {
     let stays = loadFromStorage(STORAGE_KEY)
     if (!stays || !stays.length) {
-        stays =  data
+        stays = data
         //     {
         //         _id: 's101',
         //         name: 'Ribeira Charming Duplex',
@@ -269,7 +264,7 @@ function _createStays() {
         //         likedByUsers: [`user${i + 5}`],
         //     })),
 
-        
+
         saveToStorage(STORAGE_KEY, stays)
     }
 }

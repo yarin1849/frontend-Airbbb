@@ -1,4 +1,6 @@
 .stay-amenities{
+    max-height: 30vh;
+    // max-height: 500px;
     img{
         display: inline-block;
         width: 24px;
@@ -36,18 +38,19 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         column-gap: 18px;
+        
+        .amenity {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        
+        .amenity > img {
+            align-self: flex-end; 
+        }
     }
     
-    .amenity {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 12px;
-    }
-    
-    .amenity > img {
-        align-self: flex-end; 
-    }
     
     
     
@@ -55,6 +58,7 @@
     hr{
         // border: #ddd 1px solid;
     }
+
 }
 
 

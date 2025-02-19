@@ -3,10 +3,10 @@
 export function ReservationStatus({reserves}) {
     const statusCount = [0, 0, 0]
     countReservsStatus(reserves)
-    function countReservsStatus({status}) {
+    function countReservsStatus(reserves) {
         reserves.forEach(reserve => {
-            if(reserve.status === 'APPROVED') statusCount[0]++
-            else if(reserve.status === 'DECLINED') statusCount[1]++
+            if(reserve.status === 'approved') statusCount[0]++
+            else if(reserve.status === 'declined') statusCount[1]++
             else statusCount[2]++
         })
     }

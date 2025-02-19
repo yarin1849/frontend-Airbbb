@@ -26,15 +26,15 @@
     }
 
     .status-approved {
-        color: green;
+        color: $green1;
     }
 
     .status-declined {
-        color: red;
+        color: $red1;
     }
 
     .status-pending {
-        color: rgb(255, 191, 0);
+        color: orange;
     }
 
     /* ✅ Dashboard Stats Layout Fix */
@@ -61,28 +61,33 @@
         justify-content: center;
         align-items: start;
     }
-
+    
     .stat-card h3 {
         font-size: rem(21.06px);
         font-weight: bold;
         margin-bottom: 10px;
     }
-
+    
+    .btn {
+        display: flex;
+        justify-content: center;
+        font-size: rem(14px);
+        gap: rem(5px);
+    }
     .approved-btn{
-        color: green;
-        border: 1px solid green;
-        border-radius: 1rem;
+        color: $green1;
+        height: rem(32px);
+        border: 1px solid $green2;
         &:hover{
             background-color: rgb(217, 241, 194);
         }
     } 
     .decline-btn{
-        color: red;
-        border: 1px solid red;
-        border-radius: 1rem;
-
+        color: $red1;
+        height: rem(32px);
+        border: 1px solid $red2;
         &:hover{
-            background-color: rgb(255, 176, 142);
+            background-color: $red2;
         }
     }
 }

@@ -9,7 +9,7 @@ export function SearchBar({ setFilter, filter }) {
     const [isOpenWhere, setIsOpenWhere] = useState(false)
     const [isOpenDate, setIsOpenDate] = useState(false)
     const [isOpenGuests, setIsOpenGuests] = useState(false)
-
+    // const [searchParams, setSearchParams] = useSearchParams()
 
     function onHandleChange({ target }) {
         const field = target.name
@@ -59,7 +59,7 @@ export function SearchBar({ setFilter, filter }) {
             }
         }
 
-console.log(filterByToEdit)
+// console.log(filterByToEdit)
         return (
             <section>
                 <form action="" className="flex search-bar" onSubmit={onSubmit}>

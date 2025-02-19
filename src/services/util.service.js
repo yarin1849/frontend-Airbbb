@@ -49,8 +49,24 @@ export function saveToStorage(key, value) {
 
 export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
+    // console.log('data', data)
     return (data) ? JSON.parse(data) : undefined
 }
+
+export function calculateGradient(event, isHovering, setGradient) {
+    if (!isHovering) setIsHovering(true);
+
+    const { left, top, width, height } = event.currentTarget.getBoundingClientRect();
+    const xPos = ((event.clientX - left) / width) * 100;
+    const yPos = ((event.clientY - top) / height) * 100;
+
+    setGradient(`radial-gradient(circle at ${xPos}% ${yPos}%, rgb(255, 51, 102), #E61E6E)`);
+}
+
+export function resetGradient(setGradient) {
+    setGradient("linear-gradient(90deg, #FF3366, #E61E6E)");
+}
+
 
 export const categories = [
     {
@@ -81,7 +97,7 @@ export const categories = [
         name: 'Cabin',
         src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435613/732edad8-3ae0-49a8-a451-29a8010dcc0c_t8qlze.png'
     },
-    
+
     {
         name: 'Surfing',
         src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435540/957f8022-dfd7-426c-99fd-77ed792f6d7a_wlbwvq.png'

@@ -86,5 +86,23 @@
             // min-height: 120px;
         }
     }
+
+    .date-picker-modal-details{
+        .rdp-root {
+            --rdp-accent-color: #222222; /* Change the accent color to indigo. */
+            --rdp-accent-background-color: #f7f7f7; /* Change the accent background color. */
+            --rdp-disabled-opacity: 0.9;
+            --rdp-outside-opacity: 0;
+
+            display: flex !important;
+            // flex-direction: row !important;
+            box-shadow: none !important;
+            margin-top: 20px;
+            position: static !important;
+            min-height: 460px !important;
+            max-width: 80px !important;
+            flex-wrap: nowrap !important;
+        }
+    }
 }
 
