@@ -38,7 +38,6 @@ export function stayReducer(state = initialState, action) {
             newState = { ...state, stay: { ...state.stay, msgs: [...state.stay.msgs || [], action.msg] } }
             break
         default:
-            console.log('hi');
             return state
     }
     return newState

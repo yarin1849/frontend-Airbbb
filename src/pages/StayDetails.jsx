@@ -12,6 +12,7 @@ import { StayDescription } from '../cmps/StayDescription'
 import { StayAmenities } from '../cmps/StayAmenities'
 import { ReserveModal } from '../cmps/ReserveModal'
 import GoogleMap from '../cmps/GoogleMap'
+import { DayPicker } from 'react-day-picker'
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -27,7 +28,6 @@ export function StayDetails() {
     loadStay(stayId)
   }, [stayId])
 
-  console.log(`Check-in: ${checkin}, Check-out: ${checkout}, Guests: ${guests}`)
 
   if (!stay) return <div>...loading</div>
 
@@ -47,6 +47,9 @@ export function StayDetails() {
             <div className='stay-info-content'>
               <StayDescription stay={stay} />
               <StayAmenities stay={stay} />
+              <div className="date-picker-modal-details">
+                <DayPicker captionLayout="label" numberOfMonths={2} dir="ltr" min={1} mode="range" showOutsideDays timeZone="Asia/Jerusalem" pagedNavigation fixedWeeks />
+              </div>
             </div>
             <div className='stay-booking-content'>
               <ReserveModal stay={stay} checkin={checkin} checkout={checkout} guests={guests} />

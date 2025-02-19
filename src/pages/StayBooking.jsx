@@ -35,7 +35,7 @@ export function StayBooking() {
         // if (!stay || !user) return
 
         try {
-            const savedReservation = await dispatch(addReservation({}))
+            const savedReservation = addReservation({})
             console.log('savedReservation', savedReservation)
             alert(`Order Confirmed! 🎉\nReservation ID: ${savedReservation._id}`)
             // const savedReservation = await dispatch(addReservation({ stayId: stay._id, userId: user._id }))
@@ -99,6 +99,7 @@ export function StayBooking() {
                 <div className="booking-header">
                     <button className="back-to-details-btn" onClick={() => { navigate(`/details/${stayId}`) }}>
                         <ChevronLeft size={16} style={{ transform: "translate(-36.5%, -16%)" }} />
+                        {/* לשנות את זה ל-a */}
                     </button>
                     <div className="booking-main-title">
                         <h1>Confirm and Pay</h1>
@@ -142,7 +143,7 @@ export function StayBooking() {
             <div className="booking-stay-details">
                 <StayBookingModal stay={stay} />
             </div>
-        </div >
+        </div>
     )
 }
 
