@@ -1,0 +1,22 @@
+.reserve-status {
+    display: flex;
+    flex-direction: column;
+    width: 100;
+    justify-content: space-evenly;
+    
+
+    div {
+        display: flex;
+        justify-content: space-between;
+    }
+    .approved{
+        color: red;
+    }
+    .declined{
+        color: green;
+    }
+    .pending{
+        color: orange;
+    }
+
+}
