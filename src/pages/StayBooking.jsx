@@ -39,14 +39,26 @@ export function StayBooking() {
         }
     }
 
-    const calculateNights = (checkin, checkout) => {
+    const formatDate = (dateString) => {
+        const date = new Date(dateString)
+        const options = { month: "short", day: "numeric" }
+        return date.toLocaleDateString("en-US", options)
+    }
+
+    const calculateFormattedDates = (checkin, checkout) => {
         const checkinDate = new Date(checkin)
         const checkoutDate = new Date(checkout)
-        const timeDifference = checkoutDate - checkinDate
-        const nights = timeDifference / (1000 * 60 * 60 * 24)
-        console.log('calculateNights', calculateNights)
-        return nights
+
+        const checkinMonth = checkinDate.toLocaleDateString("en-US", { month: "short" })
+        const checkoutMonth = checkoutDate.toLocaleDateString("en-US", { month: "short" })
+
+        if (checkinMonth === checkoutMonth) {
+            return `${formatDate(checkin)}-${checkoutDate.getDate()}`
+        } else {
+            return `${formatDate(checkin)} - ${formatDate(checkout)}`
+        }
     }
+
 
 
     return (
@@ -65,12 +77,12 @@ export function StayBooking() {
                     <h2>Your trip</h2>
                     <div className="booking-dates">
                         <h3>Dates</h3>
-                        {/* <span>Mar 1-6</span> */}
-                        <span>{calculateNights}</span>
+                        <span>{calculateFormattedDates(checkin, checkout)}</span>
+
                     </div>
                     <div className="booking-guests">
                         <h3>Guests</h3>
-                        <span>2 guests</span>
+                        <span> {guests} {guests === "1" ? "guest" : "guests"}</span>
                     </div>
                     <hr />
 
