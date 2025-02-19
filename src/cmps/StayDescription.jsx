@@ -15,11 +15,11 @@ const images = [
     }
 ]
 
-
+// console.log('user', user)
 export function StayDescription({ stay }) {
     const [isExpanded, setIsExpanded] = useState(false)
     const fullText = stay.summary
-    const maxLength = 560
+    const maxLength = 200
     const reviews = 123
     // const displayedText = isExpanded ? fullText : fullText.slice(0, maxLength) + (fullText.length > maxLength ? " ..." : "");
     return (
@@ -62,9 +62,17 @@ export function StayDescription({ stay }) {
                 <div className="host-info">
                     {/* <img src="https://via.placeholder.com/40" alt="Host" className="host-avatar" /> */}
                     <div>
-                        <h3>Hosted by {stay.host.fullname}</h3>
+                        <div className="host-img">
+                            <img src={"https://robohash.org/59985?set=set1"} />
+                        </div>
+                        <div className="host-description">
+                            <h3>Hosted by {stay.host.fullname}</h3>
+                            <span>Hosted by {stay.host.fullname}</span>
+                        </div>
+
                         {/* is super host???????? */}
-                        <p className="host-subtitle">About host: {stay.host.about}</p>
+                        {/* <p className="host-subtitle">About host: {stay.host.about}</p> */}
+                        <hr></hr>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,6 @@
 .stay-amenities{
+    // max-height: 80vh;
+    // max-height: 500px;
     img{
         display: inline-block;
         width: 24px;
@@ -36,18 +38,19 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         column-gap: 18px;
+        
+        .amenity {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        
+        .amenity > img {
+            align-self: flex-end; 
+        }
     }
     
-    .amenity {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 12px;
-    }
-    
-    .amenity > img {
-        align-self: flex-end; 
-    }
     
     
     
@@ -55,6 +58,28 @@
     hr{
         // border: #ddd 1px solid;
     }
+
+    .date-picker-modal-amenities {
+        margin-top: 20px; // Space between amenities and the calendar
+        padding: 0 20px;
+        
+        .rdp-root {
+            --rdp-accent-color: #222222;
+            --rdp-accent-background-color: #f7f7f7;
+            --rdp-disabled-opacity: 0.9;
+            --rdp-outside-opacity: 0;
+    
+            background: rgb(255, 255, 255) !important;
+            padding: 24px 32px 16px !important;
+            width: 100% !important;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px !important;
+            border-radius: 16px;
+        }
+    }
+    
+    
 }
 
 

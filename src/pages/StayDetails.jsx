@@ -11,6 +11,7 @@ import { StayGallery } from '../cmps/StayGallery'
 import { StayDescription } from '../cmps/StayDescription'
 import { StayAmenities } from '../cmps/StayAmenities'
 import { ReserveModal } from '../cmps/ReserveModal'
+import GoogleMap from '../cmps/GoogleMap'
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -51,6 +52,8 @@ export function StayDetails() {
               <ReserveModal stay={stay} checkin={checkin} checkout={checkout} guests={guests} />
             </div>
           </div>
+          <GoogleMap />
+
         </div>
       )}
     </section>
