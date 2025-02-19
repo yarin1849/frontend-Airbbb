@@ -31,7 +31,7 @@ export function StayBooking() {
         // if (!stay || !user) return
 
         try {
-            const savedReservation = await dispatch(addReservation({ stayId: stay._id }))
+            const savedReservation = addReservation({})
             // const savedReservation = await dispatch(addReservation({ stayId: stay._id, userId: user._id }))
             navigate(`/order-confirmation/${savedReservation._id}`)
         } catch (err) {

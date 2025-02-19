@@ -8,10 +8,10 @@ export function ResevationListing({ reserves }) {
 
         // Count occurrences of each listing
         reserves.forEach((reservation) => {
-            if (listingCount[reservation.listing]) {
-                listingCount[reservation.listing]++
+            if (listingCount[reservation.location.address]) {
+                listingCount[reservation.location.address]++
             } else {
-                listingCount[reservation.listing] = 1
+                listingCount[reservation.location.address] = 1
             }
         })
 

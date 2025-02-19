@@ -7,18 +7,26 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { loadReservations } from '../store/actions/reservation.actions'
 
-function createData(destination, host, checkin, checkout, booked, totalPrice, status) {
-    return { destination, host, checkin, checkout, booked, totalPrice, status }
-}
+// function createData(destination, host, checkin, checkout, booked, totalPrice, status) {
+//     return { destination, host, checkin, checkout, booked, totalPrice, status }
+// }
 
-const reserves = [
-    createData('Westin Kaanapali KORVN 2BR', 'Puki', '10/30/2023', ' 11/6/2023', 'Puki Norma', '$595', 'PENDING'),
-    createData('Barcelona', 'Isaac', '10/30/2023', ' 11/6/2023', 'papa jons', '$422202', 'approved'),
-    createData('madrid', 'Puki', '10/30/2023', ' 11/6/2023', 'Ronaldo', '$777', 'declined'),
-]
+// const reserves = [
+//     createData('Westin Kaanapali KORVN 2BR', 'Puki', '10/30/2023', ' 11/6/2023', 'Puki Norma', '$595', 'PENDING'),
+//     createData('Barcelona', 'Isaac', '10/30/2023', ' 11/6/2023', 'papa jons', '$422202', 'approved'),
+//     createData('madrid', 'Puki', '10/30/2023', ' 11/6/2023', 'Ronaldo', '$777', 'declined'),
+// ]
 
 export function ReserveStatus() {
+    const reserves = useSelector(storeState => storeState.reservationModule.reservations)
+    console.log(reserves)
+    useEffect(() => {
+        loadReservations()
+    }, [])
 
     return (
         <>
@@ -40,17 +48,17 @@ export function ReserveStatus() {
                         <TableBody>
                             {reserves.map((row) => {
                                 const statusClass = `status-${row.status.toLowerCase()}` // Convert to lowercase & add a prefix
-                                console.log(statusClass)
+                                // console.log(statusClass)
                                 return (
-                                    <TableRow key={row.destination}>
+                                    <TableRow key={row._id}>
                                         <TableCell component="th" scope="row">
-                                            {row.destination}
+                                            {row.location.address}
                                         </TableCell>
-                                        <TableCell align="right">{row.host}</TableCell>
+                                        <TableCell align="right">{row.host.name}</TableCell>
                                         <TableCell align="right">{row.checkin}</TableCell>
                                         <TableCell align="right">{row.checkout}</TableCell>
-                                        <TableCell align="right">{row.booked}</TableCell>
-                                        <TableCell align="right">{row.totalPrice}</TableCell>
+                                        <TableCell align="right">{row.user.name}</TableCell>
+                                        <TableCell align="right">{row.price}</TableCell>
                                         <TableCell align="right" className={statusClass}>{row.status}</TableCell>
                                     </TableRow>
                                 )

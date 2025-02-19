@@ -18,7 +18,7 @@ export const stayService = {
 }
 window.cs = stayService
 
-async function query(filterBy = { where: '', checkIn: '', checkOut: '', guests: 0, type: '' }) {
+async function query(filterBy = { where: '', checkIn: '', checkOut: '', guests: {}, type: '' }) {
     var stays = await storageService.query(STORAGE_KEY)
     const { where, guests, type } = filterBy
 

@@ -72,22 +72,18 @@ async function addReservationMsg(reservationId, txt) {
 
 async function save(data) {
     var savedReservation
-
+    
     if (data._id) {
-        const reservationToSave = {
-            _id: data._id,
-        }
-        savedReservation = await storageService.put(STORAGE_KEY, reservationToSave)
+        savedReservation = await storageService.put(STORAGE_KEY, data)
     } else {
+        console.log('data', data)
         const reservationToSave = {
-            _id: makeId(),
-            stayId: data.stayId,
+            // _id: makeId(),
             host: {
                 _id: "h101",
                 name: "John Doe"
             },
             user: {
-                _id: data.userId,
                 name: "Jane Smith"
             },
             price: 250,
@@ -103,7 +99,9 @@ async function save(data) {
             checkout: "5/6/2025"
         }
 
+        console.log(reservationToSave)
         savedReservation = await storageService.post(STORAGE_KEY, reservationToSave)
+        console.log(savedReservation)
     }
     return savedReservation
 }
@@ -111,11 +109,10 @@ async function save(data) {
 
 function _createReservations() {
     let reservations = loadFromStorage(STORAGE_KEY)
-    console.log('reservations', reservations)
     if (!reservations || !reservations.length) {
         // reservations = data
 
-        reservations = {
+        reservations = [{
             _id: makeId(),
             stayId: "s101",
             host: {
@@ -137,7 +134,7 @@ function _createReservations() {
             },
             checkin: "5/1/2025",
             checkout: "5/6/2025"
-        }
+        }]
 
         saveToStorage(STORAGE_KEY, reservations)
     }

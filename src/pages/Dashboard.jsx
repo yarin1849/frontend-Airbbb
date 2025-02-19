@@ -11,6 +11,10 @@ import { ReservationStatus } from '../cmps/ReservationStatus'
 import { ResevationListing } from '../cmps/ResevationListing'
 import { RevenewMonth } from '../cmps/RevenewMonth'
 import { makeId } from '../services/util.service'
+import { loadReservation, loadReservations, updateReservation } from '../store/actions/reservation.actions'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 // Function to generate random reservations
 function generateRandomReservations(count) {
@@ -52,16 +56,39 @@ function generateRandomReservations(count) {
 }
 
 export function Dashboard() {
-    const reserves = generateRandomReservations(50)
+    // const reserves = generateRandomReservations(50)
+
+
+    const reserves = useSelector(storeState => storeState.reservationModule.reservations)
+    useEffect(() => {
+        loadReservations()
+    }, [])
+
 
     function onStatusChange(updateStatus, todoId) {
-        const reserveToUpdate = reserves.filter(reserve => reserve._id === todoId)
-        reserveToUpdate.status = updateStatus
+    
+        // Find the specific reservation
+        const reserve = reserves.find(reserve => reserve._id === todoId)
+    
+        if (!reserve) {
+            console.error("Reservation not found")
+            return
+        }
+    
+        // Create a new object instead of mutating the existing one
+        const updatedReserve = { ...reserve, status: updateStatus }
+    
+        // Call the Redux action to update the store
+        updateReservation(updatedReserve)
     }
+    
 
-
+    if (!reserves) return <div>loading..........</div>
     return (
         <section className="dashboard">
+            <section>
+
+            </section>
             <div className="dashboard-header">Reservations</div>
 
             {/* Stats Section with Three Cards */}
@@ -72,11 +99,11 @@ export function Dashboard() {
                 </div>
                 <div className="stat-card">
                     <h3>Reservations status </h3>
-                    <ReservationStatus reserves={reserves}/>
+                    <ReservationStatus reserves={reserves} />
                 </div>
                 <div className="stat-card">
                     <h3>Reservations / listing</h3>
-                    <ResevationListing reserves={reserves}/>
+                    <ResevationListing reserves={reserves} />
                 </div>
             </section>
 
@@ -100,17 +127,17 @@ export function Dashboard() {
                             const statusClass = `status-${reserve.status.toLowerCase()}`
                             return (
                                 <TableRow key={reserve._id}>
-                                    <TableCell>{reserve.guest}</TableCell>
+                                    <TableCell>{reserve.user.name}</TableCell>
                                     <TableCell align="right">{reserve.checkin}</TableCell>
                                     <TableCell align="right">{reserve.checkout}</TableCell>
-                                    <TableCell align="right">{reserve.booked}</TableCell>
-                                    <TableCell align="right">{reserve.listing}</TableCell>
-                                    <TableCell align="right">{reserve.totalPrice}</TableCell>
+                                    <TableCell align="right">{reserve.host.name}</TableCell>
+                                    <TableCell align="right">{reserve.location.address}</TableCell>
+                                    <TableCell align="center">${reserve.price}</TableCell>
                                     <TableCell align="right" className={statusClass}>{reserve.status}</TableCell>
                                     <TableCell align="center" className='btn'>
                                         <Button className="approved-btn" onClick={() => onStatusChange('approved', reserve._id)}>approved</Button>
-                                        <Button className="decline-btn" onClick={() => onStatusChange('approved')}>Decline</Button>
-                                        </TableCell>
+                                        <Button className="decline-btn" onClick={() => onStatusChange('declined', reserve._id)}>Decline</Button>
+                                    </TableCell>
                                 </TableRow>
                             )
                         })}
