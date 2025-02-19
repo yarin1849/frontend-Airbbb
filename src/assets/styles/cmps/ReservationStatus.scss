@@ -10,10 +10,10 @@
         justify-content: space-between;
     }
     .approved{
-        color: red;
+        color: $red1;
     }
     .declined{
-        color: green;
+        color: $green1;
     }
     .pending{
         color: orange;

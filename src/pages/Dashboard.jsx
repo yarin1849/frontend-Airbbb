@@ -10,6 +10,7 @@ import { Button, Box } from '@mui/material';
 import { ReservationStatus } from '../cmps/ReservationStatus'
 import { ResevationListing } from '../cmps/ResevationListing'
 import { RevenewMonth } from '../cmps/RevenewMonth'
+import { makeId } from '../services/util.service'
 
 // Function to generate random reservations
 function generateRandomReservations(count) {
@@ -27,6 +28,7 @@ function generateRandomReservations(count) {
     const statuses = ['PENDING', 'APPROVED', 'DECLINED']
 
     return Array.from({ length: count }, () => {
+        const _id = makeId()
         const guest = guestNames[Math.floor(Math.random() * guestNames.length)]
         const host = hosts[Math.floor(Math.random() * hosts.length)]
         const listing = listings[Math.floor(Math.random() * listings.length)]
@@ -37,6 +39,7 @@ function generateRandomReservations(count) {
         const status = statuses[Math.floor(Math.random() * statuses.length)]
 
         return {
+            _id: _id,
             guest: guest,
             checkin: formatDate(checkinDate),
             checkout: formatDate(checkoutDate),
@@ -50,6 +53,12 @@ function generateRandomReservations(count) {
 
 export function Dashboard() {
     const reserves = generateRandomReservations(50)
+
+    function onStatusChange(updateStatus, todoId) {
+        const reserveToUpdate = reserves.filter(reserve => reserve._id === todoId)
+        reserveToUpdate.status = updateStatus
+    }
+
 
     return (
         <section className="dashboard">
@@ -87,20 +96,20 @@ export function Dashboard() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {reserves.map((row, index) => {
-                            const statusClass = `status-${row.status.toLowerCase()}`
+                        {reserves.map((reserve, index) => {
+                            const statusClass = `status-${reserve.status.toLowerCase()}`
                             return (
-                                <TableRow key={index}>
-                                    <TableCell>{row.Guest}</TableCell>
-                                    <TableCell align="right">{row.checkin}</TableCell>
-                                    <TableCell align="right">{row.checkout}</TableCell>
-                                    <TableCell align="right">{row.booked}</TableCell>
-                                    <TableCell align="right">{row.listing}</TableCell>
-                                    <TableCell align="right">{row.totalPrice}</TableCell>
-                                    <TableCell align="right" className={statusClass}>{row.status}</TableCell>
-                                    <TableCell align="center" >
-                                        <Button className="approved-btn">approved</Button>
-                                        <Button className="decline-btn">Decline</Button>
+                                <TableRow key={reserve._id}>
+                                    <TableCell>{reserve.guest}</TableCell>
+                                    <TableCell align="right">{reserve.checkin}</TableCell>
+                                    <TableCell align="right">{reserve.checkout}</TableCell>
+                                    <TableCell align="right">{reserve.booked}</TableCell>
+                                    <TableCell align="right">{reserve.listing}</TableCell>
+                                    <TableCell align="right">{reserve.totalPrice}</TableCell>
+                                    <TableCell align="right" className={statusClass}>{reserve.status}</TableCell>
+                                    <TableCell align="center" className='btn'>
+                                        <Button className="approved-btn" onClick={() => onStatusChange('approved', reserve._id)}>approved</Button>
+                                        <Button className="decline-btn" onClick={() => onStatusChange('approved')}>Decline</Button>
                                         </TableCell>
                                 </TableRow>
                             )
