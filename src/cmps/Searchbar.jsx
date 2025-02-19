@@ -90,7 +90,7 @@ console.log(filterByToEdit)
                         <label htmlFor="guests">
                             <div>Who</div>
                             {/* <input type="text" id="who" placeholder="Add guests" name='who' value={filterByToEdit.guests} onChange={onHandleChange}/> */}
-                            <input type="number" id="guests" placeholder="" name='guests' autocomplete="off" value={filterByToEdit.guests} onChange={onHandleChange} onFocus={() => { { onOpenModal('guests'); onCloseModal('guests') } }} />
+                            <input type="number" id="guests" placeholder="" name='guests' autocomplete="off" value={filterByToEdit.guests.sum} onChange={onHandleChange} onFocus={() => { { onOpenModal('guests'); onCloseModal('guests') } }} />
                         </label>
                         <div className="btn-container">
                             <button>

@@ -38,7 +38,7 @@ function getDefaultFilter() {
         where: '',
         checkIn: '',
         checkOut: '',
-        guests: 0,
+        guests: {},
         label: ''
     }
 }

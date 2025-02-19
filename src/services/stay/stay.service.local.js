@@ -33,7 +33,7 @@ async function query(filterBy = { where: '', checkIn: '', checkOut: '', guests: 
     }
 
     if (guests) {
-        stays = stays.filter(stay => stay.capacity >= guests)
+        stays = stays.filter(stay => stay.capacity >= guests.sum)
     }
     // if (minPrice) {
     //     stays = stays.filter(stay => stay.price >= minPrice)

@@ -8,7 +8,7 @@ export function GuestsModal({setFilterByToEdit, filterByToEdit}) {
     const [pets, setPets] = useState(0)
     useEffect(() => {
 
-        setFilterByToEdit(prevFilter => ({ ...prevFilter, guests: { adults, children, infants, pets } }))
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, guests: { adults, children, infants, pets, sum: adults+children+infants+pets } }))
 
     }, [adults, children, infants, pets])
 
