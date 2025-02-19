@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { DatePickerModal } from './DayPickerModal'
 import { WhereModal } from './WhereModal'
 import searchicon from '../assets/img/searchicon.svg'
+import { GuestsModal } from './GuestsModal'
 export function SearchBar({ setFilter, filter }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filter)
     const [isOpenWhere, setIsOpenWhere] = useState(false)
@@ -109,6 +110,9 @@ console.log(filterByToEdit)
                 </article>}
                 {isOpenWhere && <article className="where-modal">
                     <WhereModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit} />
+                </article>}
+                {isOpenGuests && <article className="where-modal">
+                <GuestsModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit}/>
                 </article>}
             </section>
         )

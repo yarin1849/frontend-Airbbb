@@ -13,12 +13,17 @@
 
 
 
+
     .input-container {
         display: flex;
         height: 66px;
         width: 140.5px;
         border-radius: 2rem;
         align-items: center;
+
+        &:focus-within .input-container:not(:focus-within) {
+            background-color: $gray1;
+        }
 
         &:hover {
 
@@ -166,7 +171,7 @@
         border-radius: 15px;
         margin: 15px;
         font-size: 1em;
-       
+
 
         span {
             color: $gray5;
@@ -175,6 +180,50 @@
 
         &:hover {
             background-color: $gray3;
+        }
+    }
+}
+
+.guests-modal {
+    position: fixed;
+    top: 155px;
+    background-color: white;
+    margin-left: 420px;
+    border-radius: 20px;
+    width: 430px;
+    max-height: 428px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.12) 1px 2px 16px;
+
+    article {
+        justify-content: space-between;
+        padding: 14px 22px 10px !important;
+        border-radius: 15px;
+        margin: 15px;
+        font-size: 1em;
+div{
+font-size: 1rem;
+    .sub-title {
+        font-size: 0.8rem;
+        color: $gray5;
+    }
+}
+
+        .counter-controls {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            button {
+                background-color: white;
+                border: 1px solid $gray2;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                color: $gray4;
+                font-size: 1rem;
+                text-align: center;
+            }
         }
     }
 }
