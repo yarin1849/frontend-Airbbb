@@ -2,7 +2,6 @@ import * as React from 'react'
 import { PieChart } from '@mui/x-charts/PieChart'
 
 export function ResevationListing({ reserves }) {
-    console.log(reserves)
     // ✅ Function to count listings
     const getListingCounts = (reserves) => {
         const listingCount = {}

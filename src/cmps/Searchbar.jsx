@@ -3,10 +3,12 @@ import { useState, useEffect, useRef } from 'react'
 import { DatePickerModal } from './DayPickerModal'
 import { WhereModal } from './WhereModal'
 import searchicon from '../assets/img/searchicon.svg'
+
+// import { useSearchParams } from 'react-router-dom'
 export function SearchBar({ setFilter, filter }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filter)
     const [isOpen, setIsOpen] = useState(false)
-
+    // const [searchParams, setSearchParams] = useSearchParams()
 
     function onHandleChange({ target }) {
         const field = target.name
