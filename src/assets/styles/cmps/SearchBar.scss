@@ -100,6 +100,10 @@
 
         }
     }
+    & > *:not(:first-child) input{
+        max-width: rem(120px);
+
+    }
 
     input {
 
@@ -108,8 +112,7 @@
         background-color: rgba(0, 0, 0, 0);
         font-size: rem(14px);
         color: $clrd1;
-        max-width: rem(120px);
-
+        
         .input-container input {
             max-width: rem(100px);
 
