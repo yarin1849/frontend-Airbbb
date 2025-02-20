@@ -27,7 +27,7 @@ async function query(filterBy = { where: '', checkIn: '', checkOut: '', guests: 
         stays = stays.filter(stay => regex.test(stay.loc.country))
     }
 
-    if (guests) {
+    if (guests.sum) {
         stays = stays.filter(stay => stay.capacity >= guests.sum)
     }
     // if (minPrice) {

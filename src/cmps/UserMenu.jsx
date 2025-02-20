@@ -11,7 +11,7 @@ export function UserMenu() {
                 <NavLink to="/reserve-status">Trips</NavLink>
             </article>
             <article className="link">
-                <NavLink to="/dashboard">Dash-board</NavLink>
+                <NavLink to="/dashboard">Dashboard</NavLink>
             </article >
         </div>
     )

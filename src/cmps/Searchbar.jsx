@@ -69,7 +69,7 @@ export function SearchBar({ setFilter, filter }) {
 
 // console.log(filterByToEdit)
         return (
-            <section>
+            <section className='search-bar-container'>
                 <form action="" className="flex search-bar" onSubmit={onSubmit}>
 
                     <div className='input-container flex'>
@@ -98,7 +98,7 @@ export function SearchBar({ setFilter, filter }) {
                         <label htmlFor="guests">
                             <div>Who</div>
                             {/* <input type="text" id="who" placeholder="Add guests" name='who' value={filterByToEdit.guests} onChange={onHandleChange}/> */}
-                            <input type="number" id="guests" placeholder="" name='guests' autoComplete="off" value={filterByToEdit.guests.sum} onChange={onHandleChange} onFocus={() => { { onOpenModal('guests'); onCloseModal('guests') } }} />
+                            <input type="text" id="guests" placeholder="Add guests" name='guests' autoComplete="off" value={filterByToEdit.guests.sum ?`${filterByToEdit.guests.sum} guests`: ''} onChange={onHandleChange} onFocus={() => { { onOpenModal('guests'); onCloseModal('guests') } }} />
                         </label>
                         <div className="btn-container">
                             <button>

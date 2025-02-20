@@ -29,9 +29,9 @@ export function GuestsModal({setFilterByToEdit, filterByToEdit}) {
                 </div>
                 <div className="counter-controls">
                     <button
-                        className={`counter-btn minus ${adults === 0 ? "disabled" : ""}`}
+                        className={`counter-btn minus ${!adults ? "disabled" : ""}`}
                         onClick={() => handleDecrement(setAdults, adults)}
-                        disabled={adults === 0}> − </button>
+                        disabled={!adults || adults === 0}> − </button>
                     <div className="value-display">
 
                         <span className="number">{adults}</span>
@@ -49,9 +49,9 @@ export function GuestsModal({setFilterByToEdit, filterByToEdit}) {
                 </div>
                 <div className="counter-controls">
                     <button
-                        className={`counter-btn minus ${children === 0 ? "disabled" : ""}`}
+                        className={`counter-btn minus ${!children ? "disabled" : ""}`}
                         onClick={() => handleDecrement(setChildren, children)}
-                        disabled={children === 0}>−</button>
+                        disabled={!children || children === 0}>−</button>
                     <div className="value-display">
 
                         <span className="number">{children}</span>
@@ -69,9 +69,9 @@ export function GuestsModal({setFilterByToEdit, filterByToEdit}) {
                 </div>
                 <div className="counter-controls">
                     <button
-                        className={`counter-btn minus ${infants === 0 ? "disabled" : ""}`}
+                        className={`counter-btn minus ${!infants ? "disabled" : ""}`}
                         onClick={() => handleDecrement(setInfants, infants)}
-                        disabled={infants === 0}>−</button>
+                        disabled={!infants || infants === 0}>−</button>
                     <div className="value-display">
 
                         <span className="number">{infants}</span>
@@ -89,9 +89,9 @@ export function GuestsModal({setFilterByToEdit, filterByToEdit}) {
                 </div>
                 <div className="counter-controls">
                     <button
-                        className={`counter-btn minus ${pets === 0 ? "disabled" : ""}`}
+                        className={`counter-btn minus ${!pets ? "disabled" : ""}`}
                         onClick={() => handleDecrement(setPets, pets)}
-                        disabled={pets === 0}>−</button>
+                        disabled={!pets || pets === 0}>−</button>
                     <div className="value-display">
 
 
