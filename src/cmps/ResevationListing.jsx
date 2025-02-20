@@ -1,42 +1,38 @@
-import * as React from 'react'
-import { PieChart } from '@mui/x-charts/PieChart'
+import * as React from 'react';
+import { PieChart } from '@mui/x-charts/PieChart';
 
 export function ResevationListing({ reserves }) {
-    // ✅ Function to count listings
-    const getListingCounts = (reserves) => {
-        const listingCount = {}
+  // Count how many times each address occurs
+  const getListingCounts = (res) => {
+    const listingCount = {};
+    res.forEach((reservation) => {
+      const address = reservation.location.address;
+      listingCount[address] = (listingCount[address] || 0) + 1;
+    });
+    return Object.entries(listingCount).map(([label, value], id) => ({ id, value, label }));
+  };
 
-        // Count occurrences of each listing
-        reserves.forEach((reservation) => {
-            if (listingCount[reservation.location.address]) {
-                listingCount[reservation.location.address]++
-            } else {
-                listingCount[reservation.location.address] = 1
-            }
-        })
+  const pieData = getListingCounts(reserves);
 
-        // Convert to chart format
-        return Object.entries(listingCount).map(([label, value], index) => ({
-            id: index,
-            value,
-            label,
-        }))
-    }
-
-    const pieData = getListingCounts(reserves)
-
-    return (
-        <PieChart
-            series={[{ data: pieData }]}
-            width={450}
-            height={180}
-            legend={{
-                itemGap: 20, 
-                labelStyle: {
-                    position: 'left', 
-                    fontSize: 15, 
-                },
-            }}
-        />
-    );
+  return (
+    <PieChart
+      series={[
+        {
+            data: pieData,
+            label: { show: false },
+            labelLine: { show: false }, // also hides the line for the label
+          },
+      ]}
+      width={450}
+      height={200}
+      // Position the legend on the right
+      legend={{
+        position: 'right',
+        itemGap: 20,
+        labelStyle: {
+          fontSize: 15,
+        },
+      }}
+    />
+  );
 }

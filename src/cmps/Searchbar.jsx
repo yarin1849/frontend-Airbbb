@@ -4,12 +4,13 @@ import { DatePickerModal } from './DayPickerModal'
 import { WhereModal } from './WhereModal'
 import searchicon from '../assets/img/searchicon.svg'
 import { GuestsModal } from './GuestsModal'
+import { useSearchParams } from 'react-router-dom'
 export function SearchBar({ setFilter, filter }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filter)
     const [isOpenWhere, setIsOpenWhere] = useState(false)
     const [isOpenDate, setIsOpenDate] = useState(false)
     const [isOpenGuests, setIsOpenGuests] = useState(false)
-    // const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams, setSearchParams] = useSearchParams()
 
     function onHandleChange({ target }) {
         const field = target.name
@@ -19,6 +20,14 @@ export function SearchBar({ setFilter, filter }) {
     function onSubmit(ev) {
         ev.preventDefault()
         onCloseModal('all')
+        setSearchParams(prevParams => {
+            const newParams = new URLSearchParams(prevParams)
+            newParams.set('where', filterByToEdit.where) // Correctly set the value
+            newParams.set('checkin', filterByToEdit.checkIn) // Correctly set the value
+            newParams.set('checkout', filterByToEdit.checkOut) // Correctly set the value
+            newParams.set('guests', filterByToEdit.guests.sum) // Correctly set the value
+            return newParams
+        })
         setFilter(filterByToEdit)
     }
 
