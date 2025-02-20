@@ -40,7 +40,7 @@
     /* ✅ Dashboard Stats Layout Fix */
     .dashboard-stats {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 450px));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1rem;
         margin-bottom: rem(48px);
         padding: rem(5px);
@@ -54,12 +54,6 @@
         padding: 20px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         flex: 1;
-        /* Ensures equal width for each card */
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: start;
     }
     
     .stat-card h3 {
@@ -74,6 +68,7 @@
         font-size: rem(14px);
         gap: rem(5px);
     }
+
     .approved-btn{
         color: $green1;
         height: rem(32px);
