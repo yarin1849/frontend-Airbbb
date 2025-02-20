@@ -11,7 +11,7 @@ export function ReservationStatus({reserves}) {
         })
     }
     return (
-        <div style={{ width: '402px', height: '180px' }} className="reserve-status">
+        <div style={{height: '200px' }} className="reserve-status">
             <div className="approved">Approved: <span>{statusCount[0]}</span></div>
             <div className="declined">Declined: <span>{statusCount[1]}</span></div>
             <div className="pending">Pending: <span>{statusCount[2]}</span></div>

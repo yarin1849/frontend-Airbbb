@@ -8,6 +8,7 @@ export function Login() {
     const [users, setUsers] = useState([])
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
 
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -32,17 +33,51 @@ export function Login() {
         const value = ev.target.value
         setCredentials({ ...credentials, [field]: value })
     }
-    
+
+
+    const [gradient, setGradient] = useState("linear-gradient(90deg, #FF3366, #E61E6E)")
+    const [isHovering, setIsHovering] = useState(false)
+
+    const handleMouseMove = (ev) => {
+        if (!isHovering) setIsHovering(true)
+
+        const { left, top, width, height } = ev.currentTarget.getBoundingClientRect()
+        const xPos = ((ev.clientX - left) / width) * 100
+        const yPos = ((ev.clientY - top) / height) * 100
+
+        setGradient(`radial-gradient(circle at ${xPos}% ${yPos}%, rgb(255, 51, 102), #E61E6E)`)
+    }
+
+    const handleMouseLeave = () => {
+        setIsHovering(false)
+        setGradient("linear-gradient(90deg, #FF3366, #E61E6E)")
+    }
     return (
-        <form className="login-form" onSubmit={onLogin}>
-            <select
-                name="username"
-                value={credentials.username}
-                onChange={handleChange}>
-                    <option value="">Select User</option>
-                    {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
-            </select>
-            <button>Login</button>
-        </form>
+        
+            <div className='form-container'>
+                <div className="login-signup">
+                    <header className='auth-header divider'>Log in</header>
+                    <form>
+                        <label htmlFor="userName"><span style={{ color: 'red' }}>*</span>Username</label>
+                        <input type="text" name='userName' />
+                        <label htmlFor="password"><span style={{ color: 'red' }}>*</span>password</label>
+                        <input type="password" name='password' />
+                    </form>
+
+                    <button
+                        className="reserve-button"
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}
+                        style={{ background: gradient }}>
+                        Login
+                    </button>
+
+                    <div>Or</div>
+                    <button className='login-signup-btn'>Demo User</button>
+                    <button className='login-signup-btn'>Sign Up</button>
+                </div>
+            </div>
+
     )
+
 }

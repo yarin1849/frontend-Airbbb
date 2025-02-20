@@ -74,7 +74,7 @@ export function RevenewMonth({reserves}) {
         ],
     }
     return (
-        <div style={{ width: '402px', height: '180px' }}>
+        <div style={{height: '200px' }}>
             <Bar options={options} data={data} />
         </div>
     )
