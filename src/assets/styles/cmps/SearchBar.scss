@@ -142,7 +142,7 @@
 
     .date-modal {
         position: fixed;
-        top: 155px;
+        top: 198px;
         background-color: white;
         margin-left: 240px;
         border-radius: 10px;
@@ -163,7 +163,7 @@
 
     .where-modal {
         position: fixed;
-        top: 155px;
+        top: 198px;
         background-color: white;
         border-radius: 20px;
         width: 450px;
@@ -177,7 +177,19 @@
             margin: 8px;
             font-size: 1em;
             line-height: 20px;
+            gap: 10px;
+            align-items: center;
 
+            img {
+                width: 50px;
+                aspect-ratio: 1/1;
+                
+                padding: 5px;
+                border-radius: 7px;
+
+            }
+            
+           
             span {
                 color: $gray5;
                 font-size: 0.8rem;
@@ -192,7 +204,7 @@
 
     .guests-modal {
         position: fixed;
-        top: 155px;
+        top: 198px;
         background-color: white;
         margin-left: 420px;
         border-radius: 20px;
