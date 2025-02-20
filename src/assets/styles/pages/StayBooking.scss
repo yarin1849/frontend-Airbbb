@@ -86,32 +86,51 @@
                 width: 32px;
             }
         }
-    
-        .confirm-container{
-            .confirm-button {
-                position: relative;
-                color: white;
-                width: 10%;
-                padding: 14px;
-                border-radius: 10px;
-                font-size: 18px;
-                cursor: pointer;
-    
-                font-weight: 500;
-                height: 56px;
-                letter-spacing: normal;
-                line-break: strict;
-                line-height: 24px;
-                min-width: 200px;
-        
-                &:active {
-                    transform: scale(0.97);
-                    background: #FF385C !important;
-                }
-            }
+    .trip-details{
+        margin-top: 18px;
+        margin-bottom: 20px;
+        h2{
+            font-size: 22px;
+            font-weight: 500;
         }
         
+        .booking-dates{
+            line-height: 1;
+            margin-bottom: 22px;
+            margin-top: 18px;
+        }
+
+        .booking-guests{
+            line-height: 1;
+            margin-bottom: 28px;
+        }
+
     }
+    .confirm-container{
+        .confirm-button {
+            position: relative;
+            color: white;
+            width: 10%;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+
+            font-weight: 500;
+            height: 56px;
+            letter-spacing: normal;
+            line-break: strict;
+            line-height: 24px;
+            min-width: 200px;
+    
+            &:active {
+                transform: scale(0.97);
+                background: #FF385C !important;
+            }
+        }
+    }
+        
+}
 
     .booking-stay-details{
         width: 720px;

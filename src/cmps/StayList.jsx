@@ -1,13 +1,15 @@
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { userService } from '../services/user'
 import { StayPreview } from './StayPreview'
 import { StayFilter } from './StayFilter'
 import { useEffect, useState } from 'react'
 import { loadStays } from '../store/actions/stay.actions'
+import { useSearchParams } from 'react-router-dom'
 
 
 export function StayList({ stays, onRemoveStay, onUpdateStay }) {
     const navigate = useNavigate()
+    const [searchParams] = useSearchParams()
 
     function shouldShowActionBtns(stay) {
         const user = userService.getLoggedinUser()
@@ -18,7 +20,8 @@ export function StayList({ stays, onRemoveStay, onUpdateStay }) {
     }
 
     function onHandleClick(stayId) {
-        navigate(`/details/${stayId}`)
+        const currentParams = searchParams.toString()
+        navigate(`/details/${stayId}?${currentParams}`)
     }
     return <section>
         <ul className="stay-list">

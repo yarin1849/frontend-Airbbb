@@ -1,23 +1,48 @@
-import { useState } from "react"
-import { useNavigate, useParams } from 'react-router-dom';
-import { DatePickerModal } from "./DayPickerModal";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/style.css";
-import { getRandomIntInclusive } from "../services/util.service";
+import { useEffect, useState } from "react"
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { DatePickerModal } from "./DayPickerModal"
+import { DayPicker } from "react-day-picker"
+import "react-day-picker/style.css"
 
-export function ReserveModal({ stay }) {
-    const [checkIn, setCheckIn] = useState("2025-02-19")
-    const [checkOut, setCheckOut] = useState("2025-02-26")
-    const [guests, setGuests] = useState(1)
-    const [gradient, setGradient] = useState("linear-gradient(90deg, #FF3366, #E61E6E)")
-    const [isHovering, setIsHovering] = useState(false)
+export function ReserveModal({ stay, checkin, checkout, guests }) {
     const navigate = useNavigate()
     const { stayId } = useParams()
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const parsedGuests = Math.max(1, parseInt(guests) || 1)
+
+    const [checkIn, setCheckIn] = useState(checkin)
+    const [checkOut, setCheckOut] = useState(checkout)
+    const [numGuests, setNumGuests] = useState(parsedGuests)
+    const [gradient, setGradient] = useState("linear-gradient(90deg, #FF3366, #E61E6E)")
+    const [isHovering, setIsHovering] = useState(false)
+
+    useEffect(() => {
+        const params = new URLSearchParams()
+        params.set("checkin", checkIn)
+        params.set("checkout", checkOut)
+        params.set("guests", numGuests)
+        setSearchParams(params)
+    }, [checkIn, checkOut, numGuests, setSearchParams])
+
 
     const nightlyRate = stay.price
-    const nights = 7
-    const fee = parseInt(stay.price * 0.12)
+    const nights = Math.max((new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24), 1)
+    const fee = parseInt(stay.price * nights * 0.12)
     const totalPrice = nightlyRate * nights + fee
+
+
+    const handleReserve = () => {
+        const params = new URLSearchParams()
+        params.set('checkin', checkIn)
+        params.set('checkout', checkOut)
+        params.set('guests', guests)
+        params.set("price", nightlyRate)
+        params.set("nights", nights)
+        params.set("fee", fee)
+        params.set("totalPrice", totalPrice)
+        navigate(`/${stayId}/booking?${params.toString()}`)
+    }
 
     const handleMouseMove = (ev) => {
         if (!isHovering) setIsHovering(true)
@@ -54,27 +79,25 @@ export function ReserveModal({ stay }) {
 
                 <div className="guest-selector">
                     <label>GUESTS</label>
-                    <select value={guests} onChange={(ev) => setGuests(ev.target.value)}>
-                        {[1, 2, 3].map(num => <option key={num} value={num}>{num} guest{num > 1 ? 's' : ''}</option>)}
+                    <select value={numGuests} onChange={(ev) => setNumGuests(Number(ev.target.value))}>
+                        {[1, 2, 3, 4, 5, 6].map((num) => (
+                            <option key={num} value={num}>
+                                {num} guest{num > 1 ? "s" : ""}
+                            </option>
+                        ))}
                     </select>
                 </div>
             </div>
 
             <button
-                onClick={() => {
-                    const params = new URLSearchParams()
-                    params.set('checkin', checkIn)
-                    params.set('checkout', checkOut)
-                    params.set('guests', guests)
-
-                    navigate(`/${stayId}/booking?${params.toString()}`)
-                }}
+                onClick={handleReserve}
                 className="reserve-button"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 style={{ background: gradient }}>
                 Reserve
             </button>
+
 
 
             <p className="disclaimer">You won’t be charged yet</p>

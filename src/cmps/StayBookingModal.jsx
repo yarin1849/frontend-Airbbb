@@ -1,21 +1,16 @@
 import { useEffect } from "react"
+import { useParams } from "react-router"
+import { useSearchParams } from "react-router-dom"
 
 export function StayBookingModal({ stay }) {
-    // console.log('stay', stay)
-
-    // const { stayId } = useParams()
-    // const stay = useSelector(storeState => storeState.stayModule.stay)
 
 
-    // useEffect(() => {
-    //     loadStay(stayId)
-    // }, [])
+    const [searchParams] = useSearchParams()
 
-
-    const nightlyRate = stay.price
-    const nights = 7
-    const fee = stay.price * 0.1
-    const totalPrice = nightlyRate * nights + fee
+    const nightlyRate = parseFloat(searchParams.get("price")) || stay.price
+    const nights = parseInt(searchParams.get("nights"), 10)
+    const fee = parseFloat(searchParams.get("fee")) || stay.price * nights * 0.12
+    const totalPrice = parseFloat(searchParams.get("totalPrice")) || (nightlyRate * nights + fee)
 
     if (!stay) return <div>Loading...</div>
     return (
