@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"
 
 const images = [
     {
@@ -21,7 +21,7 @@ export function StayDescription({ stay }) {
     const fullText = stay.summary
     const maxLength = 200
     const reviews = 123
-    // const displayedText = isExpanded ? fullText : fullText.slice(0, maxLength) + (fullText.length > maxLength ? " ..." : "");
+    // const displayedText = isExpanded ? fullText : fullText.slice(0, maxLength) + (fullText.length > maxLength ? " ..." : "")
     return (
         <div className="stay-description">
             <div className="stay-description-title">
