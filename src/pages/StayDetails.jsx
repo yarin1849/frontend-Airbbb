@@ -56,7 +56,6 @@ export function StayDetails() {
             </div>
           </div>
           <GoogleMap />
-
         </div>
       )}
     </section>

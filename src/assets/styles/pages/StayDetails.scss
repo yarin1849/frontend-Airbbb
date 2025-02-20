@@ -97,11 +97,15 @@
             display: flex !important;
             // flex-direction: row !important;
             box-shadow: none !important;
-            margin-top: 20px;
+            margin-top: 70px;
             position: static !important;
             min-height: 460px !important;
             max-width: 80px !important;
+        }
+        
+        .rdp-months{
             flex-wrap: nowrap !important;
+
         }
     }
 }

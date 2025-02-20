@@ -37,7 +37,7 @@ export function StayBooking() {
         try {
             const savedReservation = addReservation({})
             console.log('savedReservation', savedReservation)
-            alert(`Order Confirmed! 🎉\nReservation ID: ${savedReservation._id}`)
+            alert(`Order Confirmed!`)
             // const savedReservation = await dispatch(addReservation({ stayId: stay._id, userId: user._id }))
             // navigate(`/order-confirmation/${savedReservation._id}`)
         } catch (err) {
@@ -45,18 +45,6 @@ export function StayBooking() {
             alert("Something went wrong. Please try again.")
         }
     }
-
-    // const handleConfirmBooking = async () => {
-    //     if (!stay) return
-    //     try {
-    //         const savedReservation = await addReservation({ stayId: stay._id, checkin, checkout, guests })
-    //         console.log('savedReservation', savedReservation)
-    //         alert(`Order Confirmed! 🎉\nReservation ID: ${savedReservation._id}`)
-    //     } catch (err) {
-    //         console.error("Failed to save reservation:", err)
-    //         alert("Something went wrong. Please try again.")
-    //     }
-    // }
 
     const handleMouseMove = (ev) => {
         if (!isHovering) setIsHovering(true)
@@ -127,23 +115,23 @@ export function StayBooking() {
                         <span> {guests} {guests === "1" ? "guest" : "guests"}</span>
                     </div>
                     <hr />
-                    <div className="confirm-container">
-                        <button
-                            onClick={handleConfirmBooking}
-                            className="confirm-button"
-                            style={{ background: gradient }}
-                            onMouseMove={handleMouseMove}
-                            onMouseLeave={handleMouseLeave}>
-                            Confirm and pay
-                        </button>
-                    </div>
+                </div>
+                <div className="confirm-container">
+                    <button
+                        onClick={handleConfirmBooking}
+                        className="confirm-button"
+                        style={{ background: gradient }}
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}>
+                        Confirm and pay
+                    </button>
                 </div>
             </div>
 
             <div className="booking-stay-details">
                 <StayBookingModal stay={stay} />
             </div>
-        </div>
+        </div >
     )
 }
 

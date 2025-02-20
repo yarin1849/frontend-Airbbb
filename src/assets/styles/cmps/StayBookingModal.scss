@@ -18,37 +18,51 @@
             display: flex;
             padding-bottom: 18px;
             .stay-img{
-                width: 25%;
+                // margin-right: 14px;
+                width: 31%;
+                // aspect-ratio: 1/1;
                 img{
                     // object-fit: cover;
                     border-radius: 12px;
-                    // width: 50%;
+                    width:80%;
                     height: 10vh;
                 }
             }
 
             
             .stay-details{
-
+                position: relative;
+                // left: 16px;
+                right: 24px;
+                top:10px;
+                // line-height: 1;
+                // margin-left: 12px;
                 // .stay-details-text{
                 //     line-height: 1;
                 // }
-
+                
                 .stay-details-name{
                     font-weight: 500;
+                    font-size: 16px;
                 }
+
+                .stay-details-header{
+                    margin-top: -3px;
+                }  
             }
 
 
             .stay-details{
                 // background-color: aqua;
                 align-items: center;
-                margin-right: 0;
+                margin-right: 0px;
                 // margin-bottom: 10px;
                 // line-height: 1;
                 // justify-items: start;
 
                 .stay-details-reviews{
+                    margin-top: -3px;
+                    margin-left: -4px;
                     span img{
                         width: 12px;
                     }
