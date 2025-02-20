@@ -13,6 +13,7 @@ import { StayAmenities } from '../cmps/StayAmenities'
 import { ReserveModal } from '../cmps/ReserveModal'
 import GoogleMap from '../cmps/GoogleMap'
 import { DayPicker } from 'react-day-picker'
+import { Loading } from '../cmps/Loading'
 
 export function StayDetails() {
   const { stayId } = useParams()
@@ -29,7 +30,7 @@ export function StayDetails() {
   }, [stayId])
 
 
-  if (!stay) return <div>...loading</div>
+  if (!stay) return <Loading />
 
   return (
     <section className='stay-details full'>

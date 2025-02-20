@@ -6,6 +6,7 @@ import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules"
+import { Loading } from "./Loading"
 
 export function StayPreview({ stay }) {
 
@@ -48,9 +49,12 @@ export function StayPreview({ stay }) {
         }
     }, [])
     
-    const address = (stay?.loc?.address?.length > 10) ? stay.loc.address.slice(0, 10) + '...' : stay?.loc?.address
-    const hostName = (stay?.host?.fullname?.length > 7) ? stay.host.fullname.slice(0, 7) + '...' : stay?.host?.fullname
+    let address =  `${stay.loc.city}, ${stay.loc.country}`
+    address = (stay?.loc?.country?.length + stay?.loc?.city?.length > 23) ? address.slice(0, 23) + '...' : address
+    const isLong = stay?.loc?.country?.length + stay?.loc?.city?.length > 23
+    // const hostName = (stay?.host?.fullname?.length > 7) ? stay.host.fullname.slice(0, 7) + '...' : stay?.host?.fullname
 
+    
     return (
         <section className="preview">
             <Swiper
@@ -85,14 +89,15 @@ export function StayPreview({ stay }) {
 
             <img src="https://res.cloudinary.com/dswenk4wc/image/upload/v1739610424/svg_xml_base64_PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgYXJpYS1oaWRkZW49InRydWUiIHJvbGU9InByZXNlbnRhdGlvbiIgZm9jdXNhYmxlPSJmYWxzZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyBmaWxsOiB_1_p4bb2a.svg" alt="" className="heart-img" />
             <div className="preview-text-par">
-                <p className="preview-text-bold preview-text-first">{address}</p>
-                <p className="gray">{hostName}</p>
+            <p 
+    className={`preview-text-bold preview-text-first ${isLong ? 'smaller-text' : ''}`}>{address}</p>
+                <p className="gray">{stay?.loc?.city}</p>
                 <p className="preview-date gray">1-6 May</p>
                 <p className="preview-text-last"><span className="preview-text-bold">${stay.price}</span> night</p>
             </div>
             <div className="rating">
                 <img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739453965/asset_23_rlrre4.svg" alt="" />
-                {/* <span className="rating-text">{(Math.random() * 2 + 2.5).toFixed(2)}</span> */}
+                {/* <span className="rating-text">{(Math.random() * 4 + 1).toFixed(2)}</span> */}
                 <span className="rating-text">5.0</span>
             </div>
         </section>

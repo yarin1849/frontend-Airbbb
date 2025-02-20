@@ -6,144 +6,149 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { Button, Box } from '@mui/material';
+import { Button } from '@mui/material'
 import { ReservationStatus } from '../cmps/ReservationStatus'
 import { ResevationListing } from '../cmps/ResevationListing'
 import { RevenewMonth } from '../cmps/RevenewMonth'
 import { makeId } from '../services/util.service'
-import { loadReservation, loadReservations, updateReservation } from '../store/actions/reservation.actions'
-import { useState } from 'react'
+import {
+  loadReservation,
+  loadReservations,
+  updateReservation,
+} from '../store/actions/reservation.actions'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-// Function to generate random reservations
-function generateRandomReservations(count) {
-    function getRandomDate(start, end) {
-        return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
-    }
+// 1) Formats two date strings (M/D/YYYY) into "20-25 May 2025"
+function formatDateRange(checkinStr, checkoutStr) {
+  const [startMonth, startDay, startYear] = checkinStr.split('/')
+  const [endMonth, endDay, endYear] = checkoutStr.split('/')
 
-    function formatDate(date) {
-        return date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' })
-    }
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
+  ]
+  const monthName = months[Number(startMonth) - 1] // e.g. "5" => "May"
 
-    const guestNames = ['Isaac', 'Sophia', 'Liam', 'Emma', 'Oliver', 'Ava', 'Noah', 'Mia', 'Ethan', 'Luna']
-    const hosts = ['John Doe', 'Emily Smith', 'James Johnson', 'Sophia Davis', 'Michael Brown', 'Emma Wilson']
-    const listings = ['Barcelona', 'Paris', 'New York', 'London']
-    const statuses = ['PENDING', 'APPROVED', 'DECLINED']
+  return `${startDay}-${endDay} ${monthName} ${startYear}`
+}
 
-    return Array.from({ length: count }, () => {
-        const _id = makeId()
-        const guest = guestNames[Math.floor(Math.random() * guestNames.length)]
-        const host = hosts[Math.floor(Math.random() * hosts.length)]
-        const listing = listings[Math.floor(Math.random() * listings.length)]
-        const checkinDate = getRandomDate(new Date(2023, 0, 1), new Date()) // Random date from Jan 2023 to today
-        const checkoutDate = new Date(checkinDate)
-        checkoutDate.setDate(checkinDate.getDate() + Math.floor(Math.random() * 14) + 1) // Stay between 1-14 days
-        const totalPrice = `$${Math.floor(Math.random() * (5000 - 200 + 1)) + 200}` // Price between $200-$5000
-        const status = statuses[Math.floor(Math.random() * statuses.length)]
+// 2) Parse "M/D/YYYY" => JavaScript Date object
+function parseDate(dateStr) {
+  const [month, day, year] = dateStr.split('/')
+  return new Date(Number(year), Number(month) - 1, Number(day))
+}
 
-        return {
-            _id: _id,
-            guest: guest,
-            checkin: formatDate(checkinDate),
-            checkout: formatDate(checkoutDate),
-            booked: host,
-            listing: listing,
-            totalPrice: totalPrice,
-            status: status,
-        }
-    })
+// 3) Sort helper: Pending first, then by checkout date descending (newest first)
+function sortReservations(reservations) {
+  return [...reservations].sort((a, b) => {
+    // Pending first
+    if (a.status === 'pending' && b.status !== 'pending') return -1
+    if (b.status === 'pending' && a.status !== 'pending') return 1
+
+    // Otherwise, sort by checkout date descending
+    const dateA = parseDate(a.checkout)
+    const dateB = parseDate(b.checkout)
+    // For descending order, subtract dateA from dateB
+    return dateB - dateA
+  })
 }
 
 export function Dashboard() {
-    // const reserves = generateRandomReservations(50)
+  const reserves = useSelector((storeState) => storeState.reservationModule.reservations)
 
+  useEffect(() => {
+    loadReservations()
+  }, [])
 
-    const reserves = useSelector(storeState => storeState.reservationModule.reservations)
-    useEffect(() => {
-        loadReservations()
-    }, [])
-
-
-    function onStatusChange(updateStatus, todoId) {
-    
-        // Find the specific reservation
-        const reserve = reserves.find(reserve => reserve._id === todoId)
-    
-        if (!reserve) {
-            console.error("Reservation not found")
-            return
-        }
-    
-        // Create a new object instead of mutating the existing one
-        const updatedReserve = { ...reserve, status: updateStatus }
-    
-        // Call the Redux action to update the store
-        updateReservation(updatedReserve)
+  function onStatusChange(updateStatus, todoId) {
+    const reserve = reserves.find((reserve) => reserve._id === todoId)
+    if (!reserve) {
+      console.error('Reservation not found')
+      return
     }
-    
+    const updatedReserve = { ...reserve, status: updateStatus }
+    updateReservation(updatedReserve)
+  }
 
-    if (!reserves) return <div>loading..........</div>
-    return (
-        <section className="dashboard">
-            <section>
+  if (!reserves) return <div>Loading...</div>
 
-            </section>
-            <div className="dashboard-header">Reservations</div>
+  // Sort the reservations based on our criteria (pending first, then newest date)
+  const sortedReserves = sortReservations(reserves)
+  
+  return (
+    <section className="dashboard">
+      <div className="dashboard-header">Reservations</div>
 
-            {/* Stats Section with Three Cards */}
-            <section className="dashboard-stats">
-                <div className="stat-card">
-                    <h3>Revenue / month</h3>
-                    <RevenewMonth reserves={reserves} />
-                </div>
-                <div className="stat-card">
-                    <h3>Reservations status </h3>
-                    <ReservationStatus reserves={reserves} />
-                </div>
-                <div className="stat-card">
-                    <h3>Reservations / listing</h3>
-                    <ResevationListing reserves={reserves} />
-                </div>
-            </section>
+      {/* Stats Section with Three Cards */}
+      <section className="dashboard-stats">
+        <div className="stat-card">
+          <h3>Revenue / month</h3>
+          <RevenewMonth reserves={sortedReserves} />
+        </div>
+        <div className="stat-card">
+          <h3>Reservations status</h3>
+          <ReservationStatus reserves={sortedReserves} />
+        </div>
+        <div className="stat-card">
+          <h3>Reservations / listing</h3>
+          <ResevationListing reserves={sortedReserves} />
+        </div>
+      </section>
 
-            {/* Reservations Table */}
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="reservation table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Guest</TableCell>
-                            <TableCell align="right">Check-in</TableCell>
-                            <TableCell align="right">Check-out</TableCell>
-                            <TableCell align="right">Booked</TableCell>
-                            <TableCell align="right">Listing</TableCell>
-                            <TableCell align="right">Total Price</TableCell>
-                            <TableCell align="right">Status</TableCell>
-                            <TableCell align="center">Todo</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {reserves.map((reserve, index) => {
-                            const statusClass = `status-${reserve.status.toLowerCase()}`
-                            return (
-                                <TableRow key={reserve._id}>
-                                    <TableCell>{reserve.user.name}</TableCell>
-                                    <TableCell align="right">{reserve.checkin}</TableCell>
-                                    <TableCell align="right">{reserve.checkout}</TableCell>
-                                    <TableCell align="right">{reserve.host.name}</TableCell>
-                                    <TableCell align="right">{reserve.location.address}</TableCell>
-                                    <TableCell align="center">${reserve.price}</TableCell>
-                                    <TableCell align="right" className={statusClass}>{reserve.status}</TableCell>
-                                    <TableCell align="center" className='btn'>
-                                        <Button className="approved-btn" onClick={() => onStatusChange('approved', reserve._id)}>approved</Button>
-                                        <Button className="decline-btn" onClick={() => onStatusChange('declined', reserve._id)}>Decline</Button>
-                                    </TableCell>
-                                </TableRow>
-                            )
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </section>
-    )
+      {/* Reservations Table */}
+      <TableContainer component={Paper} sx={{ maxHeight: 350 }}>
+        <Table stickyHeader sx={{ minWidth: 650 }} aria-label="reservation table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Guest</TableCell>
+              {/* Single "Dates" column */}
+              <TableCell align="left">Dates</TableCell>
+              <TableCell align="left">Booked</TableCell>
+              <TableCell align="left">Listing</TableCell>
+              <TableCell align="center">Total Price</TableCell>
+              <TableCell align="left">Status</TableCell>
+              <TableCell align="center">Todo</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {sortedReserves.map((reserve) => {
+              const statusClass = `status-${reserve.status.toLowerCase()}`
+
+              return (
+                <TableRow key={reserve._id}>
+                  <TableCell>{reserve.user.name}</TableCell>
+                  <TableCell align="left">
+                    {formatDateRange(reserve.checkin, reserve.checkout)}
+                  </TableCell>
+                  <TableCell align="left">{reserve.host.name}</TableCell>
+                  <TableCell align="left">{reserve.location.address}</TableCell>
+                  <TableCell align="center">${reserve.price}</TableCell>
+                  <TableCell align="left" className={statusClass}>
+                    {reserve.status}
+                  </TableCell>
+                  <TableCell align="center" className="btn">
+                    <Button
+                      className="approved-btn"
+                      onClick={() => onStatusChange('approved', reserve._id)}
+                      disabled={reserve.status !== 'pending'}
+                    >
+                      approved
+                    </Button>
+                    <Button
+                      className="decline-btn"
+                      onClick={() => onStatusChange('declined', reserve._id)}
+                      disabled={reserve.status !== 'pending'}
+                    >
+                      Decline
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              )
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </section>
+  )
 }

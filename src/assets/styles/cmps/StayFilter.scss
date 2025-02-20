@@ -10,6 +10,7 @@
         z-index: 100;
         // background-color: white;
         // /* Ensure it's visible */
+        
     }
 
     /* Full-width shadow effect */
@@ -17,7 +18,7 @@
         content: "";
         position: fixed;
         /* Ensures full-width effect */
-        top: 173.27px;
+        top: 164.07px;
         /* Align with the sticky element */
         left: 0;
         width: 100vw;
@@ -45,7 +46,9 @@
             width: fit-content;
             scrollbar-width: none;
             background-color: #fff;
-            padding: 22px 0px;
+            padding: 22px 0px 12px 0px;
+            // margin-bottom: 14px;
+            // margin-bottom: 200px;
 
             ::-webkit-scrollbar {
                 display: none;
@@ -68,6 +71,7 @@
                 width: fit-content;
                 height: 100%;
 
+
                 img {
                     width: 21.12px;
                     height: 21.12px;
@@ -84,21 +88,17 @@
                     border-bottom: 2px solid $gray3;
                     margin-bottom: -2px;
                     color: #222222;
-                    
+
                     img {
                         filter: grayscale(0%);
                     }
                 }
-                
+
                 &.selected {
                     border-bottom: 2px solid black;
                     margin-bottom: -2px;
                 }
             }
-        }
-
-        .stay-filter.scrolled {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         /* Left & Right Scroll Arrows */

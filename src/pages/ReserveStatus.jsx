@@ -1,4 +1,3 @@
-
 import * as React from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -10,63 +9,141 @@ import Paper from '@mui/material/Paper'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { loadReservations } from '../store/actions/reservation.actions'
+import { Loading } from '../cmps/Loading'
 
-// function createData(destination, host, checkin, checkout, booked, totalPrice, status) {
-//     return { destination, host, checkin, checkout, booked, totalPrice, status }
-// }
+// Date range helper
+function formatDateRange(checkinStr, checkoutStr) {
+    const [startMonth, startDay, startYear] = checkinStr.split('/')
+    const [endMonth, endDay, endYear] = checkoutStr.split('/')
 
-// const reserves = [
-//     createData('Westin Kaanapali KORVN 2BR', 'Puki', '10/30/2023', ' 11/6/2023', 'Puki Norma', '$595', 'PENDING'),
-//     createData('Barcelona', 'Isaac', '10/30/2023', ' 11/6/2023', 'papa jons', '$422202', 'approved'),
-//     createData('madrid', 'Puki', '10/30/2023', ' 11/6/2023', 'Ronaldo', '$777', 'declined'),
-// ]
+    const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December',
+    ]
+    const monthName = months[Number(startMonth) - 1]
+
+    return `${startDay}-${endDay} ${monthName} ${startYear}`
+}
+
+// Parse "M/D/YYYY" -> JavaScript Date
+function parseDate(dateStr) {
+    const [month, day, year] = dateStr.split('/')
+    return new Date(+year, +month - 1, +day)
+}
+
+// Sort pending first, keep others in original order
+function sortByPendingFirst(trips) {
+    return [...trips].sort((a, b) => {
+        if (a.status === 'pending' && b.status !== 'pending') return -1
+        if (b.status === 'pending' && a.status !== 'pending') return 1
+        return 0
+    })
+}
 
 export function ReserveStatus() {
-    const reserves = useSelector(storeState => storeState.reservationModule.reservations)
-    console.log(reserves)
+    const [reserves, isLoading] = useSelector((storeState) => storeState.reservationModule.reservations)
+
     useEffect(() => {
         loadReservations()
     }, [])
 
+
+
+    // Today's date for comparison
+    const today = new Date()
+
+    // Filter for "upcoming" if checkout date >= today
+    const upcomingTrips = reserves.filter((row) => {
+        const checkoutDate = parseDate(row.checkout)
+        return checkoutDate >= today
+    })
+
+    // 1) Sort upcoming trips so pending is at the top
+    const sortedUpcoming = sortByPendingFirst(upcomingTrips)
+
+    // 2) Sort ALL trips so pending is at the top
+    const sortedAll = sortByPendingFirst(reserves)
+
+    if (isLoading) return <Loading />
     return (
-        <>
-            <section className="reserve-status">
-                <h1>Trips</h1>
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="caption table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Destination</TableCell>
-                                <TableCell align="right">Host</TableCell>
-                                <TableCell align="right">Checkin</TableCell>
-                                <TableCell align="right">Checkout</TableCell>
-                                <TableCell align="right">Booked</TableCell>
-                                <TableCell align="right">Total Price</TableCell>
-                                <TableCell align="right">Status</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {reserves.map((row) => {
-                                const statusClass = `status-${row.status.toLowerCase()}` // Convert to lowercase & add a prefix
-                                // console.log(statusClass)
-                                return (
-                                    <TableRow key={row._id}>
-                                        <TableCell component="th" scope="row">
-                                            {row.location.address}
-                                        </TableCell>
-                                        <TableCell align="right">{row.host.name}</TableCell>
-                                        <TableCell align="right">{row.checkin}</TableCell>
-                                        <TableCell align="right">{row.checkout}</TableCell>
-                                        <TableCell align="right">{row.user.name}</TableCell>
-                                        <TableCell align="right">{row.price}</TableCell>
-                                        <TableCell align="right" className={statusClass}>{row.status}</TableCell>
-                                    </TableRow>
-                                )
-                            })}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </section>
-        </>
+        <section className="reserve-status">
+            <h1>Trips</h1>
+
+            {/* ----------- 1) Upcoming Trips ----------- */}
+            <h2>Upcoming Trips</h2>
+            <TableContainer component={Paper} sx={{ maxHeight: 300, mb: 4 }}>
+                <Table stickyHeader sx={{ minWidth: 650 }} aria-label="Upcoming Trips Table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Destination</TableCell>
+                            <TableCell align="right">Host</TableCell>
+                            <TableCell align="right">Dates</TableCell>
+                            <TableCell align="right">Booked</TableCell>
+                            <TableCell align="right">Total Price</TableCell>
+                            <TableCell align="right">Status</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {sortedUpcoming.map((row) => {
+                            const statusClass = `status-${row.status?.toLowerCase()}`
+                            return (
+                                <TableRow key={row._id}>
+                                    <TableCell component="th" scope="row">
+                                        {row.location.address}
+                                    </TableCell>
+                                    <TableCell align="right">{row.host?.name}</TableCell>
+                                    <TableCell align="right">
+                                        {formatDateRange(row.checkin, row.checkout)}
+                                    </TableCell>
+                                    <TableCell align="right">{row.user?.name}</TableCell>
+                                    <TableCell align="right">{row.price}</TableCell>
+                                    <TableCell align="right" className={statusClass}>
+                                        {row.status}
+                                    </TableCell>
+                                </TableRow>
+                            )
+                        })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+
+            {/* ----------- 2) All Trips ----------- */}
+            <h2>All Trips</h2>
+            <TableContainer component={Paper} sx={{ maxHeight: 300 }}>
+                <Table stickyHeader sx={{ minWidth: 650 }} aria-label="All Trips Table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Destination</TableCell>
+                            <TableCell align="right">Host</TableCell>
+                            <TableCell align="right">Dates</TableCell>
+                            <TableCell align="right">Booked</TableCell>
+                            <TableCell align="right">Total Price</TableCell>
+                            <TableCell align="right">Status</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {sortedAll.map((row) => {
+                            const statusClass = `status-${row.status?.toLowerCase()}`
+                            return (
+                                <TableRow key={row._id}>
+                                    <TableCell component="th" scope="row">
+                                        {row.location.address}
+                                    </TableCell>
+                                    <TableCell align="right">{row.host?.name}</TableCell>
+                                    <TableCell align="right">
+                                        {formatDateRange(row.checkin, row.checkout)}
+                                    </TableCell>
+                                    <TableCell align="right">{row.user?.name}</TableCell>
+                                    <TableCell align="right">{row.price}</TableCell>
+                                    <TableCell align="right" className={statusClass}>
+                                        {row.status}
+                                    </TableCell>
+                                </TableRow>
+                            )
+                        })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </section>
     )
 }
