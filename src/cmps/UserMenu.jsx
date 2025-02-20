@@ -5,7 +5,7 @@ export function UserMenu() {
     return (
         <div className="user-menu">
             <article className="link" >
-                <NavLink to="/loginSingup" className='login'>Log in</NavLink>
+                <NavLink to="/login" className='login'>Log in</NavLink>
             </article>
             <article className="link" >
                 <NavLink to="/reserve-status">Trips</NavLink>
