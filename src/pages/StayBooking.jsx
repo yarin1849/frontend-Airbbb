@@ -26,9 +26,6 @@ export function StayBooking() {
         // console.log('loadStay(stayId)', loadStay(stayId))
     }, [stayId])
 
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
 
     const handleConfirmBooking = async () => {
         if (!stay) return

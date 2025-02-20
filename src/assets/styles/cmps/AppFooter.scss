@@ -1,5 +1,6 @@
 
 .app-footer {
+    // position: fixed;
     width: 100%;
     bottom: 0;
     display: flex;
@@ -9,15 +10,14 @@
     border-top: 1px solid #DDDDDD;
     background-color: #fff;
     z-index: 10;
-    // width: 100%;
     
 
     
-    // .footer-divider {
-    //     width: 100%;
-    //     border: none;
-    //     border-top: 1px solid #DDDDDD;
-    // }
+    &.fixed {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+    }
 
     .support-dropdown-container{
         display: flex;
