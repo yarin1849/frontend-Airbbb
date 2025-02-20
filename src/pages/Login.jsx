@@ -58,9 +58,9 @@ export function Login() {
                 <div className="login-signup">
                     <header className='auth-header divider'>Log in</header>
                     <form>
-                        <label htmlFor="userName"><span className="astrix">*</span>Username</label>
+                        <label htmlFor="userName"><span className="astrix">*</span> Username</label>
                         <input type="text" name='userName' />
-                        <label htmlFor="password"><span className="astrix">*</span>password</label>
+                        <label htmlFor="password"><span className="astrix">*</span> Password</label>
                         <input type="password" name='password' />
                     </form>
 
