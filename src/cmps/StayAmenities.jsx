@@ -19,7 +19,7 @@ export function StayAmenities() {
                 <div className="amenity"><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1739783099/flower_mnatgc.svg"} alt="Main" className='amenities-img' />Private backyard – Not fully fenced</div>
             </div>
             <button className='show-amenities-btn'>Show all 67 amenities</button>
-            <hr></hr>
+            {/* <hr></hr> */}
         </section>
     )
 }

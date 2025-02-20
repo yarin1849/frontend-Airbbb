@@ -27,5 +27,5 @@ export function UploadImages() {
                 Upload Image
             </label>
         </div>
-    );
+    )
 }

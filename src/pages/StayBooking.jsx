@@ -38,8 +38,6 @@ export function StayBooking() {
             const savedReservation = addReservation({})
             console.log('savedReservation', savedReservation)
             alert(`Order Confirmed!`)
-            // const savedReservation = await dispatch(addReservation({ stayId: stay._id, userId: user._id }))
-            // navigate(`/order-confirmation/${savedReservation._id}`)
         } catch (err) {
             console.error("Failed to save reservation:", err)
             alert("Something went wrong. Please try again.")
@@ -86,7 +84,7 @@ export function StayBooking() {
             <div className="booking-confirm-details">
                 <div className="booking-header">
                     <button className="back-to-details-btn" onClick={() => { navigate(`/details/${stayId}`) }}>
-                        <ChevronLeft size={16} style={{ transform: "translate(-36.5%, -16%)" }} />
+                        <ChevronLeft size={20} />
                         {/* לשנות את זה ל-a */}
                     </button>
                     <div className="booking-main-title">
