@@ -66,11 +66,11 @@ export function AppHeader() {
 		setFilter(filter)
 		loadStays(filter)
 	}
-
+	console.log(location.pathname)
 	return (
 		<>
-			<header className="app-header full main-container" onClick={()=>setIsOpenMenu(false)}>
-				<section className='header-content flex' style={(location.pathname.includes('/det' || '/boo')) ? { maxWidth: "1120px", justifySelf: "center" } : {}} >
+			<header className="app-header full main-container" onClick={() => setIsOpenMenu(false)}>
+				<section className='header-content flex' style={location.pathname.includes('/details') || location.pathname.includes('/booking')? { maxWidth: "1120px", justifySelf: "center" } : {}} >
 					<section className='logo'>
 						<NavLink to="/" className="">
 							<div className='flex'>
@@ -79,12 +79,13 @@ export function AppHeader() {
 							</div>
 						</NavLink>
 					</section>
-					{location.pathname.includes('/det' || '/boo') || isScrolled ? <section className='small-container'>
-						<SmallSearch />
+					{location.pathname.length === 1 && !isScrolled ? <section>
+						<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter} />
 					</section> :
-						<section>
-							<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter} />
-						</section>}
+						<section className='small-container'>
+							<SmallSearch />
+						</section>
+					}
 					<article className='btns-panel'>
 						<div className='globe'>
 							<img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg" alt="" />
