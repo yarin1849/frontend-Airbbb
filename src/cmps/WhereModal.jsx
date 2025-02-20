@@ -16,7 +16,7 @@ export function WhereModal({ setFilterByToEdit, FilterByToEdit }) {
 
     return (
         <div className="where-modal">
-            <article onClick={() => { handleClick('united States') }}>
+            <article onClick={() => { handleClick('United States') }}>
                 United States <br />
                 <span>State of mind</span>
             </article>
@@ -24,7 +24,7 @@ export function WhereModal({ setFilterByToEdit, FilterByToEdit }) {
                 Spain <br />
                 <span>Sea side tapas bar</span>
             </article>
-            <article onClick={() => { handleClick('portugal') }}>
+            <article onClick={() => { handleClick('Portugal') }}>
                 Portugal <br />
                 <span>Glass of wine in porto</span>
             </article>

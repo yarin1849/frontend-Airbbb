@@ -14,23 +14,26 @@ import { useState, useEffect } from 'react'
 import { loadStays } from '../store/actions/stay.actions'
 import { StayFilter } from './StayFilter'
 import { useLocation } from 'react-router-dom'
+import { UserMenu } from './UserMenu'
 
 export function AppHeader() {
 	const user = useSelector(storeState => storeState.userModule.user)
 	const [filter, setFilter] = useState(stayService.getDefaultFilter())
 	const navigate = useNavigate()
-	const [isScrolled, setIsScrolled] = useState(false);
+	const [isScrolled, setIsScrolled] = useState(false)
+	const [isOpenMenu, setIsOpenMenu] = useState(false)
 	const location = useLocation()
+	console.log(isOpenMenu)
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 70) {
 				setIsScrolled(true);
 				document.querySelector('.app-header').classList.add('fixed')
-				if(location.pathname.length === 1) document.querySelector('.stay-filter').classList.add('fixed')
+				if (location.pathname.length === 1) document.querySelector('.stay-filter').classList.add('fixed')
 			} else {
 				setIsScrolled(false);
 				document.querySelector('.app-header').classList.remove('fixed')
-				if(location.pathname.length === 1) document.querySelector('.stay-filter').classList.remove('fixed')
+				if (location.pathname.length === 1) document.querySelector('.stay-filter').classList.remove('fixed')
 			}
 		};
 
@@ -39,9 +42,16 @@ export function AppHeader() {
 
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
-		};
-	}, []);
+		}
+	}, [])
 
+	function onToggleModal(ev) {
+		console.log('open the menu')
+		ev.preventDefault()
+		ev.stopPropagation()
+		setIsOpenMenu(prevIsOpenMenu => !prevIsOpenMenu)
+		console.log('ontoggle:', isOpenMenu)
+	}
 	async function onLogout() {
 		try {
 			await logout()
@@ -59,8 +69,8 @@ export function AppHeader() {
 
 	return (
 		<>
-			<header className="app-header full main-container">
-				<section className='header-content flex' style = {(location.pathname.includes('/det' || '/boo')) ? {maxWidth: "1120px", justifySelf: "center"} : {}}>
+			<header className="app-header full main-container" onClick={()=>setIsOpenMenu(false)}>
+				<section className='header-content flex' style={(location.pathname.includes('/det' || '/boo')) ? { maxWidth: "1120px", justifySelf: "center" } : {}} >
 					<section className='logo'>
 						<NavLink to="/" className="">
 							<div className='flex'>
@@ -79,7 +89,7 @@ export function AppHeader() {
 						<div className='globe'>
 							<img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg" alt="" />
 						</div>
-						<button className='flex menu'>
+						<button className='flex menu' onClick={onToggleModal}>
 							<div className='burger'>
 								<img src={burger} alt="" />
 							</div>
@@ -88,6 +98,7 @@ export function AppHeader() {
 							</div>
 						</button>
 					</article>
+					{isOpenMenu && <UserMenu />}
 				</section>
 			</header>
 			{location.pathname.length === 1 && <StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />}

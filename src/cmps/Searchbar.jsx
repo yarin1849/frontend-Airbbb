@@ -32,7 +32,6 @@ export function SearchBar({ setFilter, filter }) {
     }
 
     function onOpenModal(what) {
-        console.log(what)
         switch (what) {
             case 'date':
                 setIsOpenDate(true)
