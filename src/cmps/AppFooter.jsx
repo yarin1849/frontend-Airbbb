@@ -4,10 +4,10 @@ export function AppFooter() {
 
 	const location = useLocation()
 
-	const isNotFixed = ["/details", "/booking"].some(path => location.pathname.includes(path));
+	const isNotFixed = ["/details", "/booking", "/reserve-status", "/dashboard"].some(path => location.pathname.includes(path))
 
 	return (
-		<footer className={`app-footer ${isNotFixed ? "non-fixed" : "fixed"}`}>
+		<footer className={`app-footer ${isNotFixed ? "" : "fixed"}`}>
 			{/* <footer className="app-footer full"> */}
 			<div className="footer-content">
 				<div className="footer-left">

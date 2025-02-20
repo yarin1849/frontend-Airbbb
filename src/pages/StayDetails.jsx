@@ -28,7 +28,9 @@ export function StayDetails() {
     loadStay(stayId)
   }, [stayId])
 
-
+  console.log('checkin', checkin)
+  console.log('checkout', checkout)
+  console.log('guests', guests)
   if (!stay) return <div>...loading</div>
 
   return (
