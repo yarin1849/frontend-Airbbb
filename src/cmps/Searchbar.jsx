@@ -117,7 +117,7 @@ export function SearchBar({ setFilter, filter }) {
                     <DatePickerModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit}/>
                 </article>}
                 {isOpenWhere && <article className="where-modal">
-                    <WhereModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit} />
+                    <WhereModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit} next={document.getElementById('checkIn')}/>
                 </article>}
                 {isOpenGuests && <article className="where-modal">
                 <GuestsModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit}/>
