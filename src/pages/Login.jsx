@@ -75,9 +75,9 @@ export function Login() {
                         Login
                     </button>
 
-                    <div>Or</div>
-                    <button className='login-signup-btn'>Demo User</button>
-                    <button className='login-signup-btn'>Sign Up</button>
+                    <div className='or'>Or</div>
+                    <button className='btn-login signup-btn'>Demo User</button>
+                    <button className='btn-login signup-btn'>Sign Up</button>
                 </div>
             </div>
 

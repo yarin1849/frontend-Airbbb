@@ -6,8 +6,8 @@
     justify-self: center;
     color: $clr2;
 
-    margin: 0 0 88px;
-    padding: 24px;
+    margin: 40px 0 88px;
+    padding: 0 24px;
     border: 1px solid rgb(221, 221, 221);
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
@@ -19,6 +19,7 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+        font-weight: bold;
     }
 
     .divider {
@@ -36,7 +37,7 @@
             color: rgb(245, 108, 108)
         }
 
-       
+
         input {
             width: 100%;
             height: rem(32px);
@@ -48,17 +49,34 @@
             padding: 1px 11px;
             border-radius: rem(4px);
             border: 1px solid $gray2;
-            
-            &:focus-visible{
-              outline: $gray4;
-              outline-style: auto;
+
+            &:focus-visible {
+                outline: $gray4;
+                outline-style: auto;
 
             }
         }
     }
-    button{
-        min-height:50px;
+
+    .or {
+        align-self: center;
+        font-size: 0.8rem;
+        text-decoration: underline;
+    }
+
+    button {
+        min-height: 50px;
         border-radius: 8px;
+    }
+
+    .btn-login {
+        background-color: $gray1;
+        border: 1px solid $gray3;
+        color: $gray4;
+
+        &:hover {
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+        }
     }
 }
 
