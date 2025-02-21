@@ -5,6 +5,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { addReservation } from "../store/actions/reservation.actions"
 import { loadStay } from "../store/actions/stay.actions"
+import { Loading } from "../cmps/Loading"
 
 export function StayBooking() {
     const [gradient, setGradient] = useState("linear-gradient(90deg, #FF3366, #E61E6E)")
@@ -26,7 +27,7 @@ export function StayBooking() {
         // console.log('loadStay(stayId)', loadStay(stayId))
     }, [stayId])
 
-
+    if (!stay) return <Loading />
     const handleConfirmBooking = async () => {
         if (!stay) return
         // if (!stay || !user) return

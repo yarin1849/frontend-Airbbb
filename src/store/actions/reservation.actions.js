@@ -3,13 +3,16 @@ import { store } from '../store'
 import { ADD_RESERVATION, REMOVE_RESERVATION, SET_RESERVATION, SET_RESERVATIONS, UPDATE_RESERVATION } from '../reducers/reservation.reducer'
 
 export async function loadReservations() {
+    
+    
     try {
+        store.dispatch({ type: 'SET_LOADING', isLoading: true })
         const reservations = await reservationService.query()
-        store.dispatch(getCmdSetReservations(reservations))
+        store.dispatch({ type: 'SET_RESERVATIONS', reservations })
+        store.dispatch({ type: 'SET_LOADING', isLoading: false })
     } catch (err) {
-        console.log('Cannot load reservation', err)
-        throw err
-    }
+        console.error('Cannot load reservation', err)
+    } 
 }
 
 export async function loadReservation(reservationId) {

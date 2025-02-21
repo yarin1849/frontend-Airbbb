@@ -11,7 +11,8 @@ export function ReviewList({ reviews, onRemoveReview }) {
         if (user.isAdmin) return true
         return review.byUser?._id === user._id
     }
-
+    
+    
     return <section>
         <ul className="list review-list">
             {reviews.map(review =>

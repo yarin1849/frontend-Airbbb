@@ -3,10 +3,12 @@ export const SET_RESERVATION = 'SET_RESERVATION'
 export const ADD_RESERVATION = 'ADD_RESERVATION'
 export const REMOVE_RESERVATION = 'REMOVE_RESERVATION'
 export const UPDATE_RESERVATION = 'UPDATE_RESERVATION'
+export const SET_LOADING = 'SET_LOADING'
 
 const initialState = {
     reservations: [],
     reservation: null,
+    isLoading: false
 }
 
 export function reservationReducer(state = initialState, action) {
@@ -28,7 +30,8 @@ export function reservationReducer(state = initialState, action) {
                 ...state,
                 reservations: state.reservations.map(res => res._id === action.reservation._id ? action.reservation : res)
             }
-
+        case SET_LOADING:
+            return {...state, isLoading: action.isLoading}
         default:
             return state
     }
