@@ -41,30 +41,35 @@ function sortByPendingFirst(trips) {
 }
 
 export function ReserveStatus() {
-    const [reserves, isLoading] = useSelector((storeState) => storeState.reservationModule.reservations)
+    const reserves = useSelector((storeState) => storeState.reservationModule.reservations)
+    const isLoading = useSelector((storeState) => storeState.reservationModule.isLoading)
 
     useEffect(() => {
         loadReservations()
     }, [])
 
+    // if (!isLoading) return <Loading />
+    // console.log(isLoading, reserves )
+    if (isLoading || !reserves) return <Loading />
 
 
     // Today's date for comparison
     const today = new Date()
 
     // Filter for "upcoming" if checkout date >= today
-    const upcomingTrips = reserves.filter((row) => {
-        const checkoutDate = parseDate(row.checkout)
-        return checkoutDate >= today
-    })
+        const upcomingTrips = reserves.filter((row) => {
+            const checkoutDate = parseDate(row.checkout)
+            return checkoutDate >= today
+        })
 
-    // 1) Sort upcoming trips so pending is at the top
-    const sortedUpcoming = sortByPendingFirst(upcomingTrips)
 
-    // 2) Sort ALL trips so pending is at the top
-    const sortedAll = sortByPendingFirst(reserves)
+        // 1) Sort upcoming trips so pending is at the top
+        const sortedUpcoming = sortByPendingFirst(upcomingTrips)
 
-    if (isLoading) return <Loading />
+        // 2) Sort ALL trips so pending is at the top
+        const sortedAll = sortByPendingFirst(reserves)
+    
+
     return (
         <section className="reserve-status">
             <h1>Trips</h1>

@@ -3,18 +3,16 @@ import { store } from '../store'
 import { ADD_RESERVATION, REMOVE_RESERVATION, SET_RESERVATION, SET_RESERVATIONS, UPDATE_RESERVATION } from '../reducers/reservation.reducer'
 
 export async function loadReservations() {
-    store.dispatch({ type: 'SET_LOADING', isLoading: true })
-
-    setTimeout(async () => {
-        try {
-            const reservations = await reservationService.query()
-            store.dispatch({ type: 'SET_RESERVATIONS', reservations })
-        } catch (err) {
-            console.error('Cannot load reservation', err)
-        } finally {
-            store.dispatch({ type: 'SET_LOADING', isLoading: false })
-        }
-    }, 1000)
+    
+    
+    try {
+        store.dispatch({ type: 'SET_LOADING', isLoading: true })
+        const reservations = await reservationService.query()
+        store.dispatch({ type: 'SET_RESERVATIONS', reservations })
+        store.dispatch({ type: 'SET_LOADING', isLoading: false })
+    } catch (err) {
+        console.error('Cannot load reservation', err)
+    } 
 }
 
 export async function loadReservation(reservationId) {
