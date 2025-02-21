@@ -79,7 +79,8 @@ export function AppHeader() {
 							</div>
 						</NavLink>
 					</section>
-					{location.pathname.length === 1 && !isScrolled ? <section>
+					{location.pathname.length === 1 && !isScrolled ? <section className='big-search'>
+						<h1>Homes</h1>
 						<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter} />
 					</section> :
 						<section className='small-container'>
@@ -87,9 +88,7 @@ export function AppHeader() {
 						</section>
 					}
 					<article className='btns-panel'>
-						<div className='globe'>
-							<img src="https://res.cloudinary.com/du312ufuo/image/upload/v1739702250/down-arrow_2_zz1obr.svg" alt="" />
-						</div>
+						
 						<button className='flex menu' onClick={onToggleModal}>
 							<div className='burger'>
 								<img src={burger} alt="" />

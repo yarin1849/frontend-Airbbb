@@ -12,7 +12,7 @@ export function DatePickerModal({ setFilterByToEdit, FilterByToEdit }) {
             return
         } else {
             setFilterByToEdit(prevFilter => ({ ...prevFilter, checkIn: formatDate(selected.from), checkOut: formatDate(selected.to) }))
-           
+
         }
     }
     function formatDate(date) {
@@ -24,7 +24,7 @@ export function DatePickerModal({ setFilterByToEdit, FilterByToEdit }) {
     }
     return (
         <div className="day-picker-modal">
-            <DayPicker captionLayout="label" dir="ltr" min={1} mode="range" showOutsideDays timeZone="Asia/Jerusalem" selected={selected}
+            <DayPicker captionLayout="label" dir="ltr" numberOfMonths={2} min={1} mode="range" showOutsideDays timeZone="Asia/Jerusalem" selected={selected}
                 onSelect={setSelected} />
             {/* <DayPicker captionLayout="label" dir="ltr" min={1} mode="range" showOutsideDays timeZone="Asia/Jerusalem" /> */}
         </div>

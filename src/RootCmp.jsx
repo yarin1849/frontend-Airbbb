@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router'
+import { ScrollToTop } from './cmps/ScrollToTop.jsx'
 
 import { HomePage } from './pages/HomePage'
 import { AboutUs, AboutTeam, AboutVision } from './pages/AboutUs'
@@ -27,6 +28,7 @@ export function RootCmp() {
         <div className="main-container">
             <AppHeader />
             <UserMsg />
+            <ScrollToTop />
 
             <main>
                 <Routes>
