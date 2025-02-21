@@ -18,6 +18,7 @@ import {
 } from '../store/actions/reservation.actions'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { Loading } from '../cmps/Loading'
 
 // 1) Formats two date strings (M/D/YYYY) into "20-25 May 2025"
 function formatDateRange(checkinStr, checkoutStr) {
@@ -56,11 +57,13 @@ function sortReservations(reservations) {
 
 export function Dashboard() {
   const reserves = useSelector((storeState) => storeState.reservationModule.reservations)
+  const isLoading = useSelector((storeState) => storeState.reservationModule.isLoading)
 
   useEffect(() => {
     loadReservations()
   }, [])
 
+  if (isLoading || !reserves) return <Loading />
   function onStatusChange(updateStatus, todoId) {
     const reserve = reserves.find((reserve) => reserve._id === todoId)
     if (!reserve) {
@@ -71,11 +74,10 @@ export function Dashboard() {
     updateReservation(updatedReserve)
   }
 
-  if (!reserves) return <div>Loading...</div>
 
   // Sort the reservations based on our criteria (pending first, then newest date)
   const sortedReserves = sortReservations(reserves)
-  
+
   return (
     <section className="dashboard">
       <div className="dashboard-header">Reservations</div>

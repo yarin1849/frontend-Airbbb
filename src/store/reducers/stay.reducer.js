@@ -4,10 +4,12 @@ export const REMOVE_STAY = 'REMOVE_STAY'
 export const ADD_STAY = 'ADD_STAY'
 export const UPDATE_STAY = 'UPDATE_STAY'
 export const ADD_STAY_MSG = 'ADD_STAY_MSG'
+export const SET_LOADING = 'SET_LOADING'
 
 const initialState = {
     stays: [],
     stay: null,
+    isLoading: false
 }
 
 export function stayReducer(state = initialState, action) {
@@ -36,6 +38,9 @@ export function stayReducer(state = initialState, action) {
             break
         case ADD_STAY_MSG:
             newState = { ...state, stay: { ...state.stay, msgs: [...state.stay.msgs || [], action.msg] } }
+            break
+        case SET_LOADING:
+            return { ...state, isLoading: action.isLoading }
             break
         default:
             return state

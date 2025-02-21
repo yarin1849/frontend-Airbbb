@@ -9,16 +9,19 @@ import { userService } from '../services/user'
 
 import { StayList } from '../cmps/StayList'
 import { StayFilter } from '../cmps/StayFilter'
+import { Loading } from '../cmps/Loading'
 
 export function StayIndex() {
 
-    // const [filterBy, setFilterBy] = useState(stayService.getDefaultFilter())
     const stays = useSelector(storeState => storeState.stayModule.stays)
+    const isLoading = useSelector(storeState => storeState.stayModule.isLoading)
 
-    // useEffect(() => {
-    //     loadStays(filterBy)
-    // }, [filterBy])
+    useEffect(() => {
+        loadStays()
+      }, [])
 
+    if (isLoading) return <Loading/>
+    
     async function onRemoveStay(stayId) {
         try {
             await removeStay(stayId)
@@ -52,7 +55,7 @@ export function StayIndex() {
         }
     }
 
-
+    
     return (
         <main className="stay-index">
             <header>

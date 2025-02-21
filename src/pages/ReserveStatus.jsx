@@ -48,8 +48,6 @@ export function ReserveStatus() {
         loadReservations()
     }, [])
 
-    // if (!isLoading) return <Loading />
-    // console.log(isLoading, reserves )
     if (isLoading || !reserves) return <Loading />
 
 

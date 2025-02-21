@@ -1,12 +1,14 @@
 import { stayService } from '../../services/stay'
 import { store } from '../store'
-import { ADD_STAY, REMOVE_STAY, SET_STAYS, SET_STAY, UPDATE_STAY, ADD_STAY_MSG } from '../reducers/stay.reducer'
+import { ADD_STAY, REMOVE_STAY, SET_STAYS, SET_STAY, UPDATE_STAY, ADD_STAY_MSG, SET_LOADING } from '../reducers/stay.reducer'
 
 export async function loadStays(filterBy) {
     try {
+        store.dispatch({ type: 'SET_LOADING', isLoading: true })
         const stays = await stayService.query(filterBy)
         // console.log('stays: ',stays)
         store.dispatch(getCmdSetStays(stays))
+        store.dispatch({ type: 'SET_LOADING', isLoading: false })
     } catch (err) {
         console.log('Cannot load stays', err)
         throw err

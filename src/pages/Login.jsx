@@ -3,22 +3,25 @@ import { useNavigate } from 'react-router'
 
 import { userService } from '../services/user'
 import { login } from '../store/actions/user.actions'
+import { Loading } from '../cmps/Loading'
 
 export function Login() {
     const [users, setUsers] = useState([])
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
 
-
     const navigate = useNavigate()
-
+    
     useEffect(() => {
         loadUsers()
     }, [])
-
+    
+    
     async function loadUsers() {
         const users = await userService.getUsers()
         setUsers(users)
     }
+    
+    // if (users.name === undefined) return <Loading />
 
     async function onLogin(ev = null) {
         if (ev) ev.preventDefault()

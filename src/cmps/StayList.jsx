@@ -23,6 +23,8 @@ export function StayList({ stays, onRemoveStay, onUpdateStay }) {
         const currentParams = searchParams.toString()
         navigate(`/details/${stayId}?${currentParams}`)
     }
+
+    
     return <section>
         <ul className="stay-list">
             {stays.map(stay =>
