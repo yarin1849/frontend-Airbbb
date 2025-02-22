@@ -94,32 +94,24 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
         setIsDatePickerOpen(true)
     }
 
-    // const handleDayClick = (day) => {
-    //     if (focusedField === 'checkin') {
-    //         const formattedCheckIn = day.toISOString().split('T')[0]
-    //         setCheckIn(formattedCheckIn)
-    //         setFocusedField('checkout')
-    //     } else if (focusedField === 'checkout') {
-    //         const formattedCheckOut = day.toISOString().split('T')[0]
-    //         setCheckOut(formattedCheckOut)
-    //         setIsDatePickerOpen(false)
-    //     }
-    // }
-
     const handleDayClick = (day) => {
         const formattedDate = day.toISOString().split("T")[0]
 
         if (!checkIn || (checkIn && checkOut)) {
             setCheckIn(formattedDate)
             setCheckOut(null)
+            setHoveredDate(null)
         } else if (!checkOut && day > new Date(checkIn)) {
             setCheckOut(formattedDate)
             setHoveredDate(null)
-            console.log('setIsDatePickerOpen(false)', setIsDatePickerOpen(false))
             setIsDatePickerOpen(false)
-
+        } else {
+            setCheckIn(formattedDate)
+            setCheckOut(null)
+            setHoveredDate(null)
         }
     }
+
 
     const handleDayHover = (day) => {
         if (checkIn && !checkOut && day > new Date(checkIn)) {
@@ -190,13 +182,19 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                         onDayClick={handleDayClick}
                         onDayMouseEnter={handleDayHover}
                         modifiers={{
-                            range: checkIn && hoveredDate
-                                ? { from: new Date(checkIn), to: new Date(hoveredDate) }
-                                : undefined,
+                            checkInDay: checkIn ? new Date(checkIn) : undefined,
+                            checkOutDay: checkOut ? new Date(checkOut) : undefined,
+                            inRange: checkIn && checkOut
+                                ? { from: new Date(checkIn), to: new Date(checkOut) } : checkIn
+                                    ? { from: new Date(checkIn), to: new Date(checkIn) } : undefined,
+                            hoveredRange: checkIn && hoveredDate
+                                ? { from: new Date(checkIn), to: new Date(hoveredDate) } : undefined,
                         }}
                         modifiersClassNames={{
-                            selected: "my-selected-day",
-                            range: "my-hovered-range",
+                            inRange: "my-hovered-range",
+                            hoveredRange: "my-hovered-range",
+                            checkInDay: "check-in-day",
+                            checkOutDay: "check-out-day",
                         }}
                     />
                     <div className="date-picker-footer">

@@ -22,7 +22,7 @@ export function StayBooking() {
 
     const stay = useSelector((storeState) => storeState.stayModule.stay)
     const user = useSelector((storeState) => storeState.userModule.user) || { fullName: "Guest", email: "No email" }
-    const {host, loc, name} = stay
+    const { host, loc, name } = stay    const {host, loc, name} = stay
     useEffect(() => {
         loadStay(stayId)
         // console.log('loadStay(stayId)', loadStay(stayId))
@@ -34,7 +34,7 @@ export function StayBooking() {
         // if (!stay || !user) return
 
         try {
-            const savedReservation = addReservation({checkin, checkout, guests, totalPrice, host, loc, name, user})
+            const savedReservation = addReservation({ checkin, checkout, guests, totalPrice, host, loc, name })
             console.log('savedReservation', savedReservation)
             alert(`Order Confirmed!`)
         } catch (err) {

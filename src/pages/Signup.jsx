@@ -37,6 +37,8 @@ export function Signup() {
     // console.log(credentials)
     return (
         <form className="signup-form" onSubmit={onSignup}>
+             <header className='auth-header divider'>Sign up</header>
+             <label htmlFor="fullname"><span className="astrix">*</span> Fullname</label>
             <input
                 type="text"
                 name="fullname"
@@ -45,6 +47,7 @@ export function Signup() {
                 onChange={handleChange}
                 required
             />
+            <label htmlFor="userName"><span className="astrix">*</span> Username</label>
             <input
                 type="text"
                 name="username"
@@ -53,6 +56,7 @@ export function Signup() {
                 onChange={handleChange}
                 required
             />
+            <label htmlFor="password"><span className="astrix">*</span> Password</label>
             <input
                 type="password"
                 name="password"
