@@ -114,7 +114,12 @@ export function SearchBar({ setFilter, filter }) {
 
                 </form>
                 {isOpenDate && <article className="date-modal">
-                    <DatePickerModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit}/>
+                    <DatePickerModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit}  modifiersClassNames={{
+                            inRange: "my-hovered-range",
+                            hoveredRange: "my-hovered-range",
+                            checkInDay: "check-in-day",
+                            checkOutDay: "check-out-day",
+                        }}/>
                 </article>}
                 {isOpenWhere && <article className="where-modal">
                     <WhereModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit} next={document.getElementById('checkIn')}/>
