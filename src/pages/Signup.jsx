@@ -28,13 +28,13 @@ export function Signup() {
         if (!credentials.username || !credentials.password || !credentials.fullname) return
         await signup(credentials)
         clearState()
-        navigate('/')
+        // navigate('/')
     }
 
     function onUploaded(imgUrl) {
         setCredentials({ ...credentials, imgUrl })
     }
-
+    // console.log(credentials)
     return (
         <form className="signup-form" onSubmit={onSignup}>
             <input

@@ -23,7 +23,7 @@ export function AppHeader() {
 	const [isScrolled, setIsScrolled] = useState(false)
 	const [isOpenMenu, setIsOpenMenu] = useState(false)
 	const location = useLocation()
-	console.log(isOpenMenu)
+	// console.log(isOpenMenu)
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 70) {
@@ -50,9 +50,10 @@ export function AppHeader() {
 		ev.preventDefault()
 		ev.stopPropagation()
 		setIsOpenMenu(prevIsOpenMenu => !prevIsOpenMenu)
-		console.log('ontoggle:', isOpenMenu)
+		// console.log('ontoggle:', isOpenMenu)
 	}
 	async function onLogout() {
+		console.log('hii')
 		try {
 			await logout()
 			navigate('/')
@@ -66,7 +67,7 @@ export function AppHeader() {
 		setFilter(filter)
 		loadStays(filter)
 	}
-	console.log(location.pathname)
+	// console.log(location.pathname)
 	return (
 		<>
 			<header className="app-header full main-container" onClick={() => setIsOpenMenu(false)}>
@@ -98,7 +99,7 @@ export function AppHeader() {
 							</div>
 						</button>
 					</article>
-					{isOpenMenu && <UserMenu />}
+					{isOpenMenu && <UserMenu onLogout={onLogout}/>}
 				</section>
 			</header>
 			{location.pathname.length === 1 && <StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />}

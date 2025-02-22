@@ -10,11 +10,12 @@ import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { loadReservations } from '../store/actions/reservation.actions'
 import { Loading } from '../cmps/Loading'
+import { loadUser } from '../store/actions/user.actions'
 
 // Date range helper
 function formatDateRange(checkinStr, checkoutStr) {
-    const [startMonth, startDay, startYear] = checkinStr.split('/')
-    const [endMonth, endDay, endYear] = checkoutStr.split('/')
+    const [startYear,startMonth, startDay] = checkinStr.split('-')
+    const [endYear,endMonth, endDay] = checkoutStr.split('-')
 
     const months = [
         'January', 'February', 'March', 'April', 'May', 'June',
@@ -41,8 +42,10 @@ function sortByPendingFirst(trips) {
 }
 
 export function ReserveStatus() {
-    const reserves = useSelector((storeState) => storeState.reservationModule.reservations)
+    let reserves = useSelector((storeState) => storeState.reservationModule.reservations)
     const isLoading = useSelector((storeState) => storeState.reservationModule.isLoading)
+    const user = useSelector((storeState) => storeState.userModule.user)
+    reserves = reserves.filter(reserve => reserve.user && String(reserve.user._id) === String(user._id))
 
     useEffect(() => {
         loadReservations()
@@ -57,6 +60,7 @@ export function ReserveStatus() {
     // Filter for "upcoming" if checkout date >= today
         const upcomingTrips = reserves.filter((row) => {
             const checkoutDate = parseDate(row.checkout)
+            console.log(checkoutDate)
             return checkoutDate >= today
         })
 
@@ -66,8 +70,8 @@ export function ReserveStatus() {
 
         // 2) Sort ALL trips so pending is at the top
         const sortedAll = sortByPendingFirst(reserves)
-    
-
+        
+        // reserves = reserves.filter((reserve => console.log(reserve.user._id)))
     return (
         <section className="reserve-status">
             <h1>Trips</h1>
@@ -79,11 +83,11 @@ export function ReserveStatus() {
                     <TableHead>
                         <TableRow>
                             <TableCell>Destination</TableCell>
-                            <TableCell align="right">Host</TableCell>
-                            <TableCell align="right">Dates</TableCell>
-                            <TableCell align="right">Booked</TableCell>
-                            <TableCell align="right">Total Price</TableCell>
-                            <TableCell align="right">Status</TableCell>
+                            <TableCell align="left">Host</TableCell>
+                            <TableCell align="left">Dates</TableCell>
+                            <TableCell align="left">Booked</TableCell>
+                            <TableCell align="left">Total Price</TableCell>
+                            <TableCell align="left">Status</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -94,13 +98,13 @@ export function ReserveStatus() {
                                     <TableCell component="th" scope="row">
                                         {row.location.address}
                                     </TableCell>
-                                    <TableCell align="right">{row.host?.name}</TableCell>
-                                    <TableCell align="right">
+                                    <TableCell align="left">{row.host?.name}</TableCell>
+                                    <TableCell align="left">
                                         {formatDateRange(row.checkin, row.checkout)}
                                     </TableCell>
-                                    <TableCell align="right">{row.user?.name}</TableCell>
-                                    <TableCell align="right">{row.price}</TableCell>
-                                    <TableCell align="right" className={statusClass}>
+                                    <TableCell align="left">{row.user?.name}</TableCell>
+                                    <TableCell align="left">{row.price}</TableCell>
+                                    <TableCell align="left" className={statusClass}>
                                         {row.status}
                                     </TableCell>
                                 </TableRow>
@@ -117,11 +121,11 @@ export function ReserveStatus() {
                     <TableHead>
                         <TableRow>
                             <TableCell>Destination</TableCell>
-                            <TableCell align="right">Host</TableCell>
-                            <TableCell align="right">Dates</TableCell>
-                            <TableCell align="right">Booked</TableCell>
-                            <TableCell align="right">Total Price</TableCell>
-                            <TableCell align="right">Status</TableCell>
+                            <TableCell align="left">Host</TableCell>
+                            <TableCell align="left">Dates</TableCell>
+                            <TableCell align="left">Booked</TableCell>
+                            <TableCell align="left">Total Price</TableCell>
+                            <TableCell align="left">Status</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -132,13 +136,13 @@ export function ReserveStatus() {
                                     <TableCell component="th" scope="row">
                                         {row.location.address}
                                     </TableCell>
-                                    <TableCell align="right">{row.host?.name}</TableCell>
-                                    <TableCell align="right">
+                                    <TableCell align="left">{row.host?.name}</TableCell>
+                                    <TableCell align="left">
                                         {formatDateRange(row.checkin, row.checkout)}
                                     </TableCell>
-                                    <TableCell align="right">{row.user?.name}</TableCell>
-                                    <TableCell align="right">{row.price}</TableCell>
-                                    <TableCell align="right" className={statusClass}>
+                                    <TableCell align="left">{row.user?.name}</TableCell>
+                                    <TableCell align="left">{row.price}</TableCell>
+                                    <TableCell align="left" className={statusClass}>
                                         {row.status}
                                     </TableCell>
                                 </TableRow>
