@@ -1,8 +1,9 @@
-.login-signup {
+.login-signup,
+.signup-form {
     display: flex;
     flex-direction: column;
     width: 566px;
-    height: 523px;
+    min-height: 523px;
     justify-self: center;
     color: $clr2;
 
@@ -13,11 +14,9 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
 
     .auth-header {
-        padding: 0 24px;
-        min-height: 64px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 4.5px 24px;
+        min-height: 44px;
+        // display: flex;
         text-align: center;
         font-weight: bold;
     }
@@ -32,31 +31,37 @@
         padding: rem(32px);
     }
 
-    form {
-        .astrix {
-            color: rgb(245, 108, 108)
-        }
+
+    label {
+        cursor: pointer;
+
+    }
+
+    .astrix {
+        color: rgb(245, 108, 108)
+    }
 
 
-        input {
-            width: 100%;
-            height: rem(32px);
-            font-size: rem(14px);
-            display: inline-flex;
-            flex-grow: 1;
-            align-items: center;
-            justify-content: center;
-            padding: 1px 11px;
-            border-radius: rem(4px);
-            border: 1px solid $gray2;
+    input {
+        width: 100%;
+        height: rem(32px);
+        font-size: rem(14px);
+        display: inline-flex;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: center;
+        padding: 1px 11px;
+        border-radius: rem(4px);
+        border: 1px solid $gray2;
 
-            &:focus-visible {
-                outline: $gray4;
-                outline-style: auto;
+        &:focus-visible {
+            outline: $gray4;
+            outline-style: auto;
 
-            }
         }
     }
+
+ 
 
     .or {
         align-self: center;
@@ -67,6 +72,7 @@
     button {
         min-height: 50px;
         border-radius: 8px;
+        margin-bottom: 15px;
     }
 
     .btn-login {
