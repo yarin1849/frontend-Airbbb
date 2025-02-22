@@ -26,7 +26,6 @@ export function DatePickerModal({ setFilterByToEdit, FilterByToEdit }) {
         <div className="day-picker-modal">
             <DayPicker captionLayout="label" dir="ltr" numberOfMonths={2} min={1} mode="range" showOutsideDays timeZone="Asia/Jerusalem" selected={selected}
                 onSelect={setSelected} />
-            {/* <DayPicker captionLayout="label" dir="ltr" min={1} mode="range" showOutsideDays timeZone="Asia/Jerusalem" /> */}
         </div>
 
     )
