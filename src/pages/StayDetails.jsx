@@ -58,7 +58,7 @@ export function StayDetails() {
               <ReserveModal stay={stay} checkin={checkin} checkout={checkout} guests={guests} />
             </div>
           </div>
-          <GoogleMap />
+          {/* <GoogleMap /> */}
         </div>
       )}
     </section>

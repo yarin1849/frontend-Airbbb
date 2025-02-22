@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { DatePickerModal } from "./DayPickerModal"
 import { DayPicker } from "react-day-picker"
 import "react-day-picker/style.css"
 
@@ -16,6 +15,15 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
     const [numGuests, setNumGuests] = useState(parsedGuests)
     const [gradient, setGradient] = useState("linear-gradient(90deg, #FF3366, #E61E6E)")
     const [isHovering, setIsHovering] = useState(false)
+    const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
+    const [focusedField, setFocusedField] = useState(null)
+    const [hoveredDate, setHoveredDate] = useState(null)
+
+    const formatDate = (date) => {
+        if (!date) return ""
+        const options = { year: 'numeric', month: 'short', day: 'numeric' }
+        return new Date(date).toLocaleDateString("en-us", options)
+    }
 
     useEffect(() => {
         const params = new URLSearchParams()
@@ -44,6 +52,28 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
         navigate(`/${stayId}/booking?${params.toString()}`)
     }
 
+    const handleDateSelect = (range) => {
+        if (!range?.from || !range?.to) {
+            console.log("Invalid range selected")
+            return
+        }
+
+        const formattedCheckIn = range.from.toISOString().split('T')[0]
+        const formattedCheckOut = range.to.toISOString().split('T')[0]
+
+
+        setCheckIn(formattedCheckIn)
+        setCheckOut(formattedCheckOut)
+        setIsDatePickerOpen(false)
+
+        const params = new URLSearchParams(searchParams)
+        params.set("checkin", formattedCheckIn)
+        params.set("checkout", formattedCheckOut)
+        setSearchParams(params)
+    }
+
+
+
     const handleMouseMove = (ev) => {
         if (!isHovering) setIsHovering(true)
 
@@ -59,6 +89,46 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
         setGradient("linear-gradient(90deg, #FF3366, #E61E6E)")
     }
 
+    const handleDatePickerClick = (field) => {
+        setFocusedField(field)
+        setIsDatePickerOpen(true)
+    }
+
+    // const handleDayClick = (day) => {
+    //     if (focusedField === 'checkin') {
+    //         const formattedCheckIn = day.toISOString().split('T')[0]
+    //         setCheckIn(formattedCheckIn)
+    //         setFocusedField('checkout')
+    //     } else if (focusedField === 'checkout') {
+    //         const formattedCheckOut = day.toISOString().split('T')[0]
+    //         setCheckOut(formattedCheckOut)
+    //         setIsDatePickerOpen(false)
+    //     }
+    // }
+
+    const handleDayClick = (day) => {
+        const formattedDate = day.toISOString().split("T")[0]
+
+        if (!checkIn || (checkIn && checkOut)) {
+            setCheckIn(formattedDate)
+            setCheckOut(null)
+        } else if (!checkOut && day > new Date(checkIn)) {
+            setCheckOut(formattedDate)
+            setHoveredDate(null)
+            console.log('setIsDatePickerOpen(false)', setIsDatePickerOpen(false))
+            setIsDatePickerOpen(false)
+
+        }
+    }
+
+    const handleDayHover = (day) => {
+        if (checkIn && !checkOut && day > new Date(checkIn)) {
+            setHoveredDate(day)
+        } else {
+            setHoveredDate(null)
+        }
+    }
+
     return (
         <div className="reserve-modal">
             <div className="price-per-night">
@@ -67,11 +137,11 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
             </div>
             <div className="modal-info-selector">
                 <div className="date-selector">
-                    <div>
+                    <div onClick={() => handleDatePickerClick('checkin')}>
                         <label>CHECK-IN</label>
                         <input type="date" value={checkIn} onChange={(ev) => setCheckIn(ev.target.value)} />
                     </div>
-                    <div>
+                    <div onClick={() => handleDatePickerClick('checkout')}>
                         <label>CHECKOUT</label>
                         <input type="date" value={checkOut} onChange={(ev) => setCheckOut(ev.target.value)} />
                     </div>
@@ -89,6 +159,57 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                 </div>
             </div>
 
+            {isDatePickerOpen && (
+                <div className="date-picker-modal-reserve">
+                    <div className="date-picker-header">
+                        <div className="date-picker-vacation-time">
+                            <span>{nights} nights</span>
+                            <span>{formatDate(checkIn)} - {formatDate(checkOut)}</span>
+                        </div>
+                        <div className="date-inputs">
+                            <div className="date-input">
+                                <label>CHECK-IN</label>
+                                <span>{checkIn || "Select date"}</span>
+                            </div>
+                            <div className="date-input">
+                                <label>CHECKOUT</label>
+                                <span>{checkOut || "Select date"}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <DayPicker
+                        captionLayout="label"
+                        numberOfMonths={2}
+                        dir="ltr"
+                        mode="single"
+                        showOutsideDays
+                        timeZone="Asia/Jerusalem"
+                        pagedNavigation
+                        fixedWeeks
+                        selected={checkIn ? new Date(checkIn) : undefined}
+                        onDayClick={handleDayClick}
+                        onDayMouseEnter={handleDayHover}
+                        modifiers={{
+                            range: checkIn && hoveredDate
+                                ? { from: new Date(checkIn), to: new Date(hoveredDate) }
+                                : undefined,
+                        }}
+                        modifiersClassNames={{
+                            selected: "my-selected-day",
+                            range: "my-hovered-range",
+                        }}
+                    />
+                    <div className="date-picker-footer">
+                        <button className="date-picker-clear-dates" onClick={() => handleDateSelect({ from: null, to: null })}>
+                            Clear dates
+                        </button>
+                        <button className="date-picker-close-button" onClick={() => setIsDatePickerOpen(false)}>
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <button
                 onClick={handleReserve}
                 className="reserve-button"
@@ -98,8 +219,6 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                 Reserve
             </button>
 
-
-
             <p className="disclaimer">You won’t be charged yet</p>
             <div className="pricing-calculate">
                 <div><span className="nightly-rate-calc">${nightlyRate} x {nights} nights</span><span> ${nightlyRate * nights}</span></div>
@@ -107,9 +226,6 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                 <hr />
                 <div className="total"><span>Total</span>
                     <span>${totalPrice}</span></div>
-            </div>
-            <div className="date-picker-modal">
-                {/* <DayPicker captionLayout="label" dir="ltr" min={1} mode="range" showOutsideDays timeZone="Asia/Jerusalem" /> */}
             </div>
         </div>
     )

@@ -71,6 +71,12 @@
                 width: 100%;
                 cursor: pointer;
                 padding: 3px;
+                text-align: left;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-weight: 500;
+            }
+            input::-webkit-calendar-picker-indicator{
+                display: none;
             }
             
             input:focus {
@@ -160,4 +166,130 @@
             font-weight :500;
         }
     }
+
+    
+}
+
+.date-picker-modal-reserve {
+    background: rgb(255, 255, 255) !important;
+    border-radius: 16px !important;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px !important;
+    display: inline-block !important;
+    padding: 24px 32px 16px !important;
+    position: absolute !important;
+    top: 80px !important;
+    right: -8px !important;
+    width: 661px !important;
+    z-index: 1 !important;
+    min-height: 440px !important;
+    // height: 470px;
+
+    .rdp-root {
+        --rdp-accent-color: #222222;
+        --rdp-accent-background-color: #f7f7f7;
+        --rdp-disabled-opacity: 0.9;
+        --rdp-outside-opacity: 0;
+        background: transparent !important;
+    }
+
+    .rdp-day:hover {
+        border-radius: 50% !important;
+        outline: 2px solid black;
+        cursor: pointer;
+    }
+    
+    .my-selected-day {
+        background-color: black !important;
+        color: white !important;
+        border-radius: 50% !important;
+    }
+    
+    .my-hovered-range {
+        background-color: #f7f7f7 !important;
+        border-radius: 0 !important;
+    }
+    
+    
+    
+    
+}
+
+.date-picker-header{
+    // display: inline-block;
+        display: flex;
+        justify-content: space-between;
+        .date-picker-vacation-time{
+            display: flex;
+            flex-direction: column;
+        }
+
+    .date-inputs {
+        display: flex;
+        padding-bottom: 10px;
+    }
+}
+
+.date-input {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 10px 10px 10px 10px;
+    // padding: 10px 10px 10px 10px;
+    border-radius: 8px;
+    min-width: 158px;
+}
+
+.date-input label {
+    font-size: 10px;
+    font-weight: bold;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.date-input span {
+    font-size: 14px;
+    color: #222;
+    font-weight: bold;
+}
+
+
+.rdp-months {
+    display: flex !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+}
+
+.date-picker-footer {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.date-picker-clear-dates {
+    background: none;
+    border: none;
+    color: #222222;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.date-picker-clear-dates:hover {
+    color: black;
+}
+
+.date-picker-close-button {
+    padding: 10px 16px;
+    background: #222222;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.date-picker-close-button:hover {
+    background: black;
 }
