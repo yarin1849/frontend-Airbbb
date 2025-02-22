@@ -22,9 +22,10 @@ export function StayBooking() {
 
     const stay = useSelector((storeState) => storeState.stayModule.stay)
     const user = useSelector((storeState) => storeState.userModule.user) || { fullName: "Guest", email: "No email" }
-
+    const { host, loc, name } = stay
     useEffect(() => {
         loadStay(stayId)
+        // console.log('loadStay(stayId)', loadStay(stayId))
     }, [stayId])
 
     if (!stay) return <Loading />
@@ -33,7 +34,7 @@ export function StayBooking() {
         // if (!stay || !user) return
 
         try {
-            const savedReservation = addReservation({ checkin, checkout, guests, totalPrice, host, loc, name })
+            const savedReservation = addReservation({ checkin, checkout, guests, totalPrice, host, loc, name, user })
             console.log('savedReservation', savedReservation)
             alert(`Order Confirmed!`)
         } catch (err) {
@@ -83,6 +84,7 @@ export function StayBooking() {
                 <div className="booking-header">
                     <button className="back-to-details-btn" onClick={() => { navigate(`/details/${stayId}`) }}>
                         <ChevronLeft size={20} />
+                        {/* לשנות את זה ל-a */}
                     </button>
                     <div className="booking-main-title">
                         <h1>Confirm and Pay</h1>
@@ -126,7 +128,7 @@ export function StayBooking() {
             <div className="booking-stay-details">
                 <StayBookingModal stay={stay} />
             </div>
-        </div>
+        </div >
     )
 }
 
