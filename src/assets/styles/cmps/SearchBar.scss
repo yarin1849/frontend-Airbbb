@@ -12,6 +12,9 @@
         border: 1px solid $gray3;
         border-radius: 3rem;
 
+        &.focused-search {
+            background-color: $gray3;
+        }
 
 
 
@@ -21,6 +24,22 @@
             width: 140.5px;
             border-radius: 2rem;
             align-items: center;
+
+            &.input-focused {
+                background-color: $gray1;
+                box-shadow: rgba(0, 0, 0, 0.12) 1px 2px 16px;
+
+                &::after {
+                    display: none;
+                }
+
+                &:has(+:not(:focus-within))::after {
+                    display: none;
+                }
+                &:hover{
+                    background-color: $gray1;
+                }
+            }
 
             &:focus-within .input-container:not(:focus-within) {
                 background-color: $gray1;
