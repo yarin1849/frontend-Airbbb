@@ -97,7 +97,8 @@ export function ReserveStatus() {
                                         {row.location.city}, {row.location.country}
                                     </TableCell>
                                     <TableCell align="left" className="user-cell">
-                                        <img src={row.host?.img} className="user-img" />{row.host?.name}</TableCell>
+                                        <img src={row.host?.img} className="user-img" />{row.host?.name}
+                                        </TableCell>
                                     <TableCell align="left">
                                         {formatDateRange(row.checkin, row.checkout)}
                                     </TableCell>
