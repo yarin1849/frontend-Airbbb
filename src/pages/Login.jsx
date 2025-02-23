@@ -27,7 +27,7 @@ export function Login() {
         if (ev) ev.preventDefault()
         if (!credentials.username) return
         await login(credentials)
-        // navigate('/')
+         navigate('/')
     }
 
     function handleChange(ev) {
@@ -80,7 +80,7 @@ export function Login() {
 
                 <div className='or'>Or</div>
                 <button className='btn-login signup-btn'>Demo User</button>
-                <button className='btn-login signup-btn'>Sign Up</button>
+                <button className='btn-login signup-btn' onClick={navigate('/signup')}>Sign Up</button>
             </div>
         </div>
 
