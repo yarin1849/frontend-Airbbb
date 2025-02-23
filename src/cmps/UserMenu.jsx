@@ -10,9 +10,9 @@ export function UserMenu({ onLogout, user }) {
             {user && <article className="link" >
                 <NavLink to="/reserve-status">Trips</NavLink>
             </article>}
-            <article className="link">
+            {/* {user && {user.host === true && <article className="link">
                 <NavLink to="/dashboard">Dashboard</NavLink>
-            </article >
+            </article > }} */}
             {user && <article className="link">
                 <NavLink to="/login" className='login' onClick={onLogout}>Log out</NavLink>
             </article >}
