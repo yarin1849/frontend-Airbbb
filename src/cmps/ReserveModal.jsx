@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { DayPicker } from "react-day-picker"
+import { GuestsModal } from '../cmps/GuestsModal'
 import "react-day-picker/style.css"
 
 export function ReserveModal({ stay, checkin, checkout, guests }) {
@@ -18,6 +19,7 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
     const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
     const [focusedField, setFocusedField] = useState(null)
     const [hoveredDate, setHoveredDate] = useState(null)
+
 
     const formatDate = (date) => {
         if (!date) return ""
@@ -139,6 +141,20 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                     </div>
                 </div>
 
+                {/* <div className="guest-selector" onClick={() => setIsGuestsModalOpen(true)}>
+                    <label>GUESTS</label>
+                    <span>{numGuests} guest{numGuests > 1 ? "s" : ""}</span>
+                </div>
+                {isGuestsModalOpen && (
+                    <GuestsModal
+                        numGuests={numGuests}
+                        onClose={() => setIsGuestsModalOpen(false)}
+                        onConfirm={(newGuests) => {
+                            setNumGuests(newGuests)
+                            setIsGuestsModalOpen(false)
+                        }}
+                    />
+                )} */}
                 <div className="guest-selector">
                     <label>GUESTS</label>
                     <select value={numGuests} onChange={(ev) => setNumGuests(Number(ev.target.value))}>
@@ -151,62 +167,64 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                 </div>
             </div>
 
-            {isDatePickerOpen && (
-                <div className="date-picker-modal-reserve">
-                    <div className="date-picker-header">
-                        <div className="date-picker-vacation-time">
-                            <span>{nights} nights</span>
-                            <span>{formatDate(checkIn)} - {formatDate(checkOut)}</span>
+            {
+                isDatePickerOpen && (
+                    <div className="date-picker-modal-reserve">
+                        <div className="date-picker-header">
+                            <div className="date-picker-vacation-time">
+                                <span>{nights} nights</span>
+                                <span>{formatDate(checkIn)} - {formatDate(checkOut)}</span>
+                            </div>
+                            <div className="date-inputs">
+                                <div className="date-input">
+                                    <label>CHECK-IN</label>
+                                    <span>{checkIn || "Select date"}</span>
+                                </div>
+                                <div className="date-input">
+                                    <label>CHECKOUT</label>
+                                    <span>{checkOut || "Select date"}</span>
+                                </div>
+                            </div>
                         </div>
-                        <div className="date-inputs">
-                            <div className="date-input">
-                                <label>CHECK-IN</label>
-                                <span>{checkIn || "Select date"}</span>
-                            </div>
-                            <div className="date-input">
-                                <label>CHECKOUT</label>
-                                <span>{checkOut || "Select date"}</span>
-                            </div>
+                        <DayPicker
+                            captionLayout="label"
+                            numberOfMonths={2}
+                            dir="ltr"
+                            mode="single"
+                            showOutsideDays
+                            timeZone="Asia/Jerusalem"
+                            pagedNavigation
+                            fixedWeeks
+                            selected={checkIn ? new Date(checkIn) : undefined}
+                            onDayClick={handleDayClick}
+                            onDayMouseEnter={handleDayHover}
+                            modifiers={{
+                                checkInDay: checkIn ? new Date(checkIn) : undefined,
+                                checkOutDay: checkOut ? new Date(checkOut) : undefined,
+                                inRange: checkIn && checkOut
+                                    ? { from: new Date(checkIn), to: new Date(checkOut) } : checkIn
+                                        ? { from: new Date(checkIn), to: new Date(checkIn) } : undefined,
+                                hoveredRange: checkIn && hoveredDate
+                                    ? { from: new Date(checkIn), to: new Date(hoveredDate) } : undefined,
+                            }}
+                            modifiersClassNames={{
+                                inRange: "my-hovered-range",
+                                hoveredRange: "my-hovered-range",
+                                checkInDay: "check-in-day",
+                                checkOutDay: "check-out-day",
+                            }}
+                        />
+                        <div className="date-picker-footer">
+                            <button className="date-picker-clear-dates" onClick={() => handleDateSelect({ from: null, to: null })}>
+                                Clear dates
+                            </button>
+                            <button className="date-picker-close-button" onClick={() => setIsDatePickerOpen(false)}>
+                                Close
+                            </button>
                         </div>
                     </div>
-                    <DayPicker
-                        captionLayout="label"
-                        numberOfMonths={2}
-                        dir="ltr"
-                        mode="single"
-                        showOutsideDays
-                        timeZone="Asia/Jerusalem"
-                        pagedNavigation
-                        fixedWeeks
-                        selected={checkIn ? new Date(checkIn) : undefined}
-                        onDayClick={handleDayClick}
-                        onDayMouseEnter={handleDayHover}
-                        modifiers={{
-                            checkInDay: checkIn ? new Date(checkIn) : undefined,
-                            checkOutDay: checkOut ? new Date(checkOut) : undefined,
-                            inRange: checkIn && checkOut
-                                ? { from: new Date(checkIn), to: new Date(checkOut) } : checkIn
-                                    ? { from: new Date(checkIn), to: new Date(checkIn) } : undefined,
-                            hoveredRange: checkIn && hoveredDate
-                                ? { from: new Date(checkIn), to: new Date(hoveredDate) } : undefined,
-                        }}
-                        modifiersClassNames={{
-                            inRange: "my-hovered-range",
-                            hoveredRange: "my-hovered-range",
-                            checkInDay: "check-in-day",
-                            checkOutDay: "check-out-day",
-                        }}
-                    />
-                    <div className="date-picker-footer">
-                        <button className="date-picker-clear-dates" onClick={() => handleDateSelect({ from: null, to: null })}>
-                            Clear dates
-                        </button>
-                        <button className="date-picker-close-button" onClick={() => setIsDatePickerOpen(false)}>
-                            Close
-                        </button>
-                    </div>
-                </div>
-            )}
+                )
+            }
 
             <button
                 onClick={handleReserve}
@@ -225,6 +243,6 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                 <div className="total"><span>Total</span>
                     <span>${totalPrice}</span></div>
             </div>
-        </div>
+        </div >
     )
 }

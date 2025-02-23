@@ -22,11 +22,9 @@ export function StayDetails() {
   const stay = useSelector(storeState => storeState.stayModule.stay)
   const reviews = useSelector(storeState => storeState.reviewModule.review)
 
-  // Get check-in & check-out from query params
   const checkin = searchParams.get('checkin')
   const checkout = searchParams.get('checkout')
 
-  // Convert query params to Date objects
   const [selectedRange, setSelectedRange] = useState({
     from: checkin ? new Date(checkin) : undefined,
     to: checkout ? new Date(checkout) : undefined,
@@ -36,7 +34,6 @@ export function StayDetails() {
     loadStay(stayId)
   }, [stayId])
 
-  // 🔹 **Auto-Update `DayPicker` When Query Params Change**
   useEffect(() => {
     setSelectedRange({
       from: checkin ? new Date(checkin) : undefined,
@@ -44,7 +41,6 @@ export function StayDetails() {
     })
   }, [checkin, checkout])
 
-  // Function to update query params when selecting new dates
   const handleDateSelect = (range) => {
     if (!range?.from || !range?.to) return
 
@@ -97,6 +93,7 @@ export function StayDetails() {
                   modifiersClassNames={{
                     selectedRange: "my-hovered-range",
                   }}
+
                 />
               </div>
             </div>
