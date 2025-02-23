@@ -21,7 +21,7 @@ export function Login() {
         setUsers(users)
     }
 
-    // if (users.name === undefined) return <Loading />
+
 
     async function onLogin(ev = null) {
         if (ev) ev.preventDefault()
@@ -33,7 +33,7 @@ export function Login() {
     function handleChange(ev) {
         const field = ev.target.name
         const value = ev.target.value
-        // console.log('cred',credentials)
+     
         console.log('field',field)
         console.log('value',value)
         setCredentials({ ...credentials, [field]: value })

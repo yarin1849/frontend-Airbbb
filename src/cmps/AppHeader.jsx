@@ -23,7 +23,7 @@ export function AppHeader() {
 	const [isScrolled, setIsScrolled] = useState(false)
 	const [isOpenMenu, setIsOpenMenu] = useState(false)
 	const location = useLocation()
-	// console.log(isOpenMenu)
+	
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 70) {
@@ -50,7 +50,7 @@ export function AppHeader() {
 		ev.preventDefault()
 		ev.stopPropagation()
 		setIsOpenMenu(prevIsOpenMenu => !prevIsOpenMenu)
-		// console.log('ontoggle:', isOpenMenu)
+	
 	}
 	async function onLogout() {
 		console.log('hii')
