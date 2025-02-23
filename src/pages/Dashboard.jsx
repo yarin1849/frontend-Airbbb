@@ -42,15 +42,18 @@ function parseDate(dateStr) {
 
 // 3) Sort helper: Pending first, then by checkout date descending (newest first)
 function sortReservations(reservations) {
-  return [...reservations].sort((a, b) => {
-    // Pending first
-    if (a.status === 'pending' && b.status !== 'pending') return -1
-    if (b.status === 'pending' && a.status !== 'pending') return 1
+  console.log("Before sorting:", reservations)
 
-    // Otherwise, sort by checkout date descending
-    const dateA = parseDate(a.checkout)
-    const dateB = parseDate(b.checkout)
-    // For descending order, subtract dateA from dateB
+  return [...reservations].sort((a, b) => {
+    // Prioritize "pending" reservations
+    if (a.status === "pending" && b.status !== "pending") return -1
+    if (b.status === "pending" && a.status !== "pending") return 1
+
+    // Convert checkout strings to Date objects
+    const dateA = new Date(a.checkout)
+    const dateB = new Date(b.checkout)
+
+    // Sort by checkout date descending (newest first)
     return dateB - dateA
   })
 }
@@ -59,8 +62,6 @@ export function Dashboard() {
   let reserves = useSelector((storeState) => storeState.reservationModule.reservations)
   const isLoading = useSelector((storeState) => storeState.reservationModule.isLoading)
   const user = useSelector((storeState) => storeState.userModule.user)
-  console.log(reserves)
-  console.log(user)
 
   reserves = reserves.filter(reserve => reserve.host && String(reserve.host._id) === String(user._id))
   useEffect(() => {
@@ -68,6 +69,7 @@ export function Dashboard() {
   }, [])
 
   if (isLoading || !reserves) return <Loading />
+
   function onStatusChange(updateStatus, todoId) {
     const reserve = reserves.find((reserve) => reserve._id === todoId)
     if (!reserve) {
@@ -117,7 +119,7 @@ export function Dashboard() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {reserves.map((reserve) => (
+            {sortedReserves.map((reserve) => (
               <TableRow key={reserve._id} sx={{ height: "70px" }}>
                 
                 {/* Guest Info */}

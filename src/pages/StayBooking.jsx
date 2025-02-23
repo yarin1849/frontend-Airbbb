@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { addReservation } from "../store/actions/reservation.actions"
 import { loadStay } from "../store/actions/stay.actions"
 import { Loading } from "../cmps/Loading"
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+// import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function StayBooking() {
     const [gradient, setGradient] = useState("linear-gradient(90deg, #FF3366, #E61E6E)")
@@ -32,15 +33,14 @@ export function StayBooking() {
     const handleConfirmBooking = async () => {
         if (!stay) return
         if (!user) return
-        navigate('/reserve-status')
         try {
-            const savedReservation = addReservation({ checkin, checkout, guests, totalPrice, host, loc, name, user })
-            console.log('savedReservation', savedReservation)
+            const savedReservation = await addReservation({ checkin, checkout, guests, totalPrice, host, loc, name, user })
             showSuccessMsg(`your reservation has been sent`)
+            navigate('/reserve-status')
         } catch (err) {
             console.error("Failed to save reservation:", err)
             showErrorMsg("Something went wrong. Please try again.")
-        }
+        } 
     }
 
     const handleMouseMove = (ev) => {
