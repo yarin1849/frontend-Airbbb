@@ -12,6 +12,9 @@
         border: 1px solid $gray3;
         border-radius: 3rem;
 
+        &.focused-search {
+            background-color: $gray3;
+        }
 
 
 
@@ -21,6 +24,22 @@
             width: 140.5px;
             border-radius: 2rem;
             align-items: center;
+
+            &.input-focused {
+                background-color: $gray1;
+                box-shadow: rgba(0, 0, 0, 0.12) 1px 2px 16px;
+
+                &::after {
+                    display: none;
+                }
+
+                &:has(+:not(:focus-within))::after {
+                    display: none;
+                }
+                &:hover{
+                    background-color: $gray1;
+                }
+            }
 
             &:focus-within .input-container:not(:focus-within) {
                 background-color: $gray1;
@@ -147,19 +166,42 @@
         margin-left: 70px;
         border-radius: 10px;
         box-shadow: rgba(0, 0, 0, 0.12) 1px 2px 16px;
+
+        .rdp-root {
+            --rdp-accent-color: #222222;
+            --rdp-accent-background-color: #f7f7f7;
+            --rdp-disabled-opacity: 0.9;
+            --rdp-outside-opacity: 0;
+            background: transparent !important;
+            border-radius: 16px !important;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px !important;
+            display: inline-block !important;
+            padding: 24px 32px 16px !important;
+
+            .rdp-day:hover {
+                border-radius: 50% !important;
+                outline: 2px solid black;
+                cursor: pointer;
+            }
+
+            .rdp-focused {
+                border-radius: 50%;
+                background-color: $gray4;
+                color: $gray1;
+            }
+
+            .rdp-range_start,
+            .rdp-range_end {
+                background: none;
+                background-color: $gray4;
+                border-radius: 50%;
+            }
+
+        }
+
+
     }
 
-    .rdp-root {
-        --rdp-accent-color: #222222;
-        --rdp-accent-background-color: #f7f7f7;
-        --rdp-disabled-opacity: 0.9;
-        --rdp-outside-opacity: 0;
-        background: rgb(255, 255, 255) !important;
-        border-radius: 16px !important;
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px !important;
-        display: inline-block !important;
-        padding: 24px 32px 16px !important;
-    }
 
     .where-modal {
         position: fixed;
@@ -183,13 +225,13 @@
             img {
                 width: 50px;
                 aspect-ratio: 1/1;
-                
+
                 padding: 5px;
                 border-radius: 7px;
 
             }
-            
-           
+
+
             span {
                 color: $gray5;
                 font-size: 0.8rem;

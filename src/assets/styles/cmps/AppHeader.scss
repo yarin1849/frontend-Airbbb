@@ -67,6 +67,10 @@
 
                 .avatar {
                     width: 1.9rem;
+                    img{
+                        border-radius: 50%;
+                        aspect-ratio: 1/1;
+                    }
                 }
 
                 &:hover {

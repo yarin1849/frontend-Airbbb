@@ -31,8 +31,8 @@ export function StayBooking() {
     if (!stay) return <Loading />
     const handleConfirmBooking = async () => {
         if (!stay) return
-        // if (!stay || !user) return
-
+        if (!user) return
+        navigate('/reserve-status')
         try {
             const savedReservation = addReservation({ checkin, checkout, guests, totalPrice, host, loc, name, user })
             console.log('savedReservation', savedReservation)

@@ -11,7 +11,8 @@ export function SearchBar({ setFilter, filter }) {
     const [isOpenDate, setIsOpenDate] = useState(false)
     const [isOpenGuests, setIsOpenGuests] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
-    
+    const [focused, setFocused] = useState(false)
+
     function onHandleChange({ target }) {
         const field = target.name
         const value = target.value
@@ -63,24 +64,25 @@ export function SearchBar({ setFilter, filter }) {
                 setIsOpenDate(false)
                 setIsOpenWhere(false)
                 setIsOpenGuests(false)
+                setFocused(false)
                 break
         }
     }
-   
+
     // console.log(filterByToEdit)
     return (
-        <section className='search-bar-container'>
-            <form action="" className="flex search-bar" onSubmit={onSubmit}>
+        <section className={`search-bar-container ${focused ? 'focused-search': ''}`}>
+            <form action="" className={`search-bar flex ${focused ? 'focused-search': ''}`} onSubmit={onSubmit}>
 
-                <div className='input-container flex'>
+                <div className={`input-container flex ${isOpenWhere ? 'input-focused' : ''}`} >
 
                     <label htmlFor="where">
                         <div>Where</div>
-                        <input type="search" id="where" placeholder="Search destination" name='where' autoComplete="off" value={filterByToEdit.where} onChange={onHandleChange} onFocus={() => { onCloseModal('where'); onOpenModal('where') }} />
+                        <input type="search" id="where" placeholder="Search destination" name='where' autoComplete="off" value={filterByToEdit.where} onChange={onHandleChange} onFocus={() => { onCloseModal('where'); onOpenModal('where'); setFocused(true) }} />
                     </label>
 
                 </div>
-                <div className='input-container flex'>
+                <div className={`input-container flex ${isOpenDate ? 'input-focused' : ''}`}>
                     <label htmlFor="checkIn" >
                         <div>Check in</div>
                         <input type="text" id="checkIn" placeholder="Add dates" name='checkIn' autoComplete="off" value={filterByToEdit.checkIn} onChange={onHandleChange} onFocus={() => { onOpenModal('date'); onCloseModal('date') }} />
@@ -94,11 +96,11 @@ export function SearchBar({ setFilter, filter }) {
                     </label>
 
                 </div>
-                <div className='input-container flex'>
+                <div className={`input-container flex ${isOpenGuests? 'input-focused': ''}`}>
                     <label htmlFor="guests">
                         <div>Who</div>
                         {/* <input type="text" id="who" placeholder="Add guests" name='who' value={filterByToEdit.guests} onChange={onHandleChange}/> */}
-                            <input type="text" id="guests" placeholder="Add guests" name='guests' autoComplete="off" value={filterByToEdit.guests.sum ?`${filterByToEdit.guests.sum} guests`: ''} onChange={onHandleChange} onFocus={() => { { onOpenModal('guests'); onCloseModal('guests') } }} />
+                        <input type="text" id="guests" placeholder="Add guests" name='guests' autoComplete="off" value={filterByToEdit.guests.sum ? `${filterByToEdit.guests.sum} guests` : ''} onChange={onHandleChange} onFocus={() => { { onOpenModal('guests'); onCloseModal('guests') } }} />
                     </label>
                     <div className="btn-container">
                         <button>
@@ -112,16 +114,21 @@ export function SearchBar({ setFilter, filter }) {
                     </div>
                 </div>
 
-                </form>
-                {isOpenDate && <article className="date-modal">
-                    <DatePickerModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit}/>
-                </article>}
-                {isOpenWhere && <article className="where-modal">
-                    <WhereModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit} next={document.getElementById('checkIn')}/>
-                </article>}
-                {isOpenGuests && <article className="where-modal">
-                <GuestsModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit}/>
-                </article>}
-            </section>
-        )
-    }
+            </form>
+            {isOpenDate && <article className="date-modal">
+                <DatePickerModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit} modifiersClassNames={{
+                    inRange: "my-hovered-range",
+                    hoveredRange: "my-hovered-range",
+                    checkInDay: "check-in-day",
+                    checkOutDay: "check-out-day",
+                }} />
+            </article>}
+            {isOpenWhere && <article className="where-modal">
+                <WhereModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit} next={document.getElementById('checkIn')} />
+            </article>}
+            {isOpenGuests && <article className="where-modal">
+                <GuestsModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit} />
+            </article>}
+        </section>
+    )
+}

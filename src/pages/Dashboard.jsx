@@ -22,8 +22,8 @@ import { Loading } from '../cmps/Loading'
 
 // 1) Formats two date strings (M/D/YYYY) into "20-25 May 2025"
 function formatDateRange(checkinStr, checkoutStr) {
-  const [startMonth, startDay, startYear] = checkinStr.split('/')
-  const [endMonth, endDay, endYear] = checkoutStr.split('/')
+  const [startYear,startMonth, startDay] = checkinStr.split('-')
+  const [endYear,endMonth, endDay] = checkoutStr.split('-')
 
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -36,7 +36,7 @@ function formatDateRange(checkinStr, checkoutStr) {
 
 // 2) Parse "M/D/YYYY" => JavaScript Date object
 function parseDate(dateStr) {
-  const [month, day, year] = dateStr.split('/')
+  const [year,month, day] = dateStr.split('-')
   return new Date(Number(year), Number(month) - 1, Number(day))
 }
 
@@ -56,9 +56,13 @@ function sortReservations(reservations) {
 }
 
 export function Dashboard() {
-  const reserves = useSelector((storeState) => storeState.reservationModule.reservations)
+  let reserves = useSelector((storeState) => storeState.reservationModule.reservations)
   const isLoading = useSelector((storeState) => storeState.reservationModule.isLoading)
+  const user = useSelector((storeState) => storeState.userModule.user)
+  console.log(reserves)
+  console.log(user)
 
+  // reserves = reserves.filter(reserve => reserve.host && String(reserve.host._id) === String(user._id))
   useEffect(() => {
     loadReservations()
   }, [])
