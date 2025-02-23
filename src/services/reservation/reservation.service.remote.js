@@ -29,11 +29,14 @@ async function save(reservation) {
                     name: name,
                     host: {
                         _id: host._id,
-                        name: host.fullname
+                        name: host.fullname,
+                        img: host.thumbnailUrl
+
                     },
                     user: {
                         _id: user._id,
-                        name: user.fullname
+                        name: user.fullname,
+                        img: user.imgUrl
                     },
                     price: totalPrice,
                     status: "pending",

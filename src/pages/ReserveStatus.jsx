@@ -14,8 +14,8 @@ import { loadUser } from '../store/actions/user.actions'
 
 // Date range helper
 function formatDateRange(checkinStr, checkoutStr) {
-    const [startYear,startMonth, startDay] = checkinStr.split('-')
-    const [endYear,endMonth, endDay] = checkoutStr.split('-')
+    const [startYear, startMonth, startDay] = checkinStr.split('-')
+    const [endYear, endMonth, endDay] = checkoutStr.split('-')
 
     const months = [
         'January', 'February', 'March', 'April', 'May', 'June',
@@ -28,7 +28,7 @@ function formatDateRange(checkinStr, checkoutStr) {
 
 // Parse "M/D/YYYY" -> JavaScript Date
 function parseDate(dateStr) {
-    const [month, day, year] = dateStr.split('/')
+    const [year, month, day] = dateStr.split('-')
     return new Date(+year, +month - 1, +day)
 }
 
@@ -46,7 +46,7 @@ export function ReserveStatus() {
     const isLoading = useSelector((storeState) => storeState.reservationModule.isLoading)
     const user = useSelector((storeState) => storeState.userModule.user)
     reserves = reserves.filter(reserve => reserve.user && String(reserve.user._id) === String(user._id))
-
+    
     useEffect(() => {
         loadReservations()
     }, [])
@@ -58,20 +58,18 @@ export function ReserveStatus() {
     const today = new Date()
 
     // Filter for "upcoming" if checkout date >= today
-        const upcomingTrips = reserves.filter((row) => {
-            const checkoutDate = parseDate(row.checkout)
-            console.log(checkoutDate)
-            return checkoutDate >= today
-        })
+    const upcomingTrips = reserves.filter((row) => {
+        const checkoutDate = parseDate(row.checkout)
+        return checkoutDate >= today
+    })
 
 
-        // 1) Sort upcoming trips so pending is at the top
-        const sortedUpcoming = sortByPendingFirst(upcomingTrips)
+    // 1) Sort upcoming trips so pending is at the top
+    const sortedUpcoming = sortByPendingFirst(upcomingTrips)
 
-        // 2) Sort ALL trips so pending is at the top
-        const sortedAll = sortByPendingFirst(reserves)
-        
-        // reserves = reserves.filter((reserve => console.log(reserve.user._id)))
+    // 2) Sort ALL trips so pending is at the top
+    const sortedAll = sortByPendingFirst(reserves)
+
     return (
         <section className="reserve-status">
             <h1>Trips</h1>
@@ -96,13 +94,17 @@ export function ReserveStatus() {
                             return (
                                 <TableRow key={row._id}>
                                     <TableCell component="th" scope="row">
-                                        {row.location.address}
+                                        {row.location.city}, {row.location.country}
                                     </TableCell>
-                                    <TableCell align="left">{row.host?.name}</TableCell>
+                                    <TableCell align="left" className="user-cell">
+                                        <img src={row.host?.img} className="user-img" />{row.host?.name}</TableCell>
                                     <TableCell align="left">
                                         {formatDateRange(row.checkin, row.checkout)}
                                     </TableCell>
-                                    <TableCell align="left">{row.user?.name}</TableCell>
+                                    <TableCell align="left" className="user-cell">
+                                        <img src={row.user?.img} className="user-img" />
+                                        <span>{row.user?.name}</span>
+                                    </TableCell>
                                     <TableCell align="left">{row.price}</TableCell>
                                     <TableCell align="left" className={statusClass}>
                                         {row.status}
@@ -134,13 +136,17 @@ export function ReserveStatus() {
                             return (
                                 <TableRow key={row._id}>
                                     <TableCell component="th" scope="row">
-                                        {row.location.address}
+                                        {row.location.city}, {row.location.country}
                                     </TableCell>
-                                    <TableCell align="left">{row.host?.name}</TableCell>
+                                    <TableCell align="left" className="user-cell">
+                                        <img src={row.host?.img} className="user-img" />{row.host?.name}</TableCell>
                                     <TableCell align="left">
                                         {formatDateRange(row.checkin, row.checkout)}
                                     </TableCell>
-                                    <TableCell align="left">{row.user?.name}</TableCell>
+                                    <TableCell align="left" className="user-cell">
+                                        <img src={row.user?.img} className="user-img" />
+                                        <span>{row.user?.name}</span>
+                                    </TableCell>
                                     <TableCell align="left">{row.price}</TableCell>
                                     <TableCell align="left" className={statusClass}>
                                         {row.status}

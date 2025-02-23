@@ -25,6 +25,7 @@
             font-weight: bold;
             font-size: rem(16.38px);
         }
+
         &:nth-child(2) {
             color: $gray5;
             font-weight: bold;
@@ -44,4 +45,19 @@
     .status-pending {
         color: rgb(255, 191, 0);
     }
+
+    .user-cell {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .user-img {
+        // display: inline;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+
 }
