@@ -4,7 +4,7 @@ import sharedBeachAccess from '../assets/amenities-icons/shared-beach-access.svg
 import airConditioner from '../assets/amenities-icons/air-conditioner.svg'
 import { DayPicker } from 'react-day-picker'
 
-export function StayAmenities() {
+export function StayAmenities({ stay }) {
     return (
         <section className="stay-amenities">
             <h2>What this place offers</h2>
@@ -18,7 +18,7 @@ export function StayAmenities() {
                 <div className="amenity"><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1739783099/TV_em79pn.svg"} alt="Main" className='amenities-img' />TV</div>
                 <div className="amenity"><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1739783099/flower_mnatgc.svg"} alt="Main" className='amenities-img' />Private backyard – Not fully fenced</div>
             </div>
-            <button className='show-amenities-btn'>Show all 67 amenities</button>
+            <button className='show-amenities-btn'>Show all {stay.amenities.length} amenities</button>
             {/* <hr></hr> */}
         </section>
     )
