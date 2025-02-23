@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 
 export function UserMenu({ onLogout, user }) {
-
+    console.log(user.isHost)
     return (
         <div className="user-menu">
             <article className="link" >
@@ -10,9 +10,11 @@ export function UserMenu({ onLogout, user }) {
             {user && <article className="link" >
                 <NavLink to="/reserve-status">Trips</NavLink>
             </article>}
-            {/* {user && {user.host === true && <article className="link">
-                <NavLink to="/dashboard">Dashboard</NavLink>
-            </article > }} */}
+            {user && user.isHost && (
+                <article className="link">
+                    <NavLink to="/dashboard">Dashboard</NavLink>
+                </article>
+            )}
             {user && <article className="link">
                 <NavLink to="/login" className='login' onClick={onLogout}>Log out</NavLink>
             </article >}

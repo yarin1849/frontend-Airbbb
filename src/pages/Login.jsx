@@ -80,7 +80,7 @@ export function Login() {
 
                 <div className='or'>Or</div>
                 <button className='btn-login signup-btn'>Demo User</button>
-                <button className='btn-login signup-btn' onClick={navigate('/signup')}>Sign Up</button>
+                <button className='btn-login signup-btn' onClick={() => navigate('/signup')}>Sign Up</button>
             </div>
         </div>
 
