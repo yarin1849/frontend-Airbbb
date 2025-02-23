@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 
 export function UserMenu({ onLogout, user }) {
-    console.log(user.isHost)
+    // console.log(user.isHost)
     return (
         <div className="user-menu">
             <article className="link" >
