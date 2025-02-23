@@ -66,11 +66,11 @@ export function AppHeader() {
 		setFilter(filter)
 		loadStays(filter)
 	}
-	console.log(location.pathname)
+	console.log(user)
 	return (
 		<>
 			<header className="app-header full main-container" onClick={() => setIsOpenMenu(false)}>
-				<section className='header-content flex' style={location.pathname.includes('/details') || location.pathname.includes('/booking')? { maxWidth: "1120px", justifySelf: "center" } : {}} >
+				<section className='header-content flex' style={location.pathname.includes('/details') || location.pathname.includes('/booking') ? { maxWidth: "1120px", justifySelf: "center" } : {}} >
 					<section className='logo'>
 						<NavLink to="/" className="">
 							<div className='flex'>
@@ -88,17 +88,18 @@ export function AppHeader() {
 						</section>
 					}
 					<article className='btns-panel'>
-						
+
 						<button className='flex menu' onClick={onToggleModal}>
 							<div className='burger'>
 								<img src={burger} alt="" />
 							</div>
 							<div className='avatar'>
-								<img src={avtar} alt="" />
+
+								{user ? <img src={user.imgUrl} alt="" /> : <img src={avtar} alt="" />}
 							</div>
 						</button>
 					</article>
-					{isOpenMenu && <UserMenu />}
+					{isOpenMenu && <UserMenu onLogout={onLogout} user={user} />}
 				</section>
 			</header>
 			{location.pathname.length === 1 && <StayFilter filterBy={filter} setFilterBy={onSetFilterBy} />}

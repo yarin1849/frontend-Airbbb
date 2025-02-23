@@ -184,6 +184,8 @@
     width: 661px !important;
     z-index: 1 !important;
     min-height: 440px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
 
     .rdp-root {
         --rdp-accent-color: #222222;
@@ -193,7 +195,7 @@
         background: transparent !important;
     }
 
-    .rdp-day:hover {
+    .rdp-day:hover:not(.rdp-day_disabled) {
         border-radius: 50% !important;
         outline: 2px solid black;
         cursor: pointer;
@@ -231,8 +233,18 @@
         color: white !important;
         border-radius: 50% !important;
     }
+
+    .rdp-day_disabled {
+        color: #ccc !important;
+        text-decoration: line-through !important;
+        cursor: none !important;
+        opacity: 0.6 !important;
+    }
+    
     
 }
+
+
 
 .date-picker-header{
         display: flex;
@@ -240,6 +252,17 @@
         .date-picker-vacation-time{
             display: flex;
             flex-direction: column;
+
+            .date-picker-nights{
+                font-size: 22px;
+                font-weight: bold;
+                margin-top: -2px;
+            }
+
+            .date-picker-checking{
+                font-size: 14px;
+                color: #6A6A6A
+            }
         }
 
     .date-inputs {
@@ -311,5 +334,4 @@
 .date-picker-close-button:hover {
     background: black;
 }
-
 

@@ -37,12 +37,10 @@
         font-size: rem(14px);
         font-weight: bold;
         text-decoration: underline;
-        // background-color: aqua;
         
         &:last-child{
             position: relative;
             left: 7px;
-            // margin-left: 7px;
         }
 
         .action-img{
@@ -87,8 +85,8 @@
 
     .date-picker-modal-details{
         .rdp-root {
-            --rdp-accent-color: #222222; /* Change the accent color to indigo. */
-            --rdp-accent-background-color: #f7f7f7; /* Change the accent background color. */
+            --rdp-accent-color: #222222;
+            --rdp-accent-background-color: #f7f7f7;
             --rdp-disabled-opacity: 0.9;
             --rdp-outside-opacity: 0;
 
