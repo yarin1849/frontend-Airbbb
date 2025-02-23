@@ -7,7 +7,7 @@ export function WhereModal({ setFilterByToEdit, FilterByToEdit, next }) {
 
     function handleClick(place) {
         console.log(place)
-        // setPlace(place)
+       
         setFilterByToEdit(prevFilter => ({ ...prevFilter, where: place }))
     }
 

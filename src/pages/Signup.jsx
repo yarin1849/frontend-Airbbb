@@ -34,7 +34,7 @@ export function Signup() {
     function onUploaded(imgUrl) {
         setCredentials({ ...credentials, imgUrl })
     }
-    // console.log(credentials)
+   
     return (
         <form className="signup-form" onSubmit={onSignup}>
              <header className='auth-header divider'>Sign up</header>

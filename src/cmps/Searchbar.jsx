@@ -23,10 +23,10 @@ export function SearchBar({ setFilter, filter }) {
         onCloseModal('all')
         setSearchParams(prevParams => {
             const newParams = new URLSearchParams(prevParams)
-            newParams.set('where', filterByToEdit.where) // Correctly set the value
-            newParams.set('checkin', filterByToEdit.checkIn) // Correctly set the value
-            newParams.set('checkout', filterByToEdit.checkOut) // Correctly set the value
-            newParams.set('guests', filterByToEdit.guests.sum) // Correctly set the value
+            newParams.set('where', filterByToEdit.where) 
+            newParams.set('checkin', filterByToEdit.checkIn)
+            newParams.set('checkout', filterByToEdit.checkOut)
+            newParams.set('guests', filterByToEdit.guests.sum) 
             return newParams
         })
         setFilter(filterByToEdit)
@@ -69,7 +69,7 @@ export function SearchBar({ setFilter, filter }) {
         }
     }
 
-    // console.log(filterByToEdit)
+
     return (
         <section className={`search-bar-container ${focused ? 'focused-search': ''}`}>
             <form action="" className={`search-bar flex ${focused ? 'focused-search': ''}`} onSubmit={onSubmit}>
@@ -99,7 +99,7 @@ export function SearchBar({ setFilter, filter }) {
                 <div className={`input-container flex ${isOpenGuests? 'input-focused': ''}`}>
                     <label htmlFor="guests">
                         <div>Who</div>
-                        {/* <input type="text" id="who" placeholder="Add guests" name='who' value={filterByToEdit.guests} onChange={onHandleChange}/> */}
+                    
                         <input type="text" id="guests" placeholder="Add guests" name='guests' autoComplete="off" value={filterByToEdit.guests.sum ? `${filterByToEdit.guests.sum} guests` : ''} onChange={onHandleChange} onFocus={() => { { onOpenModal('guests'); onCloseModal('guests') } }} />
                     </label>
                     <div className="btn-container">
