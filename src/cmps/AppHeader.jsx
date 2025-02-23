@@ -85,7 +85,7 @@ export function AppHeader() {
 						<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter} />
 					</section> :
 						<section className='small-container'>
-							<SmallSearch />
+							<SmallSearch setFilter={onSetFilterBy} filter={filter}/>
 						</section>
 					}
 					<article className='btns-panel'>
