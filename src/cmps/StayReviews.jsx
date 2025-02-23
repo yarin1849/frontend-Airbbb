@@ -10,7 +10,7 @@ export function StayReviews({ stay }) {
         <div className="stay-reviews">
             <hr />
             <div className="stay-reviews-data">
-                {stay.reviews.slice(0, 4).map((review, idx) => (
+                {stay.reviews.slice(0, 6).map((review, idx) => (
                     <div key={idx} className="review-container">
                         <div className="review-user-details">
                             <div className="review-user-img">
