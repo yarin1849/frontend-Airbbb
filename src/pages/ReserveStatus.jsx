@@ -106,7 +106,7 @@ export function ReserveStatus() {
                                         <img src={row.user?.img} className="user-img" />
                                         <span>{row.user?.name}</span>
                                     </TableCell>
-                                    <TableCell align="left">{row.price}</TableCell>
+                                    <TableCell align="left">${row.price}</TableCell>
                                     <TableCell align="left" className={statusClass}>
                                         {row.status}
                                     </TableCell>
@@ -148,7 +148,7 @@ export function ReserveStatus() {
                                         <img src={row.user?.img} className="user-img" />
                                         <span>{row.user?.name}</span>
                                     </TableCell>
-                                    <TableCell align="left">{row.price}</TableCell>
+                                    <TableCell align="left">${row.price}</TableCell>
                                     <TableCell align="left" className={statusClass}>
                                         {row.status}
                                     </TableCell>

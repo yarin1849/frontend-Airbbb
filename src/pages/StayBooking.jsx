@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { addReservation } from "../store/actions/reservation.actions"
 import { loadStay } from "../store/actions/stay.actions"
 import { Loading } from "../cmps/Loading"
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function StayBooking() {
     const [gradient, setGradient] = useState("linear-gradient(90deg, #FF3366, #E61E6E)")
@@ -25,7 +26,6 @@ export function StayBooking() {
     const { host, loc, name } = stay
     useEffect(() => {
         loadStay(stayId)
-        // console.log('loadStay(stayId)', loadStay(stayId))
     }, [stayId])
 
     if (!stay) return <Loading />
@@ -36,10 +36,10 @@ export function StayBooking() {
         try {
             const savedReservation = addReservation({ checkin, checkout, guests, totalPrice, host, loc, name, user })
             console.log('savedReservation', savedReservation)
-            alert(`Order Confirmed!`)
+            showSuccessMsg(`your reservation has been sent`)
         } catch (err) {
             console.error("Failed to save reservation:", err)
-            alert("Something went wrong. Please try again.")
+            showErrorMsg("Something went wrong. Please try again.")
         }
     }
 
