@@ -27,16 +27,21 @@ export function Login() {
         if (ev) ev.preventDefault()
         if (!credentials.username) return
         await login(credentials)
-         navigate('/')
+        navigate('/')
     }
 
     function handleChange(ev) {
         const field = ev.target.name
         const value = ev.target.value
-     
-        console.log('field',field)
-        console.log('value',value)
+
         setCredentials({ ...credentials, [field]: value })
+    }
+
+    async function onDemoUser() {
+        credentials.username = 'Patty'
+        credentials.password = '36133410'
+        await login(credentials)
+        navigate('/')
     }
 
 
@@ -64,9 +69,9 @@ export function Login() {
                 <header className='auth-header divider'>Log in</header>
                 <form>
                     <label htmlFor="username"><span className="astrix">*</span> Username</label>
-                    <input type="text" name='username' onChange={handleChange} value={credentials.username}/>
+                    <input type="text" name='username' onChange={handleChange} value={credentials.username} />
                     <label htmlFor="password"><span className="astrix">*</span> Password</label>
-                    <input type="password" name='password' onChange={handleChange} value={credentials.password}/>
+                    <input type="password" name='password' onChange={handleChange} value={credentials.password} />
                 </form>
 
                 <button
@@ -79,7 +84,7 @@ export function Login() {
                 </button>
 
                 <div className='or'>Or</div>
-                <button className='btn-login signup-btn'>Demo User</button>
+                <button className='btn-login signup-btn' onClick={onDemoUser}>Demo User</button>
                 <button className='btn-login signup-btn' onClick={() => navigate('/signup')}>Sign Up</button>
             </div>
         </div>
