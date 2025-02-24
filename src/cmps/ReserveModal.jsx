@@ -30,18 +30,31 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
     }, [checkIn, checkOut, numGuests, setSearchParams])
 
     useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const checkinParam = params.get("checkin");
-        const checkoutParam = params.get("checkout");
+        const params = new URLSearchParams(window.location.search)
+        const checkinParam = params.get("checkin")
+        const checkoutParam = params.get("checkout")
 
-        if (checkinParam) setCheckIn(checkinParam);
-        if (checkoutParam) setCheckOut(checkoutParam);
-    }, []);
+        if (checkinParam) setCheckIn(checkinParam)
+        if (checkoutParam) setCheckOut(checkoutParam)
 
-    const nightlyRate = stay.price
-    const nights = Math.max((new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24), 1)
+        // if (checkinParam !== 'null') {
+        //     setCheckIn(formatDateMMDDYYYY(checkinParam))
+        // } else {
+        //     setCheckIn(formatDateMMDDYYYY(new Date()))
+        // }
+
+        // if (checkinParam !== 'null') {
+        //     setCheckOut(formatDateMMDDYYYY(checkinParam))
+        // } else {
+        //     setCheckOut(formatDateMMDDYYYY(new Date()))
+        // }
+
+    }, [])
+
+    const nightlyRate = parseInt(stay.price)
+    const nights = parseInt(Math.max((new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24), 1))
     const fee = parseInt(stay.price * nights * 0.12)
-    const totalPrice = nightlyRate * nights + fee
+    const totalPrice = parseInt(nightlyRate * nights + fee)
 
     const formatDate = (date) => {
         if (!date) return ""
@@ -84,15 +97,15 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
     // }
 
     const handleClearDates = () => {
-        setCheckIn(null);
-        setCheckOut(null);
-        setHoveredDate(null);
+        setCheckIn(null)
+        setCheckOut(null)
+        setHoveredDate(null)
 
-        const params = new URLSearchParams(searchParams);
-        params.delete("checkin");
-        params.delete("checkout");
-        setSearchParams(params);
-    };
+        const params = new URLSearchParams(searchParams)
+        params.delete("checkin")
+        params.delete("checkout")
+        setSearchParams(params)
+    }
 
 
     const handleMouseMove = (ev) => {
@@ -116,37 +129,37 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
     }
 
     const formatDateMMDDYYYY = (date) => {
-        const d = new Date(date);
-        const month = String(d.getMonth() + 1).padStart(2, "0");
-        const day = String(d.getDate()).padStart(2, "0");
-        const year = d.getFullYear();
+        const d = new Date(date)
+        const month = String(d.getMonth() + 1).padStart(2, "0")
+        const day = String(d.getDate()).padStart(2, "0")
+        const year = d.getFullYear()
 
         return `${month}/${day}/${year}`
-    };
+    }
 
 
     const handleDayClick = (day) => {
-        const formattedDate = formatDateMMDDYYYY(day);
+        const formattedDate = formatDateMMDDYYYY(day)
 
         if (!checkIn || (checkIn && checkOut)) {
-            setCheckIn(formattedDate);
-            setCheckOut(null);
-            setHoveredDate(null);
+            setCheckIn(formattedDate)
+            setCheckOut(null)
+            setHoveredDate(null)
         } else if (!checkOut && day > new Date(checkIn)) {
-            setCheckOut(formattedDate);
-            setHoveredDate(null);
-            setIsDatePickerOpen(false);
+            setCheckOut(formattedDate)
+            setHoveredDate(null)
+            setIsDatePickerOpen(false)
         } else {
-            setCheckIn(formattedDate);
-            setCheckOut(null);
-            setHoveredDate(null);
+            setCheckIn(formattedDate)
+            setCheckOut(null)
+            setHoveredDate(null)
         }
 
-        const params = new URLSearchParams(searchParams);
-        params.set("checkin", checkIn);
-        params.set("checkout", checkOut);
-        setSearchParams(params);
-    };
+        const params = new URLSearchParams(searchParams)
+        params.set("checkin", checkIn)
+        params.set("checkout", checkOut)
+        setSearchParams(params)
+    }
 
     const handleDayHover = (day) => {
         if (checkIn && !checkOut && day > new Date(checkIn)) {
@@ -167,7 +180,7 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                     <div onClick={() => handleDatePickerClick('checkin')}>
                         <label>CHECK-IN</label>
                         <input
-                            type="text"  // Change from "date" to "text" to allow custom format
+                            type="text"
                             value={checkIn ? checkIn : "MM/DD/YYYY"}
                             readOnly
                             onClick={() => handleDatePickerClick('checkin')}
@@ -289,7 +302,7 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                 <div className="total"><span>Total</span>
                     <span>${totalPrice}</span></div>
             </div>
-        </div >
+        </div>
     )
 }
 

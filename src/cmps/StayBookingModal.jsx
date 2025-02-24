@@ -38,15 +38,13 @@ export function StayBookingModal({ stay }) {
             </div>
             <div className="reserve-details-container">
                 <hr></hr>
-                <h2>
-                    Price details
-                </h2>
+                <h2>Price details</h2>
                 <div className="pricing-calculate">
                     <div><span className="nightly-rate-calc">${nightlyRate} x {nights} nights</span><span> ${nightlyRate * nights}</span></div>
-                    <div><span className="nightly-service-fee">Airbnb service fee</span><span> ${fee}</span></div>
+                    <div><span className="nightly-service-fee">Airbbb service fee</span><span> ${fee}</span></div>
                     <hr />
                     <div className="total"><span>Total</span>
-                        <span>${totalPrice}</span></div>
+                        <span>${parseInt(totalPrice)}</span></div>
                 </div>
 
             </div>
