@@ -122,9 +122,9 @@ export function StayDetails() {
         </div>
       )
       }
-      {/* <div className='stay-map-section'>
-        <GoogleMap />
-      </div> */}
+      <div className='stay-map-section'>
+        <GoogleMap stay={stay} />
+      </div>
     </section>
   )
 }

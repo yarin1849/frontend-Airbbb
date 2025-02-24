@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { getRandomIntInclusive } from "../services/util.service"
-import { ShowAllReviews } from "../cmps/StayShowAllReviews" // Import Modal Component
+import { ShowAllReviews } from "../cmps/StayShowAllReviews"
 
 export function StayReviews({ stay }) {
     const [isModalOpen, setIsModalOpen] = useState(false)
