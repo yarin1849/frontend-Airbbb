@@ -33,14 +33,14 @@ export function WhereModal({ setFilterByToEdit, FilterByToEdit, next }) {
                 </div>
             </article>
             <article className="flex" onClick={() => { handleClick('Brazil'), moveToNext() }}>
-                <img src={locationpin} alt="" />
+                <img src="https://res.cloudinary.com/ddjdtcgkf/image/upload/v1740400797/brazil_qghagx.webp" alt="" />
                 <div>
                     Brazil <br />
                     <span>Tropical heaven vacation</span>
                 </div>
             </article>
             <article className="flex" onClick={() => { handleClick('United States'), moveToNext() }}>
-                <img src={locationpin} alt="" />
+                <img src="https://res.cloudinary.com/ddjdtcgkf/image/upload/v1740400910/nyc_zptqcu.png" alt="" />
                 <div>
                     United States <br />
                     <span>State of mind</span>
