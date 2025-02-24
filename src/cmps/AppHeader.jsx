@@ -67,8 +67,6 @@ export function AppHeader() {
 		setFilter(filter)
 		loadStays(filter)
 	}
-	console.log(user)
-	console.log(user)
 	return (
 		<>
 			<header className="app-header full main-container" onClick={() => setIsOpenMenu(false)}>
@@ -96,14 +94,10 @@ export function AppHeader() {
 								<img src={burger} alt="" />
 							</div>
 							<div className='avatar'>
-
-								{user ? <img src={user.imgUrl} alt="" /> : <img src={avtar} alt="" />}
-
 								{user ? <img src={user.imgUrl} alt="" /> : <img src={avtar} alt="" />}
 							</div>
 						</button>
 					</article>
-					{isOpenMenu && <UserMenu onLogout={onLogout} user={user} />}
 					{isOpenMenu && <UserMenu onLogout={onLogout} user={user} />}
 				</section>
 			</header>
