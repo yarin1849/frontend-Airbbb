@@ -1,7 +1,7 @@
 .stay-amenities{
     max-height: 30vh;
-    // max-height: 500px;
     font-size: 16px;
+
     img{
         display: inline-block;
         width: 24px;
@@ -50,6 +50,16 @@
         
         .amenity > img {
             align-self: flex-end; 
+        }
+
+        @include for-mobile-layout{
+        grid-template-columns: repeat(1, 1fr);
+        .amenity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
         }
     }
     
