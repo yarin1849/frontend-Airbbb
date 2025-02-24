@@ -2,9 +2,11 @@
     @include for-mobile-layout {
         position: sticky;
         top: 0px;
+        width: 100%;
         background-color: white;
         z-index: 100;
     }
+
     position: sticky;
     top: 0px;
     background-color: white;
@@ -13,23 +15,31 @@
     border-bottom: 1px solid $gray3;
 
     .header-content {
+        @include for-mobile-layout {
+            grid-column: 1/-1;
+            align-self: center;
+            flex-direction: column;
+            justify-content: center;
+            height: 100px;
+            gap: 15px;
+            z-index: 1000;
+        }
+
         display: flex;
         width: 100%;
         justify-content: space-between;
         min-height: minmax(2rem, 5rem);
 
-        @include for-mobile-layout {
-            justify-content: center;
-        }
+
 
 
         .logo {
             @include for-mobile-layout {
-                display: none;
+                align-self: center;
             }
 
             position: sticky;
-            top: 25px;
+            top: 20px;
             left: 0;
 
             align-self: start;
@@ -37,6 +47,7 @@
             img {
                 max-width: 102px;
             }
+
         }
 
         .big-search {
@@ -56,11 +67,15 @@
 
         .btns-panel {
             @include for-mobile-layout {
+                padding: 0;
+                margin: 0;
                 position: fixed;
                 bottom: 0px;
+                left: 0;
                 display: flex;
                 width: 100%;
                 min-height: 100px;
+                background-color: $gray-3;
                 justify-content: center;
             }
 
@@ -70,15 +85,16 @@
 
             .menu {
                 @include for-mobile-layout {
-                    align-items: center;
+                    justify-self: center;
+                    padding: 0;
+                    margin: 0;
                     z-index: 100;
                     width: 100%;
-                    background-color: white;
-                    border: 1px solid #DDDDDD;
-                    padding: 0.6rem 0.6rem 0.6rem 1rem;
+                    height: 100%;
+                    background-color: $gray-3;
+                    border: none;
                     align-items: center;
                     justify-content: center;
-                    gap: 50px
                 }
 
                 @include for-normal-layout {
@@ -108,7 +124,7 @@
 
                 .burger {
                     @include for-mobile-layout {
-                        min-width: 3rem
+                        display: none;
                     }
 
                     width: 1rem;
@@ -128,6 +144,10 @@
                 }
 
                 &:hover {
+                    @include for-mobile-layout {
+                        box-shadow: none;
+                    }
+
                     box-shadow: rgba(0, 0, 0, 0.173) 0px 1.90695px 3.81391px 0px;
                 }
 
@@ -138,7 +158,8 @@
 
         small-container {
             @include for-mobile-layout {
-                width: 100%
+                width: 100%;
+                
             }
 
             position: sticky;

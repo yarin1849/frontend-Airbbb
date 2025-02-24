@@ -1,5 +1,7 @@
 .search-bar-container {
+   
     .search-bar {
+       
         margin: auto;
         margin-top: 72px;
         max-height: rem(66px);
@@ -12,6 +14,21 @@
         border: 1px solid $gray3;
         border-radius: 3rem;
 
+        @include for-mobile-layout{
+            position:fixed;
+            top: 0;
+            left: 0;
+            margin-top: 70px;
+            flex-direction: column;
+            width:100%;
+            min-height: 250px;
+            background-color: $gray1;
+            border-radius: 0px;
+            border:none;
+            box-shadow: none;
+            
+        }
+
         &.focused-search {
             background-color: $gray3;
         }
@@ -19,12 +36,24 @@
 
 
         .input-container {
+            @include for-mobile-layout{
+                width: 100%;
+                margin: 0;
+                justify-content: center;
+                &::after{
+                    display: none;
+                }
+                &:focus-within .input-container:not(:focus-within) {
+                    background-color: white;
+                }
+              
+            }
             display: flex;
             height: 66px;
             width: 140.5px;
             border-radius: 2rem;
             align-items: center;
-
+           
             &.input-focused {
                 background-color: $gray1;
                 box-shadow: rgba(0, 0, 0, 0.12) 1px 2px 16px;
@@ -56,6 +85,12 @@
             }
 
             button {
+
+                @include for-mobile-layout{
+                   position:fixed;
+                   top:25px;
+                   right: 10px;
+                }
                 width: 46px;
                 height: 46px;
                 border-radius: 50%;
@@ -91,6 +126,18 @@
         }
 
         .input-container:first-child {
+            @include for-mobile-layout{
+                width: 100%;
+                margin: 0;
+                justify-content: center;
+                &::after{
+                    display: none;
+                }
+                &:focus-within .input-container:not(:focus-within) {
+                    background-color: $gray1;
+                }
+              
+            }
             width: 284px;
             justify-content: space-between;
 
@@ -98,6 +145,18 @@
 
 
         .input-container:last-child {
+            @include for-mobile-layout{
+                width: 100%;
+                margin: 0;
+                justify-content: center;
+                &::after{
+                    display: none;
+                }
+                &:focus-within .input-container:not(:focus-within) {
+                    background-color: $gray1;
+                }
+              
+            }
             width: 284px;
             padding-inline-end: 3px;
             justify-content: space-between;
@@ -110,7 +169,13 @@
             font-size: rem(12px);
             color: $gray4;
             padding-inline-start: 1.8rem;
-
+            @include for-mobile-layout{
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                align-items: center;
+                gap:15px
+            }
 
             div {
                 padding-top: 10px;
@@ -128,7 +193,12 @@
         }
 
         input {
-
+            @include for-mobile-layout{
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
             border-width: 0;
             margin-top: .8rem;
             background-color: rgba(0, 0, 0, 0);
@@ -161,6 +231,11 @@
     }
 
     .date-modal {
+        @include for-mobile-layout{
+            width: 100%;
+            margin: 0;
+            justify-content: center;
+  }
         background: rgb(255, 255, 255);
         border-radius: 16px;
         box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
@@ -233,6 +308,13 @@
 
 
     .where-modal {
+        @include for-mobile-layout{
+            width: 100%;
+            margin: 0;
+            top: 200px;
+            left: 0;
+            justify-content: center;
+  }
         position: fixed;
         top: 198px;
         background-color: white;
@@ -274,6 +356,13 @@
     }
 
     .guests-modal {
+        @include for-mobile-layout{
+            width: 100%;
+            margin: 0;
+            top: 300px;
+            left: 0;
+            justify-content: center;
+  }
         position: fixed;
         top: 198px;
         background-color: white;
