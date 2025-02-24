@@ -21,6 +21,12 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
     const [hoveredDate, setHoveredDate] = useState(null)
 
 
+    const formatDate = (date) => {
+        if (!date) return ""
+        const options = { year: 'numeric', month: 'short', day: 'numeric' }
+        return new Date(date).toLocaleDateString("en-us", options)
+    }
+
     useEffect(() => {
         const params = new URLSearchParams()
         params.set("checkin", checkIn)
@@ -215,8 +221,8 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                     <div className="date-picker-modal-reserve">
                         <div className="date-picker-header">
                             <div className="date-picker-vacation-time">
-                                <span className="date-picker-nights">{nights > 1 ? `${nights} nights` : `${nights} night`}</span>
-                                <span className="date-picker-checking">{formatDate(checkIn)} - {formatDate(checkOut)}</span>
+                                <span>{nights} nights</span>
+                                <span>{formatDate(checkIn)} - {formatDate(checkOut)}</span>
                             </div>
                             <div className="date-inputs">
                                 <div className="date-input">
@@ -241,7 +247,6 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                             selected={checkIn ? new Date(checkIn) : undefined}
                             onDayClick={handleDayClick}
                             onDayMouseEnter={handleDayHover}
-                            disabled={[{ before: new Date().setHours(0, 0, 0, 0) }]}
                             modifiers={{
                                 checkInDay: checkIn ? new Date(checkIn) : undefined,
                                 checkOutDay: checkOut ? new Date(checkOut) : undefined,
@@ -250,18 +255,16 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
                                         ? { from: new Date(checkIn), to: new Date(checkIn) } : undefined,
                                 hoveredRange: checkIn && hoveredDate
                                     ? { from: new Date(checkIn), to: new Date(hoveredDate) } : undefined,
-                                disabled: { before: new Date() },
                             }}
                             modifiersClassNames={{
                                 inRange: "my-hovered-range",
                                 hoveredRange: "my-hovered-range",
                                 checkInDay: "check-in-day",
                                 checkOutDay: "check-out-day",
-                                disabled: "rdp-day_disabled",
                             }}
                         />
                         <div className="date-picker-footer">
-                            <button className="date-picker-clear-dates" onClick={() => handleClearDates(null)}>
+                            <button className="date-picker-clear-dates" onClick={() => handleDateSelect({ from: null, to: null })}>
                                 Clear dates
                             </button>
                             <button className="date-picker-close-button" onClick={() => setIsDatePickerOpen(false)}>

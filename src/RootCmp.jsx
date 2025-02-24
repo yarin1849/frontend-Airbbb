@@ -43,7 +43,7 @@ export function RootCmp() {
                     {/* <Route path="chat" element={<ChatApp />} /> */}
                     {/* <Route path="admin" element={<AdminIndex />} /> */}
                     <Route path='/login' element={<Login />} />
-                    <Route path="/signup" element={<Signup />} />
+                    <Route path="signup" element={<Signup />} />
                 </Routes>
             </main>
             <AppFooter />

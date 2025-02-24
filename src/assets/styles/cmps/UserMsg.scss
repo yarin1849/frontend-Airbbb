@@ -21,6 +21,7 @@
 .user-msg.visible {
     opacity: 1;
     translate: 0;
+    z-index: 101;
 }
 
 .user-msg button {

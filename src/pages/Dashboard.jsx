@@ -22,8 +22,8 @@ import { Loading } from '../cmps/Loading'
 
 // 1) Formats two date strings (M/D/YYYY) into "20-25 May 2025"
 function formatDateRange(checkinStr, checkoutStr) {
-  const [startMonth, startDay, startYear] = checkinStr.split('/')
-  const [endMonth, endDay, endYear] = checkoutStr.split('/')
+  const [startYear, startMonth, startDay] = checkinStr.split('-')
+  const [endYear, endMonth, endDay] = checkoutStr.split('-')
 
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -36,34 +36,40 @@ function formatDateRange(checkinStr, checkoutStr) {
 
 // 2) Parse "M/D/YYYY" => JavaScript Date object
 function parseDate(dateStr) {
-  const [month, day, year] = dateStr.split('/')
+  const [year, month, day] = dateStr.split('-')
   return new Date(Number(year), Number(month) - 1, Number(day))
 }
 
 // 3) Sort helper: Pending first, then by checkout date descending (newest first)
 function sortReservations(reservations) {
-  return [...reservations].sort((a, b) => {
-    // Pending first
-    if (a.status === 'pending' && b.status !== 'pending') return -1
-    if (b.status === 'pending' && a.status !== 'pending') return 1
+  console.log("Before sorting:", reservations)
 
-    // Otherwise, sort by checkout date descending
-    const dateA = parseDate(a.checkout)
-    const dateB = parseDate(b.checkout)
-    // For descending order, subtract dateA from dateB
+  return [...reservations].sort((a, b) => {
+    // Prioritize "pending" reservations
+    if (a.status === "pending" && b.status !== "pending") return -1
+    if (b.status === "pending" && a.status !== "pending") return 1
+
+    // Convert checkout strings to Date objects
+    const dateA = new Date(a.checkout)
+    const dateB = new Date(b.checkout)
+
+    // Sort by checkout date descending (newest first)
     return dateB - dateA
   })
 }
 
 export function Dashboard() {
-  const reserves = useSelector((storeState) => storeState.reservationModule.reservations)
+  let reserves = useSelector((storeState) => storeState.reservationModule.reservations)
   const isLoading = useSelector((storeState) => storeState.reservationModule.isLoading)
+  const user = useSelector((storeState) => storeState.userModule.user)
 
+  reserves = reserves.filter(reserve => reserve.host && String(reserve.host._id) === String(user._id))
   useEffect(() => {
     loadReservations()
   }, [])
 
   if (isLoading || !reserves) return <Loading />
+
   function onStatusChange(updateStatus, todoId) {
     const reserve = reserves.find((reserve) => reserve._id === todoId)
     if (!reserve) {
@@ -99,55 +105,83 @@ export function Dashboard() {
       </section>
 
       {/* Reservations Table */}
-      <TableContainer component={Paper} sx={{ maxHeight: 350 }}>
-        <Table stickyHeader sx={{ minWidth: 650 }} aria-label="reservation table">
+      <TableContainer component={Paper} sx={{ maxHeight: 400 }}>
+        <Table sx={{ tableLayout: "fixed", width: "100%" }} aria-label="reservation table">
           <TableHead>
             <TableRow>
-              <TableCell>Guest</TableCell>
-              {/* Single "Dates" column */}
-              <TableCell align="left">Dates</TableCell>
-              <TableCell align="left">Booked</TableCell>
-              <TableCell align="left">Listing</TableCell>
-              <TableCell align="center">Total Price</TableCell>
-              <TableCell align="left">Status</TableCell>
-              <TableCell align="center">Todo</TableCell>
+              <TableCell sx={{ width: "15%", fontWeight: "bold" }}>Guest</TableCell>
+              <TableCell sx={{ width: "15%", fontWeight: "bold" }}>Dates</TableCell>
+              <TableCell sx={{ width: "15%", fontWeight: "bold" }}>Booked</TableCell>
+              <TableCell sx={{ width: "20%", fontWeight: "bold" }}>Listing</TableCell>
+              <TableCell sx={{ width: "10%", fontWeight: "bold", textAlign: "center" }}>Total Price</TableCell>
+              <TableCell sx={{ width: "10%", fontWeight: "bold" }}>Status</TableCell>
+              <TableCell sx={{ width: "15%", fontWeight: "bold", textAlign: "left" }}>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {sortedReserves.map((reserve) => {
-              const statusClass = `status-${reserve.status.toLowerCase()}`
+            {sortedReserves.map((reserve) => (
+              <TableRow key={reserve._id} sx={{ height: "70px" }}>
+                
+                {/* Guest Info */}
+                <TableCell sx={{ padding: "10px", whiteSpace: "nowrap" }}>
+                  <div className="user-cell">
+                    <img src={reserve.user?.img} className="user-img" alt="User" />
+                    <span>{reserve.user?.name}</span>
+                  </div>
+                </TableCell>
 
-              return (
-                <TableRow key={reserve._id}>
-                  <TableCell>{reserve.user.name}</TableCell>
-                  <TableCell align="left">
-                    {formatDateRange(reserve.checkin, reserve.checkout)}
-                  </TableCell>
-                  <TableCell align="left">{reserve.host.name}</TableCell>
-                  <TableCell align="left">{reserve.location.address}</TableCell>
-                  <TableCell align="center">${reserve.price}</TableCell>
-                  <TableCell align="left" className={statusClass}>
+                {/* Dates */}
+                <TableCell sx={{ padding: "10px" }}>
+                  {formatDateRange(reserve.checkin, reserve.checkout)}
+                </TableCell>
+
+                {/* Host Info */}
+                <TableCell sx={{ padding: "10px", whiteSpace: "nowrap" }}>
+                  <div className="user-cell">
+                    <img src={reserve.host?.img} className="user-img" alt="Host" />
+                    <span>{reserve.host?.name}</span>
+                  </div>
+                </TableCell>
+
+                {/* Listing */}
+                <TableCell sx={{ padding: "10px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  {reserve.location.address}
+                </TableCell>
+
+                {/* Total Price */}
+                <TableCell sx={{ padding: "10px", textAlign: "center" }}>
+                  ${reserve.price}
+                </TableCell>
+
+                {/* Status */}
+                <TableCell sx={{ padding: "10px", textAlign: "left" }}>
+                  <span className={`status-${reserve.status.toLowerCase()}`}>
                     {reserve.status}
-                  </TableCell>
-                  <TableCell align="center" className="btn">
+                  </span>
+                </TableCell>
+
+                {/* Action Buttons */}
+                <TableCell sx={{ padding: "10px", textAlign: "center" }}>
+                  <div className="btn-group">
                     <Button
                       className="approved-btn"
-                      onClick={() => onStatusChange('approved', reserve._id)}
-                      disabled={reserve.status !== 'pending'}
+                      onClick={() => onStatusChange("approved", reserve._id)}
+                      disabled={reserve.status !== "pending"}
                     >
-                      approved
+                      APPROVED
                     </Button>
                     <Button
                       className="decline-btn"
-                      onClick={() => onStatusChange('declined', reserve._id)}
-                      disabled={reserve.status !== 'pending'}
+                      onClick={() => onStatusChange("declined", reserve._id)}
+                      disabled={reserve.status !== "pending"}
                     >
-                      Decline
+                      DECLINE
                     </Button>
-                  </TableCell>
-                </TableRow>
-              )
-            })}
+                  </div>
+                </TableCell>
+
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

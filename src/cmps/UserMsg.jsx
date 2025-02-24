@@ -1,43 +1,41 @@
-import { eventBus, showSuccessMsg } from '../services/event-bus.service'
+import { eventBus } from '../services/event-bus.service'
 import { useState, useEffect, useRef } from 'react'
-// import { socketService, SOCKET_EVENT_REVIEW_ABOUT_YOU } from '../services/socket.service'
 
 export function UserMsg() {
-	const [msg, setMsg] = useState(null)
-	const timeoutIdRef = useRef()
+    const [msg, setMsg] = useState(null)
+    const timeoutIdRef = useRef(null)
 
-	useEffect(() => {
-		const unsubscribe = eventBus.on('show-msg', msg => {
-			setMsg(msg)
-			if (timeoutIdRef.current) {
-				timeoutIdRef.current = null
-				clearTimeout(timeoutIdRef.current)
-			}
-			timeoutIdRef.current = setTimeout(closeMsg, 3000)
-		})
-		unsubscribe()
-	}, [])
+    useEffect(() => {
+        // Create the subscription
+        const unsubscribe = eventBus.on('show-msg', (msg) => {
+            setMsg(msg)
+            
+            // Clear any existing timeout
+            if (timeoutIdRef.current) {
+                clearTimeout(timeoutIdRef.current)
+            }
+            
+            // Set new timeout to clear message
+            timeoutIdRef.current = setTimeout(() => {
+                setMsg(null)
+            }, 3000)
+        })
 
-		// socketService.on(SOCKET_EVENT_REVIEW_ABOUT_YOU, review => {
-		// 	showSuccessMsg(`New review about me ${review.txt}`)
-		// })
+        // Cleanup on unmount
+        return () => {
+            if (timeoutIdRef.current) {
+                clearTimeout(timeoutIdRef.current)
+            }
+            unsubscribe()
+        }
+    }, [])
 
-		// 	return () => {
-		// 		socketService.off(SOCKET_EVENT_REVIEW_ABOUT_YOU)
-		// 	}
-		// }, [])
+    if (!msg) return null
 
-		function closeMsg() {
-			setMsg(null)
-		}
-
-		function msgClass() {
-			return msg ? 'visible' : ''
-		}
-		return (
-			<section className={`user-msg ${msg?.type} ${msgClass()}`}>
-				<button onClick={closeMsg}>x</button>
-				{msg?.txt}
-			</section>
-		)
-	}
+    return (
+        <section className={`user-msg ${msg.type} visible`}>
+            {msg.txt}
+            <button onClick={() => setMsg(null)}>×</button>
+        </section>
+    )
+}

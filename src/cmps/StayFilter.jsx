@@ -6,7 +6,7 @@ import { stayService } from "../services/stay"
 
 import { useSearchParams } from 'react-router-dom'
 export function StayFilter({ filterBy, setFilterBy }) {
-    const [filterToEdit, SetFilterToEdit] = useState(stayService.getDefaultFilter())
+    const [filterToEdit, setFilterToEdit] = useState(stayService.getDefaultFilter())
     const [selectedFilter, setSelectedFilter] = useState(null) // Track selected filter
     const scrollRef = useRef(null)
     const rightBtn = useRef(null)
@@ -77,13 +77,26 @@ export function StayFilter({ filterBy, setFilterBy }) {
 
     function onSetFilter(filterName) {
         setSearchParams(prevParams => {
-            const newParams = new URLSearchParams(prevParams)
-            newParams.set('type', filterName) // Correctly set the value
-            return newParams
-        })
-        SetFilterToEdit({ ...filterToEdit, type: filterName })
-        setSelectedFilter(filterName)
+            const newParams = new URLSearchParams(prevParams);
+            newParams.set('type', filterName); // Update filter type
+            return newParams;
+        });
+    
+        // Merge existing search params with the new filter type
+        setFilterToEdit(prevFilter => {
+            const updatedFilter = { ...prevFilter, type: filterName };
+    
+            // Merge search params into the filter object
+            for (const [key, value] of searchParams.entries()) {
+                updatedFilter[key] = value;
+            }
+    
+            return updatedFilter;
+        });
+    
+        setSelectedFilter(filterName);
     }
+    
 
     return (
             <section style={{ display: "flex", justifyContent: "space-between" }} className="stay-filter">

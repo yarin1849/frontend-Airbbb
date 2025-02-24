@@ -7,25 +7,24 @@ import { Loading } from '../cmps/Loading'
 
 export function Login() {
     const [users, setUsers] = useState([])
-    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
+    const [credentials, setCredentials] = useState({ username: '', password: '' })
 
     const navigate = useNavigate()
-    
+
     useEffect(() => {
         loadUsers()
     }, [])
-    
-    
+
+
     async function loadUsers() {
         const users = await userService.getUsers()
         setUsers(users)
     }
-    
-    // if (users.name === undefined) return <Loading />
+
+
 
     async function onLogin(ev = null) {
         if (ev) ev.preventDefault()
-
         if (!credentials.username) return
         await login(credentials)
         navigate('/')
@@ -34,7 +33,15 @@ export function Login() {
     function handleChange(ev) {
         const field = ev.target.name
         const value = ev.target.value
+
         setCredentials({ ...credentials, [field]: value })
+    }
+
+    async function onDemoUser() {
+        credentials.username = 'Patty'
+        credentials.password = '36133410'
+        await login(credentials)
+        navigate('/')
     }
 
 
@@ -56,30 +63,31 @@ export function Login() {
         setGradient("linear-gradient(90deg, #FF3366, #E61E6E)")
     }
     return (
-        
-            <div className='form-container'>
-                <div className="login-signup">
-                    <header className='auth-header divider'>Log in</header>
-                    <form>
-                        <label htmlFor="userName"><span className="astrix">*</span> Username</label>
-                        <input type="text" name='userName' />
-                        <label htmlFor="password"><span className="astrix">*</span> Password</label>
-                        <input type="password" name='password' />
-                    </form>
 
-                    <button
-                        className="reserve-button"
-                        onMouseMove={handleMouseMove}
-                        onMouseLeave={handleMouseLeave}
-                        style={{ background: gradient }}>
-                        Login
-                    </button>
+        <div className='form-container'>
+            <div className="login-signup">
+                <header className='auth-header divider'>Log in</header>
+                <form>
+                    <label htmlFor="username"><span className="astrix">*</span> Username</label>
+                    <input type="text" name='username' onChange={handleChange} value={credentials.username} />
+                    <label htmlFor="password"><span className="astrix">*</span> Password</label>
+                    <input type="password" name='password' onChange={handleChange} value={credentials.password} />
+                </form>
 
-                    <div className='or'>Or</div>
-                    <button className='btn-login signup-btn'>Demo User</button>
-                    <button className='btn-login signup-btn'>Sign Up</button>
-                </div>
+                <button
+                    className="reserve-button"
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={onLogin}
+                    style={{ background: gradient }}>
+                    Login
+                </button>
+
+                <div className='or'>Or</div>
+                <button className='btn-login signup-btn' onClick={onDemoUser}>Demo User</button>
+                <button className='btn-login signup-btn' onClick={() => navigate('/signup')}>Sign Up</button>
             </div>
+        </div>
 
     )
 

@@ -58,9 +58,9 @@ export function StayIndex() {
     
     return (
         <main className="stay-index">
-            <header>
+            {/* <header>
                 {userService.getLoggedinUser() && <button onClick={onAddStay}>Add a Stay</button>}
-            </header>
+            </header> */}
             {/* <StayFilter filterBy={filterBy} setFilterBy={setFilterBy} /> */}
             <StayList
                 stays={stays}

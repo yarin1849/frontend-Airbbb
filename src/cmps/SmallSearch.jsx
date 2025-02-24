@@ -1,9 +1,9 @@
 import searchicon from '../assets/img/searchicon.svg'
 
-export function SmallSearch() {
+export function SmallSearch({setFilter,filter}) {
 
     return (
-        <section className='small-search-section' >
+        <section className='small-search-section' onClick={() => {scrollTo({top: 0})}}>
             <form action="" className="small-search flex">
 
                 <div className='label-container flex'>

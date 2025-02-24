@@ -23,7 +23,7 @@ export function AppHeader() {
 	const [isScrolled, setIsScrolled] = useState(false)
 	const [isOpenMenu, setIsOpenMenu] = useState(false)
 	const location = useLocation()
-	console.log(isOpenMenu)
+
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 70) {
@@ -50,9 +50,10 @@ export function AppHeader() {
 		ev.preventDefault()
 		ev.stopPropagation()
 		setIsOpenMenu(prevIsOpenMenu => !prevIsOpenMenu)
-		console.log('ontoggle:', isOpenMenu)
+
 	}
 	async function onLogout() {
+		console.log('hii')
 		try {
 			await logout()
 			navigate('/')
@@ -66,6 +67,7 @@ export function AppHeader() {
 		setFilter(filter)
 		loadStays(filter)
 	}
+	console.log(user)
 	console.log(user)
 	return (
 		<>
@@ -84,7 +86,7 @@ export function AppHeader() {
 						<SearchBar className="search-container" setFilter={onSetFilterBy} filter={filter} />
 					</section> :
 						<section className='small-container'>
-							<SmallSearch />
+							<SmallSearch setFilter={onSetFilterBy} filter={filter} />
 						</section>
 					}
 					<article className='btns-panel'>
@@ -96,9 +98,12 @@ export function AppHeader() {
 							<div className='avatar'>
 
 								{user ? <img src={user.imgUrl} alt="" /> : <img src={avtar} alt="" />}
+
+								{user ? <img src={user.imgUrl} alt="" /> : <img src={avtar} alt="" />}
 							</div>
 						</button>
 					</article>
+					{isOpenMenu && <UserMenu onLogout={onLogout} user={user} />}
 					{isOpenMenu && <UserMenu onLogout={onLogout} user={user} />}
 				</section>
 			</header>

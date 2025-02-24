@@ -56,34 +56,59 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         flex: 1;
     }
-    
+
     .stat-card h3 {
         font-size: rem(21.06px);
         font-weight: bold;
         margin-bottom: 10px;
     }
-    
-    .btn {
+
+   
+    .btn-group {
         display: flex;
-        justify-content: center;
-        font-size: rem(14px);
-        gap: rem(5px);
+        gap: 8px; 
+        align-items: center;  
     }
 
-    .approved-btn{
+    .approved-btn {
         color: $green1;
-        height: rem(32px);
         border: 1px solid $green2;
-        &:hover{
+
+        &:hover {
             background-color: rgb(217, 241, 194);
         }
-    } 
-    .decline-btn{
+    }
+
+    .decline-btn {
         color: $red1;
-        height: rem(32px);
         border: 1px solid $red2;
-        &:hover{
+
+        &:hover {
             background-color: $red2;
         }
     }
+
+    .user-cell {
+        display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+        white-space: nowrap;
+        height: 72.55px;
+        width: fit-content;
+        gap: 8px;
+        div{
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+    }
+
+
+    .user-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
 }
