@@ -63,11 +63,56 @@
         margin-bottom: 10px;
     }
 
-   
+    @include for-mobile-layout {
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh;
+            text-align: center;
+        }
+    
+        .dashboard-stats {
+            grid-template-columns: 1fr;
+            grid-auto-flow: row;
+            align-self: center;
+        }
+    
+        .stat-card {
+            width: rem(300px);
+            margin: 0 auto;
+        }
+    
+        .trip-list {
+            width: rem(300px); // ✅ Ensure a fixed width
+            display: flex;
+            flex-direction: column;
+            align-items: center; // ✅ Centers items inside
+            justify-content: center;
+            margin: 0 auto; // ✅ Ensures `.trip-list` itself is centered
+        }
+    
+        .trip-item {
+            width: 100%; // ✅ Ensures each item takes full width of `.trip-list`
+            // text-align: center;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    
+        .MuiChartsLegend-root {
+            display: none !important;
+        }
+    }
+    
+    
+
     .btn-group {
         display: flex;
-        gap: 8px; 
-        align-items: center;  
+        gap: 8px;
+        align-items: center;
     }
 
     .approved-btn {
@@ -96,7 +141,8 @@
         height: 72.55px;
         width: fit-content;
         gap: 8px;
-        div{
+
+        div {
             display: flex;
             align-items: center;
             height: 100%;
@@ -109,6 +155,33 @@
         height: 40px;
         border-radius: 50%;
         object-fit: cover;
+    }
+
+
+    ///////// narrow view 
+    .narrow-header {
+        text-align: center;
+        font-size: rem(40px);
+    }
+
+    .trip-list {
+        display: grid;
+        width: 300px;
+        gap: 1rem;
+        margin-bottom: rem(48px);
+        align-self: center;
+    }
+
+    .trip-item {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        // flex: 1;
+    }
+
+    .trip-item p {
+        margin: 5px 0;
     }
 
 }

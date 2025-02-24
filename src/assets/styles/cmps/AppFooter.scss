@@ -88,4 +88,8 @@
             text-decoration: underline;
         }
     }
+
+    @include for-mobile-layout {
+        display: none;
+    }
 }
