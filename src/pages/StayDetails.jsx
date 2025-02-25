@@ -24,11 +24,27 @@ export function StayDetails() {
 
   const checkin = searchParams.get('checkin')
   const checkout = searchParams.get('checkout')
+  const isNarrow = useIsNarrowScreen()
+
+  function useIsNarrowScreen() {
+    const [isNarrow, setIsNarrow] = useState(document.documentElement.clientWidth < 768)
+
+    useEffect(() => {
+      if (typeof document === 'undefined') return // Ensure it's running in the browser
+      const handleResize = () => {
+        setIsNarrow(document.documentElement.clientWidth < 768)
+      }
+      window.addEventListener('resize', handleResize) // Listen for changes
+      return () => window.removeEventListener('resize', handleResize) // Cleanup on unmount
+    }, [])
+    return isNarrow
+  }
 
   const [selectedRange, setSelectedRange] = useState({
     from: checkin ? new Date(checkin) : undefined,
     to: checkout ? new Date(checkout) : undefined,
   })
+
 
   useEffect(() => {
     loadStay(stayId)
@@ -59,6 +75,7 @@ export function StayDetails() {
 
   return (
     <section className='stay-details full'>
+      {/* {!isNarrow && <Header />} */}
       <div className='details-header'>
         <h1>{stay.name}</h1>
         <div className='action-btns'>
@@ -105,6 +122,9 @@ export function StayDetails() {
         </div>
       )
       }
+      <div className='stay-map-section'>
+        <GoogleMap stay={stay} />
+      </div>
     </section>
   )
 }

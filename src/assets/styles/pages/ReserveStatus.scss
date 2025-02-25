@@ -1,4 +1,7 @@
 .reserve-status {
+    @include for-mobile-layout{
+        margin-bottom: 20px;
+    }
     h1 {
         font-size: rem(45px);
         margin: 0;
@@ -51,6 +54,7 @@
         align-items: center;
         gap: 8px;
     }
+
     .user-img {
         // display: inline;
         width: 40px;
@@ -59,5 +63,30 @@
         object-fit: cover;
     }
 
+    ///////// narrow view 
+    .narrow-header {
+        align-self: center;
+        font-size: rem(30px);
+    }
+
+    .trip-list {
+        display: grid;
+        width: 275px;
+        gap: 1rem;
+        margin-bottom: rem(48px);
+        align-self: center;
+    }
+
+    .trip-item {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        // flex: 1;
+    }
+
+    .trip-item p {
+        margin: 5px 0;
+    }
 
 }
