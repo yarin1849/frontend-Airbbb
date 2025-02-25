@@ -14,12 +14,6 @@ export default function GoogleMap({ stay }) {
     }, [stay])
 
     const zoom = 14
-    useEffect(() => {
-        if (stay?.loc) {
-            console.log("stay.loc.lat:", stay.loc.lat)
-            console.log("stay.loc.lan:", stay.loc.lan)
-        }
-    }, [stay])
 
     function onHandleClick({ lat, lng }) {
         console.log("Clicked Location:", { lat, lng })

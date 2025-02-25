@@ -47,7 +47,7 @@ export function StayDescription({ stay }) {
                     {/* <img src="https://via.placeholder.com/40" alt="Host" className="host-avatar" /> */}
                     <div>
                         <div className="host-img">
-                            <img src={stay.host.pictureUrl} />
+                            <img src={stay.host.thumbnailUrl} />
                         </div>
                         <div className="host-description">
                             <h3>Hosted by {stay.host.fullname}</h3>

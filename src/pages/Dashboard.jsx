@@ -86,6 +86,21 @@ export function Dashboard() {
     loadReservations()
   }, [])
 
+  // Add this new useEffect for handling new reservations
+  useEffect(() => {
+    function handleNewReservation(data) {
+      console.log("🔔 Received new reservation:", data)
+      // Reload all reservations to include the new one
+      loadReservations()
+    }
+
+    socketService.on("addReservation", handleNewReservation)
+
+    return () => {
+      socketService.off("addReservation", handleNewReservation)
+    }
+  }, [])
+
   const isNarrow = useIsNarrowScreen() // ✅ Corrected Hook Usage
   if (isLoading || !reserves) return <Loading />
 
@@ -102,6 +117,7 @@ export function Dashboard() {
 
   // Sort the reservations based on our criteria (pending first, then newest date)
   const sortedReserves = sortReservations(reserves)
+
 
   return (
     <section className="dashboard">
@@ -134,20 +150,20 @@ export function Dashboard() {
                 <p><strong>Dates:</strong> {formatDateRange(row.checkin, row.checkout)}</p>
                 <p><strong>status:</strong><span className={`status-${row.status}`}> {row.status}</span></p>
                 <p><strong>Action:</strong><span className="btn-group">
-                        <Button
-                          className="approved-btn"
-                          onClick={() => onStatusChange("approved", row._id)}
-                          disabled={row.status !== "pending"}
-                        >
-                          APPROVED
-                        </Button>
-                        <Button
-                          className="decline-btn"
-                          onClick={() => onStatusChange("declined", row._id)}
-                          disabled={row.status !== "pending"}
-                        >
-                          DECLINE
-                        </Button></span></p>
+                  <Button
+                    className="approved-btn"
+                    onClick={() => onStatusChange("approved", row._id)}
+                    disabled={row.status !== "pending"}
+                  >
+                    APPROVED
+                  </Button>
+                  <Button
+                    className="decline-btn"
+                    onClick={() => onStatusChange("declined", row._id)}
+                    disabled={row.status !== "pending"}
+                  >
+                    DECLINE
+                  </Button></span></p>
               </li>
             ))}
           </ul>
@@ -211,7 +227,7 @@ export function Dashboard() {
                     </TableCell>
 
                     {/* Action Buttons */}
-                    <TableCell sx={{ padding: "10px", textAlign: "center" }}>
+                    < TableCell sx={{ padding: "10px", textAlign: "center" }}>
                       <div className="btn-group">
                         <Button
                           className="approved-btn"
@@ -233,9 +249,10 @@ export function Dashboard() {
                   </TableRow>
                 ))}
               </TableBody>
-            </Table>
-          </TableContainer>
-        </>)}
-    </section>
+            </Table >
+          </TableContainer >
+        </>)
+      }
+    </section >
   )
 }
