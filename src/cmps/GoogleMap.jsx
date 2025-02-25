@@ -1,18 +1,29 @@
-import React, { useState } from "react";
-import GoogleMapReact from 'google-map-react';
+import React, { useEffect, useState } from "react"
+import GoogleMapReact from "google-map-react"
 
-export default function GoogleMap() {
-    const [center, setCenter] = useState({ lat: 32.040521451921904, lng: 34.77233961910294 });
+export default function GoogleMap({ stay }) {
+    const [center, setCenter] = useState({
+        lat: stay?.loc?.lat ?? -12.992397,
+        lng: stay?.loc?.lan ?? -38.454644
+    })
 
-    const zoom = 12;
+    useEffect(() => {
+        if (stay?.loc && stay.loc.lat !== undefined && stay.loc.lan !== undefined) {
+            setCenter({ lat: stay.loc.lat, lng: stay.loc.lan })
+        }
+    }, [stay])
 
-    const storesLocations = [
-        { lat: 32.040521451921904, lng: 34.77233961910294 },
-    ];
+    const zoom = 14
+    useEffect(() => {
+        if (stay?.loc) {
+            console.log("stay.loc.lat:", stay.loc.lat)
+            console.log("stay.loc.lan:", stay.loc.lan)
+        }
+    }, [stay])
 
     function onHandleClick({ lat, lng }) {
-        console.log('{ lat, lng }', { lat, lng });
-        setCenter({ lat, lng });
+        console.log("Clicked Location:", { lat, lng })
+        setCenter({ lat, lng })
     }
 
     return (
@@ -25,14 +36,9 @@ export default function GoogleMap() {
                         defaultZoom={zoom}
                         onClick={onHandleClick}
                     >
-                        {storesLocations.map((store, index) => (
-                            <AnyReactComponent
-                                key={index}
-                                lat={store.lat}
-                                lng={store.lng}
-                                text="🏠"
-                            />
-                        ))}
+                        {stay?.loc?.lat !== undefined && stay?.loc?.lan !== undefined && (
+                            <HouseIcon lat={stay.loc.lat} lng={stay.loc.lan} />
+                        )}
                     </GoogleMapReact>
                 </div>
             </div>
@@ -40,22 +46,13 @@ export default function GoogleMap() {
     )
 }
 
-const AnyReactComponent = ({ text }) => (
-    <div style={{ fontSize: '22px' }}>{text}</div>
-)
+// ✅ Custom House Icon Component
+const HouseIcon = () => (
+    <div style={{ width: "60px" }}>
+        <
+            img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740412900/klipartz.com_vmzint.png"}
+            style={{ width: "100%" }}
 
-const styles = {
-    container: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '20px',
-    },
-    mapWrapper: {
-        height: '70vh',
-        width: '90%',
-        borderRadius: '12px',
-        overflow: 'hidden',
-        boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
-    }
-}
+        />
+    </div>
+)

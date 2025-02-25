@@ -1,4 +1,7 @@
 .dashboard {
+    @include for-mobile-layout{
+        margin-bottom: 60px;
+    }
     .dashboard-header {
         text-align: center;
         margin: rem(32px);
