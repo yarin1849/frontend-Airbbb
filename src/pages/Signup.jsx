@@ -26,7 +26,14 @@ export function Signup() {
         if (ev) ev.preventDefault()
 
         if (!credentials.username || !credentials.password || !credentials.fullname) return
-        await signup(credentials)
+        
+        const user = await signup(credentials)
+                if (!user || !user._id) {
+                    console.error("❌ Login failed: No user ID returned.")
+                    return
+                }
+                console.log(user._id)
+                socketService.emit("set-user-socket", user._id)
         clearState()
          navigate('/')
     }
