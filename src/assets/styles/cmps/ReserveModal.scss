@@ -44,10 +44,10 @@
             display: flex;
             border-bottom: 1px solid #ccc;
             justify-content: space-between;
-        
             div {
                 flex: 1;
                 padding: 5px;
+                // margin-bottom: 3px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -61,10 +61,9 @@
             label {
                 font-size: 10px;
                 font-weight: bold;
-                color: #666;
+                color: #222222;
                 text-transform: uppercase;
-                margin-bottom: 4px;
-                
+                margin-left: 2px;
             }
             
             input {
@@ -275,19 +274,21 @@
     display: flex;
     flex-direction: column;
     border: 1px solid #ccc;
-    padding: 10px 10px 10px 10px;
+    padding: 8px 10px 8px 10px;
     border-radius: 8px;
     min-width: 158px;
 }
 
 .date-input label {
     font-size: 10px;
+    // margin-top: 3px;
     font-weight: bold;
     color: #666;
     text-transform: uppercase;
 }
 
 .date-input span {
+    // margin-top: -3px;
     font-size: 14px;
     color: #222;
     font-weight: bold;
