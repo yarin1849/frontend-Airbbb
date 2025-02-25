@@ -46,7 +46,6 @@ export default function GoogleMap({ stay }) {
     )
 }
 
-// ✅ Custom House Icon Component
 const HouseIcon = () => (
     <div style={{ width: "60px" }}>
         <
