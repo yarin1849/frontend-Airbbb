@@ -138,7 +138,7 @@
         align-self: start;
         /* Aligns it to the top */
         top: 5%;
-        right: 12%;
+        right: 25%;
         z-index: 1;
         filter: drop-shadow(-0.5px -0.5px 0 rgba(255, 255, 255, 0.7)) drop-shadow(1px -1px 0 rgba(255, 255, 255, 0.7)) drop-shadow(-1px 1px 0 rgba(255, 255, 255, 0.7)) drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.7));
     }
@@ -165,7 +165,7 @@
         img {
             width: rem(11.1px);
             height: rem(11.1px);
-            margin-top: rem(4px);
+            margin-top: rem(2px);
         }
     }
 }

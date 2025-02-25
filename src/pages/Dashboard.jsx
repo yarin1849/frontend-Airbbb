@@ -23,8 +23,14 @@ import { useState } from 'react'
 
 // 1) Formats two date strings (M/D/YYYY) into "20-25 May 2025"
 function formatDateRange(checkinStr, checkoutStr) {
-  const [startYear, startMonth, startDay] = checkinStr.split('-')
-  const [endYear, endMonth, endDay] = checkoutStr.split('-')
+  if (checkinStr.split('/').length === 1) {
+    var [startYear, startMonth, startDay] = checkinStr.split('-')
+    var [endYear, endMonth, endDay] = checkoutStr.split('-')
+  } else {
+    var [startMonth, startDay, startYear] = checkinStr.split('/')
+    var [endMonth, endDay, endYear] = checkoutStr.split('/')
+
+  }
 
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -101,7 +107,37 @@ export function Dashboard() {
     }
   }, [])
 
-  const isNarrow = useIsNarrowScreen() // ✅ Corrected Hook Usage
+  // Add this new useEffect for handling new reservations
+  useEffect(() => {
+    function handleNewReservation(data) {
+      console.log("🔔 Received new reservation:", data)
+      // Reload all reservations to include the new one
+      loadReservations()
+    }
+
+    socketService.on("addReservation", handleNewReservation)
+
+    return () => {
+      socketService.off("addReservation", handleNewReservation)
+    }
+  }, [])
+
+  // Add this new useEffect for handling new reservations
+  useEffect(() => {
+    function handleNewReservation(data) {
+      console.log("🔔 Received new reservation:", data)
+      // Reload all reservations to include the new one
+      loadReservations()
+    }
+
+    socketService.on("addReservation", handleNewReservation)
+
+    return () => {
+      socketService.off("addReservation", handleNewReservation)
+    }
+  }, [])
+
+  const isNarrow = useIsNarrowScreen()
   if (isLoading || !reserves) return <Loading />
 
   function onStatusChange(updateStatus, todoId) {
@@ -112,6 +148,12 @@ export function Dashboard() {
     }
     const updatedReserve = { ...reserve, status: updateStatus }
     updateReservation(updatedReserve)
+
+    socketService.emit("reservationStatusUpdate", {
+      reservationId: updatedReserve._id,
+      status: updatedReserve.status,
+      userId: updatedReserve.user._id  // The user who made the reservation
+    })
   }
 
 
@@ -203,6 +245,7 @@ export function Dashboard() {
 
                     {/* Host Info */}
                     <TableCell sx={{ padding: "10px", whiteSpace: "nowrap" }}>
+                      {/* {console.log("Host Data:", reserve.host)} */}
                       <div className="user-cell">
                         <img src={reserve.host?.img} className="user-img" alt="Host" />
                         <span>{reserve.host?.name}</span>
@@ -256,3 +299,5 @@ export function Dashboard() {
     </section >
   )
 }
+
+

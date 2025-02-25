@@ -8,9 +8,14 @@
         position: sticky;
         top: 80px;
         z-index: 100;
+
+        @include for-mobile-layout {
+            top: 111px;
+        }
+
         // background-color: white;
         // /* Ensure it's visible */
-        
+
     }
 
     /* Full-width shadow effect */
@@ -26,6 +31,9 @@
         height: 8px;
         /* Red shadow effect */
         box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 0px;
+        @include for-mobile-layout {
+            display: none;
+        }
     }
 
     .icon-filter {
@@ -203,5 +211,8 @@
     &:hover {
         border: 1px solid #222222;
         background-color: rgb(244, 244, 244);
+    }
+    @include for-mobile-layout {
+        display:none
     }
 }

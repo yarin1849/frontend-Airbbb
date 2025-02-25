@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router'
 import { userService } from '../services/user'
 import { login } from '../store/actions/user.actions'
 import { Loading } from '../cmps/Loading'
+import { socketService } from '../services/socket.service'
 
 export function Login() {
     const [users, setUsers] = useState([])
@@ -26,7 +27,13 @@ export function Login() {
     async function onLogin(ev = null) {
         if (ev) ev.preventDefault()
         if (!credentials.username) return
-        await login(credentials)
+        const user = await login(credentials)
+        if (!user || !user._id) {
+            console.error("❌ Login failed: No user ID returned.")
+            return
+        }
+        console.log(user._id)
+        socketService.emit("set-user-socket", user._id)
         navigate('/')
     }
 
@@ -40,7 +47,13 @@ export function Login() {
     async function onDemoUser() {
         credentials.username = 'Patty'
         credentials.password = '36133410'
-        await login(credentials)
+        const user = await login(credentials)
+        if (!user || !user._id) {
+            console.error("❌ Login failed: No user ID returned.")
+            return
+        }
+        console.log(user._id)
+        socketService.emit("set-user-socket", user._id)
         navigate('/')
     }
 
