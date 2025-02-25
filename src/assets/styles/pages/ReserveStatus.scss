@@ -1,4 +1,7 @@
 .reserve-status {
+    @include for-mobile-layout{
+        margin-bottom: 20px;
+    }
     h1 {
         font-size: rem(45px);
         margin: 0;

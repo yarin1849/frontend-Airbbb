@@ -20,7 +20,7 @@
             align-self: center;
             flex-direction: column;
             justify-content: center;
-            height: 100px;
+            height: fit-content;
             gap: 15px;
             z-index: 1000;
         }
@@ -34,10 +34,7 @@
 
 
         .logo {
-            @include for-mobile-layout {
-                align-self: center;
-            }
-
+           
             position: sticky;
             top: 20px;
             left: 0;
@@ -46,6 +43,11 @@
 
             img {
                 max-width: 102px;
+            }
+            @include for-mobile-layout {
+                align-self: center;
+                justify-self: flex-start;
+                top: 13px;
             }
 
         }
@@ -74,7 +76,7 @@
                 left: 0;
                 display: flex;
                 width: 100%;
-                min-height: 100px;
+                min-height: 60px;
                 background-color: $gray-3;
                 justify-content: center;
             }
