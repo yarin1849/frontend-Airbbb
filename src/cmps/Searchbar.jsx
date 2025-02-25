@@ -121,7 +121,7 @@ export function SearchBar({ setFilter, filter }) {
                     hoveredRange: "my-hovered-range",
                     checkInDay: "check-in-day",
                     checkOutDay: "check-out-day",
-                }} />
+                }} next={document.getElementById('guests')} />
             </article>}
             {isOpenWhere && <article className="where-modal">
                 <WhereModal setFilterByToEdit={setFilterByToEdit} filterByToEdit={filterByToEdit} next={document.getElementById('checkIn')} />
