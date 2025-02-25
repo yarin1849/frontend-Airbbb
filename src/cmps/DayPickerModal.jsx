@@ -1,7 +1,7 @@
 
 import { DayPicker } from "react-day-picker"
 import { useEffect, useState } from "react"
-export function DatePickerModal({ setFilterByToEdit, FilterByToEdit }) {
+export function DatePickerModal({ setFilterByToEdit, FilterByToEdit, next }) {
     const [selected, setSelected] = useState({ from: null, to: null })
     const [hoveredDate, setHoveredDate] = useState(null)
     useEffect(() => {
@@ -12,6 +12,7 @@ export function DatePickerModal({ setFilterByToEdit, FilterByToEdit }) {
         if (!selected.from || !selected.to) {
             return
         } else {
+            moveToNext()
             setFilterByToEdit(prevFilter => ({ ...prevFilter, checkIn: formatDate(selected.from), checkOut: formatDate(selected.to) }))
 
         }
@@ -36,6 +37,11 @@ export function DatePickerModal({ setFilterByToEdit, FilterByToEdit }) {
                 setHoveredDate(null)
             }
         }
+    }
+
+    function moveToNext() {
+        console.log(next)
+        next.focus()
     }
 
     function formatDate(date) {
