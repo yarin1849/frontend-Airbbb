@@ -6,15 +6,18 @@
     display: flex;
     align-items: center;
 
-    padding: .2em;
+    padding: 2em;
+    border-radius: 10px;
     padding-inline-end: 20px;
-    background-color: grey;
+    box-shadow: 5px 5px 1px 0px rgb(234, 234, 234);
+    // background-color: grey;
+    border: 1px solid $clr1;
 
-    color:white;
+    color:$gray4;
     font-size: .9em;
 
     opacity: 0;
-    translate: 150%;
+    translate: 100%;
     transition: 600ms;
 }
 
@@ -30,10 +33,14 @@
     border:0;
     border-radius: 50%;
     color: $gray4;
+    position: absolute;
+    right: 1px;
+    top: 1px;
 }
 
 .user-msg.success {
-    background-color: rgb(41, 189, 73);
+    background-color: white;
+    // border-color: $green1;
 }
 .user-msg.error {
     background-color: rgb(216, 59, 59);

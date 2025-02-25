@@ -107,7 +107,7 @@ export function Dashboard() {
     }
   }, [])
   
-  const isNarrow = useIsNarrowScreen() // ✅ Corrected Hook Usage
+  const isNarrow = useIsNarrowScreen() 
   if (isLoading || !reserves) return <Loading />
 
   function onStatusChange(updateStatus, todoId) {
@@ -215,6 +215,7 @@ export function Dashboard() {
 
                 {/* Host Info */}
                 <TableCell sx={{ padding: "10px", whiteSpace: "nowrap" }}>
+                {/* {console.log("Host Data:", reserve.host)} */}
                   <div className="user-cell">
                     <img src={reserve.host?.img} className="user-img" alt="Host" />
                     <span>{reserve.host?.name}</span>

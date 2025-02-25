@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import { loadReservations } from '../store/actions/reservation.actions'
 import { socketService } from '../services/socket.service'
 import { Loading } from '../cmps/Loading'
+import { showSuccessMsg } from '../services/event-bus.service'
 
 // ✅ Format date range display (same format as original)
 function formatDateRange(checkinStr, checkoutStr) {
@@ -86,6 +87,13 @@ export function ReserveStatus() {
                         : reserve
                 )
                 console.log("🆕 Updated reservations:", updatedReservations) // Verify changes before updating state
+                const emojy = (updatedData.status === 'declined') ? '❌':'✅' 
+                const colorStatus = (updatedData.status === 'declined') ? '#ff385c':'#67c23a' 
+                const bgc = (updatedData.status === 'declined') ? '#f56c6c':'#b3e19d' 
+                showSuccessMsg(<><div>
+                    {emojy} Hi {user.fullname}! your Reservation has been updated to: 
+                    <span style={{color: colorStatus}}> {updatedData.status}!</span> 
+                    </div></>)
                 return updatedReservations
             })
         }
