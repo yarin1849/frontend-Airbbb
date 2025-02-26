@@ -163,6 +163,11 @@ export function StayBooking() {
                         </div>
                     </div>
                     <hr />
+                    <div className="privacy-policy-text">
+                        <div className="first-policy">By selecting the button below, I agree to the <span>Host's House Rules, Ground rules for guests, Airbnb's Rebooking and Refund Policy</span>, and that Airbnb can <span>charge my payment method</span> if I’m responsible for damage.</div>
+
+                        <div className="second-policy">I also agree to the <span>updated Terms of Service, Payments Terms of Service</span>, and I acknowledge the <span>Privacy Policy.</span></div>
+                    </div>
                 </div>
                 <div className="confirm-container">
                     <button
@@ -174,12 +179,12 @@ export function StayBooking() {
                         Confirm and pay
                     </button>
                 </div>
-            </div>
+            </div >
 
             <div className="booking-stay-details">
                 <StayBookingModal stay={stay} />
             </div>
-        </div>
+        </div >
     )
 }
 
