@@ -1,7 +1,10 @@
 import { useState } from "react"
+import { ShowAllReviews } from "../cmps/StayShowAllReviews"
+
 
 export function StayDescription({ stay }) {
     const [isExpanded, setIsExpanded] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const fullText = stay.summary
     const maxLength = 200
     const reviews = stay.reviews.length
@@ -24,8 +27,6 @@ export function StayDescription({ stay }) {
                 <div className="review-container-description">
                     One of the most loved homes on Airbnb, according to guests
                 </div>
-                {/* <div className="divider"></div> */}
-                {/* <p className="description-text">One of the most loved homes on Airbnb, according to guests</p> */}
                 <div className="rank-details">
                     <span className="review-score">4.97</span>
                     <div className="review-stars">{[1, 2, 3, 4, 5].map((index) => (
@@ -38,13 +39,18 @@ export function StayDescription({ stay }) {
                 </div>
                 <div className="divider"></div>
                 <div className="review-details">
-                    <div className="review-count">{reviews}</div>
-                    <div className="review-text">Reviews</div>
+                    <div className="review-count">
+                        {reviews}
+                    </div>
+                    <div className="review-text">
+                        <button className="review-text" onClick={() => { setIsModalOpen(true) }}>
+                            Reviews
+                        </button>
+                    </div>
                 </div>
             </div>
             <div className="home-highlights">
                 <div className="host-info">
-                    {/* <img src="https://via.placeholder.com/40" alt="Host" className="host-avatar" /> */}
                     <div>
                         <div className="host-img">
                             <img src={stay.host.thumbnailUrl} />
@@ -53,9 +59,6 @@ export function StayDescription({ stay }) {
                             <h3>Hosted by {stay.host.fullname}</h3>
                             <span>Hosted by {stay.host.fullname}</span>
                         </div>
-
-                        {/* is super host???????? */}
-                        {/* <p className="host-subtitle">About host: {stay.host.about}</p> */}
                         <hr></hr>
                     </div>
                 </div>
@@ -70,6 +73,7 @@ export function StayDescription({ stay }) {
                 )}
                 <hr></hr>
             </div>
+            {isModalOpen && <ShowAllReviews stay={stay} onClose={() => setIsModalOpen(false)} />}
         </div>
     )
 }
