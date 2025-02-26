@@ -105,7 +105,7 @@
 
         .booking-guests{
             line-height: 1;
-            margin-bottom: 28px;
+            margin-bottom: 30px;
         }
 
     }
@@ -135,15 +135,33 @@
 
     .booking-payment-method{
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         font-size: 22px;
+        margin-top: 16px;
 
-        span{
-            display: inline-block;
+        .booking-payment-header{
+            display: flex;
+            justify-content: space-between;
+    
+            .booking-payment-imgs{
+                display: flex;
+                align-items: center;
+                margin-top: 6px;
+                img{
+                    display: flex;
+                    margin-left:4px;
+                    width: 34px;
+                }
+            }
+            .booking-payment-imgs span:nth-child(2) img {
+                width: 20px;
+            }
+            .booking-payment-imgs span:nth-child(4) img {
+                width: 44px;
+            }
         }
-        img{
-            width: 50px;
-        }
+        
     }
         
 }

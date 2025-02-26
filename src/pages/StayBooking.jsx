@@ -7,6 +7,7 @@ import { addReservation } from "../store/actions/reservation.actions"
 import { loadStay } from "../store/actions/stay.actions"
 import { Loading } from "../cmps/Loading"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import SelectLabels from "../cmps/SelectLabels"
 // import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function StayBooking() {
@@ -112,14 +113,17 @@ export function StayBooking() {
                     </div>
                     <hr />
                     <div className="booking-payment-method">
-                        <div className="booking-payment-text"><span>Pay with</span></div>
-                        <div className="booking-payment-imgs">
-                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568396/visa_cmcgaf.svg"} /></span>
-                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/AMEX_q9stcu.svg"} /></span>
-                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/mastercard_gmswdz.svg"} /></span>
-                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568535/asset_3_rnczol.svg"} /></span>
-                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568337/asset_4_an71bf.svg"} /></span>
+                        <div className="booking-payment-header">
+                            <div className="booking-payment-text"><span>Pay with</span></div>
+                            <div className="booking-payment-imgs">
+                                <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568396/visa_cmcgaf.svg"} /></span>
+                                <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/mastercard_gmswdz.svg"} /></span>
+                                <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/AMEX_q9stcu.svg"} /></span>
+                                <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568535/asset_3_rnczol.svg"} /></span>
+                                <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568337/asset_4_an71bf.svg"} /></span>
+                            </div>
                         </div>
+                        <div className="booking-payment-select"><SelectLabels /></div>
                     </div>
                     <hr />
                 </div>

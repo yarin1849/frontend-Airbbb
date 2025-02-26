@@ -23,10 +23,10 @@ export function StayBookingModal({ stay }) {
                 </div>
                 <div className="stay-details">
                     <div className="stay-details-text">
-                        <div className="stay-details-name">
+                        <div className="stay-details-header">
                             {stay.name}
                         </div>
-                        <div className="stay-details-header">
+                        <div className="stay-details-name">
                             {stay.type}
                         </div>
                     </div>
@@ -47,7 +47,6 @@ export function StayBookingModal({ stay }) {
                     <div className="total"><span>Total</span>
                         <span>{formatCurrency(parseInt(totalPrice))}</span></div>
                 </div>
-
             </div>
         </div>
     )
