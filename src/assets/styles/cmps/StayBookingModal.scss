@@ -13,6 +13,11 @@
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
     
+    hr {
+        border: none;
+        border-top: 1px solid #ddd;
+    }   
+    
     .stay-details-container{
         display: flex;
         padding-bottom: 18px;
@@ -25,13 +30,11 @@
             }
         }
 
-        
         .stay-details{
             position: relative;
             right: 24px;
             top:10px;
             margin-left: 20px;
-
             
             .stay-details-name{
                 font-weight: 500;
@@ -64,8 +67,6 @@
                     font-weight: 500;
 
                 }
-
-          
             }
         }
     }

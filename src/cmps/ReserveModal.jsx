@@ -8,9 +8,6 @@ import { calculateGradient, resetGradient } from '../services/util.service';
 
 export function ReserveModal({ stay, checkin, checkout, guests }) {
 
-    // const handleMouseMove = (event) => calculateGradient(event, isHovering, setGradient);
-    // const handleMouseLeave = () => resetGradient(setGradient);
-
     const navigate = useNavigate()
     const { stayId } = useParams()
     const [searchParams, setSearchParams] = useSearchParams()
@@ -26,7 +23,6 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
     const [focusedField, setFocusedField] = useState(null)
     const [hoveredDate, setHoveredDate] = useState(null)
 
-
     useEffect(() => {
         const params = new URLSearchParams()
         params.set("checkin", checkIn)
@@ -40,22 +36,21 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
         const checkinParam = params.get("checkin")
         const checkoutParam = params.get("checkout")
 
-        if (checkinParam) setCheckIn(checkinParam)
-        if (checkoutParam) setCheckOut(checkoutParam)
+        if (checkinParam != "null") {
+            setCheckIn(checkinParam)
+        } else {
+            setCheckIn(formatDateMMDDYYYY(new Date()))
+        }
 
-        // if (checkinParam !== 'null') {
-        //     setCheckIn(formatDateMMDDYYYY(checkinParam))
-        // } else {
-        //     setCheckIn(formatDateMMDDYYYY(new Date()))
-        // }
-
-        // if (checkinParam !== 'null') {
-        //     setCheckOut(formatDateMMDDYYYY(checkinParam))
-        // } else {
-        //     setCheckOut(formatDateMMDDYYYY(new Date()))
-        // }
-
+        if (checkinParam != "null") {
+            setCheckOut(checkoutParam)
+        } else {
+            const fiveMoreDays = new Date()
+            fiveMoreDays.setDate(fiveMoreDays.getDate() + 5)
+            setCheckOut(formatDateMMDDYYYY(fiveMoreDays))
+        }
     }, [])
+
 
     const nightlyRate = parseInt(stay.price)
     const nights = parseInt(Math.max((new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24), 1))
@@ -68,9 +63,14 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
         return new Date(date).toLocaleDateString("en-us", options)
     }
 
-
-
     const handleReserve = () => {
+
+        if (checkin == "null" || checkout == "null") {
+            setIsDatePickerOpen(true)
+            setFocusedField(!checkIn ? "checkin" : "checkout")
+            return
+        }
+
         const params = new URLSearchParams()
         params.set('checkin', checkIn)
         params.set('checkout', checkOut)
@@ -81,26 +81,6 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
         params.set("totalPrice", totalPrice)
         navigate(`/${stayId}/booking?${params.toString()}`)
     }
-
-    // const handleDateSelect = (range) => {
-    //     if (!range?.from || !range?.to) {
-    //         console.log("Invalid range selected")
-    //         return
-    //     }
-
-    //     const formattedCheckIn = range.from.toISOString().split('T')[0]
-    //     const formattedCheckOut = range.to.toISOString().split('T')[0]
-
-
-    //     setCheckIn(formattedCheckIn)
-    //     setCheckOut(formattedCheckOut)
-    //     setIsDatePickerOpen(false)
-
-    //     const params = new URLSearchParams(searchParams)
-    //     params.set("checkin", formattedCheckIn)
-    //     params.set("checkout", formattedCheckOut)
-    //     setSearchParams(params)
-    // }
 
     const handleClearDates = () => {
         setCheckIn(null)

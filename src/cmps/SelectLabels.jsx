@@ -1,14 +1,13 @@
 import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
 const cardOptions = [
     { value: "5738", label: "Visa", logo: "https://res.cloudinary.com/du312ufuo/image/upload/v1740568396/visa_cmcgaf.svg" },
     { value: "2521", label: "AMEX", logo: "https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/AMEX_q9stcu.svg" },
     { value: "0000", label: "MasterCard", logo: "https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/mastercard_gmswdz.svg" },
+    { value: "paypal", label: "PayPal", logo: "https://res.cloudinary.com/du312ufuo/image/upload/v1740568337/asset_4_an71bf.svg" },
 ];
 
 export default function SelectLabels() {
@@ -33,7 +32,7 @@ export default function SelectLabels() {
                         return selectedItem ? (
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <img src={selectedItem.logo} alt={selectedItem.label} style={{ width: 42, marginRight: 18 }} />
-                                •••• {selectedItem.value}
+                                {selectedItem.value !== "paypal" ? `•••• ${selectedItem.value}` : "PayPal"}
                             </div>
                         ) : (
                             <em>Select a Payment Method</em>
@@ -44,10 +43,9 @@ export default function SelectLabels() {
                     {cardOptions.map((card) => (
                         <MenuItem key={card.value} value={card.value} sx={{ display: 'flex', alignItems: 'center' }}>
                             <img src={card.logo} alt={card.label} style={{ width: 24, marginRight: 8 }} />
-                            •••• {card.value}
+                            {card.value !== "paypal" ? `•••• ${card.value}` : "PayPal"}
                         </MenuItem>
                     ))}
-                    <MenuItem value="paypal">PayPal</MenuItem>
                 </Select>
             </FormControl>
         </div>

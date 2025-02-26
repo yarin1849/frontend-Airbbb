@@ -79,11 +79,20 @@ export function StayBooking() {
         }
     }
 
+    const getCancellationDate = (checkin, daysBefore) => {
+        const checkinDate = new Date(checkin)
+        checkinDate.setDate(checkinDate.getDate() - daysBefore)
+        return formatDate(checkinDate.toISOString())
+    }
+
+
+
     return (
         <div className="stay-booking">
             <div className="booking-confirm-details">
                 <div className="booking-header">
                     <button className="back-to-details-btn" onClick={() => { navigate(`/details/${stayId}`) }}>
+                        {/* <img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1739635520/back-arrow_s0yb92.svg"} /> */}
                         <ChevronLeft size={20} />
                     </button>
                     <div className="booking-main-title">
@@ -124,6 +133,34 @@ export function StayBooking() {
                             </div>
                         </div>
                         <div className="booking-payment-select"><SelectLabels /></div>
+                    </div>
+                    <hr />
+                    <div className="cancellation-policy">
+                        <div className="cancellation-policy-header">
+                            Cancellation policy
+                        </div>
+                        <div className="cancellation-policy-text">
+                            <span>Free cancellation before {getCancellationDate(checkin, 7)}. </span>
+                            Cancel before {getCancellationDate(checkin, 3)} for a partial refund.
+                            <div className="learn-more-btn-container"><button className="learn-more-btn">
+                                Learn more
+                            </button></div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div className="booking-ground-rules">
+                        <div className="ground-rules-header">
+                            Ground rules
+                        </div>
+                        <div className="ground-rules-text">
+                            We ask every guest to remember a few simple things about what makes a great guest.
+                        </div>
+                        <div className="ground-rules-li-container">
+                            <ul>
+                                <li>Follow the house rules</li>
+                                <li>Treat your Host’s home like your own</li>
+                            </ul>
+                        </div>
                     </div>
                     <hr />
                 </div>

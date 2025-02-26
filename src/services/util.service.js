@@ -77,25 +77,31 @@ export const formatCurrency = (amount, currency = "USD", locale = "en-US") => {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
     }).format(amount)
-};
+}
 
+export const formatCurrencyWithDots = (amount, currency = "USD", locale = "en-US") => {
+    return new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency: currency,
+    }).format(amount)
+}
 
 export function useIsNarrowScreen() {
-  // console.log(document.documentElement.clientWidth)
-  const [isNarrow, setIsNarrow] = useState(document.documentElement.clientWidth < 768)
-  useEffect(() => {
-    if (typeof document === 'undefined') return // Ensure it's running in the browser
+    // console.log(document.documentElement.clientWidth)
+    const [isNarrow, setIsNarrow] = useState(document.documentElement.clientWidth < 768)
+    useEffect(() => {
+        if (typeof document === 'undefined') return // Ensure it's running in the browser
 
-    const handleResize = () => {
-      setIsNarrow(document.documentElement.clientWidth < 768)
-    }
+        const handleResize = () => {
+            setIsNarrow(document.documentElement.clientWidth < 768)
+        }
 
-    window.addEventListener('resize', handleResize) // Listen for changes
+        window.addEventListener('resize', handleResize) // Listen for changes
 
-    return () => window.removeEventListener('resize', handleResize) // Cleanup on unmount
-  }, [])
+        return () => window.removeEventListener('resize', handleResize) // Cleanup on unmount
+    }, [])
 
-  return isNarrow
+    return isNarrow
 }
 
 // ✅ Format date range display (same format as original)

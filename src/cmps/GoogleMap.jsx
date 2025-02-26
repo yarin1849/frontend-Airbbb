@@ -25,7 +25,8 @@ export default function GoogleMap({ stay }) {
             <div className="map-container">
                 <div className="map-wrapper">
                     <GoogleMapReact
-                        bootstrapURLKeys={{ key: process.env.GOOGLE_MAP_API }}
+                        // bootstrapURLKeys={{ key: process.env.GOOGLE_MAP_API }}
+                        bootstrapURLKeys={{ key: "" }}
                         center={center}
                         defaultZoom={zoom}
                         onClick={onHandleClick}

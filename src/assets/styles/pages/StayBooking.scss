@@ -3,7 +3,12 @@
     width: 1120px;
     margin: 0 auto;
     min-height: 200vh;
-    // justify-content: space-between;
+    font-family: airbnb, sans-serif;
+    
+    hr {
+        border: none;
+        border-top: 1px solid #ddd;
+    }   
 
     .booking-confirm-details{
         width: 560px;
@@ -33,7 +38,7 @@
                 // position: absolute;
                 position:relative;
                 right: 8px;
-                bottom: 3px;
+                bottom: 8px;
                 margin-inline-start: -30px;
                 // border: 50px;
                 color: #222222;
@@ -163,7 +168,69 @@
         }
         
     }
+
+    .cancellation-policy{
+        margin-top: 28px;
+        margin-bottom: -20px;
+        .cancellation-policy-header{
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        .cancellation-policy-text{
+            margin-top: 16px;
+            font-size: 16px;
+            span{
+                font-weight: 700;
+            }
+            .learn-more-btn-container{
+                margin-top: -1px;
+                .learn-more-btn{
+    
+                    display: flex !important;
+                    background: none !important;
+                    border: none !important;
+                    color: #222222;
+                    padding: 0;
+                    margin: 0;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: bold;
+                    text-decoration: underline;
+                    font-weight:500;
+                    margin-bottom: 50px;
+                    
+                    &:hover{
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+
+    .booking-ground-rules{
+        padding: 20px 0 14px;
+        // margin-top: -12px;
+        .ground-rules-header{
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .ground-rules-text{
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
         
+        .ground-rules-li-container li::before {
+            content: "•";
+            font-size: 14px;
+            color: #222222;
+            margin-right: 10px;
+        }
+    }
+    
 }
 
     .booking-stay-details{
