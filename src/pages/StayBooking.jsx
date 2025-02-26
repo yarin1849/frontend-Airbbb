@@ -91,10 +91,10 @@ export function StayBooking() {
         <div className="stay-booking">
             <div className="booking-confirm-details">
                 <div className="booking-header">
-                    <button className="back-to-details-btn" onClick={() => { navigate(`/details/${stayId}`) }}>
-                        {/* <img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1739635520/back-arrow_s0yb92.svg"} /> */}
-                        <ChevronLeft size={20} />
-                    </button>
+                    <a href={`/details/${stayId}`} className="back-to-details-btn">
+                        <img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1739635520/back-arrow_s0yb92.svg"} />
+                        {/* <ChevronLeft size={20} /> */}
+                    </a>
                     <div className="booking-main-title">
                         <h1>Confirm and Pay</h1>
                     </div>
