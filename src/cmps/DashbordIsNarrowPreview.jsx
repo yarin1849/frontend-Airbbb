@@ -1,4 +1,4 @@
-import { formatDateRange } from '../services/util.service'
+import { formatCurrency, formatDateRange } from '../services/util.service'
 import { Button } from '@mui/material'
 export function DashbordIsNarrowPreview({ data, onStatusChange }) {
   return (
@@ -19,7 +19,7 @@ export function DashbordIsNarrowPreview({ data, onStatusChange }) {
             }</span></p>
             <p><strong>Dates:</strong> {formatDateRange(row.checkin, row.checkout)}</p>
             <p><strong>status:</strong><span className={`status-${row.status}`}> {row.status}</span></p>
-            <p><strong>Price:</strong><span> ${row.price}</span></p>
+            <p><strong>Price:</strong><span> {formatCurrency(row.price)}</span></p>
             <p><strong>Action:</strong><span className="btn-group">
               <Button
                 className="approved-btn"

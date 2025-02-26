@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { formatDateRange } from '../services/util.service'
+import { formatCurrency, formatDateRange } from '../services/util.service'
 
 export function ReserveStatusTablePreview({ data }) {
     return (
@@ -45,7 +45,7 @@ export function ReserveStatusTablePreview({ data }) {
                                     }</span>
                                 </div>
                             </TableCell>
-                            <TableCell align="left">{row.price ? `$${row.price}` : "N/A"}</TableCell>
+                            <TableCell align="left">{row.price ? `${formatCurrency(row.price)}` : "N/A"}</TableCell>
                             <TableCell align="left" className={`status-${row.status.toLowerCase()}`}>
                                 {row.status}
                             </TableCell>
