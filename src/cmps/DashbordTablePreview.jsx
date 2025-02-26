@@ -6,7 +6,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { Button } from '@mui/material'
-import { formatDateRange } from '../services/util.service'
+import { formatCurrency, formatDateRange } from '../services/util.service'
 
 export function DashbordTablePreview({ data, onStatusChange }) {
     return (
@@ -65,7 +65,7 @@ export function DashbordTablePreview({ data, onStatusChange }) {
 
                                 {/* Total Price */}
                                 <TableCell sx={{ padding: "10px", textAlign: "center" }}>
-                                    ${reserve.price}
+                                    {formatCurrency(reserve.price)}
                                 </TableCell>
 
                                 {/* Status */}

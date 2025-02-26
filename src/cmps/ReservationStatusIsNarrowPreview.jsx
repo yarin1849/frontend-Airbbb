@@ -1,4 +1,4 @@
-import { formatDateRange } from '../services/util.service'
+import { formatCurrency, formatDateRange } from '../services/util.service'
 
 export function ReservationStatusIsNarrowPreview({ data }) {
     return (
@@ -17,6 +17,7 @@ export function ReservationStatusIsNarrowPreview({ data }) {
                                 : ""
                         }</span></p>
                         <p><strong>Dates:</strong> {formatDateRange(row.checkin, row.checkout)}</p>
+                        <p><strong>Price:</strong> {formatCurrency(row.price)}</p>
                         <p><strong>Status:</strong>
                             <span className={`status-${row.status.toLowerCase()}`}> {row.status}</span>
                         </p>
