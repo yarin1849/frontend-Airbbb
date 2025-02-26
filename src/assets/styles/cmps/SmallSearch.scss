@@ -2,6 +2,9 @@
     .small-search-section {
         display: flex;
         width: fit-content;
+        @include for-mobile-layout{
+            justify-self: center;
+        }
 
         .small-search {
             margin: auto;
