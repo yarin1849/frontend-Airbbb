@@ -57,7 +57,7 @@ export function StayDescription({ stay }) {
                         </div>
                         <div className="host-description">
                             <h3>Hosted by {stay.host.fullname}</h3>
-                            <span>Hosted by {stay.host.fullname}</span>
+                            <span>blalalal</span>
                         </div>
                         <hr></hr>
                     </div>

@@ -132,6 +132,19 @@
             }
         }
     }
+
+    .booking-payment-method{
+        display: flex;
+        justify-content: space-between;
+        font-size: 22px;
+
+        span{
+            display: inline-block;
+        }
+        img{
+            width: 50px;
+        }
+    }
         
 }
 

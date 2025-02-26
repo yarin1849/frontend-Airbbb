@@ -111,6 +111,17 @@ export function StayBooking() {
                         <span> {guests} {guests === "1" ? "guest" : "guests"}</span>
                     </div>
                     <hr />
+                    <div className="booking-payment-method">
+                        <div className="booking-payment-text"><span>Pay with</span></div>
+                        <div className="booking-payment-imgs">
+                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568396/visa_cmcgaf.svg"} /></span>
+                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/AMEX_q9stcu.svg"} /></span>
+                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/mastercard_gmswdz.svg"} /></span>
+                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568535/asset_3_rnczol.svg"} /></span>
+                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568337/asset_4_an71bf.svg"} /></span>
+                        </div>
+                    </div>
+                    <hr />
                 </div>
                 <div className="confirm-container">
                     <button
