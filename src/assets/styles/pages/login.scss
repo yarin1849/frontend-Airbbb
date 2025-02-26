@@ -13,12 +13,25 @@
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
 
+    @include for-mobile-layout{
+		width: 100%;
+        min-height: 450px;
+        margin-bottom: 60px;
+        margin-top: 5px;
+        padding: 0 ;
+	}
+
     .auth-header {
         padding: 4.5px 24px;
         min-height: 44px;
         // display: flex;
         text-align: center;
         font-weight: bold;
+
+        @include for-mobile-layout{
+           font-size: 1rem;
+           padding: 0;
+        }
     }
 
     .divider {
@@ -34,7 +47,9 @@
 
     label {
         cursor: pointer;
-
+        @include for-mobile-layout{
+           font-size: .8rem;
+        }
     }
 
     .astrix {
@@ -53,6 +68,12 @@
         padding: 1px 11px;
         border-radius: rem(4px);
         border: 1px solid $gray2;
+
+        @include for-mobile-layout{
+            max-height: rem(25px);
+            margin:  0 ;
+            padding: 0 ;
+        }
 
         &:focus-visible {
             outline: $gray4;
@@ -73,6 +94,12 @@
         min-height: 50px;
         border-radius: 8px;
         margin-bottom: 15px;
+
+        @include for-mobile-layout{
+            height: rem(15px);
+            margin:  20px ;
+            padding: 0 ;
+        }
     }
 
     .btn-login {
@@ -87,96 +114,3 @@
 }
 
 
-//     .login-details-container {
-//         display: flex;
-//         padding-bottom: 18px;
-
-//         .login-img {
-//             width: 25%;
-
-//             img {
-//                 // object-fit: cover;
-//                 border-radius: 12px;
-//                 // width: 50%;
-//                 height: 10vh;
-//             }
-//         }
-
-
-//         .login-details {
-
-//             // .login-details-text{
-//             //     line-height: 1;
-//             // }
-
-//             .login-details-name {
-//                 font-weight: 500;
-//             }
-//         }
-
-
-//         .login-details {
-//             // background-color: aqua;
-//             align-items: center;
-//             margin-right: 0;
-//             // margin-bottom: 10px;
-//             // line-height: 1;
-//             // justify-items: start;
-
-//             .login-details-reviews {
-//                 span img {
-//                     width: 12px;
-//                 }
-
-//                 span {
-//                     font-size: 14px;
-//                     padding: 2px;
-
-//                 }
-
-//                 .reviews-score {
-//                     font-weight: 500;
-
-//                 }
-
-//                 .reviews-number {}
-
-//             }
-
-//             // .reserve-details-container{
-//             //     background-color: antiquewhite;
-//             //     h2{
-//             //         color: blue;
-//             //     }
-
-//             // }
-//         }
-//     }
-
-
-//     .pricing-calculate {
-//         margin-top: -2px;
-//         font-size: 16px;
-
-//         div {
-//             display: flex;
-//             justify-content: space-between;
-//             padding: 5px;
-
-//             .nightly-rate-calc {
-//                 text-decoration: underline;
-
-//             }
-
-//             .nightly-service-fee {
-//                 text-decoration: underline;
-//                 margin-bottom: 10px;
-//             }
-//         }
-
-//         .total {
-//             margin-top: 14px;
-//             font-weight: 500;
-//         }
-//     }
-// }
