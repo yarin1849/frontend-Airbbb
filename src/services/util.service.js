@@ -1,3 +1,6 @@
+import { useEffect } from "react"
+import { useState } from "react"
+
 export function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -65,6 +68,63 @@ export function calculateGradient(event, isHovering, setGradient) {
 
 export function resetGradient(setGradient) {
     setGradient("linear-gradient(90deg, #FF3366, #E61E6E)");
+}
+
+export function useIsNarrowScreen() {
+  // console.log(document.documentElement.clientWidth)
+  const [isNarrow, setIsNarrow] = useState(document.documentElement.clientWidth < 768)
+  useEffect(() => {
+    if (typeof document === 'undefined') return // Ensure it's running in the browser
+
+    const handleResize = () => {
+      setIsNarrow(document.documentElement.clientWidth < 768)
+    }
+
+    window.addEventListener('resize', handleResize) // Listen for changes
+
+    return () => window.removeEventListener('resize', handleResize) // Cleanup on unmount
+  }, [])
+
+  return isNarrow
+}
+
+// ✅ Format date range display (same format as original)
+export function formatDateRange(checkinStr, checkoutStr) {
+    if (checkinStr.includes('-')) {
+        var [startYear, startMonth, startDay] = checkinStr.split('-')
+        var [endYear, endMonth, endDay] = checkoutStr.split('-')
+    } else {
+        var [startMonth, startDay, startYear] = checkinStr.split('/')
+        var [endMonth, endDay, endYear] = checkoutStr.split('/')
+    }
+
+    const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December',
+    ]
+    const monthName = months[Number(startMonth) - 1]
+
+    return `${startDay}-${endDay} ${monthName} ${startYear}`
+}
+
+// ✅ Parse "YYYY-M-D" or "M/D/YYYY" to JavaScript Date
+export function parseDate(dateStr) {
+    if (dateStr.includes('-')) {
+        const [year, month, day] = dateStr.split('-')
+        return new Date(+year, +month - 1, +day)
+    } else {
+        const [month, day, year] = dateStr.split('/')
+        return new Date(+year, +month - 1, +day)
+    }
+}
+
+// ✅ Sort reservations: Pending first, then by checkout date (newest first)
+export function sortByPendingFirst(reservations) {
+    return [...reservations].sort((a, b) => {
+        if (a.status === 'pending' && b.status !== 'pending') return -1
+        if (b.status === 'pending' && a.status !== 'pending') return 1
+        return new Date(b.checkout) - new Date(a.checkout)
+    })
 }
 
 

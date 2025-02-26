@@ -1,7 +1,10 @@
 .reserve-status {
     @include for-mobile-layout{
         margin-bottom: 20px;
+        display: grid;
+        justify-content: center;
     }
+
     h1 {
         font-size: rem(45px);
         margin: 0;
@@ -75,6 +78,7 @@
         gap: 1rem;
         margin-bottom: rem(48px);
         align-self: center;
+        justify-content: center;
     }
 
     .trip-item {
@@ -82,7 +86,6 @@
         border-radius: 10px;
         padding: 20px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        // flex: 1;
     }
 
     .trip-item p {

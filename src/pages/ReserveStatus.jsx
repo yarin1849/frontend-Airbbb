@@ -12,45 +12,9 @@ import { loadReservations } from '../store/actions/reservation.actions'
 import { socketService } from '../services/socket.service'
 import { Loading } from '../cmps/Loading'
 import { showSuccessMsg } from '../services/event-bus.service'
-
-// ✅ Format date range display (same format as original)
-function formatDateRange(checkinStr, checkoutStr) {
-    if (checkinStr.includes('-')) {
-        var [startYear, startMonth, startDay] = checkinStr.split('-')
-        var [endYear, endMonth, endDay] = checkoutStr.split('-')
-    } else {
-        var [startMonth, startDay, startYear] = checkinStr.split('/')
-        var [endMonth, endDay, endYear] = checkoutStr.split('/')
-    }
-
-    const months = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December',
-    ]
-    const monthName = months[Number(startMonth) - 1]
-
-    return `${startDay}-${endDay} ${monthName} ${startYear}`
-}
-
-// ✅ Parse "YYYY-M-D" or "M/D/YYYY" to JavaScript Date
-function parseDate(dateStr) {
-    if (dateStr.includes('-')) {
-        const [year, month, day] = dateStr.split('-')
-        return new Date(+year, +month - 1, +day)
-    } else {
-        const [month, day, year] = dateStr.split('/')
-        return new Date(+year, +month - 1, +day)
-    }
-}
-
-// ✅ Sort reservations: Pending first, then by checkout date (newest first)
-function sortByPendingFirst(reservations) {
-    return [...reservations].sort((a, b) => {
-        if (a.status === 'pending' && b.status !== 'pending') return -1
-        if (b.status === 'pending' && a.status !== 'pending') return 1
-        return new Date(b.checkout) - new Date(a.checkout)
-    })
-}
+import {useIsNarrowScreen, formatDateRange, parseDate, sortByPendingFirst} from '../services/util.service'
+import { ReservationStatusIsNarrow } from '../cmps/ReservationStatusIsNarrow'
+import { ReserveStatusTable } from '../cmps/ReserveStatusTable'
 
 export function ReserveStatus() {
     const isLoading = useSelector((storeState) => storeState.reservationModule.isLoading)
@@ -58,7 +22,7 @@ export function ReserveStatus() {
     const allReservations = useSelector((storeState) => storeState.reservationModule.reservations)
 
     // ✅ Filter reservations for the logged-in user
-    const userReservations = allReservations.filter(reserve => 
+    const userReservations = allReservations.filter(reserve =>
         reserve.user && String(reserve.user._id) === String(user._id)
     )
 
@@ -87,27 +51,27 @@ export function ReserveStatus() {
                         : reserve
                 )
                 console.log("🆕 Updated reservations:", updatedReservations) // Verify changes before updating state
-                const emojy = (updatedData.status === 'declined') ? '❌':'✅' 
-                const colorStatus = (updatedData.status === 'declined') ? '#ff385c':'#67c23a' 
-                const bgc = (updatedData.status === 'declined') ? '#f56c6c':'#b3e19d' 
+                const emojy = (updatedData.status === 'declined') ? '❌' : '✅'
+                const colorStatus = (updatedData.status === 'declined') ? '#ff385c' : '#67c23a'
+                const bgc = (updatedData.status === 'declined') ? '#f56c6c' : '#b3e19d'
                 showSuccessMsg(<><div>
-                    {emojy} Hi {user.fullname}! your Reservation has been updated to: 
-                    <span style={{color: colorStatus}}> {updatedData.status}!</span> 
-                    </div></>)
+                    {emojy} Hi {user.fullname}! your Reservation has been updated to:
+                    <span style={{ color: colorStatus }}> {updatedData.status}!</span>
+                </div></>)
                 return updatedReservations
             })
         }
         console.log('reservationStatus update')
         socketService.on("reservationStatusUpdate", handleReservationUpdate)
-    
+
         return () => {
             console.log("🔴 Removing listener for reservationStatusUpdate") // Debugging unmount
             socketService.off("reservationStatusUpdate", handleReservationUpdate)
         }
     }, [])
-    
-    
 
+
+    const isNarrow = useIsNarrowScreen()
     if (isLoading || !reservations) return <Loading />
 
     // ✅ Today's date for filtering upcoming trips
@@ -120,89 +84,12 @@ export function ReserveStatus() {
 
     return (
         <section className="reserve-status">
-            <h1>Trips</h1>
-
-            {/* ----------- 1) Upcoming Trips ----------- */}
-            <h2>Upcoming Trips</h2>
-            <TableContainer component={Paper} sx={{ maxHeight: 300, mb: 4 }}>
-                <Table stickyHeader sx={{ minWidth: 650 }} aria-label="Upcoming Trips Table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Destination</TableCell>
-                            <TableCell align="left">Host</TableCell>
-                            <TableCell align="left">Dates</TableCell>
-                            <TableCell align="left">Booked By</TableCell>
-                            <TableCell align="left">Total Price</TableCell>
-                            <TableCell align="left">Status</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {sortedUpcoming.map((row) => (
-                            <TableRow key={row._id}>
-                                <TableCell>{row.location.city}, {row.location.country}</TableCell>
-                                <TableCell align="left">
-                                    <div className="user-cell">
-                                        <img src={row.host?.img} className="user-img" alt="Host" />
-                                        {row.host?.name}
-                                    </div>
-                                </TableCell>
-                                <TableCell align="left">{formatDateRange(row.checkin, row.checkout)}</TableCell>
-                                <TableCell align="left">
-                                    <div className="user-cell">
-                                        <img src={row.user?.img} className="user-img" alt="User" />
-                                        {row.user?.name}
-                                    </div>
-                                </TableCell>
-                                <TableCell align="left">${row.price}</TableCell>
-                                <TableCell align="left" className={`status-${row.status.toLowerCase()}`}>
-                                    {row.status}
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-
-            {/* ----------- 2) All Trips ----------- */}
-            <h2>All Trips</h2>
-            <TableContainer component={Paper} sx={{ maxHeight: 300 }}>
-                <Table stickyHeader sx={{ minWidth: 650 }} aria-label="All Trips Table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Destination</TableCell>
-                            <TableCell align="left">Host</TableCell>
-                            <TableCell align="left">Dates</TableCell>
-                            <TableCell align="left">Booked By</TableCell>
-                            <TableCell align="left">Total Price</TableCell>
-                            <TableCell align="left">Status</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {sortedAll.map((row) => (
-                            <TableRow key={row._id}>
-                                <TableCell>{row.location.city}, {row.location.country}</TableCell>
-                                <TableCell align="left">
-                                    <div className="user-cell">
-                                        <img src={row.host?.img} className="user-img" alt="Host" />
-                                        {row.host?.name}
-                                    </div>
-                                </TableCell>
-                                <TableCell align="left">{formatDateRange(row.checkin, row.checkout)}</TableCell>
-                                <TableCell align="left">
-                                    <div className="user-cell">
-                                        <img src={row.user?.img} className="user-img" alt="User" />
-                                        {row.user?.name}
-                                    </div>
-                                </TableCell>
-                                <TableCell align="left">${row.price}</TableCell>
-                                <TableCell align="left" className={`status-${row.status.toLowerCase()}`}>
-                                    {row.status}
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            {isNarrow ? (
+                <ReservationStatusIsNarrow sortedUpcoming={sortedUpcoming} sortedAll={sortedAll}/>
+            ) : (
+                
+                <ReserveStatusTable sortedUpcoming={sortedUpcoming} sortedAll={sortedAll}/>
+            )}
         </section>
     )
 }
