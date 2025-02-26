@@ -107,36 +107,6 @@ export function Dashboard() {
     }
   }, [])
 
-  // Add this new useEffect for handling new reservations
-  useEffect(() => {
-    function handleNewReservation(data) {
-      console.log("🔔 Received new reservation:", data)
-      // Reload all reservations to include the new one
-      loadReservations()
-    }
-
-    socketService.on("addReservation", handleNewReservation)
-
-    return () => {
-      socketService.off("addReservation", handleNewReservation)
-    }
-  }, [])
-
-  // Add this new useEffect for handling new reservations
-  useEffect(() => {
-    function handleNewReservation(data) {
-      console.log("🔔 Received new reservation:", data)
-      // Reload all reservations to include the new one
-      loadReservations()
-    }
-
-    socketService.on("addReservation", handleNewReservation)
-
-    return () => {
-      socketService.off("addReservation", handleNewReservation)
-    }
-  }, [])
-
   const isNarrow = useIsNarrowScreen()
   if (isLoading || !reserves) return <Loading />
 
@@ -189,6 +159,7 @@ export function Dashboard() {
               <li className="trip-item" key={row._id}>
                 <p><strong>Location:</strong> {row.location.city}, {row.location.country}</p>
                 <p><strong>Host:</strong> {row.host?.name}</p>
+                <p><strong>Guest:</strong> {row.user?.name}</p>
                 <p><strong>Dates:</strong> {formatDateRange(row.checkin, row.checkout)}</p>
                 <p><strong>status:</strong><span className={`status-${row.status}`}> {row.status}</span></p>
                 <p><strong>Action:</strong><span className="btn-group">
