@@ -100,8 +100,8 @@ export function Dashboard() {
       socketService.off("addReservation", handleNewReservation)
     }
   }, [])
-  
-  const isNarrow = useIsNarrowScreen() 
+
+  const isNarrow = useIsNarrowScreen()
   if (isLoading || !reserves) return <Loading />
 
   function onStatusChange(updateStatus, todoId) {
@@ -123,7 +123,7 @@ export function Dashboard() {
 
   // Sort the reservations based on our criteria (pending first, then newest date)
   const sortedReserves = sortReservations(reserves)
-  
+
 
   return (
     <section className="dashboard">

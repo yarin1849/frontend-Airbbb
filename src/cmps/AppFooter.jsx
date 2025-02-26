@@ -8,7 +8,6 @@ export function AppFooter() {
 
 	return (
 		<footer className={`app-footer ${isNotFixed ? "" : "fixed"}`}>
-			{/* <footer className="app-footer full"> */}
 			<div className="footer-content">
 				<div className="footer-left">
 					<span>&copy; 2025 Airbbb, Inc.</span>

@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useParams } from "react-router"
 import { useSearchParams } from "react-router-dom"
+import { formatCurrency } from "../services/util.service"
 
 export function StayBookingModal({ stay }) {
 
@@ -40,11 +41,11 @@ export function StayBookingModal({ stay }) {
                 <hr></hr>
                 <h2>Price details</h2>
                 <div className="pricing-calculate">
-                    <div><span className="nightly-rate-calc">${nightlyRate} x {nights} nights</span><span> ${nightlyRate * nights}</span></div>
-                    <div><span className="nightly-service-fee">Airbbb service fee</span><span> ${fee}</span></div>
+                    <div><span className="nightly-rate-calc">{formatCurrency(nightlyRate)} x {nights} nights</span><span> {formatCurrency(nightlyRate * nights)}</span></div>
+                    <div><span className="nightly-service-fee">Airbbb service fee</span><span> {formatCurrency(fee)}</span></div>
                     <hr />
                     <div className="total"><span>Total</span>
-                        <span>${parseInt(totalPrice)}</span></div>
+                        <span>{formatCurrency(parseInt(totalPrice))}</span></div>
                 </div>
 
             </div>

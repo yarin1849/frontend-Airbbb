@@ -1,10 +1,16 @@
 .login-form,
 .signup-form {
+
+	@include for-mobile-layout{
+		max-width: 100%;
+		
+	}
 	display: grid;
 	width: min(80%, 300px);
 	margin: auto;
 
 	padding: 1em;
+
 	
 }
 

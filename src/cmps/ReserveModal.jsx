@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { formatCurrency } from "../services/util.service"
 import { DayPicker } from "react-day-picker"
 import { GuestsModal } from '../cmps/GuestsModal'
 import "react-day-picker/style.css"
+import { calculateGradient, resetGradient } from '../services/util.service';
 
 export function ReserveModal({ stay, checkin, checkout, guests }) {
+
+    // const handleMouseMove = (event) => calculateGradient(event, isHovering, setGradient);
+    // const handleMouseLeave = () => resetGradient(setGradient);
+
     const navigate = useNavigate()
     const { stayId } = useParams()
     const [searchParams, setSearchParams] = useSearchParams()
@@ -296,11 +302,11 @@ export function ReserveModal({ stay, checkin, checkout, guests }) {
 
             <p className="disclaimer">You won’t be charged yet</p>
             <div className="pricing-calculate">
-                <div><span className="nightly-rate-calc">${nightlyRate} x {nights} nights</span><span> ${nightlyRate * nights}</span></div>
-                <div><span className="nightly-service-fee">Airbnb service fee</span><span> ${fee}</span></div>
+                <div><span className="nightly-rate-calc">{formatCurrency(nightlyRate)} x {nights} nights</span><span> {formatCurrency(nightlyRate * nights)}</span></div>
+                <div><span className="nightly-service-fee">Airbnb service fee</span><span> {formatCurrency(fee)}</span></div>
                 <hr />
                 <div className="total"><span>Total</span>
-                    <span>${totalPrice}</span></div>
+                    <span>{formatCurrency(totalPrice)}</span></div>
             </div>
         </div>
     )

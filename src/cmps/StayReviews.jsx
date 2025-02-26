@@ -19,7 +19,7 @@ export function StayReviews({ stay }) {
                             <div className="review-user-info">
                                 <div className="review-user-fullname">{review.by.fullname}</div>
                                 <div className="review-user-seniority">
-                                    {getRandomIntInclusive(1, 15)} years on Airbbb
+                                    {review.by.seniority} years on Airbbb
                                 </div>
                             </div>
                         </div>

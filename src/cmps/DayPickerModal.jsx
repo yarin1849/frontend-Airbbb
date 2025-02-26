@@ -20,10 +20,8 @@ export function DatePickerModal({ setFilterByToEdit, FilterByToEdit, next }) {
 
     function handleSelect(day) {
         if (!selected.from || (selected.from && selected.to)) {
-            // Select from date
             setSelected({ from: day, to: null })
         } else if (selected.from && !selected.to && day > selected.from) {
-            // Select to date
             setSelected(prevState => ({ ...prevState, to: day }))
         }
     }

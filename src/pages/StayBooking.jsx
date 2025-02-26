@@ -40,7 +40,7 @@ export function StayBooking() {
         } catch (err) {
             console.error("Failed to save reservation:", err)
             showErrorMsg("Something went wrong. Please try again.")
-        } 
+        }
     }
 
     const handleMouseMove = (ev) => {
@@ -84,7 +84,6 @@ export function StayBooking() {
                 <div className="booking-header">
                     <button className="back-to-details-btn" onClick={() => { navigate(`/details/${stayId}`) }}>
                         <ChevronLeft size={20} />
-                        {/* לשנות את זה ל-a */}
                     </button>
                     <div className="booking-main-title">
                         <h1>Confirm and Pay</h1>
@@ -93,7 +92,7 @@ export function StayBooking() {
                 <div className="recommendation-container">
                     <div className="recommendation-description">
                         <span>This is a rare find.</span>
-                        <p>Bros Lee's place is usually booked.</p>
+                        <p>{host.fullname}'s place is usually booked.</p>
                     </div>
                     <div className="recommendation-tag">
                         <img src={images[4]?.src} />
@@ -112,6 +111,17 @@ export function StayBooking() {
                         <span> {guests} {guests === "1" ? "guest" : "guests"}</span>
                     </div>
                     <hr />
+                    <div className="booking-payment-method">
+                        <div className="booking-payment-text"><span>Pay with</span></div>
+                        <div className="booking-payment-imgs">
+                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568396/visa_cmcgaf.svg"} /></span>
+                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/AMEX_q9stcu.svg"} /></span>
+                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/mastercard_gmswdz.svg"} /></span>
+                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568535/asset_3_rnczol.svg"} /></span>
+                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568337/asset_4_an71bf.svg"} /></span>
+                        </div>
+                    </div>
+                    <hr />
                 </div>
                 <div className="confirm-container">
                     <button
@@ -128,7 +138,7 @@ export function StayBooking() {
             <div className="booking-stay-details">
                 <StayBookingModal stay={stay} />
             </div>
-        </div >
+        </div>
     )
 }
 
