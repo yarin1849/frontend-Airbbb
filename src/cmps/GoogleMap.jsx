@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react"
 import GoogleMapReact from "google-map-react"
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+
 
 export default function GoogleMap({ stay }) {
     const [center, setCenter] = useState({
@@ -25,8 +27,7 @@ export default function GoogleMap({ stay }) {
             <div className="map-container">
                 <div className="map-wrapper">
                     <GoogleMapReact
-                        // bootstrapURLKeys={{ key: process.env.GOOGLE_MAP_API }}
-                        bootstrapURLKeys={{ key: "" }}
+                        bootstrapURLKeys={{ key: GOOGLE_API_KEY }}
                         center={center}
                         defaultZoom={zoom}
                         onClick={onHandleClick}
