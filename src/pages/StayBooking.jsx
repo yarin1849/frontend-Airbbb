@@ -7,6 +7,7 @@ import { addReservation } from "../store/actions/reservation.actions"
 import { loadStay } from "../store/actions/stay.actions"
 import { Loading } from "../cmps/Loading"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import SelectLabels from "../cmps/SelectLabels"
 // import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 export function StayBooking() {
@@ -78,13 +79,22 @@ export function StayBooking() {
         }
     }
 
+    const getCancellationDate = (checkin, daysBefore) => {
+        const checkinDate = new Date(checkin)
+        checkinDate.setDate(checkinDate.getDate() - daysBefore)
+        return formatDate(checkinDate.toISOString())
+    }
+
+
+
     return (
         <div className="stay-booking">
             <div className="booking-confirm-details">
                 <div className="booking-header">
-                    <button className="back-to-details-btn" onClick={() => { navigate(`/details/${stayId}`) }}>
-                        <ChevronLeft size={20} />
-                    </button>
+                    <a href={`/details/${stayId}`} className="back-to-details-btn">
+                        <img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1739635520/back-arrow_s0yb92.svg"} />
+                        {/* <ChevronLeft size={20} /> */}
+                    </a>
                     <div className="booking-main-title">
                         <h1>Confirm and Pay</h1>
                     </div>
@@ -112,16 +122,52 @@ export function StayBooking() {
                     </div>
                     <hr />
                     <div className="booking-payment-method">
-                        <div className="booking-payment-text"><span>Pay with</span></div>
-                        <div className="booking-payment-imgs">
-                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568396/visa_cmcgaf.svg"} /></span>
-                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/AMEX_q9stcu.svg"} /></span>
-                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/mastercard_gmswdz.svg"} /></span>
-                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568535/asset_3_rnczol.svg"} /></span>
-                            <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568337/asset_4_an71bf.svg"} /></span>
+                        <div className="booking-payment-header">
+                            <div className="booking-payment-text"><span>Pay with</span></div>
+                            <div className="booking-payment-imgs">
+                                <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568396/visa_cmcgaf.svg"} /></span>
+                                <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/mastercard_gmswdz.svg"} /></span>
+                                <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568397/AMEX_q9stcu.svg"} /></span>
+                                <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568535/asset_3_rnczol.svg"} /></span>
+                                <span><img src={"https://res.cloudinary.com/du312ufuo/image/upload/v1740568337/asset_4_an71bf.svg"} /></span>
+                            </div>
+                        </div>
+                        <div className="booking-payment-select"><SelectLabels /></div>
+                    </div>
+                    <hr />
+                    <div className="cancellation-policy">
+                        <div className="cancellation-policy-header">
+                            Cancellation policy
+                        </div>
+                        <div className="cancellation-policy-text">
+                            <span>Free cancellation before {getCancellationDate(checkin, 7)}. </span>
+                            Cancel before {getCancellationDate(checkin, 3)} for a partial refund.
+                            <div className="learn-more-btn-container"><button className="learn-more-btn">
+                                Learn more
+                            </button></div>
                         </div>
                     </div>
                     <hr />
+                    <div className="booking-ground-rules">
+                        <div className="ground-rules-header">
+                            Ground rules
+                        </div>
+                        <div className="ground-rules-text">
+                            We ask every guest to remember a few simple things about what makes a great guest.
+                        </div>
+                        <div className="ground-rules-li-container">
+                            <ul>
+                                <li>Follow the house rules</li>
+                                <li>Treat your Host’s home like your own</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr />
+                    <div className="privacy-policy-text">
+                        <div className="first-policy">By selecting the button below, I agree to the <span>Host's House Rules, Ground rules for guests, Airbnb's Rebooking and Refund Policy</span>, and that Airbnb can <span>charge my payment method</span> if I’m responsible for damage.</div>
+
+                        <div className="second-policy">I also agree to the <span>updated Terms of Service, Payments Terms of Service</span>, and I acknowledge the <span>Privacy Policy.</span></div>
+                    </div>
                 </div>
                 <div className="confirm-container">
                     <button
@@ -133,12 +179,12 @@ export function StayBooking() {
                         Confirm and pay
                     </button>
                 </div>
-            </div>
+            </div >
 
             <div className="booking-stay-details">
                 <StayBookingModal stay={stay} />
             </div>
-        </div>
+        </div >
     )
 }
 

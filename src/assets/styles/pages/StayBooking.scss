@@ -3,7 +3,12 @@
     width: 1120px;
     margin: 0 auto;
     min-height: 200vh;
-    // justify-content: space-between;
+    font-family: airbnb, sans-serif;
+    
+    hr {
+        border: none;
+        border-top: 1px solid #ddd;
+    }   
 
     .booking-confirm-details{
         width: 560px;
@@ -30,27 +35,52 @@
             font-size: 16px;
             
             .back-to-details-btn{
+
+                position:absolute;
+    
+                    display: flex !important;
+                    background: none !important;
+                    border: none !important;
+                    color: #222222;
+                    padding: 0;
+                    margin: 0;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: bold;
+                    text-decoration: underline;
+                    font-weight:500;
+                    margin-bottom: 50px;
+                    left:358px;
+                    bottom: 718px;
+              
+                    img{
+                        width: 16px;
+                        &:hover {
+                            background-color: #f7f7f7;
+                            outline: 16px solid #f7f7f7;
+                            border-radius: 50%;
+                        }
+                    }
+                    
+                    
+                    
                 // position: absolute;
-                position:relative;
-                right: 8px;
-                bottom: 3px;
-                margin-inline-start: -30px;
-                // border: 50px;
-                color: #222222;
-                background: none;
-                border: none;
-                padding: 0;
-                cursor: pointer;
-                place-content: center;
-                img{
-                    place-self: center;
-                }
+                // margin-inline-start: -30px;
+                // // border: 50px;
+                // color: #222222;
+                // background: none;
+                // border: none;
+                // padding: 0;
+                // cursor: pointer;
+                // place-content: center;
+                // img{
+                //     place-self: center;
+                // }
                 
                 &:hover{
                     background-color: #f7f7f7;
                     border-radius: 50%;
-                    width: 20px;
-                    height: 20px;
+                    
                 }
             }
         }
@@ -105,7 +135,7 @@
 
         .booking-guests{
             line-height: 1;
-            margin-bottom: 28px;
+            margin-bottom: 30px;
         }
 
     }
@@ -115,15 +145,12 @@
             color: white;
             width: 10%;
             padding: 14px;
+            margin: 12px 0 0 0;
             border-radius: 10px;
             font-size: 18px;
             cursor: pointer;
-
-            font-weight: 500;
-            height: 56px;
-            letter-spacing: normal;
-            line-break: strict;
-            line-height: 24px;
+            padding: 18px;
+            font-weight: bold;
             min-width: 200px;
     
             &:active {
@@ -135,17 +162,116 @@
 
     .booking-payment-method{
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         font-size: 22px;
+        margin-top: 16px;
 
-        span{
-            display: inline-block;
+        .booking-payment-header{
+            display: flex;
+            justify-content: space-between;
+    
+            .booking-payment-imgs{
+                display: flex;
+                align-items: center;
+                margin-top: 6px;
+                img{
+                    display: flex;
+                    margin-left:4px;
+                    width: 34px;
+                }
+            }
+            .booking-payment-imgs span:nth-child(2) img {
+                width: 20px;
+            }
+            .booking-payment-imgs span:nth-child(4) img {
+                width: 44px;
+            }
         }
-        img{
-            width: 50px;
+        
+    }
+
+    .cancellation-policy{
+        margin-top: 28px;
+        margin-bottom: -20px;
+        .cancellation-policy-header{
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        .cancellation-policy-text{
+            margin-top: 16px;
+            font-size: 16px;
+            
+            span{
+                font-weight: 700;
+            }
+            .learn-more-btn-container{
+                margin-top: -1px;
+                .learn-more-btn{
+    
+                    display: flex !important;
+                    background: none !important;
+                    border: none !important;
+                    color: #222222;
+                    padding: 0;
+                    margin: 0;
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: bold;
+                    text-decoration: underline;
+                    font-weight:500;
+                    margin-bottom: 50px;
+                    
+                    &:hover{
+                        color: black;
+                    }
+                }
+            }
         }
     }
+
+    .booking-ground-rules{
+        padding: 20px 0 14px;
+        // margin-top: -12px;
+        .ground-rules-header{
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .ground-rules-text{
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
         
+        .ground-rules-li-container li::before {
+            content: "•";
+            font-size: 14px;
+            color: #222222;
+            margin-right: 10px;
+        }
+    }
+    
+
+    .privacy-policy-text{
+        font-size: 12px;
+        margin-top: 40px;
+        .first-policy{
+            span{
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+        .second-policy{
+            span{
+                color: #004CC4;
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+    }
 }
 
     .booking-stay-details{

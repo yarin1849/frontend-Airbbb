@@ -56,8 +56,13 @@ export function StayDescription({ stay }) {
                             <img src={stay.host.thumbnailUrl} />
                         </div>
                         <div className="host-description">
-                            <h3>Hosted by {stay.host.fullname}</h3>
-                            <span>blalalal</span>
+                            <h3>Hosted by {
+                                stay.host.fullname
+                                    ? stay.host.fullname.charAt(0).toUpperCase() + stay.host.fullname.slice(1).toLowerCase()
+                                    : ""
+                            }</h3>
+                            <span>Superhost  · </span>
+                            <span>{stay.host.seniority} years hosting</span>
                         </div>
                         <hr></hr>
                     </div>
