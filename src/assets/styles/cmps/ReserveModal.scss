@@ -1,339 +1,334 @@
 .reserve-modal {
+  display: flex;
+  flex-direction: column;
+  width: 372.34px;
+  height: 459.22px;
+  justify-self: end;
+  color: $clr2;
+
+  font-family: airbnb, sans-serif;
+
+  margin-top: 31px;
+  padding: 24px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+
+  .price-per-night {
     display: flex;
-    flex-direction: column;
-    width: 372.34px;
-    height: 459.22px;
-    justify-self: end;
-    color: $clr2;
+    gap: 4px;
 
-    font-family: airbnb, sans-serif;
-
-    margin-top: 31px;
-    padding: 24px;
-    border: 1px solid rgb(221, 221, 221);
-    border-radius: 12px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-    
-    .price-per-night {
-        display: flex; 
-        gap: 4px;
-        
-        span:first-child {
-            font-weight: bold;
-            font-size: 22px;
-            color: $clr2;
-            margin-top: -5px;
-        }
-        
-        span:last-child {
-            font-size: 16px;
-            color: #222222;
-            font-weight :400;
-            margin: 1px 2px;
-        }
-    }
-    
-    .modal-info-selector {
-        position: relative;
-        
-        border: 1px solid #b0b0b0;
-        border-radius: 8px;
-        margin-bottom: 31px;
-        top: 20px;
-        .date-selector {
-            display: flex;
-            border-bottom: 1px solid #ccc;
-            justify-content: space-between;
-            div {
-                flex: 1;
-                padding: 5px;
-                // margin-bottom: 3px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                position: relative;
-            }
-        
-            div:not(:last-child) {
-                border-right: 1px solid #ccc;
-            }
-        
-            label {
-                font-size: 10px;
-                font-weight: bold;
-                color: #222222;
-                text-transform: uppercase;
-                margin-left: 2px;
-            }
-            
-            input {
-                border: none;
-                font-size: 14px;
-                width: 100%;
-                cursor: pointer;
-                padding: 3px;
-                text-align: left;
-                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-                font-weight: 500;
-            }
-            input::-webkit-calendar-picker-indicator{
-                display: none;
-            }
-            
-            input:focus {
-                outline: none;
-            }
-        }
-        
-        .guest-selector {
-            display: flex;
-            flex-direction: column;
-            align-items: left;
-            gap: 7px;
-            padding: 7px 12px;
-            position: relative;
-            top: 1px;
-
-            label {
-                font-size: 10px;
-                font-weight: bold;
-                color: #666;
-                text-transform: uppercase;
-            }
-        
-            select {
-                position: relative;
-                border: none;
-                background: transparent;
-                font-size: 14px;
-                cursor: pointer;
-                bottom: 6px;
-                right: 6px;
-            }
-        
-            select:focus {
-                outline: none;
-            }
-        }
+    span:first-child {
+      font-weight: bold;
+      font-size: 22px;
+      color: $clr2;
+      margin-top: -5px;
     }
 
-    .reserve-button {
+    span:last-child {
+      font-size: 16px;
+      color: #222222;
+      font-weight: 400;
+      margin: 1px 2px;
+    }
+  }
+
+  .modal-info-selector {
+    position: relative;
+
+    border: 1px solid #b0b0b0;
+    border-radius: 8px;
+    margin-bottom: 31px;
+    top: 20px;
+    .date-selector {
+      display: flex;
+      border-bottom: 1px solid #ccc;
+      justify-content: space-between;
+      div {
+        flex: 1;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         position: relative;
-        color: white;
-        width: 100%;
-        padding: 14px;
-        border-radius: 30px;
-        font-size: 16px;
+      }
+
+      div:not(:last-child) {
+        border-right: 1px solid #ccc;
+      }
+
+      label {
+        font-size: 10px;
         font-weight: bold;
-        cursor: pointer;
-        align-self: center;
-        margin-bottom: 15px;
-
-        &:active {
-            transform: scale(0.97);
-            background: #FF385C !important;
-        }
-    }
-    
-
-    .disclaimer {
-        text-align: center;
-        font-size: 14px;
         color: #222222;
+        text-transform: uppercase;
+        margin-left: 2px;
+      }
+
+      input {
+        border: none;
+        font-size: 14px;
+        width: 100%;
+        cursor: pointer;
+        padding: 3px;
+        text-align: left;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        font-weight: 500;
+      }
+      input::-webkit-calendar-picker-indicator {
+        display: none;
+      }
+
+      input:focus {
+        outline: none;
+      }
     }
 
-    .pricing-calculate {
-        margin-top: -2px;
-        font-size: 16px;
+    .guest-selector {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      gap: 7px;
+      padding: 7px 12px;
+      position: relative;
+      top: 1px;
 
-        div {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px;
-            
-            .nightly-rate-calc {
-                text-decoration: underline;
+      label {
+        font-size: 10px;
+        font-weight: bold;
+        color: #666;
+        text-transform: uppercase;
+      }
 
-            }
+      select {
+        position: relative;
+        border: none;
+        background: transparent;
+        font-size: 14px;
+        cursor: pointer;
+        bottom: 6px;
+        right: 6px;
+      }
 
-            .nightly-service-fee {
-                text-decoration: underline;
-                margin-bottom: 10px;
-            }
-        }
-        
-        .total{
-            margin-top: 14px;
-            font-weight :500;
-        }
+      select:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .reserve-button {
+    position: relative;
+    color: white;
+    width: 100%;
+    padding: 14px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: center;
+    margin-bottom: 15px;
+
+    &:active {
+      transform: scale(0.97);
+      background: #ff385c !important;
+    }
+  }
+
+  .disclaimer {
+    text-align: center;
+    font-size: 14px;
+    color: #222222;
+  }
+
+  .pricing-calculate {
+    margin-top: -2px;
+    font-size: 16px;
+
+    div {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px;
+
+      .nightly-rate-calc {
+        text-decoration: underline;
+      }
+
+      .nightly-service-fee {
+        text-decoration: underline;
+        margin-bottom: 10px;
+      }
     }
 
-    
+    .total {
+      margin-top: 14px;
+      font-weight: 500;
+    }
+  }
 }
 
 .date-picker-modal-reserve {
-    background: rgb(255, 255, 255) !important;
-    border-radius: 16px !important;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px !important;
-    display: inline-block !important;
-    padding: 24px 32px 16px !important;
-    position: absolute !important;
-    top: 80px !important;
-    right: -8px !important;
-    width: 661px !important;
-    z-index: 1 !important;
-    min-height: 440px !important;
-    font-size: 14px !important;
-    font-weight: bold !important;
+  background: rgb(255, 255, 255) !important;
+  border-radius: 16px !important;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px !important;
+  display: inline-block !important;
+  padding: 24px 32px 16px !important;
+  position: absolute !important;
+  top: 80px !important;
+  right: -8px !important;
+  width: 661px !important;
+  z-index: 1 !important;
+  min-height: 440px !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
 
-    .rdp-root {
-        --rdp-accent-color: #222222;
-        --rdp-accent-background-color: #f7f7f7;
-        --rdp-disabled-opacity: 0.9;
-        --rdp-outside-opacity: 0;
-        background: transparent !important;
-    }
+  .rdp-root {
+    --rdp-accent-color: #222222;
+    --rdp-accent-background-color: #f7f7f7;
+    --rdp-disabled-opacity: 0.9;
+    --rdp-outside-opacity: 0;
+    background: transparent !important;
+  }
 
-    .rdp-day:hover:not(.rdp-day_disabled) {
-        border-radius: 50% !important;
-        outline: 2px solid black;
-        cursor: pointer;
-    }
-    
-    .my-selected-day {
-        background-color: black !important;
-        color: white !important;
-        border-radius: 50% !important;
-        font-weight: bold;
-    }
-    
-    .my-hovered-range {
-        background-color: #f7f7f7 !important;
-        color: black !important;
-        border-radius: 0 !important;
-    }
+  .rdp-day:hover:not(.rdp-day_disabled) {
+    border-radius: 50% !important;
+    outline: 2px solid black;
+    cursor: pointer;
+  }
 
-    .check-in-day {
-        background-color: black !important;
-        color: white !important;
-        border-radius: 50% !important;
-        // font-weight: bold;
-    }
-    
-    .check-out-day {
-        background-color: black !important;
-        color: white !important;
-        border-radius: 50% !important;
-        font-weight: bold;
-    }
-    
-    .hovered-check-in {
-        background-color: black !important;
-        color: white !important;
-        border-radius: 50% !important;
-    }
+  .my-selected-day {
+    background-color: black !important;
+    color: white !important;
+    border-radius: 50% !important;
+    font-weight: bold;
+  }
 
-    .rdp-day_disabled {
-        color: #ccc !important;
-        text-decoration: line-through !important;
-        cursor: none !important;
-        opacity: 0.6 !important;
-    }
-    
-    
+  .my-hovered-range {
+    background-color: #f7f7f7 !important;
+    color: black !important;
+    border-radius: 0 !important;
+  }
+
+  .check-in-day {
+    background-color: black !important;
+    color: white !important;
+    border-radius: 50% !important;
+    // font-weight: bold;
+  }
+
+  .check-out-day {
+    background-color: black !important;
+    color: white !important;
+    border-radius: 50% !important;
+    font-weight: bold;
+  }
+
+  .hovered-check-in {
+    background-color: black !important;
+    color: white !important;
+    border-radius: 50% !important;
+  }
+
+  .rdp-day_disabled {
+    color: #ccc !important;
+    text-decoration: line-through !important;
+    cursor: none !important;
+    opacity: 0.6 !important;
+  }
 }
 
+.date-picker-header {
+  display: flex;
+  justify-content: space-between;
+  .date-picker-vacation-time {
+    display: flex;
+    flex-direction: column;
 
-
-.date-picker-header{
-        display: flex;
-        justify-content: space-between;
-        .date-picker-vacation-time{
-            display: flex;
-            flex-direction: column;
-
-            .date-picker-nights{
-                font-size: 22px;
-                font-weight: bold;
-                margin-top: -2px;
-            }
-
-            .date-picker-checking{
-                font-size: 14px;
-                color: #6A6A6A
-            }
-        }
-
-    .date-inputs {
-        display: flex;
-        padding-bottom: 10px;
+    .date-picker-nights {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: -2px;
     }
+
+    .date-picker-checking {
+      font-size: 14px;
+      color: #6a6a6a;
+    }
+  }
+
+  .date-inputs {
+    display: flex;
+    padding-bottom: 10px;
+  }
 }
 
 .date-input {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    padding: 8px 10px 8px 10px;
-    border-radius: 8px;
-    min-width: 158px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 8px 10px 8px 10px;
+  border-radius: 8px;
+  min-width: 158px;
 }
 
 .date-input label {
-    font-size: 10px;
-    // margin-top: 3px;
-    font-weight: bold;
-    color: #666;
-    text-transform: uppercase;
+  font-size: 10px;
+  // margin-top: 3px;
+  font-weight: bold;
+  color: #666;
+  text-transform: uppercase;
 }
 
 .date-input span {
-    // margin-top: -3px;
-    font-size: 14px;
-    color: #222;
-    font-weight: bold;
+  // margin-top: -3px;
+  font-size: 14px;
+  color: #222;
+  font-weight: bold;
 }
 
-
 .rdp-months {
-    display: flex !important;
-    justify-content: center !important;
-    flex-wrap: nowrap !important;
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: nowrap !important;
+
+  @include for-mobile-layout {
+    flex-wrap: wrap !important;
+    justify-content: end !important;
+  }
 }
 
 .date-picker-footer {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    padding-top: 15px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-top: 15px;
 }
 
 .date-picker-clear-dates {
-    background: none;
-    border: none;
-    color: #222222;
-    font-size: 14px;
-    cursor: pointer;
-    text-decoration: underline;
+  background: none;
+  border: none;
+  color: #222222;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .date-picker-clear-dates:hover {
-    color: black;
+  color: black;
 }
 
 .date-picker-close-button {
-    padding: 9px 16px;
-    background: #222222;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+  padding: 9px 16px;
+  background: #222222;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .date-picker-close-button:hover {
-    background: black;
-    
+  background: black;
 }
-

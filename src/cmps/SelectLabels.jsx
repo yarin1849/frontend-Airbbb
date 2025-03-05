@@ -21,7 +21,7 @@ export default function SelectLabels() {
 
     return (
         <div>
-            <FormControl sx={{ mt: 3, mb: 3, minWidth: 560 }}>
+            <FormControl sx={{ mt: 3, mb: 3, xs: 'unset', width: '100%' }}>
                 <Select
                     value={selectedCard.value}
                     onChange={handleChange}

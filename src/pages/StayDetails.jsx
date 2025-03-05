@@ -84,7 +84,7 @@ export function StayDetails() {
         </div>
       </div>
       {stay && (
-        <div>
+        <div className='main-div'>
           <StayGallery stay={stay} />
           <div className='stay-main-content'>
             <div className='stay-info-content'>
