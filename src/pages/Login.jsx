@@ -45,8 +45,8 @@ export function Login() {
     }
 
     async function onDemoUser() {
-        credentials.username = 'Patty'
-        credentials.password = '36133410'
+        credentials.username = 'hoshen'
+        credentials.password = 'hoshen'
         const user = await login(credentials)
         if (!user || !user._id) {
             console.error("❌ Login failed: No user ID returned.")

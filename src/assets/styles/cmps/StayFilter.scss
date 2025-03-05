@@ -12,10 +12,6 @@
         @include for-mobile-layout {
             top: 111px;
         }
-
-        // background-color: white;
-        // /* Ensure it's visible */
-
     }
 
     /* Full-width shadow effect */
@@ -31,6 +27,7 @@
         height: 8px;
         /* Red shadow effect */
         box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 0px;
+
         @include for-mobile-layout {
             display: none;
         }
@@ -55,8 +52,6 @@
             scrollbar-width: none;
             background-color: #fff;
             padding: 22px 0px 12px 0px;
-            // margin-bottom: 14px;
-            // margin-bottom: 200px;
 
             ::-webkit-scrollbar {
                 display: none;
@@ -152,14 +147,18 @@
             .filter-bar {
                 gap: 15px;
                 padding: 10px 30px;
+                margin-left: 15px;
             }
 
             .filter-icon {
                 font-size: 10px;
-
                 img {
                     width: 24px;
                     height: 24px;
+                }
+
+                .icon-name {
+                    font-size: 15px;
                 }
             }
 
@@ -184,35 +183,44 @@
             }
         }
     }
-}
-
-.filter-btn {
-    display: flex;
-    align-items: center;
-    width: 93px;
-    gap: 9.5px;
-    background-color: #fff;
-    color: #222222;
-    border: 1px solid $gray3;
-    border-radius: 10px;
-    padding: 15px;
-    font-size: 12px;
-    align-self: center;
-    position: relative;
-    top: -5%;
-    right: 0.7%;
-
-
-    img {
-        width: 16px;
-        height: 16px;
+    
+    .filter-btn {
+        display: flex;
+        align-items: center;
+        width: 93px;
+        gap: 9.5px;
+        background-color: #fff;
+        color: #222222;
+        border: 1px solid $gray3;
+        border-radius: 10px;
+        padding: 15px;
+        font-size: 12px;
+        align-self: center;
+        position: relative;
+        top: -5%;
+        right: 0.7%;
+    
+    
+        img {
+            width: 16px;
+            height: 16px;
+        }
+    
+        &:hover {
+            border: 1px solid #222222;
+            background-color: rgb(244, 244, 244);
+        }
+    
+    
+        @include for-mobile-layout {
+            display: none
+        }
     }
-
-    &:hover {
-        border: 1px solid #222222;
-        background-color: rgb(244, 244, 244);
-    }
-    @include for-mobile-layout {
-        display:none
+    
+    @media screen and (max-width: 1920px) {
+        .filter-btn {
+            top: -5%;
+            right: 1%;
+        }
     }
 }
