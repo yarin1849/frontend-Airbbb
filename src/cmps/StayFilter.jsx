@@ -26,7 +26,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
             isNarrow.current = true
             setItemsPerScroll(3)
             setScrollAmount(340)
-        } else if (screenWidth < 1920) {
+        } else if (screenWidth < 1600) {
             isNarrow.current = false
             setItemsPerScroll(13)
             setScrollAmount(1200)
@@ -39,20 +39,20 @@ export function StayFilter({ filterBy, setFilterBy }) {
 
     useEffect(() => {
         // Run on initial page load
-        updateItemsPerScroll();
+        updateItemsPerScroll()
     
         // Set up the resize event listener with debounce
         const handleResize = debounce(() => {
-            updateItemsPerScroll();
-        }, 200);
+            updateItemsPerScroll()
+        }, 200)
     
         window.addEventListener("resize", handleResize);
     
         // Cleanup the event listener on component unmount
         return () => {
             window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+        }
+    }, [])
 
     const scroll = (direction) => {
         const filterBar = scrollRef.current
