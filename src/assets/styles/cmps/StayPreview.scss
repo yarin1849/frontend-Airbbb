@@ -142,6 +142,12 @@
         filter: drop-shadow(-0.5px -0.5px 0 rgba(255, 255, 255, 0.7)) drop-shadow(1px -1px 0 rgba(255, 255, 255, 0.7)) drop-shadow(-1px 1px 0 rgba(255, 255, 255, 0.7)) drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.7));
     }
 
+    @include for-wide-layout-max{
+        .heart-img {
+            filter: drop-shadow(0px 0px 0 rgba(255, 255, 255, 0.7)) drop-shadow(1px -1px 0 rgba(255, 255, 255, 0.7)) drop-shadow(-1px 1px 0 rgba(255, 255, 255, 0.7)) drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.7));
+        }
+    }
+
     .rating {
         display: flex;
         align-items: center;

@@ -173,10 +173,6 @@ export const categories = [
         src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435558/c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6_ojaa0j.png'
     },
     {
-        name: 'Amazing views',
-        src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435584/3b1eb541-46d9-4bef-abc4-c37d77e3c21b_m5mzlv.png'
-    },
-    {
         name: 'Castles',
         src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435574/1b6a8b70-a3b6-48b5-88e1-2243d9172c06_swyjgt.png'
     },
@@ -187,6 +183,10 @@ export const categories = [
     {
         name: 'Mansions',
         src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739437423/78ba8486-6ba6-4a43-a56d-f556189193da_hlrdrx.png'
+    },
+    {
+        name: 'Amazing views',
+        src: 'https://res.cloudinary.com/dswenk4wc/image/upload/v1739435584/3b1eb541-46d9-4bef-abc4-c37d77e3c21b_m5mzlv.png'
     },
     {
         name: 'Islands',

@@ -11,6 +11,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
     const scrollRef = useRef(null)
     const rightBtn = useRef(null)
     const leftBtn = useRef(null)
+    const isNarrow = useRef(false)
     const [currentScroll, setCurrentScroll] = useState(0)
     const [itemsPerScroll, setItemsPerScroll] = useState(17)
     const [scrollAmount, setScrollAmount] = useState(992)
@@ -20,33 +21,38 @@ export function StayFilter({ filterBy, setFilterBy }) {
     const updateItemsPerScroll = () => {
         const screenWidth = window.innerWidth
 
-        // // Example screen width adjustments
-        // if (screenWidth < 600) {
-        //     setItemsPerScroll(5)
-        //     setScrollAmount(440)
-        // } else if (screenWidth < 900) {
-        //     setItemsPerScroll(10)
-        //     setScrollAmount(740)
-        // } else if (screenWidth < 1500) {
-        //     setItemsPerScroll(20)
-        //     setScrollAmount(1340)
-        // } else {
-        //     setItemsPerScroll(28)
-        //     setScrollAmount(1400)
-        // }
+        // Example screen width adjustments
+        if (screenWidth < 600) {
+            isNarrow.current = true
+            setItemsPerScroll(3)
+            setScrollAmount(340)
+        } else if (screenWidth < 1920) {
+            isNarrow.current = false
+            setItemsPerScroll(13)
+            setScrollAmount(1200)
+        } else {
+            isNarrow.current = false
+            setItemsPerScroll(17)
+            setScrollAmount(1400)
+        }
     }
 
     useEffect(() => {
+        // Run on initial page load
+        updateItemsPerScroll();
+    
+        // Set up the resize event listener with debounce
         const handleResize = debounce(() => {
-            updateItemsPerScroll()
-        }, 200)
-
-        window.addEventListener("resize", handleResize)
-
+            updateItemsPerScroll();
+        }, 200);
+    
+        window.addEventListener("resize", handleResize);
+    
+        // Cleanup the event listener on component unmount
         return () => {
-            window.removeEventListener("resize", handleResize)
-        }
-    }, [])
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     const scroll = (direction) => {
         const filterBar = scrollRef.current
@@ -97,14 +103,13 @@ export function StayFilter({ filterBy, setFilterBy }) {
         setSelectedFilter(filterName);
     }
     
-
     return (
             <section style={{ display: "flex", justifyContent: "space-between" }} className="stay-filter">
                 <div className="icon-filter">
                     {/* Left Arrow Button */}
                     {currentScroll > 0 && (
                         <button className="left-arrow btn" ref={leftBtn} onClick={() => scroll("left")}>
-                            <ChevronLeft size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
+                            <ChevronLeft size={18} style={{ transform: isNarrow.current ? "translate(-9.5%,-6.1%)" : "translate(-20.6%, 1.5%)" }} />
                         </button>)}
 
                     <div ref={scrollRef} className="filter-bar">
@@ -124,7 +129,7 @@ export function StayFilter({ filterBy, setFilterBy }) {
                     {/* Right Arrow Button */}
                     {currentScroll < totalScrolls - 1 &&
                         (<button className="right-arrow btn" ref={rightBtn} onClick={() => scroll("right")}>
-                            <ChevronRight size={18} style={{ transform: "translate(-20.6%, 1.5%)" }} />
+                            <ChevronRight size={18} style={{  transform: isNarrow.current ? "translate(-9.5%,-6.1%)" : "translate(-20.6%, 1.5%)"  }} />
                         </button>)}
                 </div>
 
