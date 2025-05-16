@@ -11,7 +11,7 @@ import { StayGallery } from '../cmps/StayGallery'
 import { StayDescription } from '../cmps/StayDescription'
 import { StayAmenities } from '../cmps/StayAmenities'
 import { ReserveModal } from '../cmps/ReserveModal'
-import GoogleMap from '../cmps/GoogleMap'
+// import GoogleMap from '../cmps/GoogleMap'
 import { DayPicker } from 'react-day-picker'
 import { Loading } from '../cmps/Loading'
 import { StayReviews } from '../cmps/StayReviews'
@@ -123,7 +123,7 @@ export function StayDetails() {
       )
       }
       <div className='stay-map-section'>
-        <GoogleMap stay={stay} />
+        {/* <GoogleMap stay={stay} /> */}
       </div>
     </section>
   )
